@@ -25,8 +25,6 @@ public class PantallaNuevaController extends BasePantallaController  implements 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //String user = getPrincipalController().getActualUser().getNombre();
-        lbBienvenida.setText("Bienvenido a la pantalla de nueva!");
     }
 
 
@@ -34,7 +32,6 @@ public class PantallaNuevaController extends BasePantallaController  implements 
     public void principalCargado() {
         //el principal cargado
         String user = getPrincipalController().getActualUser().getNombre();
-        lbBienvenida.setText("Bienvenido a la pantalla de nueva!"+user);
-
+        lbBienvenida.setText("Bienvenido a la pantalla de nuevo "+user+"!");
     }
 }

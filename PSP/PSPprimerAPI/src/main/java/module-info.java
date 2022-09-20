@@ -11,14 +11,12 @@ module javafx11.multipantalla {
     requires jakarta.inject;
     requires jakarta.cdi;
 
-    //requires jakarta.jakartaee.web.api;
 
     exports ui.main to javafx.graphics;
     exports ui.pantallas.principal;
     exports ui.pantallas.pantallaNueva;
     exports ui.pantallas.pantalla1;
     exports ui.pantallas.login;
-    exports ui.pantallas.detalle;
     exports ui.pantallas.listado;
     exports common.config;
     exports ui.pantallas.common;
@@ -26,12 +24,10 @@ module javafx11.multipantalla {
     exports dao.impl;
     exports domain.usecases;
 
-//    opens ui.pantallas.principal to javafx.fxml;
     opens ui.pantallas.pantalla1 to javafx.fxml;
     opens ui.pantallas.pantallaNueva to javafx.fxml;
     opens ui.pantallas.listado to javafx.fxml;
     opens ui.pantallas.login to  javafx.fxml;
-    opens ui.pantallas.detalle to  javafx.fxml;
 
     opens domain.modelo to javafx.base;
     opens ui.pantallas.principal;
@@ -40,10 +36,5 @@ module javafx11.multipantalla {
     opens css;
     opens fxml;
 
-//    exports ui;
-//    opens domain.modelo to javafx.base;
-//    exports ui.pantallas.principal;
-//
-//    opens ui.pantallas.principal to javafx.fxml;
 
 }

@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import ui.pantallas.principal.PrincipalController;
 
 import java.io.IOException;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class MainFX {
@@ -27,7 +26,6 @@ public class MainFX {
             controller.setStage(stage);
 
             stage.setScene(new Scene(fxmlParent));
-            stage.getScene().getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
             stage.setTitle(r.getString("app.title"));
             stage.show();
         } catch (IOException e) {
