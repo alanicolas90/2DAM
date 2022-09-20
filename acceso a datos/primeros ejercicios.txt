@@ -1,0 +1,36 @@
+SQL
+EJ1
+SELECT id_type, name_newspaper
+from article,
+     newspaper
+where article.id_newspaper = newspaper.id
+EJ2
+SELECT description, ranking
+from type,
+     readarticle
+
+EJ3
+SELECT name_reader, release_date
+from reader,
+     newspaper
+where reader.id = newspaper.id
+order by release_date asc
+limit 100;
+
+EJ4
+SELECT COUNT(id)
+from article
+Where id in (Select id from type where type.description = 'sports')
+
+EJ5
+----------------------------------------
+----------------------------------------
+EJ6
+SELECT name_newspaper
+from newspaper
+where id = (SELECT id_newspaper
+            from article
+            where id_type = (SELECT id from type where description = 'sports')
+            group by id_newspaper
+            order by count(id_newspaper) desc
+            limit 1);
