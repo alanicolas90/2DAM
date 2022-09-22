@@ -15,7 +15,7 @@ public class DIJavafx extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage){
 
         SeContainerInitializer initializer = SeContainerInitializer.newInstance();
         final SeContainer container = initializer.initialize();

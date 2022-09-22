@@ -1,4 +1,4 @@
-module javafx11.multipantalla {
+module javafx.multipantalla {
 
 
     requires javafx.graphics;

@@ -1,0 +1,12 @@
+
+X	java:S125"<This block of commented-out lines of code should be removed.(ú¾°ü8è³¾ˆ¶0
+N	java:S106%"9Replace this use of System.out or System.err by a logger.(ğõê
+Q	java:S125+"<This block of commented-out lines of code should be removed.(úşÆ×
+N	java:S106C"9Replace this use of System.out or System.err by a logger.(Í…Ö”
+V	java:S125E"<This block of commented-out lines of code should be removed.(¿¿±¤ùÿÿÿÿ
+V	java:S125Q"<This block of commented-out lines of code should be removed.(¢ºù‡şÿÿÿÿ
+Q	java:S125V"<This block of commented-out lines of code should be removed.(õºè°
+N
+java:S1128",Remove this unused import 'com.google.gson'.(Ã¾çõÿÿÿÿÿ8ğ³¾ˆ¶0
+V
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8ğ³¾ˆ¶0
