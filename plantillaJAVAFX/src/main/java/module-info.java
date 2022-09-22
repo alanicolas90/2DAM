@@ -32,6 +32,9 @@ module javafx.multipantalla {
     opens domain.modelo to javafx.base;
     opens ui.pantallas.principal;
     opens ui.main;
+    opens css;
+    opens fxml;
+    opens config;
 
 
 }

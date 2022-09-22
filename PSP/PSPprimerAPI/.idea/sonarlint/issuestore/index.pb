@@ -31,15 +31,3 @@ X
 (src/main/java/domain/modelo/Usuario.java,b\b\bba9c4fb98f35d74b5a423dffb6939f448f6f3ba
 i
 9src/main/java/ui/pantallas/listado/ListadoController.java,5\2\527c788db3eed07414173e76ce34ec647d22d6e2
-m
-=src/main/java/ui/pantallas/principal/PrincipalController.java,6\8\6854908843d482996cd7f7c9ccd44ffdc547ca45
-S
-#src/main/java/ui/main/DIJavafx.java,5\3\535169814ef8dd70f8f23c95a2032d8268f48d6d
-d
-4src/main/java/ui/pantallas/listado/ListadoState.java,1\4\140fcbb072ea50430ee00d3ece56c34ea9f8142c
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-N
-src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
-W
-'src/main/java/ui/main/StartupScene.java,6\7\67e2e8cd1ccdf2df73312c03c460f4b3fbed5ef4
