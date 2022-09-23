@@ -10,6 +10,10 @@ module javafx.multipantalla {
     requires org.apache.logging.log4j;
     requires jakarta.inject;
     requires jakarta.cdi;
+    requires moshi;
+    requires retrofit2;
+    requires retrofit2.converter.moshi;
+    requires okhttp3;
 
 
     exports ui.main to javafx.graphics;
@@ -27,7 +31,7 @@ module javafx.multipantalla {
     opens ui.pantallas.pantalla1 to javafx.fxml;
     opens ui.pantallas.pantallaNueva to javafx.fxml;
     opens ui.pantallas.listado to javafx.fxml;
-    opens ui.pantallas.login to  javafx.fxml;
+    opens ui.pantallas.login to javafx.fxml;
 
     opens domain.modelo to javafx.base;
     opens ui.pantallas.principal;

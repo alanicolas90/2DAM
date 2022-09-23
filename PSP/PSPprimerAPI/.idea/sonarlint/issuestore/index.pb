@@ -19,10 +19,6 @@ d
 4src/main/java/ui/pantallas/login/LoginViewModel.java,e\7\e7d8d195a68c5e0e3b34a11a1a18d22d5e312b65
 c
 3src/main/java/domain/usecases/LoginUseCaseImpl.java,4\0\40ddd7f394b516943aa3ee4cd4ad4c3ae424ad13
-X
-(src/main/java/dao/impl/DaoLoginImpl.java,d\c\dc93d87f6f192408bc0bee328c8f77e509e08153
-^
-.src/main/java/common/config/Configuracion.java,3\2\321110ff7ab403dd6f5497b6559f8dc0654ae5bd
 h
 8src/main/java/ui/pantallas/listado/ListadoViewModel.java,6\2\62d40df670d5a9f2819ac52c201af73ee8c04af1
 Q
@@ -31,3 +27,5 @@ X
 (src/main/java/domain/modelo/Usuario.java,b\b\bba9c4fb98f35d74b5a423dffb6939f448f6f3ba
 i
 9src/main/java/ui/pantallas/listado/ListadoController.java,5\2\527c788db3eed07414173e76ce34ec647d22d6e2
+W
+'src/main/java/ui/main/StartupScene.java,6\7\67e2e8cd1ccdf2df73312c03c460f4b3fbed5ef4
