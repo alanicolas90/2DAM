@@ -39,6 +39,8 @@ module javafx.multipantalla {
     opens config;
     opens css;
     opens fxml;
+    opens domain.modelo.jokes;
+    opens domain.modelo.drinks;
 
 
 }
