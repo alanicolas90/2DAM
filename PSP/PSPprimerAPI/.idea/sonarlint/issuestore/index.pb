@@ -23,3 +23,45 @@ i
 9src/main/java/ui/pantallas/listado/ListadoController.java,5\2\527c788db3eed07414173e76ce34ec647d22d6e2
 W
 'src/main/java/ui/main/StartupScene.java,6\7\67e2e8cd1ccdf2df73312c03c460f4b3fbed5ef4
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+V
+&src/main/java/common/StringsUtils.java,6\f\6f0847c362c9a75c434aedd8e311b4ce819a4daa
+O
+src/main/java/dao/RetroFit.java,8\8\88b246ad147cd112e846cd7344447d25c352c259
+^
+.src/main/java/common/config/Configuracion.java,3\2\321110ff7ab403dd6f5497b6559f8dc0654ae5bd
+S
+#src/main/java/ui/main/DIJavafx.java,5\3\535169814ef8dd70f8f23c95a2032d8268f48d6d
+i
+9src/main/java/domain/modelo/drinks/category/Category.java,c\1\c1d6736d618bf5ef2ac4a4a3f92baac0a3724b17
+s
+Csrc/main/java/domain/modelo/drinks/category/CategoriesResponse.java,8\c\8c46aa00850f455e600897dbc06701fe1883440b
+c
+3src/main/java/domain/modelo/drinks/drink/Drink.java,2\d\2db45ecde718ddd480445a9127b1dfdae768ca23
+l
+<src/main/java/domain/modelo/drinks/drink/DrinksResponse.java,e\f\ef45aae27d5c667bd31041c550b23528c1df7ace
+m
+=src/main/java/domain/modelo/drinks/glass/GlassesResponse.java,c\2\c25141154bf26a487b1c326e9067b8efa37b54f4
+c
+3src/main/java/domain/modelo/drinks/glass/Glass.java,5\0\50a6d6ba5a063b9c416f576c1f42f1a8da65062b
+}
+Msrc/main/java/domain/modelo/drinks/ingrediente/DrinksIngredientsResponse.java,1\4\14a2cc4ae9e29c806000ece3a3ecb92e5169a457
+z
+Jsrc/main/java/domain/modelo/drinks/ingrediente/DrinkIngredienteSearch.java,2\8\28936b0a4a2843eeae9a4aacf873fbb5bf6c652e
+w
+Gsrc/main/java/domain/modelo/drinks/ingrediente/IngredienteResponse.java,9\a\9a98879e7fb428f06ce5e35717dbb5377329030c
+o
+?src/main/java/domain/modelo/drinks/ingrediente/Ingrediente.java,5\8\5839c938e09f9f14883e2b107ad4b032b55b2248
+_
+/src/main/java/domain/modelo/drinks/Alcohol.java,d\d\dd6628efd090e80d3e977cbb76588a4505146752
+O
+src/main/java/ui/main/Main.java,e\a\ea96b99dd8d725725ad637073873194d3860069f
+q
+Asrc/main/java/domain/modelo/drinks/alcohol/AlcoholicResponse.java,0\8\08115fc7d76d6a03ef603f58bff12b067de382d9
+P
+ src/main/java/dao/DaoDrinks.java,c\9\c97dc51af5a757bb2c3317d4a24751988a410311
+N
+src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
+\
+,src/main/java/domain/retrofit/DrinksApi.java,2\3\23327a30aec9e9f2c01bae2b5f5cff3f221d5eb5

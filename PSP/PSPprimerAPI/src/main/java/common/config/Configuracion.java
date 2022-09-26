@@ -1,44 +1,42 @@
 package common.config;
 
 
-import io.github.palexdev.materialfx.utils.StringUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import common.StringsUtils;
 import jakarta.inject.Singleton;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
-import org.yaml.snakeyaml.Yaml;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Properties;
 
 @Getter
 @Log4j2
 @Singleton
 public class Configuracion {
 
-    private String pathDatos;
+    private static Configuracion configuracion;
 
-    public Configuracion() {
 
-        try {
-            Yaml yaml = new Yaml();
+    public static synchronized Configuracion getInstance(){
+        if (configuracion == null)
+        {
+            ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+            mapper.findAndRegisterModules();
 
-            Iterable<Object> it = null;
+            try {
+                configuracion = mapper.readValue(
+                        Configuracion.class.getClassLoader().getResourceAsStream(StringsUtils.CONFIG_YAML),
+                        Configuracion.class);
 
-            it = yaml.loadAll(new FileInputStream("src/main/resources/config.yaml"));
-            Map<String, String> map = (Map<String, String>) it.iterator().next();
 
-            this.setPathDatos(map.get("pathDatos"));
-
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
+            } catch (IOException e) {
+                log.error(e.getMessage(),e);
+            }
         }
+        return configuracion;
     }
-
-    private void setPathDatos(String pathDatos) {
-        this.pathDatos = pathDatos;
-    }
-
+    //METER LO QUE CONTIENE EL YAML
+    private String pathDatos;
 
 }

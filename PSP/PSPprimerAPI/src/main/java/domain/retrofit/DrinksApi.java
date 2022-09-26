@@ -1,6 +1,11 @@
 package domain.retrofit;
 
-import domain.modelo.drinks.DrinksResponse;
+import domain.modelo.drinks.alcohol.AlcoholicResponse;
+import domain.modelo.drinks.category.CategoriesResponse;
+import domain.modelo.drinks.ingrediente.DrinksIngredientsResponse;
+import domain.modelo.drinks.drink.DrinksResponse;
+import domain.modelo.drinks.glass.GlassesResponse;
+import domain.modelo.drinks.ingrediente.IngredienteResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -13,27 +18,24 @@ public interface DrinksApi {
     @GET("search.php")
     Call<DrinksResponse> getDrinkByFirstLetter(@Query("f") String firstLetterDrinkName);
 
-    @GET("search.php")
-    Call<DrinksResponse> getDrinkByIngredient(@Query("i") String ingredient);
+    @GET("filter.php")
+    Call<DrinksIngredientsResponse> getDrinkByIngredient(@Query("i") String ingredient);
 
     @GET("random.php")
     Call<DrinksResponse> getRandomDrink();
 
-    @GET("filter.php?a=Alcoholic")
-    Call<DrinksResponse> getAlcoholicDrinks();
-
-    @GET("filter.php?a=Non_Alcoholic")
-    Call<DrinksResponse> getNonAlcoholicDrinks();
+    @GET("filter.php?")
+    Call<DrinksResponse> getAlcoholicOrNonAlcoholicDrinks(@Query("a") String alcoOrNotAlco);
 
     @GET("list.php?c=list")
-    Call<DrinksResponse> getCategories();
+    Call<CategoriesResponse> getCategories();
 
     @GET("list.php?g=list")
-    Call<DrinksResponse> getGlasses();
+    Call<GlassesResponse> getGlasses();
 
     @GET("list.php?i=list")
-    Call<DrinksResponse> getIngredients();
+    Call<IngredienteResponse> getIngredients();
 
     @GET("list.php?a=list")
-    Call<DrinksResponse> getAlcoholicFilters();
+    Call<AlcoholicResponse> getAlcoholicFilters();
 }

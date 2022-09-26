@@ -1,6 +1,8 @@
-package domain.modelo.drinks;
+package domain.modelo.drinks.drink;
 
 import java.util.List;
+
+import domain.modelo.drinks.drink.Drink;
 import lombok.Data;
 
 @Data

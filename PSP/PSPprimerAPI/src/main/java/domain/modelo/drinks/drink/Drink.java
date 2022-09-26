@@ -1,4 +1,4 @@
-package domain.modelo.drinks;
+package domain.modelo.drinks.drink;
 
 import lombok.Data;
 
@@ -7,6 +7,7 @@ public class Drink {
 	private int idDrink;
 	private String strDrink;
 	private String strDrinkAlternate;
+	private String strDrinkThumb;
 	private String strTags;
 	private String strVideo;
 	private String strCategory;
@@ -58,6 +59,7 @@ public class Drink {
 				"idDrink=" + idDrink +
 				",\n strDrink='" + strDrink + '\'' +
 				",\n strDrinkAlternate='" + strDrinkAlternate + '\'' +
+				"\n strDrinkThumb=" +strDrinkThumb+ '\''+
 				",\n strTags='" + strTags + '\'' +
 				",\n strVideo='" + strVideo + '\'' +
 				",\n strCategory='" + strCategory + '\'' +
