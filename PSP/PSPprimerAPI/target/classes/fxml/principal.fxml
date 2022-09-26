@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="root" prefHeight="400.0" prefWidth="600.0" stylesheets="@/css/style.css"
+<BorderPane fx:id="root" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ui.pantallas.principal.PrincipalController">
     <center>
@@ -28,41 +28,17 @@
         <MenuBar fx:id="menuPrincipal">
             <menus>
                 <Menu fx:id="menuFile" mnemonicParsing="false" text="Options">
-                    <items>
-                        <MenuItem fx:id="menuItemNew" mnemonicParsing="false" text="New"/>
-                        <MenuItem fx:id="menuItemPantalla1" mnemonicParsing="false" onAction="#menuClick"
-                                  text="Pantalla1"/>
-                        <MenuItem fx:id="menuItemListado" mnemonicParsing="false" onAction="#menuClick" text="listado"/>
-                        <MenuItem fx:id="menuItemPantallaNueva" mnemonicParsing="false" onAction="#menuClick"
-                                  text="pantallaNueva"/>
-                        <MenuItem fx:id="menuItemLogout" mnemonicParsing="false" onAction="#menuClick" text="Logout"/>
-                        <MenuItem fx:id="menuOptionHelp" mnemonicParsing="false" onAction="#help" text="Help"/>
-                        <MenuItem fx:id="menuItemExit" mnemonicParsing="false" onAction="#exit" text="Exit"/>
-                    </items>
+                    <MenuItem fx:id="menuItemPantalla1" mnemonicParsing="false" onAction="#menuClick"
+                              text="Pantalla1"/>
+                    <MenuItem fx:id="menuItemLogout" mnemonicParsing="false" onAction="#menuClick" text="Logout"/>
+                    <MenuItem fx:id="menuOptionHelp" mnemonicParsing="false" onAction="#help" text="Help"/>
+                    <MenuItem fx:id="menuItemExit" mnemonicParsing="false" onAction="#exit" text="Exit"/>
                 </Menu>
-                <Menu fx:id="menuNewspaper" mnemonicParsing="false" text="Newspaper">
-                    <items>
-                        <MenuItem fx:id="menuNewspaperList" mnemonicParsing="false" text="List"/>
-                        <MenuItem fx:id="menuNewspaperAdd" mnemonicParsing="false" text="Add"/>
-                        <MenuItem fx:id="menuNewspaperUpdate" mnemonicParsing="false" text="Update"/>
-                        <MenuItem fx:id="menuNewspaperDelete" mnemonicParsing="false" text="Delete"/>
-                    </items>
-                </Menu>
-                <Menu fx:id="menuArticle" mnemonicParsing="false" text="Article">
-                    <items>
-                        <MenuItem fx:id="menuArticleList" mnemonicParsing="false" text="List"/>
-                        <MenuItem fx:id="menuArticleAdd" mnemonicParsing="false" text="Add"/>
-                        <MenuItem fx:id="menuArticleUpdate" mnemonicParsing="false" text="Update"/>
-                        <MenuItem fx:id="menuArticleDelete" mnemonicParsing="false" text="Delete"/>
-                    </items>
-                </Menu>
-                <Menu fx:id="menuReader" mnemonicParsing="false" text="Reader">
-                    <items>
-                        <MenuItem fx:id="menuReaderList" mnemonicParsing="false" text="List"/>
-                        <MenuItem fx:id="menuReaderAdd" mnemonicParsing="false" text="Add"/>
-                        <MenuItem fx:id="menuReaderUpdate" mnemonicParsing="false" text="Update"/>
-                        <MenuItem fx:id="menuReaderDelete" mnemonicParsing="false" text="Delete"/>
-                    </items>
+                <Menu fx:id="menuDrinks" mnemonicParsing="false" text="Drinks">
+                    <MenuItem fx:id="menuRandomDrinks" mnemonicParsing="false" onAction="#menuClick" text="Random"/>
+                    <MenuItem fx:id="menuAlcoholicDrinks" mnemonicParsing="false" onAction="#menuClick" text="Alcoholic"/>
+                    <MenuItem fx:id="menuNonAlcoholicDrinks" mnemonicParsing="false" onAction="#menuClick" text="Non-Alcoholic"/>
+                    <MenuItem fx:id="menuBuscarBebidas" mnemonicParsing="false" onAction="#menuClick" text="Search"/>
                 </Menu>
             </menus>
         </MenuBar>

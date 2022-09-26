@@ -22,9 +22,8 @@ import java.util.Optional;
 @Log4j2
 public class PrincipalController {
     @FXML
-    public Menu menuArticle;
-//    @FXML
-//    private Menu menuOther;
+    public Menu menuDrinks;
+
 
     // objeto especial para DI
     Instance<Object> instance;
@@ -142,20 +141,11 @@ public class PrincipalController {
     @FXML
     private void menuClick(ActionEvent actionEvent) {
         switch (((MenuItem) actionEvent.getSource()).getId()) {
-            case "menuItemPantalla1":
-                cargarPantalla(Pantallas.PANTALLA1);
-                break;
-            case "menuItemListado":
-                cargarPantalla(Pantallas.LISTADO);
-                break;
-            case "menuItemPantallaNueva":
-                cargarPantalla(Pantallas.PANTALLANUEVA);
-                break;
-            case "menuItemLogout":
-                logout();
-                break;
-            default:
-                break;
+            case "menuItemPantalla1" -> cargarPantalla(Pantallas.PANTALLA1);
+            case "menuBuscarBebidas" -> cargarPantalla(Pantallas.SEARCH);
+            case "menuRandomDrinks" -> cargarPantalla(Pantallas.PANTALLANUEVA);
+            case "menuItemLogout" -> logout();
+            default -> log.error("No se ha encontrado el menu");
         }
 
 
@@ -165,11 +155,6 @@ public class PrincipalController {
     public void onLoginHecho(Usuario usuario) {
         actualUser = usuario;
         menuPrincipal.setVisible(true);
-//        if (actualUser.getNombre().equals("admin")) {
-//            menuOther.setVisible(false);
-//        } else if (actualUser.getNombre().equals("user")) {
-//            menuOther.setVisible(true);
-//        }
 
         cargarPantalla(Pantallas.PANTALLA1);
     }

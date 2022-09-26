@@ -1,8 +1,6 @@
 
 m
 =src/main/java/ui/pantallas/common/BasePantallaController.java,c\c\cc1ae912583ea46a90bdbcb27df07083ec460f34
-`
-0src/main/java/ui/pantallas/common/Pantallas.java,0\f\0f6b33d1a9a5694be1bfe44edd12d4d8db6849d0
 O
 src/main/java/dao/DaoLogin.java,8\7\87d42a8a6967e707d6c44eb756c4666397d7a7d2
 `
@@ -21,10 +19,6 @@ c
 3src/main/java/domain/usecases/LoginUseCaseImpl.java,4\0\40ddd7f394b516943aa3ee4cd4ad4c3ae424ad13
 h
 8src/main/java/ui/pantallas/listado/ListadoViewModel.java,6\2\62d40df670d5a9f2819ac52c201af73ee8c04af1
-Q
-!src/main/java/ui/main/MainFX.java,2\e\2e7801e75bc7d7b888b07031d0746a50f31ff377
-X
-(src/main/java/domain/modelo/Usuario.java,b\b\bba9c4fb98f35d74b5a423dffb6939f448f6f3ba
 i
 9src/main/java/ui/pantallas/listado/ListadoController.java,5\2\527c788db3eed07414173e76ce34ec647d22d6e2
 W

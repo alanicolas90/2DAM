@@ -43,11 +43,15 @@ public class Main {
 
         DrinksApi drinks= retro.create(DrinksApi.class);
 
-        //JokeApi jokes =  retro.create(JokeApi.class);
 
-        Response<DrinksResponse> response = drinks.getDrinkByName("ma").execute();
+//        Response<DrinksResponse> response = drinks.getDrinkByName("margarita").execute();
+//        Response<DrinksResponse> randomResponse = drinks.getRandomDrink().execute();
+        Response<DrinksResponse> categoryResponse = drinks.getIngredients().execute();
 
-        System.out.println(response.body().toString());
+        System.out.println(categoryResponse.body());
+
+        //System.out.println(response.body().toString());
+        //System.out.println(randomResponse.body());
         //Response<ResponseJoke> respuesta = jokes.getDarkJoke("en").execute();
 //        System.out.println(jokes.getDarkJoke("en").request().url());
         //System.out.println(respuesta.body());

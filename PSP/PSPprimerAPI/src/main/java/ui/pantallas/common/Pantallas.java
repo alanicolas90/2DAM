@@ -2,12 +2,12 @@ package ui.pantallas.common;
 
 public enum Pantallas {
 
-    PANTALLA1 ("/fxml/pantalla1.fxml"),
-    LOGIN ("/fxml/login.fxml"),
-    LISTADO ("/fxml/listado.fxml"),
-    PANTALLANUEVA (ConstantesPantallas.FXML_PANTALLA_NUEVA_FXML);
+    PANTALLA1 (ConstantesPantallas.FXML_PANTALLA_1_FXML),
+    LOGIN (ConstantesPantallas.FXML_LOGIN_FXML),
+    SEARCH(ConstantesPantallas.FXML_SEARCH_FXML),
+    PANTALLANUEVA (ConstantesPantallas.FXML_RANDOM_DRINKS_FXML);
 
-    private String ruta;
+    private final String ruta;
     Pantallas(String ruta) {
         this.ruta=ruta;
     }

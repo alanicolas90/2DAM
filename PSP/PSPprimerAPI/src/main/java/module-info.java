@@ -14,6 +14,7 @@ module javafx.multipantalla {
     requires retrofit2;
     requires retrofit2.converter.moshi;
     requires okhttp3;
+    requires org.yaml.snakeyaml;
 
 
     exports ui.main to javafx.graphics;
@@ -27,6 +28,8 @@ module javafx.multipantalla {
     exports common;
     exports dao.impl;
     exports domain.usecases;
+    exports domain.modelo;
+
 
     opens ui.pantallas.pantalla1 to javafx.fxml;
     opens ui.pantallas.pantallaNueva to javafx.fxml;
@@ -37,10 +40,10 @@ module javafx.multipantalla {
     opens ui.pantallas.principal;
     opens ui.main;
     opens config;
-    opens css;
     opens fxml;
     opens domain.modelo.jokes;
     opens domain.modelo.drinks;
+    opens ui.pantallas.common;
 
 
 }
