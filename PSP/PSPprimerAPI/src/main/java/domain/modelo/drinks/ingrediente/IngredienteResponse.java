@@ -6,7 +6,7 @@ import java.util.List;
 
 @Data
 public class IngredienteResponse {
-    private List<Ingrediente> drinks;
+    private List<IngredienteName> drinks;
 
     @Override
     public String toString() {

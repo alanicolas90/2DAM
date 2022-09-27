@@ -31,7 +31,7 @@ public class LoginViewModel {
         }
         else
         {
-            state.setValue(new LoginState(false,"usuario "+ reader.getNombre()+" no valido"));
+            state.setValue(new LoginState(false,"usuario "+ reader.nombre()+" no valido"));
         }
     }
 }

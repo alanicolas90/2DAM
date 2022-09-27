@@ -1,10 +1,12 @@
 package domain.retrofit;
 
+import domain.modelo.drinks.alcohol.AlcoholicIdResponse;
 import domain.modelo.drinks.alcohol.AlcoholicResponse;
 import domain.modelo.drinks.category.CategoriesResponse;
 import domain.modelo.drinks.ingrediente.DrinksIngredientsResponse;
 import domain.modelo.drinks.drink.DrinksResponse;
 import domain.modelo.drinks.glass.GlassesResponse;
+import domain.modelo.drinks.ingrediente.IngredientSpecificResponse;
 import domain.modelo.drinks.ingrediente.IngredienteResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -25,7 +27,7 @@ public interface DrinksApi {
     Call<DrinksResponse> getRandomDrink();
 
     @GET("filter.php?")
-    Call<DrinksResponse> getAlcoholicOrNonAlcoholicDrinks(@Query("a") String alcoOrNotAlco);
+    Call<AlcoholicIdResponse> getAlcoholicOrNonAlcoholicDrinks(@Query("a") String alcoOrNotAlco);
 
     @GET("list.php?c=list")
     Call<CategoriesResponse> getCategories();
@@ -38,4 +40,12 @@ public interface DrinksApi {
 
     @GET("list.php?a=list")
     Call<AlcoholicResponse> getAlcoholicFilters();
+
+    @GET("lookup.php")
+    Call<DrinksResponse> getDrinkById(@Query("i") int idDrink);
+
+    @GET("lookup.php")
+    Call<IngredientSpecificResponse> getDrinkByIdIngredient(@Query("iid") int idDrink);
 }
+
+

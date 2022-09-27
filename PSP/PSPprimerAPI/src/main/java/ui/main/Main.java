@@ -4,11 +4,10 @@ import dao.DaoDrinks;
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
 
-import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         SeContainerInitializer initializer = SeContainerInitializer.newInstance();
         final SeContainer container = initializer.initialize();
@@ -18,7 +17,9 @@ public class Main {
 
         //daoDrinks.
 
-        System.out.println(daoDrinks.getAlcoholicFilter());
+        System.out.println(daoDrinks.getDrinkByIdIngredient(552));
+
+
 
 //        Moshi moshi = new Moshi.Builder().build();
 //

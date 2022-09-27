@@ -1,6 +1,6 @@
 package dao.impl;
 
-import common.config.Configuracion;
+import config.ConfiguracionYaml;
 import dao.DaoLogin;
 import domain.modelo.Reader;
 import jakarta.inject.Inject;
@@ -8,18 +8,18 @@ import jakarta.inject.Inject;
 public class DaoLoginImpl implements DaoLogin {
 
 
-    private Configuracion configuracion;
+    private ConfiguracionYaml configuracionYaml;
 
     @Inject
-    public DaoLoginImpl(Configuracion configuracion) {
-        this.configuracion = configuracion;
+    public DaoLoginImpl(ConfiguracionYaml configuracionYaml) {
+        this.configuracionYaml = configuracionYaml;
     }
 
     @Override
     public boolean doLogin(Reader user) {
 
         // buscar usuario
-        if (user.getNombre().equals("admin") || user.getNombre().equals("user"))
+        if (user.nombre().equals("admin") || user.nombre().equals("user"))
             return true;
         return false;
     }

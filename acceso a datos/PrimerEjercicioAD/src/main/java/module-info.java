@@ -19,9 +19,8 @@ module javafx.multipantalla {
     exports ui.pantallas.pantalla1;
     exports ui.pantallas.login;
     exports ui.pantallas.listado;
-    exports common.config;
+    exports config;
     exports ui.pantallas.common;
-    exports common;
     exports dao.impl;
     exports domain.usecases;
 
@@ -36,7 +35,6 @@ module javafx.multipantalla {
     opens css;
     opens fxml;
     opens config;
-    opens common.config;
 
 
 }

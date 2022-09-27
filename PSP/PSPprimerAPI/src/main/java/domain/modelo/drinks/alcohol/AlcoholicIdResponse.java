@@ -5,12 +5,12 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class AlcoholicResponse {
-    List<Alcohol> drinks;
+public class AlcoholicIdResponse {
+    private List<Alcoholic> drinks;
 
     @Override
     public String toString() {
-        return "AlcoholicResponse{" +
+        return "AlcoholicIdResponse{" +
                 "drinks=" + drinks +
                 '}';
     }

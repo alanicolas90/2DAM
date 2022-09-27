@@ -1,10 +1,13 @@
 package dao;
 
+import domain.modelo.drinks.alcohol.AlcoholicIdResponse;
 import domain.modelo.drinks.alcohol.AlcoholicResponse;
 import domain.modelo.drinks.category.CategoriesResponse;
+import domain.modelo.drinks.drink.Drink;
 import domain.modelo.drinks.ingrediente.DrinksIngredientsResponse;
 import domain.modelo.drinks.drink.DrinksResponse;
 import domain.modelo.drinks.glass.GlassesResponse;
+import domain.modelo.drinks.ingrediente.IngredientSpecificResponse;
 import domain.modelo.drinks.ingrediente.IngredienteResponse;
 import domain.retrofit.DrinksApi;
 import io.vavr.control.Either;
@@ -101,13 +104,13 @@ public class DaoDrinks {
         return resultado;
     }
 
-    public Either<String, DrinksResponse> getAlcoholicDrinks() {
-        Either<String, DrinksResponse> resultado;
+    public Either<String, AlcoholicIdResponse> getAlcoholicDrinks() {
+        Either<String, AlcoholicIdResponse> resultado;
         Retrofit retrofit = retroFit.getRetrofit();
         DrinksApi api = retrofit.create(DrinksApi.class);
 
         try {
-            Response<DrinksResponse> drinksResponse = api.getAlcoholicOrNonAlcoholicDrinks("Alcoholic").execute();
+            Response<AlcoholicIdResponse> drinksResponse = api.getAlcoholicOrNonAlcoholicDrinks("Alcoholic").execute();
             if (drinksResponse.isSuccessful() && drinksResponse.body() != null) {
                 resultado = Either.right(drinksResponse.body());
             } else {
@@ -120,13 +123,13 @@ public class DaoDrinks {
         return resultado;
     }
 
-    public Either<String, DrinksResponse> getNonAlcoholicDrinks() {
-        Either<String, DrinksResponse> resultado;
+    public Either<String, AlcoholicIdResponse> getNonAlcoholicDrinks() {
+        Either<String, AlcoholicIdResponse> resultado;
         Retrofit retrofit = retroFit.getRetrofit();
         DrinksApi api = retrofit.create(DrinksApi.class);
 
         try {
-            Response<DrinksResponse> drinksResponse = api.getAlcoholicOrNonAlcoholicDrinks("Non_Alcoholic").execute();
+            Response<AlcoholicIdResponse> drinksResponse = api.getAlcoholicOrNonAlcoholicDrinks("Non_Alcoholic").execute();
             if (drinksResponse.isSuccessful() && drinksResponse.body() != null) {
                 resultado = Either.right(drinksResponse.body());
             } else {
@@ -157,6 +160,45 @@ public class DaoDrinks {
         }
         return resultado;
     }
+
+    public Either<String, DrinksResponse> getDrinkById( int id) {
+        Either<String, DrinksResponse> resultado;
+        Retrofit retrofit = retroFit.getRetrofit();
+        DrinksApi api = retrofit.create(DrinksApi.class);
+
+        try {
+            Response<DrinksResponse> drinksResponse = api.getDrinkById(id).execute();
+            if (drinksResponse.isSuccessful() && drinksResponse.body() != null) {
+                resultado = Either.right(drinksResponse.body());
+            } else {
+                resultado = Either.left(drinksResponse.errorBody().toString());
+            }
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+            resultado = Either.left(e.getMessage());
+        }
+        return resultado;
+    }
+
+    public Either<String, IngredientSpecificResponse> getDrinkByIdIngredient(int id) {
+        Either<String, IngredientSpecificResponse> resultado;
+        Retrofit retrofit = retroFit.getRetrofit();
+        DrinksApi api = retrofit.create(DrinksApi.class);
+
+        try {
+            Response<IngredientSpecificResponse> drinksResponse = api.getDrinkByIdIngredient(id).execute();
+            if (drinksResponse.isSuccessful() && drinksResponse.body() != null) {
+                resultado = Either.right(drinksResponse.body());
+            } else {
+                resultado = Either.left(drinksResponse.errorBody().toString());
+            }
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+            resultado = Either.left(e.getMessage());
+        }
+        return resultado;
+    }
+
 
     public Either<String, GlassesResponse> getGlasses() {
         Either<String, GlassesResponse> resultado;
