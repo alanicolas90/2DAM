@@ -37,8 +37,5 @@ public class ConfiguracionYaml {
     }
     //METER LO QUE CONTIENE EL YAML
     private String articleData;
-    private String newspaperData;
-    private String readerData;
-
 
 }

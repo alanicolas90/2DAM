@@ -35,7 +35,10 @@ module javafx.multipantalla {
     exports domain.modelo;
     exports dao;
     exports domain.modelo.drinks.alcohol;
-    exports domain.modelo.drinks;
+    exports domain.modelo.drinks.ingrediente;
+    exports domain.modelo.drinks.drink;
+    exports domain.modelo.drinks.category;
+    exports domain.modelo.drinks.glass;
 
 
     opens ui.pantallas.pantalla1 to javafx.fxml;
@@ -54,6 +57,6 @@ module javafx.multipantalla {
     opens domain.modelo.drinks.drink;
     opens domain.modelo.drinks.glass;
     opens domain.modelo.drinks.ingrediente;
-    opens domain.modelo.drinks;
     opens domain.modelo.drinks.alcohol;
+    exports domain.usecases.impl;
 }

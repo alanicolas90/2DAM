@@ -1,3 +1,1 @@
-articleData: "data/article.txt"
-newspaperData: "data/newspaper.txt"
-readerData: "data/reader.txt"
+users: "data/users.txt"

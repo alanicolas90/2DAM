@@ -142,20 +142,15 @@ public class PrincipalController {
     @FXML
     private void menuClick(ActionEvent actionEvent) {
         switch (((MenuItem) actionEvent.getSource()).getId()) {
-            case "menuItemPantalla1":
-                cargarPantalla(Pantallas.PANTALLA1);
-                break;
-            case "menuItemListado":
-                cargarPantalla(Pantallas.LISTADO);
-                break;
-            case "menuItemPantallaNueva":
-                cargarPantalla(Pantallas.PANTALLANUEVA);
-                break;
-            case "menuItemLogout":
-                logout();
-                break;
-            default:
-                break;
+            case "menuItemPantalla1" -> cargarPantalla(Pantallas.PANTALLA1);
+            case "menuItemListado" -> cargarPantalla(Pantallas.LISTADO);
+            case "menuItemPantallaNueva" -> cargarPantalla(Pantallas.PANTALLANUEVA);
+            case "menuItemLogout" -> logout();
+            case "menuNewspaperAdd" -> cargarPantalla(Pantallas.ADDNEWSPAPER);
+            case "menuNewspaperList" -> cargarPantalla(Pantallas.LISTANEWSPAPER);
+            case "menuNewspaperDelete" -> cargarPantalla(Pantallas.DELETENEWSPAPER);
+            case "menuNewspaperUpdate" -> cargarPantalla(Pantallas.UPDATENEWSPAPER);
+            default -> log.info("No se ha encontrado el menu");
         }
 
 

@@ -23,6 +23,7 @@ module javafx.multipantalla {
     exports ui.pantallas.common;
     exports dao.impl;
     exports domain.usecases;
+    exports ui.pantallas.newspaper;
 
     opens ui.pantallas.pantalla1 to javafx.fxml;
     opens ui.pantallas.pantallaNueva to javafx.fxml;

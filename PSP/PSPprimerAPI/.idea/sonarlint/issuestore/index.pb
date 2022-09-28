@@ -15,8 +15,6 @@ _
 /src/main/java/domain/usecases/LoginUseCase.java,2\e\2e7ed3f63e50c10ff7a66a7fadc414025b80ef54
 d
 4src/main/java/ui/pantallas/login/LoginViewModel.java,e\7\e7d8d195a68c5e0e3b34a11a1a18d22d5e312b65
-c
-3src/main/java/domain/usecases/LoginUseCaseImpl.java,4\0\40ddd7f394b516943aa3ee4cd4ad4c3ae424ad13
 h
 8src/main/java/ui/pantallas/listado/ListadoViewModel.java,6\2\62d40df670d5a9f2819ac52c201af73ee8c04af1
 i
@@ -25,24 +23,16 @@ W
 'src/main/java/ui/main/StartupScene.java,6\7\67e2e8cd1ccdf2df73312c03c460f4b3fbed5ef4
 V
 &src/main/java/common/StringsUtils.java,6\f\6f0847c362c9a75c434aedd8e311b4ce819a4daa
-O
-src/main/java/dao/RetroFit.java,8\8\88b246ad147cd112e846cd7344447d25c352c259
 S
 #src/main/java/ui/main/DIJavafx.java,5\3\535169814ef8dd70f8f23c95a2032d8268f48d6d
 i
 9src/main/java/domain/modelo/drinks/category/Category.java,c\1\c1d6736d618bf5ef2ac4a4a3f92baac0a3724b17
 s
 Csrc/main/java/domain/modelo/drinks/category/CategoriesResponse.java,8\c\8c46aa00850f455e600897dbc06701fe1883440b
-c
-3src/main/java/domain/modelo/drinks/drink/Drink.java,2\d\2db45ecde718ddd480445a9127b1dfdae768ca23
-l
-<src/main/java/domain/modelo/drinks/drink/DrinksResponse.java,e\f\ef45aae27d5c667bd31041c550b23528c1df7ace
 m
 =src/main/java/domain/modelo/drinks/glass/GlassesResponse.java,c\2\c25141154bf26a487b1c326e9067b8efa37b54f4
 c
 3src/main/java/domain/modelo/drinks/glass/Glass.java,5\0\50a6d6ba5a063b9c416f576c1f42f1a8da65062b
-N
-src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
 d
 4src/main/java/ui/pantallas/listado/ListadoState.java,1\4\140fcbb072ea50430ee00d3ece56c34ea9f8142c
 X
@@ -57,15 +47,31 @@ m
 =src/main/java/ui/pantallas/principal/PrincipalController.java,6\8\6854908843d482996cd7f7c9ccd44ffdc547ca45
 j
 :src/main/java/ui/pantallas/common/ConstantesPantallas.java,9\0\90187b5f683490564245f2c17b964b6c9340357a
-X
-(src/main/java/domain/modelo/Usuario.java,b\b\bba9c4fb98f35d74b5a423dffb6939f448f6f3ba
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-i
-9src/main/java/domain/modelo/drinks/alcohol/Alcoholic.java,9\5\9528a29404851a9ed31d714d7d47b6d098a1bc74
-g
-7src/main/java/domain/modelo/drinks/alcohol/Alcohol.java,6\e\6ec94bdbacd97bd318b4c37b19287073c55146bd
+c
+3src/main/java/domain/modelo/drinks/drink/Drink.java,2\d\2db45ecde718ddd480445a9127b1dfdae768ca23
+l
+<src/main/java/domain/modelo/drinks/drink/DrinksResponse.java,e\f\ef45aae27d5c667bd31041c550b23528c1df7ace
 s
 Csrc/main/java/domain/modelo/drinks/alcohol/AlcoholicIdResponse.java,b\8\b83338b6ecb782b44652e30fc7b2d466af84fe0c
 q
 Asrc/main/java/domain/modelo/drinks/alcohol/AlcoholicResponse.java,0\8\08115fc7d76d6a03ef603f58bff12b067de382d9
+X
+(src/main/java/domain/modelo/Usuario.java,b\b\bba9c4fb98f35d74b5a423dffb6939f448f6f3ba
+g
+7src/main/java/domain/modelo/drinks/alcohol/Alcohol.java,6\e\6ec94bdbacd97bd318b4c37b19287073c55146bd
+N
+src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
+i
+9src/main/java/domain/modelo/drinks/alcohol/Alcoholic.java,9\5\9528a29404851a9ed31d714d7d47b6d098a1bc74
+O
+src/main/java/ui/main/Main.java,e\a\ea96b99dd8d725725ad637073873194d3860069f
+P
+ src/main/java/dao/DaoDrinks.java,c\9\c97dc51af5a757bb2c3317d4a24751988a410311
+\
+,src/main/java/domain/retrofit/DrinksApi.java,2\3\23327a30aec9e9f2c01bae2b5f5cff3f221d5eb5
+^
+.src/main/java/common/config/Configuracion.java,3\2\321110ff7ab403dd6f5497b6559f8dc0654ae5bd
+O
+src/main/java/dao/RetroFit.java,8\8\88b246ad147cd112e846cd7344447d25c352c259

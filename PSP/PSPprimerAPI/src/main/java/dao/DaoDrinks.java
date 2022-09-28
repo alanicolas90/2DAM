@@ -3,7 +3,6 @@ package dao;
 import domain.modelo.drinks.alcohol.AlcoholicIdResponse;
 import domain.modelo.drinks.alcohol.AlcoholicResponse;
 import domain.modelo.drinks.category.CategoriesResponse;
-import domain.modelo.drinks.drink.Drink;
 import domain.modelo.drinks.ingrediente.DrinksIngredientsResponse;
 import domain.modelo.drinks.drink.DrinksResponse;
 import domain.modelo.drinks.glass.GlassesResponse;
@@ -180,7 +179,7 @@ public class DaoDrinks {
         return resultado;
     }
 
-    public Either<String, IngredientSpecificResponse> getDrinkByIdIngredient(int id) {
+    public Either<String, IngredientSpecificResponse> getIngredientById(int id) {
         Either<String, IngredientSpecificResponse> resultado;
         Retrofit retrofit = retroFit.getRetrofit();
         DrinksApi api = retrofit.create(DrinksApi.class);

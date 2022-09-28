@@ -1,7 +1,8 @@
-package domain.usecases;
+package domain.usecases.impl;
 
 import dao.DaoLogin;
 import domain.modelo.Usuario;
+import domain.usecases.LoginUseCase;
 import jakarta.inject.Inject;
 
 
