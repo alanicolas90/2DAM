@@ -3,6 +3,7 @@ package dao;
 import domain.modelo.drinks.alcohol.AlcoholicIdResponse;
 import domain.modelo.drinks.alcohol.AlcoholicResponse;
 import domain.modelo.drinks.category.CategoriesResponse;
+import domain.modelo.drinks.drink.Drink;
 import domain.modelo.drinks.ingrediente.DrinksIngredientsResponse;
 import domain.modelo.drinks.drink.DrinksResponse;
 import domain.modelo.drinks.glass.GlassesResponse;
@@ -257,5 +258,10 @@ public class DaoDrinks {
     }
 
 
-
+    public String getDrinkNameRandom() {
+        return getRandomDrink().map(DrinksResponse::getDrinks)
+                .map(drinks -> drinks.get(0))
+                .map(Drink::getStrDrink)
+                .getOrElse("No se pudo obtener el nombre de la bebida");
+    }
 }

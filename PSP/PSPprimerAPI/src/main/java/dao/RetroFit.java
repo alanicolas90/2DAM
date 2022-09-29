@@ -29,6 +29,7 @@ public class RetroFit {
         // Como hacer el link tirarlo de config
         return new Retrofit.Builder()
                 .baseUrl("https://www.thecocktaildb.com/api/json/v1/1/")
+//                .baseUrl(configuracion.getPathDatos())
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .client(clientOK)
                 .build();

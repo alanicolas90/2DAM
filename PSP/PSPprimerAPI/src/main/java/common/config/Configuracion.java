@@ -15,27 +15,30 @@ import java.io.IOException;
 @Singleton
 public class Configuracion {
 
+    private Configuracion() {
+    }
+
     private static Configuracion configuracion;
 
-
-    public static synchronized Configuracion getInstance(){
-        if (configuracion == null)
-        {
+    public static synchronized Configuracion getInstance() {
+        if (configuracion == null) {
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             mapper.findAndRegisterModules();
 
             try {
-                configuracion = mapper.readValue(
+                mapper.readValue(
                         Configuracion.class.getClassLoader().getResourceAsStream(StringsUtils.CONFIG_YAML),
                         Configuracion.class);
 
 
             } catch (IOException e) {
-                log.error(e.getMessage(),e);
+                log.error(e.getMessage(), e);
             }
         }
         return configuracion;
+
     }
+
     //METER LO QUE CONTIENE EL YAML
     private String pathDatos;
 

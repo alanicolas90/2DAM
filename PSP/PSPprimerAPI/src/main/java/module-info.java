@@ -23,7 +23,7 @@ module javafx.multipantalla {
 
     exports ui.main to javafx.graphics;
     exports ui.pantallas.principal;
-    exports ui.pantallas.pantallaNueva;
+    exports ui.pantallas.random_drink;
     exports ui.pantallas.pantalla1;
     exports ui.pantallas.login;
     exports ui.pantallas.listado;
@@ -39,10 +39,11 @@ module javafx.multipantalla {
     exports domain.modelo.drinks.drink;
     exports domain.modelo.drinks.category;
     exports domain.modelo.drinks.glass;
+    exports domain.usecases.impl;
 
 
     opens ui.pantallas.pantalla1 to javafx.fxml;
-    opens ui.pantallas.pantallaNueva to javafx.fxml;
+    opens ui.pantallas.random_drink to javafx.fxml;
     opens ui.pantallas.listado to javafx.fxml;
     opens ui.pantallas.login to javafx.fxml;
     opens common;
@@ -58,5 +59,5 @@ module javafx.multipantalla {
     opens domain.modelo.drinks.glass;
     opens domain.modelo.drinks.ingrediente;
     opens domain.modelo.drinks.alcohol;
-    exports domain.usecases.impl;
+    opens common.config;
 }
