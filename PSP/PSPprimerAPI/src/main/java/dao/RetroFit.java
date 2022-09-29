@@ -2,6 +2,7 @@ package dao;
 
 import com.squareup.moshi.Moshi;
 import common.config.Configuracion;
+import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import okhttp3.OkHttpClient;
@@ -18,6 +19,8 @@ public class RetroFit {
         this.configuracion = config;
     }
 
+    @Produces
+    @Singleton
     public Retrofit getRetrofit(){
         Moshi moshi = new Moshi.Builder().build();
 
