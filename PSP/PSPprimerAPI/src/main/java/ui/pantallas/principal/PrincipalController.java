@@ -143,6 +143,8 @@ public class PrincipalController {
         switch (((MenuItem) actionEvent.getSource()).getId()) {
             case "menuItemPantalla1" -> cargarPantalla(Pantallas.PANTALLA1);
             case "menuBuscarBebidas" -> cargarPantalla(Pantallas.SEARCH);
+            case "menuAlcoholicDrinks" -> cargarPantalla(Pantallas.ALCOHOLIC_DRINKS);
+            case "menuNonAlcoholicDrinks" -> cargarPantalla(Pantallas.NON_ALCOHOLIC_DRINKS);
             case "menuRandomDrinks" -> cargarPantalla(Pantallas.PANTALLANUEVA);
             case "menuItemLogout" -> logout();
             default -> log.error("No se ha encontrado el menu");

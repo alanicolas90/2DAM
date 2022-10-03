@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.random_drink.PantallaRandomDrink">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.random_drink.RandomDrinkController">
    <children>
       <TextField fx:id="strDrink" layoutX="85.0" layoutY="74.0" />
       <TextField fx:id="strGlass" layoutX="85.0" layoutY="118.0" />

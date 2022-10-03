@@ -1,21 +1,21 @@
 package ui.pantallas.random_drink;
 
-import dao.DaoDrinks;
+
 import domain.modelo.drinks.drink.DrinksResponse;
-import io.vavr.control.Either;
+import domain.usecases.DrinksUseCase;
 import jakarta.inject.Inject;
 
 public class RandomViewModel {
 
-    private final DaoDrinks daoDrinks;
+    private final DrinksUseCase drinksUseCase;
 
     @Inject
-    public RandomViewModel(DaoDrinks daoDrinks) {
-        this.daoDrinks = daoDrinks;
+    public RandomViewModel(DrinksUseCase drinksUseCase) {
+        this.drinksUseCase = drinksUseCase;
     }
 
-    public Either<String, DrinksResponse> getRandomDrink()
+    public DrinksResponse getRandomDrink()
     {
-        return daoDrinks.getRandomDrink();
+        return drinksUseCase.getRandomDrink();
     }
 }

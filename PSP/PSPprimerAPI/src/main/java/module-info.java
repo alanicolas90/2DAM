@@ -26,7 +26,7 @@ module javafx.multipantalla {
     exports ui.pantallas.random_drink;
     exports ui.pantallas.pantalla1;
     exports ui.pantallas.login;
-    exports ui.pantallas.listado;
+    exports ui.pantallas.search;
     exports common.config;
     exports ui.pantallas.common;
     exports common;
@@ -40,11 +40,13 @@ module javafx.multipantalla {
     exports domain.modelo.drinks.category;
     exports domain.modelo.drinks.glass;
     exports domain.usecases.impl;
+    exports ui.pantallas.alcoholic;
+    exports ui.pantallas.non_alcoholic;
 
 
     opens ui.pantallas.pantalla1 to javafx.fxml;
     opens ui.pantallas.random_drink to javafx.fxml;
-    opens ui.pantallas.listado to javafx.fxml;
+    opens ui.pantallas.search to javafx.fxml;
     opens ui.pantallas.login to javafx.fxml;
     opens common;
     opens domain.modelo to javafx.base;
