@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="pantallaListado" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.listado.ListadoController">
+<AnchorPane fx:id="pantallaListado" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.search.SearchController">
    <children>
       <MFXTableView fx:id="tabla" layoutX="48.0" layoutY="100.0" prefHeight="463.0" prefWidth="506.0" />
       <MFXButton fx:id="ver" layoutX="233.0" layoutY="642.0" mnemonicParsing="false"  text="Ver" />

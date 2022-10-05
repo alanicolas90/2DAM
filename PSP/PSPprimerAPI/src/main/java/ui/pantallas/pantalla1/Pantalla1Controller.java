@@ -11,12 +11,6 @@ import ui.pantallas.common.BasePantallaController;
 public class Pantalla1Controller extends BasePantallaController {
 
 
-    @FXML
-    private MFXButton btChorra;
-    @FXML
-    private CheckBox checkState;
-    @FXML
-    private Label lbBienvenido;
 
     public void initialize(){
 
@@ -24,15 +18,11 @@ public class Pantalla1Controller extends BasePantallaController {
 
     @Override
     public void principalCargado() {
-        lbBienvenido.setText(getPrincipalController().getActualUser().nombre());
+
     }
 
-    @FXML
-    private void click(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Informacion");
-        alert.setHeaderText("Informacion");
-        alert.setContentText("Hola mundo");
-        alert.showAndWait();
+
+
+    public void abrirMenu(ActionEvent actionEvent) {
     }
 }
