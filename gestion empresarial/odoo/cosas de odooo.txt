@@ -1,0 +1,6 @@
+Master Password :htfb-5meh-fnpv
+Database Name :odoo
+Email :alanicolas90@gmail.com
+Password :gamelol1122
+
+admin_passwd = $pbkdf2-sha512$25000$Xst5L.V87733fq9VSmmt9Q$UsfeqaBIgVnY.2B6pmnsZ2UdzIi2YJzLDZqJneipnb6wr0iUznUBc1ntHU1XNS2HjMUdPy6ybasmWBfE9rWIXw

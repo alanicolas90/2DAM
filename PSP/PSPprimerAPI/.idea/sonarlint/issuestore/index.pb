@@ -51,3 +51,21 @@ g
 7src/main/java/domain/modelo/drinks/alcohol/Alcohol.java,6\e\6ec94bdbacd97bd318b4c37b19287073c55146bd
 i
 9src/main/java/domain/modelo/drinks/alcohol/Alcoholic.java,9\5\9528a29404851a9ed31d714d7d47b6d098a1bc74
+^
+.src/main/java/common/config/Configuracion.java,3\2\321110ff7ab403dd6f5497b6559f8dc0654ae5bd
+N
+src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
+X
+(src/main/java/dao/impl/DaoLoginImpl.java,d\c\dc93d87f6f192408bc0bee328c8f77e509e08153
+`
+0src/main/java/domain/usecases/DrinksUseCase.java,f\1\f163608b41e809e60afaecf7f5dc9db1185a6325
+O
+src/main/java/ui/main/Main.java,e\a\ea96b99dd8d725725ad637073873194d3860069f
+p
+@src/main/java/ui/pantallas/random_drink/PantallaRandomDrink.java,9\4\94bd27290d1ea222de564aecaa0ba656396a99b4
+l
+<src/main/java/ui/pantallas/random_drink/RandomViewModel.java,b\1\b1a2b77934abf9fcfabd9126f673d625974ef42c
+P
+ src/main/java/dao/DaoDrinks.java,c\9\c97dc51af5a757bb2c3317d4a24751988a410311
+O
+src/main/java/dao/RetroFit.java,8\8\88b246ad147cd112e846cd7344447d25c352c259
