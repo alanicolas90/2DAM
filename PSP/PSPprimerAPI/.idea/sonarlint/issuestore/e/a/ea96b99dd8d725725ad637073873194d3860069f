@@ -1,10 +1,0 @@
-
-T
-java:S1854"9Remove this useless assignment to local variable "drink".(‚º‹şÿÿÿÿ
-E
-java:S1481"*Remove this unused "drink" local variable.(‚º‹şÿÿÿÿ
-Q	java:S125"<This block of commented-out lines of code should be removed.(‰²Ã
-S	java:S106"9Replace this use of System.out or System.err by a logger.(½×‘”úÿÿÿÿ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(èÀˆ½
-S
-java:S1128"=Remove this unused import 'domain.modelo.drinks.drink.Drink'.(¾˜µ´

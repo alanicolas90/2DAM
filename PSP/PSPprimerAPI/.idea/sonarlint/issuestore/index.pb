@@ -13,10 +13,6 @@ _
 /src/main/java/domain/usecases/LoginUseCase.java,2\e\2e7ed3f63e50c10ff7a66a7fadc414025b80ef54
 d
 4src/main/java/ui/pantallas/login/LoginViewModel.java,e\7\e7d8d195a68c5e0e3b34a11a1a18d22d5e312b65
-h
-8src/main/java/ui/pantallas/listado/ListadoViewModel.java,6\2\62d40df670d5a9f2819ac52c201af73ee8c04af1
-i
-9src/main/java/ui/pantallas/listado/ListadoController.java,5\2\527c788db3eed07414173e76ce34ec647d22d6e2
 W
 'src/main/java/ui/main/StartupScene.java,6\7\67e2e8cd1ccdf2df73312c03c460f4b3fbed5ef4
 V
@@ -29,10 +25,6 @@ m
 =src/main/java/domain/modelo/drinks/glass/GlassesResponse.java,c\2\c25141154bf26a487b1c326e9067b8efa37b54f4
 c
 3src/main/java/domain/modelo/drinks/glass/Glass.java,5\0\50a6d6ba5a063b9c416f576c1f42f1a8da65062b
-d
-4src/main/java/ui/pantallas/listado/ListadoState.java,1\4\140fcbb072ea50430ee00d3ece56c34ea9f8142c
-I
-src/main/java/prueba.json,0\5\056038969b8deadaed8c245a5a8b07cffa0d9e44
 Q
 !src/main/java/ui/main/MainFX.java,2\e\2e7801e75bc7d7b888b07031d0746a50f31ff377
 j
@@ -51,21 +43,3 @@ g
 7src/main/java/domain/modelo/drinks/alcohol/Alcohol.java,6\e\6ec94bdbacd97bd318b4c37b19287073c55146bd
 i
 9src/main/java/domain/modelo/drinks/alcohol/Alcoholic.java,9\5\9528a29404851a9ed31d714d7d47b6d098a1bc74
-^
-.src/main/java/common/config/Configuracion.java,3\2\321110ff7ab403dd6f5497b6559f8dc0654ae5bd
-N
-src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
-X
-(src/main/java/dao/impl/DaoLoginImpl.java,d\c\dc93d87f6f192408bc0bee328c8f77e509e08153
-`
-0src/main/java/domain/usecases/DrinksUseCase.java,f\1\f163608b41e809e60afaecf7f5dc9db1185a6325
-O
-src/main/java/ui/main/Main.java,e\a\ea96b99dd8d725725ad637073873194d3860069f
-p
-@src/main/java/ui/pantallas/random_drink/PantallaRandomDrink.java,9\4\94bd27290d1ea222de564aecaa0ba656396a99b4
-l
-<src/main/java/ui/pantallas/random_drink/RandomViewModel.java,b\1\b1a2b77934abf9fcfabd9126f673d625974ef42c
-P
- src/main/java/dao/DaoDrinks.java,c\9\c97dc51af5a757bb2c3317d4a24751988a410311
-O
-src/main/java/dao/RetroFit.java,8\8\88b246ad147cd112e846cd7344447d25c352c259

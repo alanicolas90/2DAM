@@ -18,7 +18,6 @@ public class RetroFit {
     private RetroFit(Configuracion config){
         this.configuracion = config;
     }
-
     @Produces
     @Singleton
     public Retrofit getRetrofit(){
