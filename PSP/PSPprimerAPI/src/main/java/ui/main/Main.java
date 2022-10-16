@@ -1,37 +1,19 @@
 package ui.main;
 
-import dao.DaoDrinks;
-import domain.modelo.drinks.drink.Drink;
-import domain.modelo.drinks.drink.DrinksResponse;
-import domain.usecases.DrinksUseCase;
-import io.vavr.control.Either;
-import jakarta.enterprise.inject.se.SeContainer;
-import jakarta.enterprise.inject.se.SeContainerInitializer;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Main {
 
 
-    public static void main(String[] args) {
-//        SeContainerInitializer initializer = SeContainerInitializer.newInstance();
-//        final SeContainer container = initializer.initialize();
-//
-//        DaoDrinks daoDrinks = container.select(DaoDrinks.class).get();
-//        DrinksUseCase drinksUseCase = container.select(DrinksUseCase.class).get();
-//
-//        Either<String, DrinksResponse> drink = daoDrinks.getRandomDrink();
-//
-////        System.out.println(daoDrinks.getDrinkNameRandom());
-////        System.out.println(drink);
-////        System.out.println(drink.map(DrinksResponse::getDrinks).map(drinks -> drinks.get(0)).map(Drink::getStrDrink));
-//
-//        DrinksResponse drinks = drinksUseCase.getRandomDrink();
-//
-//        System.out.println(drinks.getDrinks().get(0).getStrDrink());
-//        System.out.println(drinks);
+     public static void main(String[] args) {
+         // A password detection system for hackerrank accounts detects a password as silmilar if the number of vowels is equal to the number of consonants in the password. Passwords consist of lowercase English chartacter only, and vowels are (a,e,i,o,u). To check the strength of a password and how easily it can be hacked, some manipulations can be made to the password. In one operation, any character of the string can either be incremented or decremented. For example, 'f' can be incremented to 'g' or decremented to 'e'. Note that character 'a' cannot be decremented and 'z' cannot be incremented. Finde the minimum number of operations in which the password can be made similar. Consider password="hack". The 'h' can be changed to 'i' in one operation. The resultant string is "iack0 which has 2 vowels(i,a9 and 2 consonants (c,k) and hence the string is similar. Return 1, the minumum number of operations required.
+         public static int countMinimumOperations(String password) {
+             // Write your code here
+
+         }
     }
 }
 
