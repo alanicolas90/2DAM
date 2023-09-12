@@ -1,0 +1,20 @@
+
+V	java:S125"<This block of commented-out lines of code should be removed.(ıÂÜÃúÿÿÿÿ
+@
+java:S1128"*Remove this unused import 'dao.DaoDrinks'.(„ÃÙã
+S
+java:S1128"=Remove this unused import 'domain.modelo.drinks.drink.Drink'.(¾˜µ´
+a
+java:S1128"FRemove this unused import 'domain.modelo.drinks.drink.DrinksResponse'.(Ü‚€Ëûÿÿÿÿ
+U
+java:S1128":Remove this unused import 'domain.usecases.DrinksUseCase'.(À½Ì ıÿÿÿÿ
+I
+java:S1128"3Remove this unused import 'io.vavr.control.Either'.(÷¿œ’
+[
+java:S1128"ERemove this unused import 'jakarta.enterprise.inject.se.SeContainer'.(˜ÌÊ±
+f
+java:S1128	"PRemove this unused import 'jakarta.enterprise.inject.se.SeContainerInitializer'.(ûÇæ
+H
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ
+F
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ
