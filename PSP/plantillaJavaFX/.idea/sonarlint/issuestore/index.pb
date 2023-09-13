@@ -13,3 +13,13 @@ N
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 Q
 !src/main/java/ui/main/MainFX.java,2\e\2e7801e75bc7d7b888b07031d0746a50f31ff377
+`
+0src/main/java/ui/pantallas/common/Pantallas.java,0\f\0f6b33d1a9a5694be1bfe44edd12d4d8db6849d0
+d
+4src/main/java/ui/pantallas/common/BaseViewModel.java,9\b\9b0d3d9c1a91ee5b896ed1397becfa40d9e9dad7
+m
+=src/main/java/ui/pantallas/common/BasePantallaController.java,c\c\cc1ae912583ea46a90bdbcb27df07083ec460f34
+j
+:src/main/java/ui/pantallas/common/ConstantesPantallas.java,9\0\90187b5f683490564245f2c17b964b6c9340357a
+m
+=src/main/java/ui/pantallas/principal/PrincipalController.java,6\8\6854908843d482996cd7f7c9ccd44ffdc547ca45
