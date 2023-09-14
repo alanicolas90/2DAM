@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.Pantallas;
@@ -30,13 +31,13 @@ public class PrincipalController {
     private MenuBar menuPrincipal;
     private Stage primaryStage;
 
-
     @FXML
     public BorderPane root;
 
-
     private final Alert alert;
 
+    @Getter
+    private String usuario;
 
 
     @Inject
@@ -44,8 +45,7 @@ public class PrincipalController {
         this.instance = instance;
         alert = new Alert(Alert.AlertType.NONE);
     }
-    public void sacarAlertError(String mensaje)
-    {
+    public void sacarAlertError(String mensaje) {
         alert.setAlertType(Alert.AlertType.ERROR);
         alert.setContentText(mensaje);
         alert.getDialogPane().setId("alert");
@@ -63,7 +63,6 @@ public class PrincipalController {
 //                if (pantallaBienvenida == null){
 //                    pantallaBienvenida = cargarPantalla(pantalla.getRuta());
 //                }
-//
 //                cambioPantalla(pantallaBienvenida);
 //                break;
             default -> cambioPantalla(cargarPantalla(pantalla.getRuta()));
@@ -73,21 +72,17 @@ public class PrincipalController {
     private Pane cargarPantalla(String ruta) {
         Pane panePantalla = null;
         try {
-
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(controller -> instance.select(controller).get());
             panePantalla = fxmlLoader.load(getClass().getResourceAsStream(ruta));
             BasePantallaController pantallaController = fxmlLoader.getController();
             pantallaController.setPrincipalController(this);
             pantallaController.principalCargado();
-
-
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
         return panePantalla;
     }
-
 
     private void cambioPantalla(Pane pantallaNueva) {
         root.setCenter(pantallaNueva);
@@ -95,8 +90,8 @@ public class PrincipalController {
 
 
     public void initialize() {
-        menuPrincipal.setVisible(true);
-        //cargarPantalla(Pantallas.LISTADO);
+        menuPrincipal.setVisible(false);
+        cargarPantalla(Pantallas.LOGIN);
     }
 
     public void help(ActionEvent actionEvent) {
@@ -113,12 +108,18 @@ public class PrincipalController {
         primaryStage.getScene().getRoot().getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/darkmode.css")).toExternalForm());
     }
 
+    public void onLogin(String usuario){
+        this.usuario = usuario;
+        cargarPantalla(Pantallas.BIENVENIDA);
+        menuPrincipal.setVisible(true);
+    }
+
     @FXML
     private void menuClick(ActionEvent actionEvent) {
         switch (((MenuItem) actionEvent.getSource()).getId()) {
-            case "menuItemPantalla1" -> cargarPantalla(Pantallas.PANTALLA1);
-            case "menuItemListado" -> cargarPantalla(Pantallas.LISTADO);
-            case "menuItemPantallaNueva" -> cargarPantalla(Pantallas.PANTALLANUEVA);
+            case "menuItemPantalla1" -> {}
+            case "menuItemListado" ->{}
+            case "menuItemPantallaNueva" -> {}
             case "menuItemLogout" -> {}//logout();
         }
     }
