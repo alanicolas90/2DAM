@@ -1,14 +1,22 @@
 
 m
-java:S1301:"KReplace this "switch" statement by "if" statements to increase readability.(ØŞ«ğúÿÿÿÿ8¡§æü¨1
-X	java:S1255"<This block of commented-out lines of code should be removed.(‘Ç±8¸§æü¨1
-]	java:S125<"<This block of commented-out lines of code should be removed.(“Â­şøÿÿÿÿ8¸§æü¨1
-]	java:S125c"<This block of commented-out lines of code should be removed.(«é´õşÿÿÿÿ8šıéü¨1
+java:S1301:"KReplace this "switch" statement by "if" statements to increase readability.(ØŞ«ğúÿÿÿÿ8ò¦¥©1
+X	java:S1255"<This block of commented-out lines of code should be removed.(‘Ç±8Š§¥©1
+]	java:S125<"<This block of commented-out lines of code should be removed.(“Â­şøÿÿÿÿ8‹§¥©1
 T
-java:S1172f"2Remove this unused method parameter "actionEvent".(‡Â¨ÿÿÿÿÿ8¾§æü¨1
+java:S1172a"2Remove this unused method parameter "actionEvent".(‡Â¨ÿÿÿÿÿ8‘§¥©1
 [
-java:S1117g"9Rename "alert" which hides the field declared at line 38.(Ö×Íõÿÿÿÿÿ8¾§æü¨1
->	java:S131v""Add a default case to this switch.(Ø•ƒ»8À§æü¨1
-D	java:S108z")Either remove or fill this block of code.(ÀÔ}8À§æü¨1
-W	java:S125z"<This block of commented-out lines of code should be removed.(ÀÔ}8À§æü¨1
-Y	java:S125€"<This block of commented-out lines of code should be removed.(·ºÊÈ8Á§æü¨1
+java:S1117b"9Rename "alert" which hides the field declared at line 37.(Ö×Íõÿÿÿÿÿ8’§¥©1
+k
+java:S1871z"IThis case's code block is the same as the block for the case on line 120.(Ÿÿñ¬úÿÿÿÿ8”ş‘¥©1
+e
+java:S1871{"IThis case's code block is the same as the block for the case on line 120.(ÀÔ}8”ş‘¥©1
+k
+java:S1871y"IThis case's code block is the same as the block for the case on line 120.(åÛÚ½ıÿÿÿÿ8”ş‘¥©1
+>	java:S131w""Add a default case to this switch.(Ø•ƒ»8“§¥©1
+J	java:S108x")Either remove or fill this block of code.(Ì—Ìøÿÿÿÿ8•§¥©1
+J	java:S108y")Either remove or fill this block of code.(åÛÚ½ıÿÿÿÿ8•§¥©1
+J	java:S108z")Either remove or fill this block of code.(Ÿÿñ¬úÿÿÿÿ8•§¥©1
+D	java:S108{")Either remove or fill this block of code.(ÀÔ}8•§¥©1
+W	java:S125{"<This block of commented-out lines of code should be removed.(ÀÔ}8•§¥©1
+Y	java:S125"<This block of commented-out lines of code should be removed.(·ºÊÈ8•§¥©1
