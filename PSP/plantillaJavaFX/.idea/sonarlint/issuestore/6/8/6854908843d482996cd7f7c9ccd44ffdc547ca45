@@ -7,12 +7,12 @@ T
 java:S1172a"2Remove this unused method parameter "actionEvent".(‡Â¨ÿÿÿÿÿ8‘§¥©1
 [
 java:S1117b"9Rename "alert" which hides the field declared at line 37.(Ö×Íõÿÿÿÿÿ8’§¥©1
-k
-java:S1871y"IThis case's code block is the same as the block for the case on line 120.(åÛÚ½ıÿÿÿÿ8”ş‘¥©1
 e
 java:S1871{"IThis case's code block is the same as the block for the case on line 120.(ÀÔ}8”ş‘¥©1
 k
 java:S1871z"IThis case's code block is the same as the block for the case on line 120.(Ÿÿñ¬úÿÿÿÿ8”ş‘¥©1
+k
+java:S1871y"IThis case's code block is the same as the block for the case on line 120.(åÛÚ½ıÿÿÿÿ8”ş‘¥©1
 >	java:S131w""Add a default case to this switch.(Ø•ƒ»8“§¥©1
 J	java:S108x")Either remove or fill this block of code.(Ì—Ìøÿÿÿÿ8•§¥©1
 J	java:S108y")Either remove or fill this block of code.(åÛÚ½ıÿÿÿÿ8•§¥©1
