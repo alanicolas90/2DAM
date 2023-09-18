@@ -23,7 +23,3 @@ j
 :src/main/java/ui/pantallas/common/ConstantesPantallas.java,9\0\90187b5f683490564245f2c17b964b6c9340357a
 m
 =src/main/java/ui/pantallas/principal/PrincipalController.java,6\8\6854908843d482996cd7f7c9ccd44ffdc547ca45
-e
-5src/main/java/ui/pantallas/login/LoginController.java,0\0\00a168197ce395305c37a33f896012577da7634b
-o
-?src/main/java/ui/pantallas/bienvenida/BienvenidaController.java,f\2\f222e0c01eecd66d320c72a54476382fd95725af
