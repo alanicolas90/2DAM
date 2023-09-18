@@ -1,0 +1,20 @@
+Show me the the money recollected in the restaurant before "2023-09-17 15:00:00.00"
+
+SOLUTION:
+select sum(total_quantity) as totalMoney
+FROM(
+select menu_item_id, sum(quantity)*menu_items.price as total_quantity from order_items
+join orders on orders.id = order_items.order_id 
+join menu_items on menu_items.id = order_items.menu_item_id
+where orders.order_date < "2023-09-17 15:00:00.00"
+group by menu_item_id
+)as total
+
+show me the name of the food that the customers paid the most for and the money theywasted on it
+SOLUTION:
+select menu_items.name,sum(quantity)*menu_items.price as total_money from order_items
+join orders on orders.id = order_items.order_id 
+join menu_items on menu_items.id = order_items.menu_item_id
+group by menu_item_id
+order by total_money desc
+LIMIT 1
