@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.principal.PrincipalController">
+    <center>
+        <StackPane prefHeight="150.0" prefWidth="200.0">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="background" BorderPane.alignment="CENTER"/>
+        </StackPane>
+    </center>
+    <top>
+        <MenuBar fx:id="menuPrincipal">
+            <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
+                <items>
+                    <MenuItem fx:id="menuLogout" mnemonicParsing="false" onAction="#menuClick" text="Logout"/>
+                    <MenuItem fx:id="menuExit" mnemonicParsing="false" onAction="#menuClick" text="Exit"/>
+                </items>
+            </Menu>
+            <Menu fx:id="menuCustomer" mnemonicParsing="false" text="Customers">
+                <items>
+                    <MenuItem fx:id="addCustomer" mnemonicParsing="false" text="Add"/>
+                    <MenuItem fx:id="removeCustomer" mnemonicParsing="false" text="Remove"/>
+                    <MenuItem fx:id="updateCustomer" mnemonicParsing="false" text="Update"/>
+                    <MenuItem fx:id="listCustomer" mnemonicParsing="false" text="List"/>
+                </items>
+            </Menu>
+            <Menu fx:id="menuOrders" mnemonicParsing="false" text="Orders">
+                <items>
+                    <MenuItem fx:id="addOrder" mnemonicParsing="false" text="Add"/>
+                    <MenuItem fx:id="removeOrder" mnemonicParsing="false" text="Remove"/>
+                    <MenuItem fx:id="updateOrder" mnemonicParsing="false" text="Update"/>
+                    <MenuItem fx:id="listOrder" mnemonicParsing="false" text="List"/>
+                </items>
+            </Menu>
+        </MenuBar>
+    </top>
+</BorderPane>
