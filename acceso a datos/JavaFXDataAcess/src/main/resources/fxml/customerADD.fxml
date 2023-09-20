@@ -22,6 +22,7 @@
     <TextField fx:id="txtPhoneNumber" layoutX="46.0" layoutY="322.0"/>
     <Button layoutX="87.0" layoutY="388.0" mnemonicParsing="false" text="Add"/>
 
+    <Label layoutX="288.0" layoutY="101.0" text="List of Customers"/>
     <TableView fx:id="tableCustomers" layoutX="288.0" layoutY="129.0" prefHeight="303.0" prefWidth="551.0">
         <columns>
             <TableColumn fx:id="columnId" prefWidth="38.199981689453125" text="ID"/>
@@ -31,5 +32,4 @@
             <TableColumn fx:id="columnPhone" prefWidth="120.4000244140625" text="Phone"/>
         </columns>
     </TableView>
-    <Label layoutX="288.0" layoutY="101.0" text="List of Customers"/>
 </AnchorPane>
