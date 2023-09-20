@@ -17,12 +17,16 @@ module JavaFXDataAcess {
     exports ui.pantallas.principal;
     exports ui.pantallas.common;
     exports ui.pantallas.login to javafx.fxml;
+    exports dao.impl;
+    exports ui.pantallas.customer.add;
 
     opens ui.pantallas.principal;
     opens ui.main;
     opens fxml;
     opens ui.pantallas.login;
     opens ui.pantallas.common;
+    opens service;
+    opens ui.pantallas.customer.add;
 
 
 }

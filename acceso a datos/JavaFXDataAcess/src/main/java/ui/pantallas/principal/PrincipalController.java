@@ -81,9 +81,8 @@ public class PrincipalController {
         switch (((MenuItem) actionEvent.getSource()).getId()) {
             case "menuExit" -> exit(actionEvent);
             case "menuLogout" -> logout(actionEvent);
-            default -> {
-                alertExit();
-            }
+            case "addCustomer" -> cargarPantalla(Pantallas.ADD_CUSTOMER);
+            default -> alertExit();
         }
     }
 
@@ -94,6 +93,7 @@ public class PrincipalController {
     public void logout(ActionEvent actionEvent) {
         this.usuario = null;
         menuPrincipal.setVisible(false);
+        cargarPantalla(Pantallas.LOGIN);
     }
 
     private boolean alertExit() {
