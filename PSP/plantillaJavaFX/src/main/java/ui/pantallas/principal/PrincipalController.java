@@ -35,7 +35,6 @@ public class PrincipalController {
     @Getter
     private String usuario;
 
-
     @Inject
     public PrincipalController(Instance<Object> instance) {
         this.instance = instance;
@@ -43,18 +42,11 @@ public class PrincipalController {
     }
 
     private void cargarPantalla(Pantallas pantalla) {
-        switch (pantalla) {
-//            case LISTADO:
-//                cambioPantalla(cargarPantalla(pantalla.getRuta()));
-//                break;
-//            case PANTALLA1:
-//                if (pantallaBienvenida == null){
-//                    pantallaBienvenida = cargarPantalla(pantalla.getRuta());
-//                }
-//                cambioPantalla(pantallaBienvenida);
-//                break;
-            default -> cambioPantalla(cargarPantalla(pantalla.getRuta()));
-        }
+        cambioPantalla(cargarPantalla(pantalla.getRuta()));
+    }
+
+    private void cambioPantalla(Pane pantallaNueva) {
+        root.setCenter(pantallaNueva);
     }
 
     private Pane cargarPantalla(String ruta) {
@@ -72,17 +64,13 @@ public class PrincipalController {
         return panePantalla;
     }
 
-    private void cambioPantalla(Pane pantallaNueva) {
-        root.setCenter(pantallaNueva);
-    }
-
 
     public void initialize() {
         menuPrincipal.setVisible(false);
         cargarPantalla(Pantallas.LOGIN);
     }
 
-    public void onLogin(String usuario){
+    public void onLogin(String usuario) {
         this.usuario = usuario;
         cargarPantalla(Pantallas.LOGIN);
         menuPrincipal.setVisible(true);
@@ -91,10 +79,11 @@ public class PrincipalController {
     @FXML
     private void menuClick(ActionEvent actionEvent) {
         switch (((MenuItem) actionEvent.getSource()).getId()) {
-            case "menuItemPantalla1" -> {}
-            case "menuItemListado" ->{}
-            case "menuItemPantallaNueva" -> {}
-            case "menuItemLogout" -> {}//logout();
+            case "menuExit" -> exit(actionEvent);
+            case "menuLogout" -> logout(actionEvent);
+            default -> {
+                alertExit();
+            }
         }
     }
 
@@ -107,7 +96,7 @@ public class PrincipalController {
         menuPrincipal.setVisible(false);
     }
 
-    private boolean alertExit(){
+    private boolean alertExit() {
         alert.setAlertType(Alert.AlertType.WARNING);
         alert.setTitle("Salir");
         alert.setHeaderText("Salir");
@@ -115,11 +104,11 @@ public class PrincipalController {
         alert.showAndWait();
         return alert.getResult() == ButtonType.OK;
     }
+
     public void exit(ActionEvent actionEvent) {
-        if(alertExit()){
+        if (alertExit()) {
             primaryStage.close();
-        }
-        else {
+        } else {
             actionEvent.consume();
         }
     }

@@ -1,5 +1,8 @@
 package ui.pantallas.common;
 
+import lombok.Getter;
+
+@Getter
 public enum Pantallas {
 
     LOGIN (ConstantesPantallas.FXML_LOGIN);
@@ -8,7 +11,6 @@ public enum Pantallas {
     Pantallas(String ruta) {
         this.ruta=ruta;
     }
-    public String getRuta(){return ruta;}
 
 
 }
