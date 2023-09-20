@@ -16,13 +16,9 @@ import ui.pantallas.common.BasePantallaController;
 import ui.pantallas.common.Pantallas;
 
 import java.io.IOException;
-import java.util.Objects;
 
 @Log4j2
 public class PrincipalController {
-
-    @FXML
-    private Menu menuHelp;
 
     // objeto especial para DI
     Instance<Object> instance;
@@ -44,14 +40,6 @@ public class PrincipalController {
     public PrincipalController(Instance<Object> instance) {
         this.instance = instance;
         alert = new Alert(Alert.AlertType.NONE);
-    }
-    public void sacarAlertError(String mensaje) {
-        alert.setAlertType(Alert.AlertType.ERROR);
-        alert.setContentText(mensaje);
-        alert.getDialogPane().setId("alert");
-        alert.getDialogPane().lookupButton(ButtonType.OK).setId("btn-ok");
-        //alert.getDialogPane().lookupButton(ButtonType.CANCEL).setId("btn-cancel");
-        alert.showAndWait();
     }
 
     private void cargarPantalla(Pantallas pantalla) {
@@ -94,23 +82,9 @@ public class PrincipalController {
         cargarPantalla(Pantallas.LOGIN);
     }
 
-    public void help(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Ayuda");
-        alert.setHeaderText("Ayuda");
-        alert.setContentText("Este es un mensaje de ayuda");
-        alert.showAndWait();
-    }
-
-    @FXML
-    private void cambiarcss(ActionEvent actionEvent) {
-        primaryStage.getScene().getRoot().getStylesheets().clear();
-        primaryStage.getScene().getRoot().getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/darkmode.css")).toExternalForm());
-    }
-
     public void onLogin(String usuario){
         this.usuario = usuario;
-        cargarPantalla(Pantallas.BIENVENIDA);
+        cargarPantalla(Pantallas.LOGIN);
         menuPrincipal.setVisible(true);
     }
 
@@ -126,6 +100,27 @@ public class PrincipalController {
 
     public void setStage(Stage stage) {
         primaryStage = stage;
-        //primaryStage.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
+    }
+
+    public void logout(ActionEvent actionEvent) {
+        this.usuario = null;
+        menuPrincipal.setVisible(false);
+    }
+
+    private boolean alertExit(){
+        alert.setAlertType(Alert.AlertType.WARNING);
+        alert.setTitle("Salir");
+        alert.setHeaderText("Salir");
+        alert.setContentText("¿Está seguro que desea salir?");
+        alert.showAndWait();
+        return alert.getResult() == ButtonType.OK;
+    }
+    public void exit(ActionEvent actionEvent) {
+        if(alertExit()){
+            primaryStage.close();
+        }
+        else {
+            actionEvent.consume();
+        }
     }
 }

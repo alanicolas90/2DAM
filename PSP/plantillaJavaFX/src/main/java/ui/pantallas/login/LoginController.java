@@ -14,7 +14,6 @@ public class LoginController extends BasePantallaController{
 
     @FXML
     private void login(ActionEvent actionEvent) {
-
         getPrincipalController().onLogin(username.getText());
     }
 }

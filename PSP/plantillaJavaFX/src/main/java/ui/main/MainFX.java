@@ -21,11 +21,7 @@ public class MainFX {
             Parent fxmlParent = fxmlLoader.load(getClass().getResourceAsStream("/fxml/principal.fxml"));
             PrincipalController controller = fxmlLoader.getController();
             controller.setStage(stage);
-
             stage.setScene(new Scene(fxmlParent));
-            //stage.setMinHeight(1000);
-//            stage.getScene().getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
-//            stage.setTitle(r.getString("app.title"));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

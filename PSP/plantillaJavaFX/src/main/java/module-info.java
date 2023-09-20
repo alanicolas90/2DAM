@@ -17,15 +17,12 @@ module plantillaJavaFX {
     exports ui.pantallas.principal;
     exports ui.pantallas.common;
     exports ui.pantallas.login to javafx.fxml;
-    exports ui.pantallas.bienvenida;
-
 
     opens ui.pantallas.principal;
     opens ui.main;
-    opens css;
     opens fxml;
     opens ui.pantallas.login;
-    opens ui.pantallas.bienvenida;
+    opens ui.pantallas.common;
 
 
 }

@@ -2,8 +2,7 @@ package ui.pantallas.common;
 
 public enum Pantallas {
 
-    LOGIN ("/fxml/login.fxml"),
-    BIENVENIDA("/fxml/bienvenida.fxml");
+    LOGIN (ConstantesPantallas.FXML_LOGIN);
 
     private String ruta;
     Pantallas(String ruta) {
