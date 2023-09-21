@@ -45,6 +45,7 @@ public class PrincipalController {
         cambioPantalla(cargarPantalla(pantalla.getRuta()));
     }
 
+
     private void cambioPantalla(Pane pantallaNueva) {
         root.setCenter(pantallaNueva);
     }
@@ -72,8 +73,14 @@ public class PrincipalController {
 
     public void onLogin(String usuario) {
         this.usuario = usuario;
-        cargarPantalla(Pantallas.LOGIN);
+        cargarPantalla(Pantallas.BIENVENIDA);
         menuPrincipal.setVisible(true);
+    }
+
+    public void logout(ActionEvent actionEvent) {
+        this.usuario = null;
+        menuPrincipal.setVisible(false);
+        cargarPantalla(Pantallas.LOGIN);
     }
 
     @FXML
@@ -93,12 +100,6 @@ public class PrincipalController {
         primaryStage = stage;
     }
 
-    public void logout(ActionEvent actionEvent) {
-        this.usuario = null;
-        menuPrincipal.setVisible(false);
-        cargarPantalla(Pantallas.LOGIN);
-    }
-
     private boolean alertExit() {
         alert.setAlertType(Alert.AlertType.WARNING);
         alert.setTitle("Salir");
@@ -106,6 +107,14 @@ public class PrincipalController {
         alert.setContentText("¿Está seguro que desea salir?");
         alert.showAndWait();
         return alert.getResult() == ButtonType.OK;
+    }
+
+    public void alert(){
+        alert.setAlertType(Alert.AlertType.WARNING);
+        alert.setTitle("Error");
+        alert.setHeaderText("Error");
+        alert.setContentText("Usuario o contraseña incorrectos");
+        alert.showAndWait();
     }
 
     public void exit(ActionEvent actionEvent) {

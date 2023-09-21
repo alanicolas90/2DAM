@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">PrimeraApp</string>
     <string name="button">Button</string>
-    <string name="text">Text</string>
+    <string name="empty"></string>
+    <string name="txtCajaVacia">La caja está vacía</string>
+    <string name="txtEnLaCajaPone">En la caja pone:%1$s</string>
 </resources>

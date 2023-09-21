@@ -15,3 +15,29 @@ m
 0src/main/java/ui/pantallas/common/Pantallas.java,0\f\0f6b33d1a9a5694be1bfe44edd12d4d8db6849d0
 N
 src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
+T
+$src/main/java/model/Credentials.java,5\3\53fd8561cddcd761fec06f298571a7ef79c2e3fc
+N
+src/main/java/model/Order.java,d\a\da40720aeeaaed55b9015b87ce0ba9418140ed2f
+[
++src/main/java/dao/impl/CustomerDaoImpl.java,d\6\d6f354130eb7f54c914b500388874774302fc4cf
+X
+(src/main/java/dao/impl/OrderDaoImpl.java,7\d\7d7a62a5392e9fb18ff7c34be27cb52c52b23b24
+R
+"src/main/java/dao/CustomerDao.java,4\d\4d73f8e21866a715c6674826f4163c18e5bd51c0
+O
+src/main/java/dao/OrderDao.java,4\3\43a8d782126cba6ddce6fd3e5cdcc7c3f244b5e6
+Z
+*src/main/java/service/CustomerService.java,0\0\00a0a98e77662f269a6e0f4e6f2f323c3f643cf5
+W
+'src/main/java/service/OrderService.java,0\3\03999cb02c76c1fad0887aa7dd60877551e1ddba
+]
+-src/main/java/ui/main/FXMLLoaderProducer.java,8\8\889e8b07e827237e9db61a8b268bc7b0c770ff00
+W
+'src/main/java/ui/main/StartupScene.java,6\7\67e2e8cd1ccdf2df73312c03c460f4b3fbed5ef4
+Q
+!src/main/java/model/Customer.java,d\8\d809aaf69069b4e367322db0008755f08edcc9a2
+Q
+!src/main/java/ui/main/MainFX.java,2\e\2e7801e75bc7d7b888b07031d0746a50f31ff377
+S
+#src/main/java/ui/main/DIJavafx.java,5\3\535169814ef8dd70f8f23c95a2032d8268f48d6d

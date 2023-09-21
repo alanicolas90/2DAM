@@ -18,7 +18,11 @@ class MainActivity : AppCompatActivity() {
         btText = this.findViewById(R.id.button)
 
         btText.setOnClickListener {
-            Toast.makeText(this, tvText.text, Toast.LENGTH_LONG).show()
+            if(tvText.text.isEmpty() || tvText.text.isBlank())
+                Toast.makeText(this, getString(R.string.txtCajaVacia), Toast.LENGTH_LONG).show()
+            else
+                Toast.makeText(this,
+                    getString(R.string.txtEnLaCajaPone, tvText.text), Toast.LENGTH_LONG).show()
         }
     }
 }

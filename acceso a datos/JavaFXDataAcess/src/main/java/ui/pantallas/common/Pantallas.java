@@ -9,7 +9,8 @@ public enum Pantallas {
     ADD_CUSTOMER(ConstantesPantallas.FXML_ADD_CUSTOMER),
     REMOVE_CUSTOMER(ConstantesPantallas.FXML_REMOVE_CUSTOMER),
     UPDATE_CUSTOMER(ConstantesPantallas.FXML_UPDATE_CUSTOMER),
-    LIST_CUSTOMER(ConstantesPantallas.FXML_LISTA_CUSTOMER);
+    LIST_CUSTOMER(ConstantesPantallas.FXML_LISTA_CUSTOMER),
+    BIENVENIDA(ConstantesPantallas.FXML_BIENVENIDA);
 
     private String ruta;
 

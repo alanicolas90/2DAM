@@ -22,6 +22,8 @@ module JavaFXDataAcess {
     exports ui.pantallas.customer.remove;
     exports ui.pantallas.customer.update;
     exports ui.pantallas.customer.list;
+    exports model;
+    exports ui.pantallas.bienvenida;
 
     opens ui.pantallas.principal;
     opens ui.main;
@@ -30,6 +32,7 @@ module JavaFXDataAcess {
     opens ui.pantallas.common;
     opens service;
     opens ui.pantallas.customer.add;
+    opens ui.pantallas.bienvenida;
 
 
 }

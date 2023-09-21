@@ -12,7 +12,7 @@
     </center>
     <top>
         <MenuBar fx:id="menuPrincipal">
-            <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
+            <Menu fx:id="menuOptions" mnemonicParsing="false" text="Options">
 
                 <MenuItem fx:id="menuLogout" mnemonicParsing="false" onAction="#menuClick" text="Logout"/>
                 <MenuItem fx:id="menuExit" mnemonicParsing="false" onAction="#menuClick" text="Exit"/>
