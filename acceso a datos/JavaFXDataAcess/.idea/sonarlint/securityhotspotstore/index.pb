@@ -43,3 +43,9 @@ S
 #src/main/java/ui/main/DIJavafx.java,5\3\535169814ef8dd70f8f23c95a2032d8268f48d6d
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+n
+>src/main/java/ui/pantallas/customer/common/CustomerCommon.java,2\7\274e99c477102b5088da5029dea6f0ed45d984ee
+e
+5src/main/java/ui/pantallas/login/LoginController.java,0\0\00a168197ce395305c37a33f896012577da7634b
+W
+'src/main/java/service/LoginService.java,7\b\7b11053eb434333bf8717d76ee6f3b9769fbf853
