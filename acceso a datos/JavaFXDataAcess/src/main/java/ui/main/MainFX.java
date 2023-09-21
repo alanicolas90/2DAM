@@ -17,7 +17,6 @@ public class MainFX {
 
     public void start(@Observes @StartupScene Stage stage) throws IOException {
         try {
-
             Parent fxmlParent = fxmlLoader.load(getClass().getResourceAsStream("/fxml/principal.fxml"));
             PrincipalController controller = fxmlLoader.getController();
             controller.setStage(stage);
@@ -27,8 +26,5 @@ public class MainFX {
             e.printStackTrace();
             System.exit(0);
         }
-
     }
-
-
 }

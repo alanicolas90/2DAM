@@ -77,7 +77,7 @@ public class PrincipalController {
         menuPrincipal.setVisible(true);
     }
 
-    public void logout(ActionEvent actionEvent) {
+    public void logout() {
         this.usuario = null;
         menuPrincipal.setVisible(false);
         cargarPantalla(Pantallas.LOGIN);
@@ -87,11 +87,15 @@ public class PrincipalController {
     private void menuClick(ActionEvent actionEvent) {
         switch (((MenuItem) actionEvent.getSource()).getId()) {
             case "menuExit" -> exit(actionEvent);
-            case "menuLogout" -> logout(actionEvent);
+            case "menuLogout" -> logout();
             case "addCustomer" -> cargarPantalla(Pantallas.ADD_CUSTOMER);
             case "removeCustomer" -> cargarPantalla(Pantallas.REMOVE_CUSTOMER);
             case "updateCustomer" -> cargarPantalla(Pantallas.UPDATE_CUSTOMER);
             case "listCustomer" -> cargarPantalla(Pantallas.LIST_CUSTOMER);
+            case "listOrder" -> cargarPantalla(Pantallas.LIST_ORDER);
+            case "addOrder" -> cargarPantalla(Pantallas.ADD_ORDER);
+            case "removeOrder" -> cargarPantalla(Pantallas.REMOVE_ORDER);
+            case "updateOrder" -> cargarPantalla(Pantallas.UPDATE_ORDER);
             default -> alertExit();
         }
     }
@@ -100,8 +104,16 @@ public class PrincipalController {
         primaryStage = stage;
     }
 
+    public void exit(ActionEvent actionEvent) {
+        if (alertExit()) {
+            primaryStage.close();
+        } else {
+            actionEvent.consume();
+        }
+    }
+
     private boolean alertExit() {
-        alert.setAlertType(Alert.AlertType.WARNING);
+        alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Salir");
         alert.setHeaderText("Salir");
         alert.setContentText("¿Está seguro que desea salir?");
@@ -109,19 +121,19 @@ public class PrincipalController {
         return alert.getResult() == ButtonType.OK;
     }
 
-    public void alert(){
+    public void alertWarning(String s, String titleWarning) {
         alert.setAlertType(Alert.AlertType.WARNING);
-        alert.setTitle("Error");
-        alert.setHeaderText("Error");
-        alert.setContentText("Usuario o contraseña incorrectos");
+        alert.setTitle(titleWarning);
+        alert.setHeaderText(titleWarning);
+        alert.setContentText(s);
         alert.showAndWait();
     }
 
-    public void exit(ActionEvent actionEvent) {
-        if (alertExit()) {
-            primaryStage.close();
-        } else {
-            actionEvent.consume();
-        }
+    public void showInformation(String s, String titleInformation){
+        alert.setAlertType(Alert.AlertType.INFORMATION);
+        alert.setTitle(titleInformation);
+        alert.setHeaderText(titleInformation);
+        alert.setContentText(s);
+        alert.showAndWait();
     }
 }

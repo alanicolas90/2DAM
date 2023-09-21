@@ -19,10 +19,11 @@
     <TextField fx:id="txtEmail" layoutX="46.0" layoutY="264.0" />
     <Label layoutX="47.0" layoutY="305.0" text="Phone Number" />
     <TextField fx:id="txtPhoneNumber" layoutX="46.0" layoutY="322.0" />
-    <Button layoutX="87.0" layoutY="388.0" mnemonicParsing="false" text="Update" />
+
+    <Button layoutX="87.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#updateCustomer" text="Update" />
 
     <Label layoutX="288.0" layoutY="101.0" text="Select one from the list of Customers" />
-    <TableView fx:id="tableCustomers" layoutX="288.0" layoutY="129.0" prefHeight="303.0" prefWidth="551.0">
+    <TableView fx:id="tableCustomers" layoutX="288.0" layoutY="129.0" onMouseClicked="#selectionTable" prefHeight="303.0" prefWidth="551.0">
         <columns>
             <TableColumn fx:id="columnId" prefWidth="38.199981689453125" text="ID" />
             <TableColumn fx:id="columnName" prefWidth="78.79998779296875" text="Name" />

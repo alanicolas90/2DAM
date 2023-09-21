@@ -20,18 +20,18 @@
             </Menu>
             <Menu fx:id="menuCustomer" mnemonicParsing="false" text="Customers">
 
+                <MenuItem fx:id="listCustomer" mnemonicParsing="false" onAction="#menuClick" text="List"/>
                 <MenuItem fx:id="addCustomer" mnemonicParsing="false" onAction="#menuClick" text="Add"/>
                 <MenuItem fx:id="removeCustomer" mnemonicParsing="false" onAction="#menuClick" text="Remove"/>
                 <MenuItem fx:id="updateCustomer" mnemonicParsing="false" onAction="#menuClick" text="Update"/>
-                <MenuItem fx:id="listCustomer" mnemonicParsing="false" onAction="#menuClick" text="List"/>
 
             </Menu>
             <Menu fx:id="menuOrders" mnemonicParsing="false" text="Orders">
 
-                <MenuItem fx:id="addOrder" mnemonicParsing="false" text="Add"/>
-                <MenuItem fx:id="removeOrder" mnemonicParsing="false" text="Remove"/>
-                <MenuItem fx:id="updateOrder" mnemonicParsing="false" text="Update"/>
-                <MenuItem fx:id="listOrder" mnemonicParsing="false" text="List"/>
+                <MenuItem fx:id="listOrder" onAction="#menuClick" mnemonicParsing="false" text="List"/>
+                <MenuItem fx:id="addOrder" onAction="#menuClick" mnemonicParsing="false" text="Add"/>
+                <MenuItem fx:id="removeOrder" onAction="#menuClick" mnemonicParsing="false" text="Remove"/>
+                <MenuItem fx:id="updateOrder" onAction="#menuClick" mnemonicParsing="false" text="Update"/>
 
             </Menu>
         </MenuBar>

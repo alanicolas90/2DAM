@@ -12,4 +12,11 @@ public class Order {
     Timestamp date;
     int customerId;
     int tableNumber;
+
+    public Order(Timestamp date, int customerId, int tableNumber) {
+        this.date = date;
+        this.customerId = customerId;
+        this.tableNumber = tableNumber;
+    }
+
 }

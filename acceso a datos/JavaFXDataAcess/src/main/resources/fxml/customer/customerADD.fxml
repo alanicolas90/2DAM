@@ -20,7 +20,8 @@
     <TextField fx:id="txtEmail" layoutX="46.0" layoutY="264.0"/>
     <Label layoutX="47.0" layoutY="305.0" text="Phone Number"/>
     <TextField fx:id="txtPhoneNumber" layoutX="46.0" layoutY="322.0"/>
-    <Button layoutX="87.0" layoutY="388.0" mnemonicParsing="false" text="Add"/>
+
+    <Button layoutX="87.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#addCustomer" text="Add"/>
 
     <Label layoutX="288.0" layoutY="101.0" text="List of Customers"/>
     <TableView fx:id="tableCustomers" layoutX="288.0" layoutY="129.0" prefHeight="303.0" prefWidth="551.0">

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.order.list.OrderListController">
+    <Label layoutX="32.0" layoutY="32.0" prefHeight="62.0" prefWidth="347.0" text="List Orders">
+        <font>
+            <Font size="42.0"/>
+        </font>
+    </Label>
+
+    <Label layoutX="45.0" layoutY="96.0" text="List of Orders"/>
+
+    <TableView fx:id="tableOrders" layoutX="22.0" layoutY="118.0" prefHeight="303.0" prefWidth="464.0">
+        <columns>
+            <TableColumn fx:id="columnId" prefWidth="49.0" text="ID"/>
+            <TableColumn fx:id="columnDate" prefWidth="210.0" text="Date"/>
+            <TableColumn fx:id="columnCustomerId" prefWidth="110.0" text="CustomerID"/>
+            <TableColumn fx:id="columnTableNumber" prefWidth="94.0" text="TableNumber"/>
+        </columns>
+    </TableView>
+</AnchorPane>

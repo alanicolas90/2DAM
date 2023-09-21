@@ -14,7 +14,7 @@
 
     <Label layoutX="45.0" layoutY="96.0" text="List of Customers"/>
 
-    <TableView fx:id="tableCustomers" layoutX="22.0" layoutY="118.0" prefHeight="303.0" prefWidth="551.0">
+    <TableView fx:id="tableCustomers" layoutX="22.0" layoutY="118.0" onMouseClicked="#selectionTable" prefHeight="303.0" prefWidth="551.0">
         <columns>
             <TableColumn fx:id="columnId" prefWidth="38.199981689453125" text="ID"/>
             <TableColumn fx:id="columnName" prefWidth="78.79998779296875" text="Name"/>
@@ -23,5 +23,5 @@
             <TableColumn fx:id="columnPhone" prefWidth="120.4000244140625" text="Phone"/>
         </columns>
     </TableView>
-    <Button layoutX="87.0" layoutY="430.0" mnemonicParsing="false" text="Remove"/>
+    <Button layoutX="87.0" layoutY="430.0" mnemonicParsing="false" onMouseClicked="#removeSelected" text="Remove"/>
 </AnchorPane>

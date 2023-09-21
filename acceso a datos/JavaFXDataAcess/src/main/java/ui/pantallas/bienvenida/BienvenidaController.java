@@ -9,9 +9,6 @@ public class BienvenidaController extends BasePantallaController {
     @FXML
     private Label txtBienvenida;
 
-    public void initialize(){
-    }
-
     @Override
     public void principalCargado() {
         this.txtBienvenida.setText("Bienvenido " + getPrincipalController().getUsuario());

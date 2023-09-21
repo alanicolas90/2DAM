@@ -4,6 +4,7 @@ import jakarta.inject.Inject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import service.LoginService;
 import ui.pantallas.common.BasePantallaController;
@@ -13,7 +14,7 @@ public class LoginController extends BasePantallaController{
     @FXML
     private TextField username;
     @FXML
-    private TextField password;
+    private PasswordField password;
     @FXML
     private Button loginButton;
 
@@ -21,11 +22,11 @@ public class LoginController extends BasePantallaController{
     private LoginService loginService;
 
     @FXML
-    private void login(ActionEvent actionEvent) {
+    private void login() {
         if(loginService.login(username.getText(), password.getText())){
             getPrincipalController().onLogin(username.getText());
         }else{
-            getPrincipalController().alert();
+            getPrincipalController().alertWarning("Usuario o contraseña incorrectos","Error");
         }
     }
 }

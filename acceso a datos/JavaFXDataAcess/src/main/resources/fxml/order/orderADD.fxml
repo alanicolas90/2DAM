@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.order.add.OrderAddController">
+    <Label layoutX="32.0" layoutY="32.0" prefHeight="27.0" prefWidth="281.0" text="Add Order">
+        <font>
+            <Font size="42.0" />
+        </font>
+    </Label>
+
+    <Label layoutX="46.0" layoutY="148.0" text="Date" />
+    <TextField fx:id="txtDate" layoutX="46.0" layoutY="165.0" />
+
+    <Label layoutX="46.0" layoutY="215.0" text="CustomerID" />
+    <TextField fx:id="txtCustomerId" layoutX="46.0" layoutY="232.0" />
+
+    <Label layoutX="49.0" layoutY="281.0" text="Table Number" />
+    <TextField fx:id="txtTableNumber" layoutX="46.0" layoutY="302.0" />
+
+    <Button layoutX="87.0" layoutY="388.0" mnemonicParsing="false" text="Add" />
+
+    <Label layoutX="288.0" layoutY="101.0" text="List of Orders" />
+    <TableView fx:id="tableOrders" layoutX="288.0" layoutY="129.0" prefHeight="303.0" prefWidth="454.0">
+        <columns>
+            <TableColumn fx:id="columnId" prefWidth="38.199981689453125" text="ID" />
+            <TableColumn fx:id="columnDate" prefWidth="220.0" text="Date" />
+            <TableColumn fx:id="columnCustomerId" prefWidth="110.0" text="CustomerID" />
+            <TableColumn fx:id="columnTableNumber" prefWidth="84.0" text="TableNumber" />
+        </columns>
+    </TableView>
+</AnchorPane>
