@@ -6,7 +6,7 @@
 <BorderPane fx:id="root" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.principal.PrincipalController">
     <center>
-        <StackPane prefHeight="300.0" prefWidth="400.0">
+        <StackPane prefHeight="300.0" prefWidth="1000.0">
             <AnchorPane prefHeight="954.0" prefWidth="1356.0" styleClass="background" BorderPane.alignment="CENTER"/>
         </StackPane>
     </center>
@@ -21,9 +21,9 @@
             <Menu fx:id="menuCustomer" mnemonicParsing="false" text="Customers">
 
                 <MenuItem fx:id="addCustomer" mnemonicParsing="false" onAction="#menuClick" text="Add"/>
-                <MenuItem fx:id="removeCustomer" mnemonicParsing="false" text="Remove"/>
-                <MenuItem fx:id="updateCustomer" mnemonicParsing="false" text="Update"/>
-                <MenuItem fx:id="listCustomer" mnemonicParsing="false" text="List"/>
+                <MenuItem fx:id="removeCustomer" mnemonicParsing="false" onAction="#menuClick" text="Remove"/>
+                <MenuItem fx:id="updateCustomer" mnemonicParsing="false" onAction="#menuClick" text="Update"/>
+                <MenuItem fx:id="listCustomer" mnemonicParsing="false" onAction="#menuClick" text="List"/>
 
             </Menu>
             <Menu fx:id="menuOrders" mnemonicParsing="false" text="Orders">

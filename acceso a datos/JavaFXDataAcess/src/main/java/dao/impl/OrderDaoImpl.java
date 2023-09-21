@@ -8,11 +8,13 @@ import java.util.List;
 
 public class OrderDaoImpl implements OrderDao {
 
-    @Override public Either<Integer, List<Order>> getAll() {
+    @Override
+    public Either<Integer, List<Order>> getAll() {
         return null;
     }
 
-    @Override public Either<Integer, Order> get(int id) {
+    @Override
+    public Either<Integer, Order> get(int id) {
         return null;
     }
 }

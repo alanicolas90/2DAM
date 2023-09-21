@@ -19,6 +19,9 @@ module JavaFXDataAcess {
     exports ui.pantallas.login to javafx.fxml;
     exports dao.impl;
     exports ui.pantallas.customer.add;
+    exports ui.pantallas.customer.remove;
+    exports ui.pantallas.customer.update;
+    exports ui.pantallas.customer.list;
 
     opens ui.pantallas.principal;
     opens ui.main;

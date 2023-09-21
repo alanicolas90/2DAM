@@ -82,6 +82,9 @@ public class PrincipalController {
             case "menuExit" -> exit(actionEvent);
             case "menuLogout" -> logout(actionEvent);
             case "addCustomer" -> cargarPantalla(Pantallas.ADD_CUSTOMER);
+            case "removeCustomer" -> cargarPantalla(Pantallas.REMOVE_CUSTOMER);
+            case "updateCustomer" -> cargarPantalla(Pantallas.UPDATE_CUSTOMER);
+            case "listCustomer" -> cargarPantalla(Pantallas.LIST_CUSTOMER);
             default -> alertExit();
         }
     }

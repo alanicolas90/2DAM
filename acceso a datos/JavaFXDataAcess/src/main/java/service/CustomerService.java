@@ -20,10 +20,16 @@ public class CustomerService {
         return dao.get(id);
     }
 
-    public int save(Customer t) { return 0; }
+    public int save(Customer t) {
+        return 0;
+    }
 
-    public int update(Customer t) {return 0;}
+    public int update(Customer t) {
+        return 0;
+    }
 
-    public int delete(Customer t) {return 0;}
+    public int delete(Customer t) {
+        return 0;
+    }
 
 }
