@@ -7,12 +7,8 @@ x
 Hsrc/main/java/ui/pantallas/customer/update/CustomerUpdateController.java,7\1\71fea056850c25d2cc0ba09235d13631b1f58df2
 t
 Dsrc/main/java/ui/pantallas/customer/list/CustomerListController.java,8\d\8dd520a412800c51111d328ba1b2bdc4bfc936d2
-j
-:src/main/java/ui/pantallas/common/ConstantesPantallas.java,9\0\90187b5f683490564245f2c17b964b6c9340357a
 m
 =src/main/java/ui/pantallas/principal/PrincipalController.java,6\8\6854908843d482996cd7f7c9ccd44ffdc547ca45
-`
-0src/main/java/ui/pantallas/common/Pantallas.java,0\f\0f6b33d1a9a5694be1bfe44edd12d4d8db6849d0
 N
 src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
 T
@@ -49,3 +45,25 @@ e
 5src/main/java/ui/pantallas/login/LoginController.java,0\0\00a168197ce395305c37a33f896012577da7634b
 W
 'src/main/java/service/LoginService.java,7\b\7b11053eb434333bf8717d76ee6f3b9769fbf853
+k
+;src/main/java/ui/pantallas/common/BaseScreenController.java,c\3\c3b997b7f5c345ca029f1e88759e0e54c4ab112e
+e
+5src/main/java/ui/pantallas/common/ConstantScreen.java,a\b\abf7444a39189efb9d83547d558b61769791704f
+^
+.src/main/java/ui/pantallas/common/Screens.java,d\a\da6a60e747020a84e6aefa2f9d7618893f025be4
+i
+9src/main/java/ui/pantallas/welcome/WelcomeController.java,0\9\098ad45b9172a1baaa953bb9c21e1cd1735c88df
+O
+src/main/java/model/ErrorC.java,2\c\2c22533c06a7b9acfd928fd29e46a6edee812135
+O
+src/main/java/dao/LoginDao.java,9\3\9375bc06d3ba0fc9785564498a9b9d5049935538
+X
+(src/main/java/dao/impl/LoginDaoImpl.java,e\5\e5e7325d267fea1076a19b594d74415233ba72cd
+n
+>src/main/java/ui/pantallas/order/list/OrderListController.java,a\a\aa6382eb93c40eb3ebc42a3c877e90de8cb0478a
+r
+Bsrc/main/java/ui/pantallas/order/remove/OrderRemoveController.java,4\9\494672359c276118c5fa23dbe70fbef09e32a357
+r
+Bsrc/main/java/ui/pantallas/order/update/OrderUpdateController.java,2\9\2955bc19a7715f08e3cbf159eeba9535c9366f5b
+l
+<src/main/java/ui/pantallas/order/add/OrderAddController.java,c\e\ced6d794467c29128073736fa569da3317c6aff6

@@ -7,6 +7,6 @@
 
     <TextField fx:id="username" layoutX="223.0" layoutY="119.0" promptText="username" text="root" />
     <PasswordField fx:id="password" layoutX="223.0" layoutY="159.0" promptText="password" text="2dam" />
-    <Button fx:id="loginButton" layoutX="275.0" layoutY="216.0" mnemonicParsing="false" onAction="#login" text="Login" />
+    <Button layoutX="275.0" layoutY="216.0" mnemonicParsing="false" onAction="#login" text="Login" />
 
 </AnchorPane>

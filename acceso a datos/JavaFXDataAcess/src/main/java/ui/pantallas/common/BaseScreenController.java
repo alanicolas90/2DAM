@@ -5,7 +5,7 @@ import ui.pantallas.principal.PrincipalController;
 
 
 @Getter
-public abstract class BasePantallaController {
+public abstract class BaseScreenController {
 
     private PrincipalController principalController;
 

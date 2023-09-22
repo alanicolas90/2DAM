@@ -4,6 +4,7 @@ import dao.CustomerDao;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Customer;
+import model.ErrorC;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class CustomerService {
     @Inject
     private CustomerDao dao;
 
-    public Either<Integer, List<Customer>> getAll() {
+    public Either<ErrorC, List<Customer>> getAll() {
         return dao.getAll();
     }
 

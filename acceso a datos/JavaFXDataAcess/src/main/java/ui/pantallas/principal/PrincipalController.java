@@ -12,8 +12,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
-import ui.pantallas.common.BasePantallaController;
-import ui.pantallas.common.Pantallas;
+import ui.pantallas.common.BaseScreenController;
+import ui.pantallas.common.Screens;
 
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ public class PrincipalController {
     private final Alert alert;
 
     @Getter
-    private String usuario;
+    private String user;
 
     @Inject
     public PrincipalController(Instance<Object> instance) {
@@ -41,22 +41,22 @@ public class PrincipalController {
         alert = new Alert(Alert.AlertType.NONE);
     }
 
-    private void cargarPantalla(Pantallas pantalla) {
-        cambioPantalla(cargarPantalla(pantalla.getRuta()));
+    private void loadScreen(Screens pantalla) {
+        changeScreen(loadScreen(pantalla.getRoute()));
     }
 
 
-    private void cambioPantalla(Pane pantallaNueva) {
+    private void changeScreen(Pane pantallaNueva) {
         root.setCenter(pantallaNueva);
     }
 
-    private Pane cargarPantalla(String ruta) {
+    private Pane loadScreen(String ruta) {
         Pane panePantalla = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(controller -> instance.select(controller).get());
             panePantalla = fxmlLoader.load(getClass().getResourceAsStream(ruta));
-            BasePantallaController pantallaController = fxmlLoader.getController();
+            BaseScreenController pantallaController = fxmlLoader.getController();
             pantallaController.setPrincipalController(this);
             pantallaController.principalCargado();
         } catch (IOException e) {
@@ -68,19 +68,19 @@ public class PrincipalController {
 
     public void initialize() {
         menuPrincipal.setVisible(false);
-        cargarPantalla(Pantallas.LOGIN);
+        loadScreen(Screens.LOGIN);
     }
 
     public void onLogin(String usuario) {
-        this.usuario = usuario;
-        cargarPantalla(Pantallas.BIENVENIDA);
+        this.user = usuario;
+        loadScreen(Screens.BIENVENIDA);
         menuPrincipal.setVisible(true);
     }
 
     public void logout() {
-        this.usuario = null;
+        this.user = null;
         menuPrincipal.setVisible(false);
-        cargarPantalla(Pantallas.LOGIN);
+        loadScreen(Screens.LOGIN);
     }
 
     @FXML
@@ -88,14 +88,14 @@ public class PrincipalController {
         switch (((MenuItem) actionEvent.getSource()).getId()) {
             case "menuExit" -> exit(actionEvent);
             case "menuLogout" -> logout();
-            case "addCustomer" -> cargarPantalla(Pantallas.ADD_CUSTOMER);
-            case "removeCustomer" -> cargarPantalla(Pantallas.REMOVE_CUSTOMER);
-            case "updateCustomer" -> cargarPantalla(Pantallas.UPDATE_CUSTOMER);
-            case "listCustomer" -> cargarPantalla(Pantallas.LIST_CUSTOMER);
-            case "listOrder" -> cargarPantalla(Pantallas.LIST_ORDER);
-            case "addOrder" -> cargarPantalla(Pantallas.ADD_ORDER);
-            case "removeOrder" -> cargarPantalla(Pantallas.REMOVE_ORDER);
-            case "updateOrder" -> cargarPantalla(Pantallas.UPDATE_ORDER);
+            case "addCustomer" -> loadScreen(Screens.ADD_CUSTOMER);
+            case "removeCustomer" -> loadScreen(Screens.REMOVE_CUSTOMER);
+            case "updateCustomer" -> loadScreen(Screens.UPDATE_CUSTOMER);
+            case "listCustomer" -> loadScreen(Screens.LIST_CUSTOMER);
+            case "listOrder" -> loadScreen(Screens.LIST_ORDER);
+            case "addOrder" -> loadScreen(Screens.ADD_ORDER);
+            case "removeOrder" -> loadScreen(Screens.REMOVE_ORDER);
+            case "updateOrder" -> loadScreen(Screens.UPDATE_ORDER);
             default -> alertExit();
         }
     }
@@ -114,9 +114,9 @@ public class PrincipalController {
 
     private boolean alertExit() {
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Salir");
-        alert.setHeaderText("Salir");
-        alert.setContentText("¿Está seguro que desea salir?");
+        alert.setTitle("Exit");
+        alert.setHeaderText("Exit");
+        alert.setContentText("Are you sure you want to exit?");
         alert.showAndWait();
         return alert.getResult() == ButtonType.OK;
     }

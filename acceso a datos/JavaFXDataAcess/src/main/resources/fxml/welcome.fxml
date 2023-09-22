@@ -6,8 +6,8 @@
 
 
 <AnchorPane prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.bienvenida.BienvenidaController">
-    <Label fx:id="txtBienvenida" layoutX="145.0" layoutY="126.0" prefHeight="147.0" prefWidth="532.0" text="Bienvenido">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantallas.welcome.WelcomeController">
+    <Label fx:id="txtWelcome" layoutX="145.0" layoutY="126.0" prefHeight="147.0" prefWidth="532.0">
         <font>
             <Font size="51.0"/>
         </font>

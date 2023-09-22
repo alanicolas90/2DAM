@@ -2,16 +2,18 @@ package ui.pantallas.customer.add;
 
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import model.Customer;
 import service.CustomerService;
-import ui.pantallas.common.BasePantallaController;
+import ui.pantallas.common.BaseScreenController;
 import ui.pantallas.customer.common.CustomerCommon;
 
-public class CustomerAddController extends BasePantallaController {
+import java.time.LocalDate;
+
+public class CustomerAddController extends BaseScreenController {
 
     @Inject
     private CustomerService customerService;
@@ -31,6 +33,8 @@ public class CustomerAddController extends BasePantallaController {
     @FXML
     private TableColumn<Customer, Integer> columnPhone;
     @FXML
+    public TableColumn<Customer, LocalDate> columnDateBirth;
+    @FXML
     private TextField txtEmail;
     @FXML
     private TextField txtPhoneNumber;
@@ -38,9 +42,11 @@ public class CustomerAddController extends BasePantallaController {
     private TextField txtSurname;
     @FXML
     private TextField txtName;
+    @FXML
+    private DatePicker dateOfBirthCustomer;
 
     public void initialize() {
-        customerCommon.initCustomerTable(columnId, columnName, columnSurname, columnEmail, columnPhone);
+        customerCommon.initCustomerTable(columnId, columnName, columnSurname, columnEmail, columnPhone,columnDateBirth);
     }
 
     @Override
@@ -50,10 +56,10 @@ public class CustomerAddController extends BasePantallaController {
 
     public void addCustomer() {
         Customer customer = new Customer();
-        if (!txtPhoneNumber.getText().matches("[0-9]+")) {
-            getPrincipalController().alertWarning("El teléfono no puede contener letras", "Error");
+        if (!txtPhoneNumber.getText().matches("[-9]")) {
+            getPrincipalController().alertWarning("Phone number cannot contain letters", "Error");
         } else if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPhoneNumber.getText().isEmpty()) {
-            getPrincipalController().alertWarning("No se ha rellenado algún campo", "Error");
+            getPrincipalController().alertWarning("There are empty fields", "Error");
         } else {
             int lastIdTable = tableCustomers.getItems().get(tableCustomers.getItems().size() - 1).getId();
             customer.setId(lastIdTable + 1);
@@ -61,8 +67,11 @@ public class CustomerAddController extends BasePantallaController {
             customer.setSurname(txtSurname.getText());
             customer.setEmail(txtEmail.getText());
             customer.setPhone(Integer.parseInt(txtPhoneNumber.getText()));
+            if(dateOfBirthCustomer.getValue() != null){
+                customer.setBirthDate(dateOfBirthCustomer.getValue());
+            }
             tableCustomers.getItems().add(customer);
-            getPrincipalController().showInformation("Cliente añadido correctamente", "Información");
+            getPrincipalController().showInformation("Client added correctly", "Information");
         }
     }
 }

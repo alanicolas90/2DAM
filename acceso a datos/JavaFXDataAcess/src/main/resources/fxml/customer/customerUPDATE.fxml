@@ -19,17 +19,20 @@
     <TextField fx:id="txtEmail" layoutX="46.0" layoutY="264.0" />
     <Label layoutX="47.0" layoutY="305.0" text="Phone Number" />
     <TextField fx:id="txtPhoneNumber" layoutX="46.0" layoutY="322.0" />
-
-    <Button layoutX="87.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#updateCustomer" text="Update" />
+    <Label layoutX="47.0" layoutY="359.0" text="Date of birth" />
+    <DatePicker fx:id="dateOfBirthCustomer" layoutX="47.0" layoutY="377.0" />
+    
+    <Button layoutX="93.0" layoutY="446.0" mnemonicParsing="false" onMouseClicked="#updateCustomer" text="Update" />
 
     <Label layoutX="288.0" layoutY="101.0" text="Select one from the list of Customers" />
-    <TableView fx:id="tableCustomers" layoutX="288.0" layoutY="129.0" onMouseClicked="#selectionTable" prefHeight="303.0" prefWidth="551.0">
+    <TableView fx:id="tableCustomers" layoutX="250.0" layoutY="137.0" onMouseClicked="#selectionTable" prefHeight="303.0" prefWidth="605.0">
         <columns>
             <TableColumn fx:id="columnId" prefWidth="38.199981689453125" text="ID" />
             <TableColumn fx:id="columnName" prefWidth="78.79998779296875" text="Name" />
             <TableColumn fx:id="columnSurname" prefWidth="109.19998168945312" text="Surname" />
-            <TableColumn fx:id="columnEmail" prefWidth="203.5999755859375" text="Email" />
-            <TableColumn fx:id="columnPhone" prefWidth="120.4000244140625" text="Phone" />
+            <TableColumn fx:id="columnEmail" prefWidth="185.60000610351562" text="Email" />
+            <TableColumn fx:id="columnPhone" prefWidth="87.79998779296875" text="Phone" />
+            <TableColumn fx:id="columnDateBirth" prefWidth="102.79998779296875" text="Date of birth" />
         </columns>
     </TableView>
 </AnchorPane>

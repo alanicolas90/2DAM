@@ -3,6 +3,7 @@ package service;
 import dao.OrderDao;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import model.ErrorC;
 import model.Order;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class OrderService {
     @Inject
     private OrderDao dao;
 
-    public Either<Integer, List<Order>> getAll() {
+    public Either<ErrorC, List<Order>> getAll() {
         return dao.getAll();
     }
 

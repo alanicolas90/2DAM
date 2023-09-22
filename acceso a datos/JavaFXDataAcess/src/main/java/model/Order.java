@@ -3,20 +3,23 @@ package model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.security.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 public class Order {
     int id;
-    Timestamp date;
+    LocalDateTime date;
     int customerId;
     int tableNumber;
 
-    public Order(Timestamp date, int customerId, int tableNumber) {
+    public Order(LocalDateTime date, int customerId, int tableNumber) {
         this.date = date;
         this.customerId = customerId;
         this.tableNumber = tableNumber;
+    }
+    public Order(){
+
     }
 
 }

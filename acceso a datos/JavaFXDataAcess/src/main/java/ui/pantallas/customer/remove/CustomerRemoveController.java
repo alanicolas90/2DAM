@@ -4,14 +4,15 @@ import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.input.MouseEvent;
 import model.Customer;
 import service.CustomerService;
-import ui.pantallas.common.BasePantallaController;
+import ui.pantallas.common.BaseScreenController;
 import ui.pantallas.customer.common.CustomerCommon;
 
-public class CustomerRemoveController extends BasePantallaController {
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+public class CustomerRemoveController extends BaseScreenController {
     @Inject
     private CustomerService customerService;
     @Inject
@@ -20,7 +21,7 @@ public class CustomerRemoveController extends BasePantallaController {
     @FXML
     private TableView<Customer> tableCustomers;
     @FXML
-    private TableColumn<Customer, Integer> columnId;
+    private TableColumn<Customer, Integer> columnIdCustomer;
     @FXML
     private TableColumn<Customer, String> columnName;
     @FXML
@@ -29,10 +30,22 @@ public class CustomerRemoveController extends BasePantallaController {
     private TableColumn<Customer, String> columnEmail;
     @FXML
     private TableColumn<Customer, Integer> columnPhone;
+    @FXML
+    private TableColumn<Customer, LocalDate> columnDateBirth;
+    @FXML
+    private TableColumn<Customer, Integer> columnIdOrder;
+    @FXML
+    private TableColumn<Customer, LocalDateTime> columnDate;
+    @FXML
+    private TableColumn<Customer,Integer> columnCustomerIdOrder;
+    @FXML
+    private TableColumn<Customer,Integer> columnTableNumber;
+
+
 
 
     public void initialize() {
-        customerCommon.initCustomerTable(columnId, columnName, columnSurname, columnEmail, columnPhone);
+        customerCommon.initCustomerTable(columnIdCustomer, columnName, columnSurname, columnEmail, columnPhone,columnDateBirth);
     }
 
     @Override
@@ -48,10 +61,10 @@ public class CustomerRemoveController extends BasePantallaController {
     public void removeSelected() {
         Customer customer = selectionTable();
         if (customer == null) {
-            getPrincipalController().alertWarning("No se ha seleccionado ningún cliente", "Error");
+            getPrincipalController().alertWarning("You must select a customer", "Error");
         } else {
             tableCustomers.getItems().remove(customer);
-            getPrincipalController().showInformation("Cliente eliminado correctamente", "Información");
+            getPrincipalController().showInformation("Customer deleted correctly", "Information");
         }
     }
 }

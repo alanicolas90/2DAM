@@ -1,19 +1,24 @@
 package ui.pantallas.order.list;
 
+import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Order;
-import ui.pantallas.common.BasePantallaController;
+import service.OrderService;
+import ui.pantallas.common.BaseScreenController;
 
-import java.security.Timestamp;
+import java.time.LocalDateTime;
 
-public class OrderListController extends BasePantallaController {
+public class OrderListController extends BaseScreenController {
 
+    @Inject
+    private OrderService orderService;
     @FXML
     private TableColumn<Order, Integer> columnId;
     @FXML
-    private TableColumn<Order, Timestamp> columnDate;
+    private TableColumn<Order, LocalDateTime> columnDate;
     @FXML
     private TableColumn<Order, Integer> columnCustomerId;
     @FXML
@@ -21,6 +26,17 @@ public class OrderListController extends BasePantallaController {
     @FXML
     private TableView<Order> tableOrders;
 
+    public void initialize(){
+        columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        columnDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        columnCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        columnTableNumber.setCellValueFactory(new PropertyValueFactory<>("tableNumber"));
+    }
+
+    @Override
+    public void principalCargado() {
+        tableOrders.getItems().addAll(orderService.getAll().get());
+    }
 
 }
 

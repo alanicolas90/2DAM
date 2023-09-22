@@ -2,15 +2,18 @@ package ui.pantallas.customer.update;
 
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Customer;
 import service.CustomerService;
-import ui.pantallas.common.BasePantallaController;
+import ui.pantallas.common.BaseScreenController;
 import ui.pantallas.customer.common.CustomerCommon;
 
-public class CustomerUpdateController extends BasePantallaController {
+import java.time.LocalDate;
+
+public class CustomerUpdateController extends BaseScreenController {
 
     @Inject
     private CustomerService customerService;
@@ -26,6 +29,8 @@ public class CustomerUpdateController extends BasePantallaController {
     @FXML
     private TextField txtPhoneNumber;
     @FXML
+    private DatePicker dateOfBirthCustomer;
+    @FXML
     private TableView<Customer> tableCustomers;
     @FXML
     private TableColumn<Customer, Integer> columnId;
@@ -37,9 +42,11 @@ public class CustomerUpdateController extends BasePantallaController {
     private TableColumn<Customer, String> columnEmail;
     @FXML
     private TableColumn<Customer, Integer> columnPhone;
+    @FXML
+    public TableColumn<Customer, LocalDate> columnDateBirth;
 
     public void initialize() {
-        customerCommon.initCustomerTable(columnId, columnName, columnSurname, columnEmail, columnPhone);
+        customerCommon.initCustomerTable(columnId, columnName, columnSurname, columnEmail, columnPhone, columnDateBirth);
     }
 
     @Override
@@ -54,23 +61,27 @@ public class CustomerUpdateController extends BasePantallaController {
         txtSurname.setText(customer.getSurname());
         txtEmail.setText(customer.getEmail());
         txtPhoneNumber.setText(String.valueOf(customer.getPhone()));
+        dateOfBirthCustomer.setValue(customer.getBirthDate());
     }
 
     @FXML
     private void updateCustomer() {
         Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
         if (customer == null) {
-            getPrincipalController().alertWarning("No se ha seleccionado ningún cliente", "Error");
+            getPrincipalController().alertWarning("No client was selected", "Error");
         } else if (txtPhoneNumber.getText().matches("[-9]")) {
-            getPrincipalController().alertWarning("El teléfono no puede contener letras", "Error");
+            getPrincipalController().alertWarning("Phone number cannot contain letters", "Error");
         } else if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPhoneNumber.getText().isEmpty()) {
-            getPrincipalController().alertWarning("No se ha rellenado algún campo", "Error");
+            getPrincipalController().alertWarning("There are missing fields", "Error");
         } else {
             customer.setName(txtName.getText());
             customer.setSurname(txtSurname.getText());
             customer.setEmail(txtEmail.getText());
             customer.setPhone(Integer.parseInt(txtPhoneNumber.getText()));
-            getPrincipalController().showInformation("Cliente actualizado correctamente", "Información");
+            if (dateOfBirthCustomer.getValue() != null) {
+                customer.setBirthDate(dateOfBirthCustomer.getValue());
+            }
+            getPrincipalController().showInformation("Client got updated correctly", "Information");
         }
     }
 }
