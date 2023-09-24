@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ui.pantallas.principal.PrincipalController;
+import ui.screens.principal.PrincipalController;
 
 import java.io.IOException;
 
@@ -24,7 +24,6 @@ public class MainFX {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            System.exit(0);
         }
     }
 }

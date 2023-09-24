@@ -14,39 +14,39 @@ module JavaFXDataAcess {
 
 
     exports ui.main to javafx.graphics;
-    exports ui.pantallas.principal;
-    exports ui.pantallas.common;
-    exports ui.pantallas.login to javafx.fxml;
+    exports ui.screens.principal;
+    exports ui.screens.common;
+    exports ui.screens.login to javafx.fxml;
     exports dao.impl;
-    exports ui.pantallas.customer.add;
-    exports ui.pantallas.customer.remove;
-    exports ui.pantallas.customer.update;
-    exports ui.pantallas.customer.list;
+    exports ui.screens.customer.add;
+    exports ui.screens.customer.remove;
+    exports ui.screens.customer.update;
+    exports ui.screens.customer.list;
     exports model;
-    exports ui.pantallas.welcome;
-    exports ui.pantallas.order.update;
-    exports ui.pantallas.order.add;
-    exports ui.pantallas.order.list;
-    exports ui.pantallas.order.remove;
-    exports ui.pantallas.order.common;
+    exports ui.screens.welcome;
+    exports ui.screens.order.update;
+    exports ui.screens.order.add;
+    exports ui.screens.order.list;
+    exports ui.screens.order.remove;
+    exports ui.screens.order.common;
 
-    opens ui.pantallas.order.common;
-    opens ui.pantallas.order.list;
-    opens ui.pantallas.order.add;
-    opens ui.pantallas.order.update;
-    opens ui.pantallas.order.remove;
-    opens ui.pantallas.customer.list;
-    opens ui.pantallas.customer.update;
-    opens ui.pantallas.customer.remove;
-    opens ui.pantallas.principal;
+    opens ui.screens.order.common;
+    opens ui.screens.order.list;
+    opens ui.screens.order.add;
+    opens ui.screens.order.update;
+    opens ui.screens.order.remove;
+    opens ui.screens.customer.list;
+    opens ui.screens.customer.update;
+    opens ui.screens.customer.remove;
+    opens ui.screens.principal;
     opens ui.main;
     opens fxml;
-    opens ui.pantallas.login;
-    opens ui.pantallas.common;
+    opens ui.screens.login;
+    opens ui.screens.common;
     opens service;
-    opens ui.pantallas.customer.add;
-    opens ui.pantallas.welcome;
-    opens ui.pantallas.customer.common;
+    opens ui.screens.customer.add;
+    opens ui.screens.welcome;
+    opens ui.screens.customer.common;
 
 
 }

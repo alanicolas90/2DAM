@@ -1,6 +1,5 @@
 package model;
 
-import javafx.collections.ObservableList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
