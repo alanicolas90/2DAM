@@ -24,6 +24,7 @@ public class MainFX {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+            throw e;
         }
     }
 }

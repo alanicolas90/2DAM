@@ -15,15 +15,13 @@ public class DIJavafx extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        try {
-            SeContainerInitializer initializer = SeContainerInitializer.newInstance();
-            final SeContainer container = initializer.initialize();
-            primaryStage.setResizable(true);
-            container.getBeanManager().getEvent().select(new AnnotationLiteral<StartupScene>() {
-            }).fire(primaryStage);
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-        }
+    public void start(Stage primaryStage) {
+
+        SeContainerInitializer initializer = SeContainerInitializer.newInstance();
+        final SeContainer container = initializer.initialize();
+        primaryStage.setResizable(true);
+        container.getBeanManager().getEvent().select(new AnnotationLiteral<StartupScene>() {
+        }).fire(primaryStage);
+        
     }
 }
