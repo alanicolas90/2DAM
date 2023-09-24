@@ -53,15 +53,15 @@ public class OrderUpdateController extends BaseScreenController {
 
     public void updateOrder() {
         Order order = tableOrders.getSelectionModel().getSelectedItem();
-        if(order == null){
+        if (order == null) {
             getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_AN_ORDER, ConstantNormal.ERROR);
-        }else if(txtCustomerId.getText().isEmpty() || txtTableNumber.getText().isEmpty() || dateOfBirthCustomer.getValue().toString().isBlank()){
+        } else if (txtCustomerId.getText().isEmpty() || txtTableNumber.getText().isEmpty() || dateOfBirthCustomer.getValue().toString().isBlank()) {
             getPrincipalController().alertWarning(ConstantNormal.THERE_ARE_EMPTY_FIELDS, ConstantNormal.ERROR);
         } else if (!txtCustomerId.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
             getPrincipalController().alertWarning(ConstantNormal.CUSTOMER_ID_MUST_BE_A_NUMBER, ConstantNormal.ERROR);
         } else if (!txtTableNumber.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
             getPrincipalController().alertWarning(ConstantNormal.TABLE_NUMBER_MUST_BE_A_NUMBER, ConstantNormal.ERROR);
-        } else{
+        } else {
             getPrincipalController().showInformation(ConstantNormal.ORDER_UPDATED_SUCCESSFULLY, ConstantNormal.INFORMATION);
         }
     }

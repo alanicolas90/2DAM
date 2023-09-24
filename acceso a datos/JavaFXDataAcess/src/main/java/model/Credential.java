@@ -7,7 +7,7 @@ import lombok.Getter;
 @Data
 @Getter
 @AllArgsConstructor
-public class Credential{
+public class Credential {
     int idCustomer;
     private String username;
     private String password;

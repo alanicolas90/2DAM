@@ -130,7 +130,7 @@ public class PrincipalController {
         alert.showAndWait();
     }
 
-    public void showInformation(String messageForUser, String titleInformation){
+    public void showInformation(String messageForUser, String titleInformation) {
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setTitle(titleInformation);
         alert.setHeaderText(titleInformation);

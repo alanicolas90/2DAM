@@ -8,7 +8,7 @@ public class LoginService {
     @Inject
     private LoginDao dao;
 
-public boolean login(String username, String password) {
+    public boolean login(String username, String password) {
         return dao.login(username, password);
     }
 }

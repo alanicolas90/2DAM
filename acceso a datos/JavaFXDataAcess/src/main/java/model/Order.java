@@ -18,7 +18,8 @@ public class Order {
         this.customerId = customerId;
         this.tableNumber = tableNumber;
     }
-    public Order(){
+
+    public Order() {
 
     }
 

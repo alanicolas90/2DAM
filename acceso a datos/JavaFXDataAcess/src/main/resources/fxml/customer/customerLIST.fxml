@@ -4,23 +4,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.customer.list.CustomerListController">
+<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.customer.list.CustomerListController">
     <Label layoutX="32.0" layoutY="32.0" prefHeight="62.0" prefWidth="347.0" text="List Customers">
         <font>
-            <Font size="42.0" />
+            <Font size="42.0"/>
         </font>
     </Label>
 
-    <Label layoutX="45.0" layoutY="96.0" text="List of Customers" />
+    <Label layoutX="45.0" layoutY="96.0" text="List of Customers"/>
 
     <TableView fx:id="tableCustomers" layoutX="22.0" layoutY="118.0" prefHeight="303.0" prefWidth="631.0">
         <columns>
-            <TableColumn fx:id="columnId" prefWidth="38.199981689453125" text="ID" />
-            <TableColumn fx:id="columnName" prefWidth="78.79998779296875" text="Name" />
-            <TableColumn fx:id="columnSurname" prefWidth="109.19998168945312" text="Surname" />
-            <TableColumn fx:id="columnEmail" prefWidth="203.5999755859375" text="Email" />
-            <TableColumn fx:id="columnPhone" prefWidth="91.80001831054688" text="Phone" />
-            <TableColumn fx:id="columnDateBirth" prefWidth="110.0" text="Date of birth" />
+            <TableColumn fx:id="columnId" prefWidth="38.199981689453125" text="ID"/>
+            <TableColumn fx:id="columnName" prefWidth="78.79998779296875" text="Name"/>
+            <TableColumn fx:id="columnSurname" prefWidth="109.19998168945312" text="Surname"/>
+            <TableColumn fx:id="columnEmail" prefWidth="203.5999755859375" text="Email"/>
+            <TableColumn fx:id="columnPhone" prefWidth="91.80001831054688" text="Phone"/>
+            <TableColumn fx:id="columnDateBirth" prefWidth="110.0" text="Date of birth"/>
         </columns>
     </TableView>
 </AnchorPane>

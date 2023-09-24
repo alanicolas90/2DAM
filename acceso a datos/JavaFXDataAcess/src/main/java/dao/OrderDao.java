@@ -12,9 +12,9 @@ public interface OrderDao {
 
     Either<Integer, Order> get(int id);
 
-    Either<ErrorC,List<Order>> getOrdersCustomer(int id);
+    Either<ErrorC, List<Order>> getOrdersCustomer(int id);
 
     Either<ErrorC, List<OrderItem>> getOrderItems(int id);
 
-    Either<ErrorC,List<OrderItem>> getAllOrderItems();
+    Either<ErrorC, List<OrderItem>> getAllOrderItems();
 }

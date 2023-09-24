@@ -32,13 +32,13 @@ public class OrderRemoveController extends BaseScreenController {
     private TableColumn<Order, Integer> columnTableNumber;
 
     @FXML
-    private TableColumn<OrderItem,String> columnItemName;
+    private TableColumn<OrderItem, String> columnItemName;
     @FXML
-    private TableColumn<OrderItem,Integer> columnQuantity;
+    private TableColumn<OrderItem, Integer> columnQuantity;
     @FXML
-    private TableColumn<OrderItem,Integer> columnPrice;
+    private TableColumn<OrderItem, Integer> columnPrice;
     @FXML
-    private TableColumn<Integer,Integer> columnTotalPrice;
+    private TableColumn<Integer, Integer> columnTotalPrice;
 
     public void initialize() {
         common.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);

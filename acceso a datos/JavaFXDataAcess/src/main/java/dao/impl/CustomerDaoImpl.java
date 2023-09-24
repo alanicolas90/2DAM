@@ -11,8 +11,8 @@ import java.util.List;
 
 public class CustomerDaoImpl implements CustomerDao {
     @Override
-    public Either<ErrorC,List<Customer>> getAll() {
-        Either <ErrorC, List<Customer>> result;
+    public Either<ErrorC, List<Customer>> getAll() {
+        Either<ErrorC, List<Customer>> result;
 
         List<Customer> customerList = new ArrayList<>();
         customerList.add(new Customer(1, "Juan", "Perez", "juanperez@gmail.com"));
@@ -25,9 +25,9 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public Either<ErrorC,List<Integer>> getAllIds() {
+    public Either<ErrorC, List<Integer>> getAllIds() {
         List<Customer> customerList = getAll().get();
-        Either <ErrorC, List<Integer>> result;
+        Either<ErrorC, List<Integer>> result;
 
         result = Either.right(customerList.stream().map(Customer::getId).toList());
 

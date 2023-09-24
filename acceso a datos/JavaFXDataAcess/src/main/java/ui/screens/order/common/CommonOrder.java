@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 public class CommonOrder {
 
-    public void initOrderList(TableColumn<Order, Integer> columnId, TableColumn<Order, LocalDateTime> columnDate, TableColumn<Order, Integer> columnCustomerId, TableColumn<Order, Integer> columnTableNumber){
+    public void initOrderList(TableColumn<Order, Integer> columnId, TableColumn<Order, LocalDateTime> columnDate, TableColumn<Order, Integer> columnCustomerId, TableColumn<Order, Integer> columnTableNumber) {
         columnId.setCellValueFactory(new PropertyValueFactory<>(ConstantNormal.ID));
         columnDate.setCellValueFactory(new PropertyValueFactory<>(ConstantNormal.DATE));
         columnCustomerId.setCellValueFactory(new PropertyValueFactory<>(ConstantNormal.CUSTOMER_ID));
@@ -18,13 +18,12 @@ public class CommonOrder {
 
     }
 
-    public void initOrderItemList(TableColumn<OrderItem, String> columnItemName, TableColumn<OrderItem, Integer> columnQuantity, TableColumn<OrderItem, Integer> columnPrice, TableColumn<Integer, Integer> columnTotalPrice){
+    public void initOrderItemList(TableColumn<OrderItem, String> columnItemName, TableColumn<OrderItem, Integer> columnQuantity, TableColumn<OrderItem, Integer> columnPrice, TableColumn<Integer, Integer> columnTotalPrice) {
         columnItemName.setCellValueFactory(new PropertyValueFactory<>(ConstantNormal.ITEM_NAME));
         columnQuantity.setCellValueFactory(new PropertyValueFactory<>(ConstantNormal.QUANTITY));
         columnPrice.setCellValueFactory(new PropertyValueFactory<>(ConstantNormal.PRICE));
         columnTotalPrice.setCellValueFactory(new PropertyValueFactory<>(ConstantNormal.TOTAL_PRICE));
     }
-
 
 
     private CommonOrder() {

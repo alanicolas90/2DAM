@@ -8,5 +8,5 @@ import lombok.Data;
 public class Table {
     int id;
     int seats;
-   //boolean isOccupied;
+    //boolean isOccupied;
 }

@@ -69,7 +69,7 @@ public class CustomerRemoveController extends BaseScreenController {
     public void removeSelected() {
         Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
         if (customer == null) {
-                getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_A_CUSTOMER, ConstantNormal.ERROR);
+            getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_A_CUSTOMER, ConstantNormal.ERROR);
         } else {
             tableCustomers.getItems().remove(customer);
             tableOrdersCustomer.getItems().clear();

@@ -38,9 +38,9 @@ public class OrderListController extends BaseScreenController {
     @FXML
     private TableColumn<OrderItem, Integer> columnPrice;
     @FXML
-    private TableColumn<Integer,Integer> columnTotalPrice;
+    private TableColumn<Integer, Integer> columnTotalPrice;
 
-    public void initialize(){
+    public void initialize() {
         commonOrder.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
         commonOrder.initOrderItemList(columnItemName, columnQuantity, columnPrice, columnTotalPrice);
     }

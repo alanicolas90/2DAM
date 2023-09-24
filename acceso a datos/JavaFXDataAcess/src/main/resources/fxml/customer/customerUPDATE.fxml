@@ -4,35 +4,37 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.customer.update.CustomerUpdateController">
+<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.customer.update.CustomerUpdateController">
     <Label layoutX="32.0" layoutY="32.0" prefHeight="62.0" prefWidth="337.0" text="Update Customer">
         <font>
-            <Font size="42.0" />
+            <Font size="42.0"/>
         </font>
     </Label>
 
-    <Label layoutX="47.0" layoutY="133.0" text="Name" />
-    <TextField fx:id="txtName" layoutX="46.0" layoutY="150.0" />
-    <Label layoutX="47.0" layoutY="186.0" text="Surname" />
-    <TextField fx:id="txtSurname" layoutX="46.0" layoutY="204.0" />
-    <Label layoutX="47.0" layoutY="246.0" text="Email" />
-    <TextField fx:id="txtEmail" layoutX="46.0" layoutY="264.0" />
-    <Label layoutX="47.0" layoutY="305.0" text="Phone Number" />
-    <TextField fx:id="txtPhoneNumber" layoutX="46.0" layoutY="322.0" />
-    <Label layoutX="47.0" layoutY="359.0" text="Date of birth" />
-    <DatePicker fx:id="dateOfBirthCustomer" layoutX="47.0" layoutY="377.0" />
-    
-    <Button layoutX="93.0" layoutY="446.0" mnemonicParsing="false" onMouseClicked="#updateCustomer" text="Update" />
+    <Label layoutX="47.0" layoutY="133.0" text="Name"/>
+    <TextField fx:id="txtName" layoutX="46.0" layoutY="150.0"/>
+    <Label layoutX="47.0" layoutY="186.0" text="Surname"/>
+    <TextField fx:id="txtSurname" layoutX="46.0" layoutY="204.0"/>
+    <Label layoutX="47.0" layoutY="246.0" text="Email"/>
+    <TextField fx:id="txtEmail" layoutX="46.0" layoutY="264.0"/>
+    <Label layoutX="47.0" layoutY="305.0" text="Phone Number"/>
+    <TextField fx:id="txtPhoneNumber" layoutX="46.0" layoutY="322.0"/>
+    <Label layoutX="47.0" layoutY="359.0" text="Date of birth"/>
+    <DatePicker fx:id="dateOfBirthCustomer" layoutX="47.0" layoutY="377.0"/>
 
-    <Label layoutX="288.0" layoutY="101.0" text="Select one from the list of Customers" />
-    <TableView fx:id="tableCustomers" layoutX="250.0" layoutY="137.0" onMouseClicked="#selectionTable" prefHeight="303.0" prefWidth="605.0">
+    <Button layoutX="93.0" layoutY="446.0" mnemonicParsing="false" onMouseClicked="#updateCustomer" text="Update"/>
+
+    <Label layoutX="288.0" layoutY="101.0" text="Select one from the list of Customers"/>
+    <TableView fx:id="tableCustomers" layoutX="250.0" layoutY="137.0" onMouseClicked="#selectionTable"
+               prefHeight="303.0" prefWidth="605.0">
         <columns>
-            <TableColumn fx:id="columnId" prefWidth="38.199981689453125" text="ID" />
-            <TableColumn fx:id="columnName" prefWidth="78.79998779296875" text="Name" />
-            <TableColumn fx:id="columnSurname" prefWidth="109.19998168945312" text="Surname" />
-            <TableColumn fx:id="columnEmail" prefWidth="185.60000610351562" text="Email" />
-            <TableColumn fx:id="columnPhone" prefWidth="87.79998779296875" text="Phone" />
-            <TableColumn fx:id="columnDateBirth" prefWidth="102.79998779296875" text="Date of birth" />
+            <TableColumn fx:id="columnId" prefWidth="38.199981689453125" text="ID"/>
+            <TableColumn fx:id="columnName" prefWidth="78.79998779296875" text="Name"/>
+            <TableColumn fx:id="columnSurname" prefWidth="109.19998168945312" text="Surname"/>
+            <TableColumn fx:id="columnEmail" prefWidth="185.60000610351562" text="Email"/>
+            <TableColumn fx:id="columnPhone" prefWidth="87.79998779296875" text="Phone"/>
+            <TableColumn fx:id="columnDateBirth" prefWidth="102.79998779296875" text="Date of birth"/>
         </columns>
     </TableView>
 </AnchorPane>
