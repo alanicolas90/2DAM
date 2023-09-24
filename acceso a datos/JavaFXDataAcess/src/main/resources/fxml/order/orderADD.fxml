@@ -31,5 +31,9 @@
             <TableColumn fx:id="columnTableNumber" prefWidth="84.0" text="TableNumber" />
         </columns>
     </TableView>
+   <ComboBox layoutX="420.0" layoutY="63.0" prefWidth="150.0" />
+   <Label layoutX="420.0" layoutY="46.0" text="MenuItem" />
+   <TextField layoutX="623.0" layoutY="63.0" />
+   <Label layoutX="623.0" layoutY="46.0" text="Quantity" />
 
 </AnchorPane>
