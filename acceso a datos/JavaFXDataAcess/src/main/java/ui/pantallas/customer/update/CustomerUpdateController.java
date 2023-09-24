@@ -69,18 +69,12 @@ public class CustomerUpdateController extends BaseScreenController {
         Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
         if (customer == null) {
             getPrincipalController().alertWarning("No client was selected", "Error");
-        } else if (txtPhoneNumber.getText().matches("[-9]")) {
+        } else if (txtPhoneNumber.getText().matches("\\d+")) {
             getPrincipalController().alertWarning("Phone number cannot contain letters", "Error");
         } else if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPhoneNumber.getText().isEmpty()) {
             getPrincipalController().alertWarning("There are missing fields", "Error");
         } else {
-            customer.setName(txtName.getText());
-            customer.setSurname(txtSurname.getText());
-            customer.setEmail(txtEmail.getText());
-            customer.setPhone(Integer.parseInt(txtPhoneNumber.getText()));
-            if (dateOfBirthCustomer.getValue() != null) {
-                customer.setBirthDate(dateOfBirthCustomer.getValue());
-            }
+            customerCommon.setsNameSurnameEmailPhoneBirth(customer, txtName, txtSurname, txtEmail, txtPhoneNumber, dateOfBirthCustomer);
             getPrincipalController().showInformation("Client got updated correctly", "Information");
         }
     }

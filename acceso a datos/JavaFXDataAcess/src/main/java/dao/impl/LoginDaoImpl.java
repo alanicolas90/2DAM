@@ -1,10 +1,15 @@
 package dao.impl;
 
 import dao.LoginDao;
+import model.Credential;
+
+import java.util.List;
 
 public class LoginDaoImpl implements LoginDao {
     
     @Override public boolean login(String username, String password) {
-        return username.equals("root") && password.equals("2dam");
+        List<Credential> credentials = List.of(new Credential(0,"root", "2dam",true));
+
+        return credentials.stream().anyMatch(c -> c.getUsername().equals(username) && c.getPassword().equals(password));
     }
 }

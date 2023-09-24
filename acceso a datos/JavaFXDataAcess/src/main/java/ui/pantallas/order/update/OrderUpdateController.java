@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import model.Order;
 import service.OrderService;
 import ui.pantallas.common.BaseScreenController;
+import ui.pantallas.order.common.CommonOrder;
 ;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,6 +18,8 @@ public class OrderUpdateController extends BaseScreenController {
 
     @Inject
     private OrderService orderService;
+    @Inject
+    private CommonOrder common;
     @FXML
     private TextField txtCustomerId;
     @FXML
@@ -35,10 +38,7 @@ public class OrderUpdateController extends BaseScreenController {
     private TableColumn<Order, Integer> columnTableNumber;
 
     public void initialize() {
-        columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        columnDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        columnCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-        columnTableNumber.setCellValueFactory(new PropertyValueFactory<>("tableNumber"));
+        common.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
     }
 
     @Override

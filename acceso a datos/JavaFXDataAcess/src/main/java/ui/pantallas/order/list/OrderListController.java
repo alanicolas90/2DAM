@@ -6,8 +6,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Order;
+import model.OrderItem;
 import service.OrderService;
 import ui.pantallas.common.BaseScreenController;
+import ui.pantallas.order.common.CommonOrder;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +17,10 @@ public class OrderListController extends BaseScreenController {
 
     @Inject
     private OrderService orderService;
+    @Inject
+    private CommonOrder commonOrder;
+    @FXML
+    private TableView<Order> tableOrders;
     @FXML
     private TableColumn<Order, Integer> columnId;
     @FXML
@@ -23,20 +29,31 @@ public class OrderListController extends BaseScreenController {
     private TableColumn<Order, Integer> columnCustomerId;
     @FXML
     private TableColumn<Order, Integer> columnTableNumber;
+
     @FXML
-    private TableView<Order> tableOrders;
+    private TableView<OrderItem> tableOrderItems;
+    @FXML
+    private TableColumn<OrderItem, String> columnItemName;
+    @FXML
+    private TableColumn<OrderItem, Integer> columnQuantity;
+    @FXML
+    private TableColumn<OrderItem, Integer> columnPrice;
+    @FXML
+    private TableColumn<Integer,Integer> columnTotalPrice;
 
     public void initialize(){
-        columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        columnDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        columnCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-        columnTableNumber.setCellValueFactory(new PropertyValueFactory<>("tableNumber"));
+        commonOrder.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
+        commonOrder.initOrderItemList(columnItemName, columnQuantity, columnPrice, columnTotalPrice);
     }
 
     @Override
     public void principalCargado() {
         tableOrders.getItems().addAll(orderService.getAll().get());
+
     }
 
+    public void orderSelected() {
+        tableOrderItems.getItems().clear();
+    }
 }
 

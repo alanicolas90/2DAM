@@ -5,6 +5,7 @@ import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.ErrorC;
 import model.Order;
+import model.OrderItem;
 
 import java.util.List;
 
@@ -30,5 +31,13 @@ public class OrderService {
 
     public int delete(Order t) {
         return 0;
+    }
+
+    public Either<ErrorC, List<Order>> getOrdersCustomer(int id) {
+        return dao.getOrdersCustomer(id);
+    }
+
+    public Either<ErrorC,List<OrderItem>> getOrderItems(int id) {
+        return dao.getOrderItems(id);
     }
 }

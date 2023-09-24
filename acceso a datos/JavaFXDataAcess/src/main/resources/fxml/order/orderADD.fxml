@@ -14,7 +14,7 @@
     <Label layoutX="46.0" layoutY="148.0" text="Date" />
 
     <Label layoutX="46.0" layoutY="215.0" text="CustomerID" />
-    <TextField fx:id="txtCustomerId" layoutX="46.0" layoutY="232.0" />
+    <ComboBox fx:id="comboBoxCustomer" layoutX="46.0" layoutY="238.0" prefWidth="150.0" />
 
     <Label layoutX="49.0" layoutY="281.0" text="Table Number" />
     <TextField fx:id="txtTableNumber" layoutX="46.0" layoutY="302.0" />

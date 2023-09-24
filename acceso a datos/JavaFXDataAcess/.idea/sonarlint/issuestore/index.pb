@@ -45,20 +45,6 @@ e
 5src/main/java/ui/pantallas/login/LoginController.java,0\0\00a168197ce395305c37a33f896012577da7634b
 W
 'src/main/java/service/LoginService.java,7\b\7b11053eb434333bf8717d76ee6f3b9769fbf853
-k
-;src/main/java/ui/pantallas/common/BaseScreenController.java,c\3\c3b997b7f5c345ca029f1e88759e0e54c4ab112e
-e
-5src/main/java/ui/pantallas/common/ConstantScreen.java,a\b\abf7444a39189efb9d83547d558b61769791704f
-^
-.src/main/java/ui/pantallas/common/Screens.java,d\a\da6a60e747020a84e6aefa2f9d7618893f025be4
-i
-9src/main/java/ui/pantallas/welcome/WelcomeController.java,0\9\098ad45b9172a1baaa953bb9c21e1cd1735c88df
-O
-src/main/java/model/ErrorC.java,2\c\2c22533c06a7b9acfd928fd29e46a6edee812135
-O
-src/main/java/dao/LoginDao.java,9\3\9375bc06d3ba0fc9785564498a9b9d5049935538
-X
-(src/main/java/dao/impl/LoginDaoImpl.java,e\5\e5e7325d267fea1076a19b594d74415233ba72cd
 n
 >src/main/java/ui/pantallas/order/list/OrderListController.java,a\a\aa6382eb93c40eb3ebc42a3c877e90de8cb0478a
 r

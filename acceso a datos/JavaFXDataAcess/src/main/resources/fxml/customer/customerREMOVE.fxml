@@ -23,8 +23,10 @@
             <TableColumn fx:id="columnDateBirth" prefWidth="92.80007934570312" text="Date of birth" />
         </columns>
     </TableView>
+
     <Button layoutX="87.0" layoutY="430.0" mnemonicParsing="false" onMouseClicked="#removeSelected" text="Remove" />
-    <TableView layoutX="599.0" layoutY="118.0" prefHeight="303.0" prefWidth="362.0">
+
+    <TableView fx:id="tableOrdersCustomer" layoutX="599.0" layoutY="118.0" prefHeight="303.0" prefWidth="362.0">
         <columns>
             <TableColumn fx:id="columnIdOrder" prefWidth="49.0" text="ID" />
             <TableColumn fx:id="columnDate" prefWidth="210.0" text="Date" />
@@ -32,4 +34,5 @@
             <TableColumn fx:id="columnTableNumber" prefWidth="94.0" text="TableNumber" />
         </columns>
     </TableView>
+   <Label layoutX="599.0" layoutY="88.0" text="List of orders" />
 </AnchorPane>

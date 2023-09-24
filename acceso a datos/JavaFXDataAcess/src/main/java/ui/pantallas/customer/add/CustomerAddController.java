@@ -46,7 +46,7 @@ public class CustomerAddController extends BaseScreenController {
     private DatePicker dateOfBirthCustomer;
 
     public void initialize() {
-        customerCommon.initCustomerTable(columnId, columnName, columnSurname, columnEmail, columnPhone,columnDateBirth);
+        customerCommon.initCustomerTable(columnId, columnName, columnSurname, columnEmail, columnPhone, columnDateBirth);
     }
 
     @Override
@@ -56,24 +56,20 @@ public class CustomerAddController extends BaseScreenController {
 
     public void addCustomer() {
         Customer customer = new Customer();
-        if (!txtPhoneNumber.getText().matches("[-9]")) {
-            getPrincipalController().alertWarning("Phone number cannot contain letters", "Error");
-        } else if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPhoneNumber.getText().isEmpty()) {
+        if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPhoneNumber.getText().isEmpty()) {
             getPrincipalController().alertWarning("There are empty fields", "Error");
+        } else if (!txtPhoneNumber.getText().matches("\\d+")) {
+            getPrincipalController().alertWarning("Phone number cannot contain letters", "Error");
         } else {
             int lastIdTable = tableCustomers.getItems().get(tableCustomers.getItems().size() - 1).getId();
             customer.setId(lastIdTable + 1);
-            customer.setName(txtName.getText());
-            customer.setSurname(txtSurname.getText());
-            customer.setEmail(txtEmail.getText());
-            customer.setPhone(Integer.parseInt(txtPhoneNumber.getText()));
-            if(dateOfBirthCustomer.getValue() != null){
-                customer.setBirthDate(dateOfBirthCustomer.getValue());
-            }
+            customerCommon.setsNameSurnameEmailPhoneBirth(customer, txtName, txtSurname, txtEmail, txtPhoneNumber, dateOfBirthCustomer);
             tableCustomers.getItems().add(customer);
             getPrincipalController().showInformation("Client added correctly", "Information");
         }
     }
+
+
 }
 
 

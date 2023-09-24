@@ -25,7 +25,22 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public Either<Integer, Customer> get(int id) {
-        return null;
+    public Either<ErrorC,List<Integer>> getAllIds() {
+        List<Customer> customerList = getAll().get();
+        Either <ErrorC, List<Integer>> result;
+
+        result = Either.right(customerList.stream().map(Customer::getId).toList());
+
+        return result;
+    }
+
+    @Override
+    public Either<ErrorC, Customer> get(int id) {
+
+        Either<ErrorC, Customer> result;
+        List<Customer> customerList = getAll().get();
+        result = Either.right(customerList.stream().filter(c -> c.getId() == id).findFirst().stream().toList().get(0));
+
+        return result;
     }
 }

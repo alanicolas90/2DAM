@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.Customer;
+import model.Order;
 import service.CustomerService;
+import service.OrderService;
 import ui.pantallas.common.BaseScreenController;
 import ui.pantallas.customer.common.CustomerCommon;
 
@@ -17,6 +19,8 @@ public class CustomerRemoveController extends BaseScreenController {
     private CustomerService customerService;
     @Inject
     private CustomerCommon customerCommon;
+    @Inject
+    private OrderService orderService;
 
     @FXML
     private TableView<Customer> tableCustomers;
@@ -33,19 +37,20 @@ public class CustomerRemoveController extends BaseScreenController {
     @FXML
     private TableColumn<Customer, LocalDate> columnDateBirth;
     @FXML
+    private TableView<Order> tableOrdersCustomer;
+    @FXML
     private TableColumn<Customer, Integer> columnIdOrder;
     @FXML
     private TableColumn<Customer, LocalDateTime> columnDate;
     @FXML
-    private TableColumn<Customer,Integer> columnCustomerIdOrder;
+    private TableColumn<Customer, Integer> columnCustomerIdOrder;
     @FXML
-    private TableColumn<Customer,Integer> columnTableNumber;
-
-
+    private TableColumn<Customer, Integer> columnTableNumber;
 
 
     public void initialize() {
-        customerCommon.initCustomerTable(columnIdCustomer, columnName, columnSurname, columnEmail, columnPhone,columnDateBirth);
+        customerCommon.initCustomerTable(columnIdCustomer, columnName, columnSurname, columnEmail, columnPhone, columnDateBirth);
+        customerCommon.initOrderTable(columnIdOrder, columnDate, columnCustomerIdOrder, columnTableNumber);
     }
 
     @Override
@@ -54,16 +59,19 @@ public class CustomerRemoveController extends BaseScreenController {
     }
 
     @FXML
-    private Customer selectionTable() {
-        return tableCustomers.getSelectionModel().getSelectedItem();
+    private void selectionTable() {
+        Customer selectionTable = tableCustomers.getSelectionModel().getSelectedItem();
+        tableOrdersCustomer.getItems().clear();
+        tableOrdersCustomer.getItems().addAll(orderService.getOrdersCustomer(selectionTable.getId()).get());
     }
 
     public void removeSelected() {
-        Customer customer = selectionTable();
+        Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
         if (customer == null) {
-            getPrincipalController().alertWarning("You must select a customer", "Error");
+                getPrincipalController().alertWarning("You must select a customer", "Error");
         } else {
             tableCustomers.getItems().remove(customer);
+            tableOrdersCustomer.getItems().clear();
             getPrincipalController().showInformation("Customer deleted correctly", "Information");
         }
     }

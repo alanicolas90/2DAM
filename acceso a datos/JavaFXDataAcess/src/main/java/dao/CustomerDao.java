@@ -9,5 +9,9 @@ import java.util.List;
 public interface CustomerDao {
     Either<ErrorC, List<Customer>> getAll();
 
-    Either<Integer, Customer> get(int id);
+    Either<ErrorC, Customer> get(int id);
+
+    Either<ErrorC,List<Integer>> getAllIds();
+
+
 }

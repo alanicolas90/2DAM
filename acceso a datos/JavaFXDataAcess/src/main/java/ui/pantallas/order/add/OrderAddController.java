@@ -2,15 +2,12 @@ package ui.pantallas.order.add;
 
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.*;
 import model.Order;
+import service.CustomerService;
 import service.OrderService;
 import ui.pantallas.common.BaseScreenController;
+import ui.pantallas.order.common.CommonOrder;
 
 import java.time.LocalDateTime;
 
@@ -18,6 +15,10 @@ public class OrderAddController extends BaseScreenController {
 
     @Inject
     private OrderService orderService;
+    @Inject
+    private CustomerService customerService;
+    @Inject
+    private CommonOrder common;
 
     @FXML
     private TableView<Order> tableOrders;
@@ -32,19 +33,15 @@ public class OrderAddController extends BaseScreenController {
 
 
     @FXML
-    private TextField txtDate;
-    @FXML
-    private TextField txtCustomerId;
+    private ComboBox<Integer> comboBoxCustomer;
     @FXML
     private TextField txtTableNumber;
     @FXML
     private DatePicker dateOrder;
 
     public void initialize() {
-        columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        columnDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        columnCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-        columnTableNumber.setCellValueFactory(new PropertyValueFactory<>("tableNumber"));
+        common.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
+        comboBoxCustomer.getItems().addAll(customerService.getAllIds().get());
     }
 
     @Override
@@ -54,19 +51,18 @@ public class OrderAddController extends BaseScreenController {
 
     public void addOrder() {
         Order order = new Order();
-        int id = orderService.getAll().get().size() - 1;
-        if (dateOrder.getValue() == null || txtCustomerId.getText().isEmpty() || txtTableNumber.getText().isEmpty()) {
+        int id = tableOrders.getItems().size() - 1;
+        if (dateOrder.getValue() == null || txtTableNumber.getText().isEmpty() || comboBoxCustomer.getValue() == null) {
             getPrincipalController().alertWarning("All the fields must be filled", "Error");
-        } else if (!txtCustomerId.getText().matches("[-9]")) {
-            getPrincipalController().alertWarning("Customer ID cannot contain letters", "Error");
         } else if (txtTableNumber.getText().contains("[-9]")) {
             getPrincipalController().alertWarning("Table number cannot contain letters", "Error");
         } else {
-            order.setId(id);
+            order.setId(id + 2);
             order.setDate(dateOrder.getValue().atTime(0, 0, 0));
-            order.setCustomerId(Integer.parseInt(txtCustomerId.getText()));
+            order.setCustomerId(comboBoxCustomer.getValue());
             order.setTableNumber(Integer.parseInt(txtTableNumber.getText()));
             tableOrders.getItems().add(order);
+            getPrincipalController().showInformation("Order added successfully", "Success");
         }
     }
 }

@@ -2,7 +2,6 @@ package ui.pantallas.login;
 
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import service.LoginService;

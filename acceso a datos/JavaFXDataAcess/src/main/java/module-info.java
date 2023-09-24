@@ -28,7 +28,9 @@ module JavaFXDataAcess {
     exports ui.pantallas.order.add;
     exports ui.pantallas.order.list;
     exports ui.pantallas.order.remove;
+    exports ui.pantallas.order.common;
 
+    opens ui.pantallas.order.common;
     opens ui.pantallas.order.list;
     opens ui.pantallas.order.add;
     opens ui.pantallas.order.update;

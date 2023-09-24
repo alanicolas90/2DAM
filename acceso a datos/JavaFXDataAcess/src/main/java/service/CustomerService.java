@@ -16,8 +16,11 @@ public class CustomerService {
     public Either<ErrorC, List<Customer>> getAll() {
         return dao.getAll();
     }
+    public Either<ErrorC, List<Integer>> getAllIds() {
+        return dao.getAllIds();
+    }
 
-    public Either<Integer, Customer> get(int id) {
+    public Either<ErrorC, Customer> get(int id) {
         return dao.get(id);
     }
 
@@ -32,5 +35,4 @@ public class CustomerService {
     public int delete(Customer t) {
         return 0;
     }
-
 }
