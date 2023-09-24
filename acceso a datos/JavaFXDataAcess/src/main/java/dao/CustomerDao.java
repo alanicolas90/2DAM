@@ -11,7 +11,7 @@ public interface CustomerDao {
 
     Either<ErrorC, Customer> get(int id);
 
-    Either<ErrorC, List<Integer>> getAllIds();
+    Either<ErrorC,List<Integer>> getAllIds();
 
 
 }

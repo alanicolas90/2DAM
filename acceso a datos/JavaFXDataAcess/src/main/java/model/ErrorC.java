@@ -1,14 +1,19 @@
 package model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
-import java.util.Date;
+import lombok.Data;
+import lombok.Getter;
+
+import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
-public class ErrorC {
-    int nError;
+@Getter
+public class ErrorC{
     String message;
-    Date date;
+    LocalDateTime date;
+
+    public ErrorC( String message) {
+        this.message = message;
+        this.date = LocalDateTime.now();
+    }
 }

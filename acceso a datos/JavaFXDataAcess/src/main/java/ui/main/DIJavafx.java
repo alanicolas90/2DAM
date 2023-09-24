@@ -22,6 +22,6 @@ public class DIJavafx extends Application {
         primaryStage.setResizable(true);
         container.getBeanManager().getEvent().select(new AnnotationLiteral<StartupScene>() {
         }).fire(primaryStage);
-        
+
     }
 }

@@ -16,7 +16,6 @@ public class CustomerService {
     public Either<ErrorC, List<Customer>> getAll() {
         return dao.getAll();
     }
-
     public Either<ErrorC, List<Integer>> getAllIds() {
         return dao.getAllIds();
     }
