@@ -4,8 +4,10 @@ import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import model.Order;
 import model.OrderItem;
+import service.CustomerService;
 import service.OrderService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.order.common.CommonOrder;
@@ -16,6 +18,8 @@ public class OrderListController extends BaseScreenController {
 
     @Inject
     private OrderService orderService;
+    @Inject
+    private CustomerService customerService;
     @Inject
     private CommonOrder commonOrder;
     @FXML
@@ -39,6 +43,8 @@ public class OrderListController extends BaseScreenController {
     private TableColumn<OrderItem, Integer> columnPrice;
     @FXML
     private TableColumn<Integer, Integer> columnTotalPrice;
+    @FXML
+    private TextField txtCustomerName;
 
     public void initialize() {
         commonOrder.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
@@ -53,6 +59,9 @@ public class OrderListController extends BaseScreenController {
 
     public void orderSelected() {
         tableOrderItems.getItems().clear();
+        int idCustomer = tableOrders.getSelectionModel().getSelectedItem().getCustomerId();
+        txtCustomerName.setText(customerService.get(idCustomer).get().getName());
+
     }
 }
 

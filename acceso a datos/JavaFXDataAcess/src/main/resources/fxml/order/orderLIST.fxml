@@ -34,6 +34,6 @@
     </TableView>
    <TextField layoutX="538.0" layoutY="441.0" />
    <Label layoutX="457.0" layoutY="445.0" text="TotalAmount" />
-   <TextField layoutX="549.0" layoutY="32.0" />
+   <TextField fx:id="txtCustomerName" layoutX="549.0" layoutY="32.0" />
    <Label layoutX="457.0" layoutY="36.0" text="CustomerName" />
 </AnchorPane>

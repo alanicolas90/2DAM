@@ -27,12 +27,14 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public Either<Integer, Order> get(int id) {
+    public Either<ErrorC, List<OrderItem>> get(int id) {
+
+
         return null;
     }
 
     @Override
-    public Either<ErrorC,List<Order>> getOrdersCustomer(int id) {
+    public Either<ErrorC, List<Order>> getOrdersCustomer(int id) {
         List<Order> allOrders = getAll().get();
         List<Order> customerOrders = new ArrayList<>();
         Either<ErrorC, List<Order>> result;
@@ -44,8 +46,9 @@ public class OrderDaoImpl implements OrderDao {
         result = Either.right(customerOrders);
         return result;
     }
+
     @Override
-    public Either<ErrorC,List<OrderItem>> getAllOrderItems() {
+    public Either<ErrorC, List<OrderItem>> getAllOrderItems() {
         List<OrderItem> orderItems = new ArrayList<>();
         orderItems.add(new OrderItem(1, 1, 1, 1));
         orderItems.add(new OrderItem(2, 2, 1, 2));
@@ -54,8 +57,9 @@ public class OrderDaoImpl implements OrderDao {
         result = Either.right(orderItems);
         return result;
     }
+
     @Override
-    public Either<ErrorC, List<OrderItem>> getOrderItems(int id){
+    public Either<ErrorC, List<OrderItem>> getOrderItems(int id) {
         List<OrderItem> orderItems = getAllOrderItems().get();
         Either<ErrorC, List<OrderItem>> result;
         result = Either.right(orderItems.stream().filter(o -> o.getOrderId() == id).toList());
