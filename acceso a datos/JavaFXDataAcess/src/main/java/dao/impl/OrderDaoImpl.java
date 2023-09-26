@@ -52,7 +52,7 @@ public class OrderDaoImpl implements OrderDao {
         List<OrderItem> orderItems = new ArrayList<>();
         orderItems.add(new OrderItem(1, 1, 1, 1));
         orderItems.add(new OrderItem(2, 2, 1, 2));
-        orderItems.add(new OrderItem(3, 3, 1, 1));
+        orderItems.add(new OrderItem(3, 3, 2, 1));
         Either<ErrorC, List<OrderItem>> result;
         result = Either.right(orderItems);
         return result;

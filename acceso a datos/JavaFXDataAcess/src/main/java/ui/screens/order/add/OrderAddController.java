@@ -32,13 +32,21 @@ public class OrderAddController extends BaseScreenController {
     @FXML
     private TableColumn<Order, Integer> columnTableNumber;
 
-
     @FXML
     private ComboBox<Integer> comboBoxCustomer;
     @FXML
     private TextField txtTableNumber;
     @FXML
     private DatePicker dateOrder;
+
+    @FXML
+    private TableColumn columnItemName;
+    @FXML
+    private TableColumn columnQuantity;
+    @FXML
+    private TableColumn columnPrice;
+    @FXML
+    private TableColumn columnTotalPrice;
 
     public void initialize() {
         common.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
