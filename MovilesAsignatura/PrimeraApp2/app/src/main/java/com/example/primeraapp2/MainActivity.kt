@@ -16,20 +16,24 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater).apply {
 
-            binding.button.setOnClickListener {
-                if (binding.editText.text.isEmpty() || binding.editText.text.isBlank())
-                    toastCajaVacia()
-                else
-                    toastEnLaCajaPone()
+            button.setOnClickListener {
+
+                toastCajaVacia()
+
             }
         }
     }
 
     private fun toastCajaVacia() {
-        Toast.makeText(this, getString(R.string.txtCajaVacia), Toast.LENGTH_LONG).show()
+        Toast.makeText(this@MainActivity, getString(R.string.txtCajaVacia), Toast.LENGTH_LONG)
+            .show()
     }
 
     private fun toastEnLaCajaPone() {
-        Toast.makeText(this, getString(R.string.txtEnLaCajaPone, binding.editText.text), Toast.LENGTH_LONG).show()
+        Toast.makeText(
+            this@MainActivity,
+            getString(R.string.txtEnLaCajaPone, binding.editText.text),
+            Toast.LENGTH_LONG
+        ).show()
     }
 }
