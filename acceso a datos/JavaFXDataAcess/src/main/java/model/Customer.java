@@ -41,7 +41,7 @@ public class Customer {
 
     public String toStringTextFile() {
         if (phone == 0) {
-            return id + ";" + name + ";" + surname + ";" + email + ";" +  ";" + birthDate;
+            return id + ";" + name + ";" + surname + ";" + email + ";" + ";" + birthDate;
         } else {
             return id + ";" + name + ";" + surname + ";" + email + ";" + phone + ";" + birthDate;
         }
@@ -50,17 +50,18 @@ public class Customer {
     public Customer parseToClass(String s) {
         String[] customerData = s.split(";");
         Customer c = new Customer();
-        c.setId(Integer.parseInt(customerData[0]));
-        c.setName(customerData[1]);
-        c.setSurname(customerData[2]);
-        c.setEmail(customerData[3]);
-        if (customerData[4].isEmpty()) {
-            c.setPhone(0);
-        } else {
-            c.setPhone(Integer.parseInt(customerData[4]));
+        if (!customerData[0].equals("id")) {
+            c.setId(Integer.parseInt(customerData[0]));
+            c.setName(customerData[1]);
+            c.setSurname(customerData[2]);
+            c.setEmail(customerData[3]);
+            if (customerData[4].isEmpty()) {
+                c.setPhone(0);
+            } else {
+                c.setPhone(Integer.parseInt(customerData[4]));
+            }
+            c.setBirthDate(LocalDate.parse(customerData[5]));
         }
-        c.setBirthDate(LocalDate.parse(customerData[5]));
-
         return c;
     }
 

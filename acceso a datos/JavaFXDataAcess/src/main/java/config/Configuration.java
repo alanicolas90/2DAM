@@ -5,6 +5,7 @@ import jakarta.inject.Singleton;
 import java.io.IOException;
 import java.util.Properties;
 
+@Singleton
 public class Configuration {
 
     private static Configuration instance=null;
