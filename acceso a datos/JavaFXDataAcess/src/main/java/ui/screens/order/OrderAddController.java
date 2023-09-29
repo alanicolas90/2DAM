@@ -15,14 +15,13 @@ import java.time.LocalTime;
 
 public class OrderAddController extends BaseScreenController {
 
+    private final OrderService orderService;
+    private final CustomerService customerService;
     @Inject
     public OrderAddController(OrderService orderService, CustomerService customerService) {
         this.customerService = customerService;
         this.orderService = orderService;
     }
-
-    private final OrderService orderService;
-    private final CustomerService customerService;
 
     @FXML
     private ComboBox<Integer> comboBoxCustomer;

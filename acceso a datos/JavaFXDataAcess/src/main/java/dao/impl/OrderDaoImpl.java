@@ -11,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -21,8 +20,8 @@ import static java.nio.file.StandardOpenOption.*;
 
 public class OrderDaoImpl implements OrderDao {
 
+    public static final String ERROR_READING_FILE = "Error reading file";
     Path file = Paths.get(Configuration.getInstance().getProperty("ordersFile"));
-    OpenOption[] options = new OpenOption[2];
 
 
     @Override
@@ -34,13 +33,13 @@ public class OrderDaoImpl implements OrderDao {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                if(line.isEmpty()) continue;
+                if (line.isEmpty()) continue;
                 Order order = new Order();
                 order = order.parseToClass(line);
                 orders.add(order);
             }
         } catch (IOException x) {
-            return Either.left(new ErrorC("Error reading file"));
+            return Either.left(new ErrorC(ERROR_READING_FILE));
         }
         return Either.right(orders);
     }
@@ -61,7 +60,7 @@ public class OrderDaoImpl implements OrderDao {
             writer.write(line, 0, line.length());
 
         } catch (IOException x) {
-            return Either.left(new ErrorC("Error reading file"));
+            return Either.left(new ErrorC(ERROR_READING_FILE));
         }
         return Either.right(0);
     }
@@ -85,7 +84,7 @@ public class OrderDaoImpl implements OrderDao {
                 }
             }
         } catch (IOException x) {
-            return Either.left(new ErrorC("Error reading file"));
+            return Either.left(new ErrorC(ERROR_READING_FILE));
         }
         return Either.right(0);
     }

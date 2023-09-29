@@ -13,10 +13,13 @@ import java.time.LocalDate;
 
 public class CustomerListController extends BaseScreenController {
 
+    private final CustomerService customerService;
+    private final CustomerCommon customerCommon;
     @Inject
-    private CustomerService customerService;
-    @Inject
-    private CustomerCommon customerCommon;
+    public CustomerListController(CustomerService customerService, CustomerCommon customerCommon) {
+        this.customerService = customerService;
+        this.customerCommon = customerCommon;
+    }
 
     @FXML
     private TableView<Customer> tableCustomers;

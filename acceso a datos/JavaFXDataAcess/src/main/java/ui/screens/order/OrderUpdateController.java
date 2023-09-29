@@ -8,15 +8,21 @@ import service.OrderService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantNormal;
 import ui.screens.order.common.CommonOrder;
-;
+
 import java.time.LocalDateTime;
 
 public class OrderUpdateController extends BaseScreenController {
 
+
+    private final OrderService orderService;
+    private final CommonOrder common;
+
     @Inject
-    private OrderService orderService;
-    @Inject
-    private CommonOrder common;
+    public OrderUpdateController(OrderService orderService, CommonOrder common) {
+        this.orderService = orderService;
+        this.common = common;
+    }
+
     @FXML
     private TextField txtCustomerId;
     @FXML

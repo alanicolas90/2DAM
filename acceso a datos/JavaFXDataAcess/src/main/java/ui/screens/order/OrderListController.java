@@ -14,14 +14,19 @@ import java.time.LocalDateTime;
 
 public class OrderListController extends BaseScreenController {
 
+    private final OrderService orderService;
+    private final CustomerService customerService;
+    private final CommonOrder commonOrder;
+
+    @Inject
+    public OrderListController(OrderService orderService, CustomerService customerService, CommonOrder commonOrder) {
+        this.orderService = orderService;
+        this.customerService = customerService;
+        this.commonOrder = commonOrder;
+    }
+
     @FXML
     private DatePicker datePicker;
-    @Inject
-    private OrderService orderService;
-    @Inject
-    private CustomerService customerService;
-    @Inject
-    private CommonOrder commonOrder;
     @FXML
     private TableView<Order> tableOrders;
     @FXML
@@ -89,7 +94,7 @@ public class OrderListController extends BaseScreenController {
     }
 
     public void selectedDate() {
-        if(datePicker.getValue()!=null){
+        if (datePicker.getValue() != null) {
             tableOrders.getItems().clear();
             if (orderService.getOrdersByDate(datePicker.getValue()).isRight()) {
                 tableOrders.getItems().addAll(orderService.getOrdersByDate(datePicker.getValue()).get());

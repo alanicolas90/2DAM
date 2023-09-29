@@ -16,10 +16,15 @@ import java.time.LocalDate;
 
 public class CustomerUpdateController extends BaseScreenController {
 
+
     @Inject
-    private CustomerService customerService;
-    @Inject
-    private CustomerCommon customerCommon;
+    public CustomerUpdateController(CustomerService customerService, CustomerCommon customerCommon) {
+        this.customerService = customerService;
+        this.customerCommon = customerCommon;
+    }
+
+    private final CustomerService customerService;
+    private final CustomerCommon customerCommon;
 
     @FXML
     private TextField txtName;

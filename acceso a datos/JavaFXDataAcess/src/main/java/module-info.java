@@ -21,8 +21,7 @@ module JavaFXDataAcess {
     exports model;
     exports ui.screens.welcome;
     exports ui.screens.order.common;
-    exports nio;
-    exports testdelete;
+    exports service;
 
 
     opens ui.screens.order.common;

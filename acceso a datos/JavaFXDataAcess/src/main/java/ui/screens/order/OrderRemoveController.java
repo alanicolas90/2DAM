@@ -15,11 +15,15 @@ import java.time.LocalDateTime;
 
 public class OrderRemoveController extends BaseScreenController {
 
+    private final OrderService orderService;
+    private final CommonOrder common;
 
     @Inject
-    private OrderService orderService;
-    @Inject
-    private CommonOrder common;
+    public OrderRemoveController(OrderService orderService, CommonOrder common) {
+        this.orderService = orderService;
+        this.common = common;
+    }
+
     @FXML
     private TableView<Order> tableOrders;
     @FXML

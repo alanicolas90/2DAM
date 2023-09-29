@@ -29,7 +29,7 @@ public class CustomerService {
         List<Customer> customers = dao.getAll().get();
         List<Integer> ids = customers.stream().map(Customer::getId).toList();
         if (ids.isEmpty()) {
-            return Either.left(new ErrorC("No customers found"));
+            return Either.left(new ErrorC(NO_CUSTOMERS_FOUND));
         } else {
             return Either.right(ids);
         }
@@ -39,7 +39,7 @@ public class CustomerService {
         List<Customer> customers = dao.getAll().get();
 
         if (customers.stream().noneMatch(c -> c.getId() == id)) {
-            return Either.left(new ErrorC("Customer not found"));
+            return Either.left(new ErrorC(CUSTOMER_NOT_FOUND));
         } else {
             return Either.right(customers.stream().filter(c -> c.getId() == id).findFirst().stream().toList().get(0));
         }
@@ -49,7 +49,7 @@ public class CustomerService {
         if (dao.getAll().get().stream().noneMatch(customer -> customer.getId() == c.getId())
                 && orderDao.getAll().get().stream().noneMatch(order -> order.getCustomerId() == c.getId())) {
 
-            return Either.left(new ErrorC("Customer not found"));
+            return Either.left(new ErrorC(CUSTOMER_NOT_FOUND));
         } else {
             List<Order> ordersCustomer = orderDao.getAll().get().stream().filter(order -> order.getCustomerId() == c.getId()).toList();
             orderDao.delete(ordersCustomer);
@@ -57,5 +57,10 @@ public class CustomerService {
             return Either.right(0);
         }
     }
+
+
+
+    public static final String NO_CUSTOMERS_FOUND = "No customers found";
+    public static final String CUSTOMER_NOT_FOUND = "Customer not found";
 
 }

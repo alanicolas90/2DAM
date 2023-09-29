@@ -16,12 +16,17 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class CustomerRemoveController extends BaseScreenController {
+
     @Inject
-    private CustomerService customerService;
-    @Inject
-    private CustomerCommon customerCommon;
-    @Inject
-    private OrderService orderService;
+    public CustomerRemoveController(CustomerService customerService, CustomerCommon customerCommon, OrderService orderService) {
+        this.customerService = customerService;
+        this.customerCommon = customerCommon;
+        this.orderService = orderService;
+    }
+
+    private final CustomerService customerService;
+    private final CustomerCommon customerCommon;
+    private final OrderService orderService;
 
     @FXML
     private TableView<Customer> tableCustomers;

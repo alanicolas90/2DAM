@@ -68,12 +68,10 @@ public class CustomerAddController extends BaseScreenController {
             int size = tableCustomers.getItems().size();
             int lastIdTable = tableCustomers.getItems().get(size - 1).getId();
             Customer customer = new Customer(lastIdTable + 1, txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue());
-            //customerCommon.setsNameSurnameEmailPhoneBirth(customer, txtName, txtSurname, txtEmail, txtPhoneNumber, dateOfBirthCustomer);
-            tableCustomers.getItems().add(customer); //Aqui debo meter servicio para agregar el clietne al customer.csv
+            tableCustomers.getItems().add(customer);
             getPrincipalController().showInformation(ConstantNormal.CLIENT_ADDED_CORRECTLY, ConstantNormal.INFORMATION);
 
         }
-        //tableCustomers.getItems().addAll(customerService.getAll().get());
     }
 }
 
