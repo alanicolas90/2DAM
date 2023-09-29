@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.order.list.OrderListController">
+<AnchorPane prefHeight="520.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.order.OrderListController">
     <Label layoutX="32.0" layoutY="32.0" prefHeight="62.0" prefWidth="347.0" text="List Orders">
         <font>
             <Font size="42.0" />
@@ -36,4 +36,7 @@
    <Label layoutX="457.0" layoutY="445.0" text="TotalAmount" />
    <TextField fx:id="txtCustomerName" layoutX="549.0" layoutY="32.0" />
    <Label layoutX="457.0" layoutY="36.0" text="CustomerName" />
+   <ChoiceBox fx:id="Filter" layoutX="22.0" layoutY="433.0" prefWidth="150.0" />
+   <DatePicker fx:id="datePicker" layoutX="219.0" layoutY="433.0" />
+   <ComboBox fx:id="CustomerId" layoutX="231.0" layoutY="466.0" prefWidth="150.0" />
 </AnchorPane>

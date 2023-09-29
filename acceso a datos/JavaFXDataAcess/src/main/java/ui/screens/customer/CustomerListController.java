@@ -1,4 +1,4 @@
-package ui.screens.customer.list;
+package ui.screens.customer;
 
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;

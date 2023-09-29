@@ -65,6 +65,12 @@ public class ConstantNormal {
     public static final String EXIT = "Exit";
     public static final String ARE_YOU_SURE_YOU_WANT_TO_EXIT = "Are you sure you want to exit?";
     public static final String WELCOME = "Welcome ";
+    public static final String DATE_OF_BIRTH_CANNOT_BE_EMPTY = "The date of birth cannot be empty";
+    public static final String CUSTOMER_HAS_ORDERS = "This customer has orders, are you sure you want to delete it?";
+    public static final String WARNING = "Warning!";
+    public static final String CUSTOMER_NOT_DELETED = "Customer not deleted";
+    public static final String DELETE_CUSTOMER = "Are you sure you want to delete this customer?";
+    public static final String ERROR_ADDING_ORDER = "Error adding order";
 
 
     private ConstantNormal() {

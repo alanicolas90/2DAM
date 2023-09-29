@@ -12,9 +12,8 @@ public interface OrderDao {
 
     Either<ErrorC, List<OrderItem>> get(int id);
 
-    Either<ErrorC, List<Order>> getOrdersCustomer(int id);
+    Either<ErrorC, Integer> save(Order c);
+    Either<ErrorC, Integer> update(Order c);
+    Either<ErrorC, Integer> delete(List<Order> orderList);
 
-    Either<ErrorC, List<OrderItem>> getOrderItems(int id);
-
-    Either<ErrorC, List<OrderItem>> getAllOrderItems();
 }

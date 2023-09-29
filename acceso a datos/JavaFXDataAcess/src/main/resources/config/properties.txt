@@ -1,0 +1,2 @@
+customersFile=data/customers.csv
+ordersFile=data/orders.csv

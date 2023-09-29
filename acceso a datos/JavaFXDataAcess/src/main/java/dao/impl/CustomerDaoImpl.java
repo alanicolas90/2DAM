@@ -1,39 +1,72 @@
 package dao.impl;
 
+import config.Configuration;
 import dao.CustomerDao;
 import io.vavr.control.Either;
 import model.Customer;
 import model.ErrorC;
 
-import java.time.LocalDate;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDaoImpl implements CustomerDao {
+
+    Path file = Paths.get(Configuration.getInstance().getProperty("customersFile"));
+
     @Override
     public Either<ErrorC, List<Customer>> getAll() {
 
         List<Customer> customerList = new ArrayList<>();
-        customerList.add(new Customer(1, "Juan", "Perez", "juanperez@gmail.com"));
-        customerList.add(new Customer(2, "Pedro", "Gomez", "pedrogomez@gmail.com", 123456789, LocalDate.of(1990, 1, 1)));
-        customerList.add(new Customer(3, "Maria", "Lopez", "marialopez@gmail.com", 987654321, LocalDate.of(1995, 1, 1)));
-
-
+        List<String> fileList;
+        try {
+            fileList = Files.readAllLines(file);
+            fileList.forEach(line -> {
+                if (!line.isEmpty()) {
+                    Customer customer = new Customer();
+                    Customer customerResult;
+                    customerResult = customer.parseToClass(line);
+                    customerList.add(customerResult);
+                }
+            });
+        } catch (IOException e) {
+            return Either.left(new ErrorC("Error reading file"));
+        }
         return Either.right(customerList);
     }
 
-    @Override
-    public Either<ErrorC, List<Integer>> getAllIds() {
-        List<Customer> customerList = getAll().get();
 
-        return Either.right(customerList.stream().map(Customer::getId).toList());
+    @Override
+    public Either<ErrorC, Integer> save(Customer c) {
+        return Either.right(1);
     }
 
     @Override
-    public Either<ErrorC, Customer> get(int id) {
-
-        List<Customer> customerList = getAll().get();
-
-        return Either.right(customerList.stream().filter(c -> c.getId() == id).findFirst().stream().toList().get(0));
+    public Either<ErrorC, Integer> update(Customer c) {
+        return Either.right(1);
     }
+
+    @Override
+    public Either<ErrorC, Integer> delete(Customer c) {
+        List<Customer> allCustomers = getAll().get();
+        String customerString = c.toStringTextFile();
+        List<String> fileList = new ArrayList<>();
+
+        for (Customer allCustomer : allCustomers) {
+            if (!allCustomer.toStringTextFile().equals(customerString)) {
+                fileList.add(allCustomer.toStringTextFile());
+            }
+        }
+        try {
+            Files.write(file, fileList, java.nio.file.StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (IOException e) {
+            return Either.left(new ErrorC("Error reading file"));
+        }
+        return Either.right(0);
+    }
+
+
 }

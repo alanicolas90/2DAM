@@ -1,4 +1,4 @@
-package ui.screens.customer.add;
+package ui.screens.customer;
 
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
@@ -17,9 +17,13 @@ import java.time.LocalDate;
 public class CustomerAddController extends BaseScreenController {
 
     @Inject
-    private CustomerService customerService;
-    @Inject
-    private CustomerCommon customerCommon;
+    public CustomerAddController(CustomerService customerService, CustomerCommon customerCommon) {
+        this.customerService = customerService;
+        this.customerCommon = customerCommon;
+    }
+
+    private final CustomerService customerService;
+    private final CustomerCommon customerCommon;
 
     @FXML
     private TableView<Customer> tableCustomers;
@@ -56,21 +60,21 @@ public class CustomerAddController extends BaseScreenController {
     }
 
     public void addCustomer() {
-        Customer customer = new Customer();
-        if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPhoneNumber.getText().isEmpty()) {
+        if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPhoneNumber.getText().isEmpty() || dateOfBirthCustomer.getValue() == null) {
             getPrincipalController().alertWarning(ConstantNormal.THERE_ARE_EMPTY_FIELDS, ConstantNormal.ERROR);
         } else if (!txtPhoneNumber.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
             getPrincipalController().alertWarning(ConstantNormal.PHONE_NUMBER_CANNOT_CONTAIN_LETTERS, ConstantNormal.ERROR);
         } else {
-            int lastIdTable = tableCustomers.getItems().get(tableCustomers.getItems().size() - 1).getId();
-            customer.setId(lastIdTable + 1);
-            customerCommon.setsNameSurnameEmailPhoneBirth(customer, txtName, txtSurname, txtEmail, txtPhoneNumber, dateOfBirthCustomer);
-            tableCustomers.getItems().add(customer);
+            int size = tableCustomers.getItems().size();
+            int lastIdTable = tableCustomers.getItems().get(size - 1).getId();
+            Customer customer = new Customer(lastIdTable + 1, txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue());
+            //customerCommon.setsNameSurnameEmailPhoneBirth(customer, txtName, txtSurname, txtEmail, txtPhoneNumber, dateOfBirthCustomer);
+            tableCustomers.getItems().add(customer); //Aqui debo meter servicio para agregar el clietne al customer.csv
             getPrincipalController().showInformation(ConstantNormal.CLIENT_ADDED_CORRECTLY, ConstantNormal.INFORMATION);
+
         }
+        //tableCustomers.getItems().addAll(customerService.getAll().get());
     }
-
-
 }
 
 

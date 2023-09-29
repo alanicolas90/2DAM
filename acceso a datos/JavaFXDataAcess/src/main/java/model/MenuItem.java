@@ -11,5 +11,6 @@ public class MenuItem {
     String description;
     double price;
 
-
+    public MenuItem() {
+    }
 }

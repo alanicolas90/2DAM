@@ -1,27 +1,25 @@
-package ui.screens.order.list;
+package ui.screens.order;
 
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import model.Order;
 import model.OrderItem;
-import service.CustomerService;
 import service.OrderService;
 import ui.screens.common.BaseScreenController;
+import ui.screens.common.ConstantNormal;
 import ui.screens.order.common.CommonOrder;
 
 import java.time.LocalDateTime;
 
-public class OrderListController extends BaseScreenController {
+public class OrderRemoveController extends BaseScreenController {
+
 
     @Inject
     private OrderService orderService;
     @Inject
-    private CustomerService customerService;
-    @Inject
-    private CommonOrder commonOrder;
+    private CommonOrder common;
     @FXML
     private TableView<Order> tableOrders;
     @FXML
@@ -34,8 +32,6 @@ public class OrderListController extends BaseScreenController {
     private TableColumn<Order, Integer> columnTableNumber;
 
     @FXML
-    private TableView<OrderItem> tableOrderItems;
-    @FXML
     private TableColumn<OrderItem, String> columnItemName;
     @FXML
     private TableColumn<OrderItem, Integer> columnQuantity;
@@ -43,25 +39,24 @@ public class OrderListController extends BaseScreenController {
     private TableColumn<OrderItem, Integer> columnPrice;
     @FXML
     private TableColumn<Integer, Integer> columnTotalPrice;
-    @FXML
-    private TextField txtCustomerName;
 
     public void initialize() {
-        commonOrder.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
-        commonOrder.initOrderItemList(columnItemName, columnQuantity, columnPrice, columnTotalPrice);
+        common.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
+        common.initOrderItemList(columnItemName, columnQuantity, columnPrice, columnTotalPrice);
     }
 
     @Override
     public void principalCargado() {
         tableOrders.getItems().addAll(orderService.getAll().get());
-
     }
 
-    public void orderSelected() {
-        tableOrderItems.getItems().clear();
-        int idCustomer = tableOrders.getSelectionModel().getSelectedItem().getCustomerId();
-        txtCustomerName.setText(customerService.get(idCustomer).get().getName());
-
+    public void deleteOrder() {
+        Order order = tableOrders.getSelectionModel().getSelectedItem();
+        if (order == null) {
+            getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_AN_ORDER, ConstantNormal.ERROR);
+        } else {
+            tableOrders.getItems().remove(order);
+            getPrincipalController().showInformation(ConstantNormal.ORDER_DELETED_SUCCESSFULLY, ConstantNormal.INFORMATION);
+        }
     }
 }
-

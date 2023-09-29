@@ -1,4 +1,4 @@
-package ui.screens.order.update;
+package ui.screens.order;
 
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;

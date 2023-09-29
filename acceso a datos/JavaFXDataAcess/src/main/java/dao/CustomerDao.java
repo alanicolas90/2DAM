@@ -7,11 +7,13 @@ import model.ErrorC;
 import java.util.List;
 
 public interface CustomerDao {
-    Either<ErrorC, List<Customer>> getAll();
+    Either<ErrorC, List<Customer>> getAll() ;
 
-    Either<ErrorC, Customer> get(int id);
+    Either<ErrorC, Integer> save(Customer c);
 
-    Either<ErrorC,List<Integer>> getAllIds();
+    Either<ErrorC, Integer> update(Customer c);
+
+    Either<ErrorC, Integer> delete(Customer c);
 
 
 }

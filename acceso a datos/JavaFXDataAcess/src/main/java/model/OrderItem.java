@@ -10,4 +10,7 @@ public class OrderItem {
     int orderId;
     int menuItemId;
     int quantity;
+
+    public OrderItem() {
+    }
 }

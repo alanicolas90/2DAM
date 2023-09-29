@@ -1,4 +1,4 @@
-package ui.screens.customer.remove;
+package ui.screens.customer;
 
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
@@ -63,17 +63,33 @@ public class CustomerRemoveController extends BaseScreenController {
     private void selectionTable() {
         Customer selectionTable = tableCustomers.getSelectionModel().getSelectedItem();
         tableOrdersCustomer.getItems().clear();
-        tableOrdersCustomer.getItems().addAll(orderService.getOrdersCustomer(selectionTable.getId()).get());
+        if(orderService.getOrdersCustomer(selectionTable.getId()).isRight()){
+            tableOrdersCustomer.getItems().addAll(orderService.getOrdersCustomer(selectionTable.getId()).get());
+        }
     }
 
     public void removeSelected() {
         Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
         if (customer == null) {
             getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_A_CUSTOMER, ConstantNormal.ERROR);
+        } else if (tableOrdersCustomer.getItems() != null) {
+            if (getPrincipalController().alertDeleteConfirmation(ConstantNormal.CUSTOMER_HAS_ORDERS, ConstantNormal.WARNING)) {
+                if (customerService.delete(customer).isRight()) {
+                    getPrincipalController().showInformation(ConstantNormal.CUSTOMER_DELETED_CORRECTLY, ConstantNormal.INFORMATION);
+                }
+            } else {
+                getPrincipalController().showInformation(ConstantNormal.CUSTOMER_NOT_DELETED, ConstantNormal.INFORMATION);
+            }
         } else {
-            tableCustomers.getItems().remove(customer);
-            tableOrdersCustomer.getItems().clear();
+            if(getPrincipalController().alertDeleteConfirmation(ConstantNormal.DELETE_CUSTOMER, ConstantNormal.WARNING) && (customerService.delete(customer).isRight())) {
+                    getPrincipalController().showInformation(ConstantNormal.CUSTOMER_DELETED_CORRECTLY, ConstantNormal.INFORMATION);
+            }
             getPrincipalController().showInformation(ConstantNormal.CUSTOMER_DELETED_CORRECTLY, ConstantNormal.INFORMATION);
         }
+        tableCustomers.getItems().clear();
+        tableCustomers.getItems().addAll(customerService.getAll().get());
+        tableOrdersCustomer.getItems().clear();
     }
+
+
 }

@@ -127,7 +127,22 @@ public class PrincipalController {
         alert.setTitle(titleWarning);
         alert.setHeaderText(titleWarning);
         alert.setContentText(messageForUser);
+
         alert.showAndWait();
+    }
+
+    public boolean alertDeleteConfirmation(String messageForUser, String titleWarning) {
+        Alert alertDelete = new Alert(Alert.AlertType.CONFIRMATION);
+        ButtonType acceptButton = new ButtonType("Accept");
+        ButtonType denyButton = new ButtonType("Deny");
+
+        alertDelete.setAlertType(Alert.AlertType.CONFIRMATION);
+        alertDelete.setTitle(titleWarning);
+        alertDelete.setHeaderText(titleWarning);
+        alertDelete.setContentText(messageForUser);
+        alertDelete.getButtonTypes().setAll(acceptButton, denyButton);
+        alertDelete.showAndWait();
+        return alertDelete.getResult() == acceptButton;
     }
 
     public void showInformation(String messageForUser, String titleInformation) {

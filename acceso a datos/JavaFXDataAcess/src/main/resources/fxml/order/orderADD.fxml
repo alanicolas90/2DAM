@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="1001.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.order.add.OrderAddController">
+<AnchorPane prefHeight="500.0" prefWidth="1001.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.order.OrderAddController">
     <Label layoutX="32.0" layoutY="32.0" prefHeight="27.0" prefWidth="281.0" text="Add Order">
         <font>
             <Font size="42.0" />
@@ -20,31 +20,23 @@
     <TextField fx:id="txtTableNumber" layoutX="46.0" layoutY="302.0" />
     <DatePicker fx:id="dateOrder" layoutX="46.0" layoutY="165.0" />
 
-    <Button layoutX="87.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#addOrder" text="Add" />
-
-    <Label layoutX="233.0" layoutY="105.0" text="List of Orders" />
-    <TableView fx:id="tableOrders" layoutX="233.0" layoutY="130.0" prefHeight="303.0" prefWidth="351.0">
-        <columns>
-            <TableColumn fx:id="columnId" prefWidth="38.199981689453125" text="ID" />
-            <TableColumn fx:id="columnDate" prefWidth="152.0" text="Date" />
-            <TableColumn fx:id="columnCustomerId" prefWidth="76.0" text="CustomerID" />
-            <TableColumn fx:id="columnTableNumber" prefWidth="83.0" text="TableNumber" />
-        </columns>
-    </TableView>
-   <ComboBox layoutX="420.0" layoutY="63.0" prefWidth="150.0" />
+    <Button layoutX="87.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#addOrderItem" text="Add" />
+   <ComboBox fx:id="comboBoxMenuItem" layoutX="420.0" layoutY="63.0" prefWidth="150.0" />
    <Label layoutX="420.0" layoutY="46.0" text="MenuItem" />
    <TextField layoutX="623.0" layoutY="63.0" />
    <Label layoutX="623.0" layoutY="46.0" text="Quantity" />
 
 
     <Label layoutX="615.0" layoutY="105.0" text="Order items" />
-    <TableView layoutX="614.0" layoutY="130.0" prefHeight="303.0" prefWidth="316.0">
+    <TableView fx:id="tableOrderItems" layoutX="460.0" layoutY="130.0" prefHeight="303.0" prefWidth="400.0">
         <columns>
-            <TableColumn fx:id="columnItemName" prefWidth="138.0" text="itemName" />
-            <TableColumn fx:id="columnQuantity" prefWidth="55.0" text="quantity" />
-            <TableColumn fx:id="columnPrice" prefWidth="48.0" text="price/u" />
-            <TableColumn fx:id="columnTotalPrice" prefWidth="73.0" text="total" />
+            <TableColumn fx:id="columnItemId" prefWidth="66.0" text="Id" />
+            <TableColumn fx:id="columnItemName" prefWidth="87.0" text="Name" />
+            <TableColumn fx:id="columnItemPrice" prefWidth="63.0" text="price" />
+            <TableColumn fx:id="columnItemDescription" prefWidth="183.0" text="Description" />
         </columns>
     </TableView>
+   <Button layoutX="817.0" layoutY="34.0" mnemonicParsing="false" text="Remove" />
+   <Button layoutX="828.0" layoutY="82.0" mnemonicParsing="false" text="Add" />
 
 </AnchorPane>
