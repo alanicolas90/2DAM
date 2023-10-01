@@ -19,6 +19,8 @@ public class Configuracion {
     }
 
     private static Configuracion configuracion;
+    private String pathDatos;
+
 
     public static synchronized Configuracion getInstance() {
         if (configuracion == null) {
@@ -38,8 +40,6 @@ public class Configuracion {
         return configuracion;
 
     }
-
     //METER LO QUE CONTIENE EL YAML
-    private String pathDatos;
 
 }

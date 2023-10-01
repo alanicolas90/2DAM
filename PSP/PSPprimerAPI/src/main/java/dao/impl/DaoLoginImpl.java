@@ -17,10 +17,6 @@ public class DaoLoginImpl implements DaoLogin {
 
     @Override
     public boolean doLogin(Usuario user) {
-
-        // buscar usuario
-        if (user.nombre().equals("admin") || user.nombre().equals("user"))
-            return true;
-        return false;
+        return user.nombre().equals("admin") || user.nombre().equals("user");
     }
 }
