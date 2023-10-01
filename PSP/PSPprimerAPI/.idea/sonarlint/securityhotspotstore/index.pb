@@ -1,10 +1,12 @@
 
-Q
-!src/main/java/ui/main/MainFX.java,2\e\2e7801e75bc7d7b888b07031d0746a50f31ff377
 S
 #src/main/java/ui/main/DIJavafx.java,5\3\535169814ef8dd70f8f23c95a2032d8268f48d6d
+Q
+!src/main/java/ui/main/MainFX.java,2\e\2e7801e75bc7d7b888b07031d0746a50f31ff377
 e
 5src/main/java/ui/pantallas/login/LoginController.java,0\0\00a168197ce395305c37a33f896012577da7634b
+m
+=src/main/java/ui/pantallas/principal/PrincipalController.java,6\8\6854908843d482996cd7f7c9ccd44ffdc547ca45
 `
 0src/main/java/ui/pantallas/login/LoginState.java,3\f\3f9d70bbcc32e1f8140fe99632e772f8d5fce1e9
 O
@@ -13,33 +15,31 @@ h
 8src/main/java/domain/usecases/impl/LoginUseCaseImpl.java,1\7\17afb99692207c87faec45f4c22b970ac1d2e7b0
 d
 4src/main/java/ui/pantallas/login/LoginViewModel.java,e\7\e7d8d195a68c5e0e3b34a11a1a18d22d5e312b65
-r
-Bsrc/main/java/ui/pantallas/alcoholic/AlcoholicDrinksViewModel.java,0\6\063f29094675ac1925d77765260bd09b400b5bc3
 s
 Csrc/main/java/ui/pantallas/alcoholic/AlcoholicDrinksController.java,0\f\0f40b41260465a824bb51357a23bc06d980ad9a0
-m
-=src/main/java/ui/pantallas/principal/PrincipalController.java,6\8\6854908843d482996cd7f7c9ccd44ffdc547ca45
+r
+Bsrc/main/java/ui/pantallas/alcoholic/AlcoholicDrinksViewModel.java,0\6\063f29094675ac1925d77765260bd09b400b5bc3
 X
 (src/main/java/dao/impl/DaoLoginImpl.java,d\c\dc93d87f6f192408bc0bee328c8f77e509e08153
+P
+ src/main/java/dao/DaoDrinks.java,c\9\c97dc51af5a757bb2c3317d4a24751988a410311
+O
+src/main/java/dao/RetroFit.java,8\8\88b246ad147cd112e846cd7344447d25c352c259
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+c
+3src/main/java/domain/modelo/drinks/drink/Drink.java,2\d\2db45ecde718ddd480445a9127b1dfdae768ca23
 r
 Bsrc/main/java/ui/pantallas/random_drink/RandomDrinkController.java,8\8\88dd108698bba41bcacf096b3612708dd3efb582
 V
 &src/main/java/common/StringsUtils.java,6\f\6f0847c362c9a75c434aedd8e311b4ce819a4daa
 ^
 .src/main/java/common/config/Configuracion.java,3\2\321110ff7ab403dd6f5497b6559f8dc0654ae5bd
-O
-src/main/java/dao/RetroFit.java,8\8\88b246ad147cd112e846cd7344447d25c352c259
 l
 <src/main/java/domain/modelo/drinks/drink/DrinksResponse.java,e\f\ef45aae27d5c667bd31041c550b23528c1df7ace
 X
 (src/main/java/domain/modelo/Usuario.java,b\b\bba9c4fb98f35d74b5a423dffb6939f448f6f3ba
-c
-3src/main/java/domain/modelo/drinks/drink/Drink.java,2\d\2db45ecde718ddd480445a9127b1dfdae768ca23
-P
- src/main/java/dao/DaoDrinks.java,c\9\c97dc51af5a757bb2c3317d4a24751988a410311
-`
-0src/main/java/domain/usecases/DrinksUseCase.java,f\1\f163608b41e809e60afaecf7f5dc9db1185a6325
 \
 ,src/main/java/domain/retrofit/DrinksApi.java,2\3\23327a30aec9e9f2c01bae2b5f5cff3f221d5eb5
+`
+0src/main/java/domain/usecases/DrinksUseCase.java,f\1\f163608b41e809e60afaecf7f5dc9db1185a6325

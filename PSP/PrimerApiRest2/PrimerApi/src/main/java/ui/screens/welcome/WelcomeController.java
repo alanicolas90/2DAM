@@ -19,7 +19,7 @@ public class WelcomeController extends BaseScreenController {
         this.daoPokemon = daoPokemon;
     }
 
-    
+
     @FXML
     private Label txtNamePokemon;
     @FXML
@@ -35,7 +35,7 @@ public class WelcomeController extends BaseScreenController {
 
     @Override
     public void principalCargado() {
-        PokemonResponse pokemons = daoPokemon.getPokemonsById(1).get();
+        PokemonResponse pokemons = daoPokemon.getPokemonsById(25).get();
         Sprites sprites = pokemons.getSprites();
         Image imgPokemonNormal = new Image(sprites.getFront_default());
         Image imagePokemonShiny = new Image(sprites.getFront_shiny());

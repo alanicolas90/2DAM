@@ -24,7 +24,7 @@ public class Configuration {
             this.pathDatos = p.getProperty("pathDatos");
 
         } catch (IOException e) {
-           log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
         }
     }
 
