@@ -2,11 +2,8 @@ package com.example.appalanpantalla.ui.pantallaMain
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.text.set
 import com.example.appalanpantalla.databinding.ActivityMainBinding
 import com.example.appalanpantalla.domain.usecases.PersonaUsecase
 import com.example.appalanpantalla.utils.StringProvider
@@ -26,16 +23,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).apply {
             setContentView(root)
-
         }
-        changeName()
+        eventos()
+
         observarViewModel()
 
     }
 
-    private fun changeName(){
+    private fun eventos() {
         with(binding){
-            txtName.text = viewModel.getPersona(0).nombre
+            button.setOnClickListener {
+                txtName.text = viewModel.getPersona(0).nombre
+            }
         }
     }
 
