@@ -5,9 +5,12 @@ import domain.modelo.pokemon.PokemonResponse;
 import domain.modelo.pokemon.Sprites;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import ui.screens.common.BaseScreenController;
 
 
@@ -20,6 +23,7 @@ public class WelcomeController extends BaseScreenController {
     }
 
 
+
     @FXML
     private Label txtNamePokemon;
     @FXML
@@ -30,20 +34,28 @@ public class WelcomeController extends BaseScreenController {
     @FXML
     private ImageView imgViewPokemon;
 
+    @FXML
+    private TextField pokedexId;
+    @FXML
+    private Button getPokemon;
+    @FXML
+    private Label stat;
 
 
+    public void showPokemon() {
+        String stringPokedexid = pokedexId.getText();
+        int idPokedex = Integer.parseInt(stringPokedexid);
 
-    @Override
-    public void principalCargado() {
-        PokemonResponse pokemons = daoPokemon.getPokemonsById(404).get();
+        PokemonResponse pokemons = daoPokemon.getPokemonsById(idPokedex).get();
         Sprites sprites = pokemons.getSprites();
         Image imgPokemonNormal = new Image(sprites.getFront_default());
-        Image imagePokemonShiny = new Image(sprites.getBack_default());
+        Image imagePokemonShiny = new Image(sprites.getFront_shiny());
 
         imgViewPokemon.setImage(imgPokemonNormal);
         imgViewPokemonShiny.setImage(imagePokemonShiny);
         String idPokemon = String.valueOf(pokemons.getId());
         txtIdPokemon.setText(idPokemon);
         txtNamePokemon.setText(pokemons.getName());
+        stat.setText(pokemons.getStats().get(0).getStat().getName());
     }
 }

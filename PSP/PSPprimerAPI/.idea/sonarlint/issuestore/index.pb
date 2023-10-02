@@ -43,3 +43,7 @@ P
 0src/main/java/domain/usecases/DrinksUseCase.java,f\1\f163608b41e809e60afaecf7f5dc9db1185a6325
 \
 ,src/main/java/domain/retrofit/DrinksApi.java,2\3\23327a30aec9e9f2c01bae2b5f5cff3f221d5eb5
+l
+<src/main/java/ui/pantallas/random_drink/RandomViewModel.java,b\1\b1a2b77934abf9fcfabd9126f673d625974ef42c
+M
+src/main/resources/config.yml,d\5\d511f2e0baca06e6b29d69120eb8f5d1678d7567
