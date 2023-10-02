@@ -4,5 +4,7 @@ import com.example.appalanpantalla.domain.modelo.Persona
 
 data class MainState (
     val persona:Persona?=null,
-    val message:String?=null
+    val message:String?=null,
+    val idPersona:Int?=null,
+    val personasSize:Int?=null
 )
