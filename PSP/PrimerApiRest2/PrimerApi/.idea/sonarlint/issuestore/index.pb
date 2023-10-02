@@ -48,3 +48,5 @@ c
 .src/main/java/domain/modelo/pokemon/Other.java,7\b\7b53f336845fe40aab77a0d257560067c2419c27
 ]
 -src/main/java/domain/retrofit/PokemonApi.java,c\1\c12322dbf5e23663abd77e20991c616cfb885065
+S
+#src/main/java/ui/main/DIJavafx.java,5\3\535169814ef8dd70f8f23c95a2032d8268f48d6d

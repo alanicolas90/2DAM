@@ -35,10 +35,10 @@ public class WelcomeController extends BaseScreenController {
 
     @Override
     public void principalCargado() {
-        PokemonResponse pokemons = daoPokemon.getPokemonsById(25).get();
+        PokemonResponse pokemons = daoPokemon.getPokemonsById(404).get();
         Sprites sprites = pokemons.getSprites();
         Image imgPokemonNormal = new Image(sprites.getFront_default());
-        Image imagePokemonShiny = new Image(sprites.getFront_shiny());
+        Image imagePokemonShiny = new Image(sprites.getBack_default());
 
         imgViewPokemon.setImage(imgPokemonNormal);
         imgViewPokemonShiny.setImage(imagePokemonShiny);

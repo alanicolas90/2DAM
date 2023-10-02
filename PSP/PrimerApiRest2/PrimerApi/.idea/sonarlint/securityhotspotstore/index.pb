@@ -48,3 +48,5 @@ c
 3src/main/java/domain/modelo/pokemon/DreamWorld.java,3\e\3e0fbf81bc4134af5b28e2252b8d79300ef3865b
 ]
 -src/main/java/domain/retrofit/PokemonApi.java,c\1\c12322dbf5e23663abd77e20991c616cfb885065
+S
+#src/main/java/ui/main/DIJavafx.java,5\3\535169814ef8dd70f8f23c95a2032d8268f48d6d
