@@ -4,7 +4,7 @@ import com.example.appalanpantalla.domain.modelo.Persona
 
 object Repository {
     private val personas = mutableListOf<Persona>()
-    private val mapPersonas = mutableMapOf<String, Persona>()
+    //private val mapPersonas = mutableMapOf<String, Persona>()
 
     init {
         personas.add(Persona("Pepito","Grillo","M",true,1800))

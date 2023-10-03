@@ -20,10 +20,8 @@
             </Menu>
             <Menu fx:id="menuCustomer" mnemonicParsing="false" text="Customers">
 
-                <MenuItem fx:id="listCustomer" mnemonicParsing="false" onAction="#menuClick" text="List"/>
-                <MenuItem fx:id="addCustomer" mnemonicParsing="false" onAction="#menuClick" text="Add"/>
-                <MenuItem fx:id="removeCustomer" mnemonicParsing="false" onAction="#menuClick" text="Remove"/>
-                <MenuItem fx:id="updateCustomer" mnemonicParsing="false" onAction="#menuClick" text="Update"/>
+                <MenuItem fx:id="todosPokemon" mnemonicParsing="false" onAction="#menuClick" text="List"/>
+
 
             </Menu>
             <Menu fx:id="menuOrders" mnemonicParsing="false" text="Orders">

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.appalanpantalla.databinding.ActivityMainBinding
+import com.example.appalanpantalla.domain.modelo.Persona
 import com.example.appalanpantalla.domain.usecases.PersonaUsecase
 import com.example.appalanpantalla.utils.StringProvider
 
@@ -25,15 +26,15 @@ class MainActivity : AppCompatActivity() {
             setContentView(root)
         }
         eventos()
-
         observarViewModel()
-
     }
 
+
     private fun eventos() {
-        with(binding){
+        with(binding) {
             button.setOnClickListener {
-                txtName.text = viewModel.getPersona(0).nombre
+                viewModel.getPersona(0)
+                viewModel.getSize()
             }
         }
     }
@@ -42,10 +43,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.uiState.observe(this@MainActivity) { state ->
             state.message?.let { error ->
                 Toast.makeText(this@MainActivity, error, Toast.LENGTH_SHORT).show()
-                viewModel.errorMostrado()
             }
-            if (state.message == null)
-                binding
+            if (state.message == null) {
+                binding.txtName.setText(state.persona?.nombre.toString())
+                binding.txtSizeList.text = "Size list: " + state.personasSize.toString()
+
+            }
         }
     }
 }

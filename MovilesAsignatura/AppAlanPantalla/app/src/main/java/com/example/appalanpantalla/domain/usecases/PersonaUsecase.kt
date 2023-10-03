@@ -10,8 +10,9 @@ class PersonaUsecase() {
     fun getSize(): Int =
         Repository.getSizePersonas()
 
-    fun getPersona(idPersona: Int) =
-        Repository.getPersona(idPersona)
-
-
+    fun getPersona(idPersona: Int) = Repository.getPersona(idPersona)
 }
+
+
+
+

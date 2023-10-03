@@ -35,3 +35,11 @@ O
 src/main/java/model/ErrorC.java,2\c\2c22533c06a7b9acfd928fd29e46a6edee812135
 X
 (src/main/java/dao/impl/LoginDaoImpl.java,e\5\e5e7325d267fea1076a19b594d74415233ba72cd
+W
+'src/main/java/config/Configuration.java,7\f\7f9a1455549e9958f1cfe6993a695569484b133b
+k
+;src/main/java/ui/screens/principal/PrincipalController.java,0\a\0a2a894bb55359e43284a787d07f1d373d6ee3e6
+\
+,src/main/java/ui/screens/common/Screens.java,5\2\52dc46b0b3bde95f2b46bfbf1f9b056f290c25fd
+c
+3src/main/java/ui/screens/common/ConstantScreen.java,2\2\2247e75e13d4a19563e62ca5353113c0d87634a9

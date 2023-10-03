@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum Screens {
 
     LOGIN(ConstantScreen.FXML_LOGIN),
-    BIENVENIDA(ConstantScreen.FXML_BIENVENIDA);
+    BIENVENIDA(ConstantScreen.FXML_BIENVENIDA),
+    TODOS_POKEMON(ConstantScreen.FXML_TODOS_POKEMON);
 
     private final String route;
 

@@ -92,6 +92,8 @@ public class PrincipalController {
         switch (((MenuItem) actionEvent.getSource()).getId()) {
             case "menuExit" -> exit(actionEvent);
             case "menuLogout" -> logout();
+            case "todosPokemon" -> loadScreen(Screens.TODOS_POKEMON);
+            default -> alertExit();
         }
     }
 

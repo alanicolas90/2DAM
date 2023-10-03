@@ -18,30 +18,20 @@ class MainViewModel(
     val uiState: LiveData<MainState> get() = _uiState
 
 
-    fun addPersona(persona: Persona) {
-
-        if (!personaUsecase(persona)) {
-            _uiState.value = MainState(
-                persona = _uiState.value.let { persona },
-                message = null,
-                personasSize = getSize()
-            )
-            _uiState.value = _uiState
-                .value?.copy(message = Constantes.ERROR)
-        }
+    fun getSize(){
+        val size = personaUsecase.getSize()
+        _uiState.value = MainState(
+            personasSize = size
+        )
     }
 
-    fun getSize(): Int {
-        return personaUsecase.getSize()
+    fun getPersona(idPersona: Int) {
+        val persona = personaUsecase.getPersona(idPersona)
+        _uiState.value = MainState(
+            persona = _uiState.value.let { persona }
+        )
     }
 
-    fun getPersona(idPersona: Int): Persona {
-        return personaUsecase.getPersona(idPersona)
-    }
-
-    fun errorMostrado() {
-        _uiState.value = _uiState.value?.copy(message = null)
-    }
 
 }
 

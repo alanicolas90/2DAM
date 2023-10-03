@@ -39,6 +39,8 @@ module plantillaJavaFX {
     opens dao;
     opens common.config;
     opens domain.modelo.pokemon;
+    exports ui.screens.todospokemon;
+    opens ui.screens.todospokemon;
 
 
 }
