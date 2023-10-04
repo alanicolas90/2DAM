@@ -52,3 +52,11 @@ S
 #src/main/java/ui/main/DIJavafx.java,5\3\535169814ef8dd70f8f23c95a2032d8268f48d6d
 r
 Bsrc/main/java/ui/screens/todospokemon/TodosPokemonsController.java,c\1\c11bbd5bff194b7109edc8203fe3e1675aefafd6
+`
+0src/main/java/domain/modelo/pokemon/Pokemon.java,7\6\7691e95db223573692efffb77f153afa1c1290c6
+_
+/src/main/java/domain/modelo/pokemon/Result.java,3\9\397dfa07b85e51f096597190207925da64f38949
+q
+Asrc/main/java/ui/screens/tablepokemon/TablePokemonController.java,4\3\43d46670de2c1387adcea47be660dfdcd9faaf5d
+`
+0src/main/java/domain/service/PokemonService.java,d\7\d7edb3dc246b25de5245768213ce26ae2cd02005

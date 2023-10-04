@@ -45,16 +45,16 @@ public class TodosPokemonsController extends BaseScreenController {
         String stringPokedexid = pokedexId.getText();
         int idPokedex = Integer.parseInt(stringPokedexid);
 
-        Pokemon pokemons = daoPokemon.getPokemonsById(idPokedex).get();
-        Sprites sprites = pokemons.getSprites();
-        Image imgPokemonNormal = new Image(sprites.getFront_default());
-        Image imagePokemonShiny = new Image(sprites.getFront_shiny());
+        //Pokemon pokemons = daoPokemon.getPokemonsById(idPokedex).get();
+        //Sprites sprites = pokemons.getSprites();
+        //Image imgPokemonNormal = new Image(sprites.getFront_default());
+       // Image imagePokemonShiny = new Image(sprites.getFront_shiny());
 
-        imgViewPokemon.setImage(imgPokemonNormal);
-        imgViewPokemonShiny.setImage(imagePokemonShiny);
-        String idPokemon = String.valueOf(pokemons.getId());
-        txtIdPokemon.setText(idPokemon);
-        txtNamePokemon.setText(pokemons.getName());
-        stat.setText(String.valueOf(pokemons.getStats().get(0).getBase_stat()));
+        //imgViewPokemon.setImage(imgPokemonNormal);
+        //imgViewPokemonShiny.setImage(imagePokemonShiny);
+        //String idPokemon = String.valueOf(pokemons.getId());
+        //txtIdPokemon.setText(idPokemon);
+        //txtNamePokemon.setText(pokemons.getName());
+        //stat.setText(String.valueOf(pokemons.getStats().get(0).getBase_stat()));
     }
 }

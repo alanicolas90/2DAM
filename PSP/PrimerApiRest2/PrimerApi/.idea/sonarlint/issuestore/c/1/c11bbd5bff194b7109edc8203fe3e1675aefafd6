@@ -1,0 +1,15 @@
+
+Y
+java:S1854."=Remove this useless assignment to local variable "idPokedex".(ºœ–^8÷’¬ç¯1
+J
+java:S1481.".Remove this unused "idPokedex" local variable.(ºœ–^8ù’¬ç¯1
+]	java:S1250"<This block of commented-out lines of code should be removed.(œ‡øœÿÿÿÿÿ8ù’¬ç¯1
+]	java:S1255"<This block of commented-out lines of code should be removed.(ãûýÒÿÿÿÿÿ8Ñ¾­ç¯1
+\
+java:S1128":Remove this unused import 'domain.modelo.pokemon.Pokemon'.(’Ä­žúÿÿÿÿ8Ñ¾­ç¯1
+W
+java:S1128":Remove this unused import 'domain.modelo.pokemon.Sprites'.(ÖŽÅÄ8Ñ¾­ç¯1
+R
+java:S1128"5Remove this unused import 'javafx.scene.image.Image'.(‰¿½Ç8Ñ¾­ç¯1
+P
+java:S1068".Remove this unused "daoPokemon" private field.(î²ÿ‰üÿÿÿÿ8ý’¬ç¯1

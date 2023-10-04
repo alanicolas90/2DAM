@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.tablepokemon.TablePokemonController">
-    <TableView fx:id="tablePokemons" layoutX="63.0" layoutY="60.0" prefHeight="200.0" prefWidth="153.0">
+<AnchorPane prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.tablepokemon.TablePokemonController">
+    <TableView fx:id="tablePokemons" layoutX="63.0" layoutY="60.0" onMouseClicked="#showPokemonMarked" prefHeight="238.0" prefWidth="236.0">
         <columns>
-            <TableColumn fx:id="columnId" prefWidth="75.0" text="ID"/>
-            <TableColumn fx:id="columnName" prefWidth="75.0" text="Name"/>
+            <TableColumn fx:id="columnId" prefWidth="46.0" text="ID" />
+            <TableColumn fx:id="columnName" prefWidth="188.0" text="Name" />
         </columns>
     </TableView>
+   <TextField fx:id="txtPokemonSearch" layoutX="65.0" layoutY="317.0" promptText="search" />
+   <Button fx:id="bttnSearch" layoutX="114.0" layoutY="353.0" mnemonicParsing="false" onMouseClicked="#searchPokemonByName" text="Search" />
+   <ImageView fx:id="frontViewNormalImg" fitHeight="150.0" fitWidth="200.0" layoutX="374.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fx:id="frontViewShinyImg" fitHeight="150.0" fitWidth="200.0" layoutX="574.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+   <Label layoutX="637.0" layoutY="36.0" text="Shiny" />
+   <Label layoutX="412.0" layoutY="36.0" text="Normal" />
+   <Label layoutX="384.0" layoutY="218.0" text="STATS:" />
+   <Label fx:id="labelHp" layoutX="406.0" layoutY="242.0" text="Hp:" />
 </AnchorPane>

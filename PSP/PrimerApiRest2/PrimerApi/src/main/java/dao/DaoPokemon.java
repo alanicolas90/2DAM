@@ -11,6 +11,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @Log4j2
@@ -47,11 +48,18 @@ public class DaoPokemon {
         Either<String, List<Result>> resultado;
         Retrofit retrofit = retroFit.getRetrofit();
         PokemonApi api = retrofit.create(PokemonApi.class);
-
+        List<Result> listaModificada;
         try {
             Response<PokemonResponse> pokemonResponse = api.getAllPokemonsIds(10000).execute();
+
             if (pokemonResponse.isSuccessful() && pokemonResponse.body() != null) {
-                resultado = Either.right(pokemonResponse.body().getResults());
+                listaModificada = pokemonResponse.body().getResults();
+
+                resultado = Either.right(listaModificada.stream().map(result ->{
+                            String modifiedUrl = Arrays.stream(result.getUrl().split("/")).reduce((s, s2) -> s2).get();// Modify the URL
+                            return new Result(result.getName(), modifiedUrl);
+                        }
+                ).toList());
             } else {
                 resultado = Either.left(pokemonResponse.errorBody().toString());
             }

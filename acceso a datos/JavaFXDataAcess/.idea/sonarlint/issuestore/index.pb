@@ -43,3 +43,7 @@ c
 3src/main/java/ui/screens/common/ConstantScreen.java,2\2\2247e75e13d4a19563e62ca5353113c0d87634a9
 k
 ;src/main/java/ui/screens/principal/PrincipalController.java,0\a\0a2a894bb55359e43284a787d07f1d373d6ee3e6
+l
+<src/main/java/ui/screens/customer/common/CustomerCommon.java,f\b\fb9b5b4cc72485d876efdaa1282dfaed7ff2dacd
+l
+<src/main/java/ui/screens/customer/CustomerAddController.java,a\b\abd42a904ec23a80ace18ee000bf3145175ad19f
