@@ -93,6 +93,7 @@ public class PrincipalController {
             case "menuExit" -> exit(actionEvent);
             case "menuLogout" -> logout();
             case "todosPokemon" -> loadScreen(Screens.TODOS_POKEMON);
+            case "tablePokemons" -> loadScreen(Screens.TABLE_POKEMONS);
             default -> alertExit();
         }
     }

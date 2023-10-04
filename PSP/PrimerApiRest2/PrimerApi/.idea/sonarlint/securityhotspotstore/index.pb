@@ -50,3 +50,5 @@ c
 -src/main/java/domain/retrofit/PokemonApi.java,c\1\c12322dbf5e23663abd77e20991c616cfb885065
 S
 #src/main/java/ui/main/DIJavafx.java,5\3\535169814ef8dd70f8f23c95a2032d8268f48d6d
+r
+Bsrc/main/java/ui/screens/todospokemon/TodosPokemonsController.java,c\1\c11bbd5bff194b7109edc8203fe3e1675aefafd6

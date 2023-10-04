@@ -4,14 +4,10 @@ import lombok.Getter;
 
 import java.util.List;
 
-
 @Getter
-public class PokemonResponse{
-	private int id;
-	private String name;
-	private int height;
-	private int weight;
-	private int baseExperience;
-	private List<StatsItem> stats;
-	private Sprites sprites;
+public class PokemonResponse {
+    int count;
+    String next;
+    String previous;
+    List<Result> results;
 }

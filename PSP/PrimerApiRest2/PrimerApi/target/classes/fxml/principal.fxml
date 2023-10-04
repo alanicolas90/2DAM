@@ -21,7 +21,7 @@
             <Menu fx:id="menuCustomer" mnemonicParsing="false" text="Customers">
 
                 <MenuItem fx:id="todosPokemon" mnemonicParsing="false" onAction="#menuClick" text="List"/>
-
+                <MenuItem fx:id="tablePokemons" mnemonicParsing="false" onAction="#menuClick" text="Table"/>
 
             </Menu>
             <Menu fx:id="menuOrders" mnemonicParsing="false" text="Orders">

@@ -28,6 +28,7 @@ module plantillaJavaFX {
     exports dao;
     exports ui.screens.welcome;
     exports domain.modelo.pokemon;
+    exports ui.screens.tablepokemon;
 
 
     opens ui.screens.principal;
@@ -41,6 +42,7 @@ module plantillaJavaFX {
     opens domain.modelo.pokemon;
     exports ui.screens.todospokemon;
     opens ui.screens.todospokemon;
+    opens ui.screens.tablepokemon;
 
 
 }

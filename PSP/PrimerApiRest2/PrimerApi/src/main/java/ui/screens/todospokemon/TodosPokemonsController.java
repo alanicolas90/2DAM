@@ -1,7 +1,7 @@
 package ui.screens.todospokemon;
 
 import dao.DaoPokemon;
-import domain.modelo.pokemon.PokemonResponse;
+import domain.modelo.pokemon.Pokemon;
 import domain.modelo.pokemon.Sprites;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
@@ -45,7 +45,7 @@ public class TodosPokemonsController extends BaseScreenController {
         String stringPokedexid = pokedexId.getText();
         int idPokedex = Integer.parseInt(stringPokedexid);
 
-        PokemonResponse pokemons = daoPokemon.getPokemonsById(idPokedex).get();
+        Pokemon pokemons = daoPokemon.getPokemonsById(idPokedex).get();
         Sprites sprites = pokemons.getSprites();
         Image imgPokemonNormal = new Image(sprites.getFront_default());
         Image imagePokemonShiny = new Image(sprites.getFront_shiny());
