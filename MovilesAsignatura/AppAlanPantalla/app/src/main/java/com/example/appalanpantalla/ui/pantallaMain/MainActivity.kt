@@ -47,8 +47,10 @@ class MainActivity : AppCompatActivity() {
             buttonUpdateSetOnClick()
             slider.addOnChangeListener(Slider.OnChangeListener { slider, _, _ ->
                 textDineroSlider.setText(
-                    buildString { append(Constantes.EUR_SYMBOL_ONE_SPACE_RIGHT)
-                        append(slider.value.toInt().toString()) }
+                    buildString {
+                        append(Constantes.EUR_SYMBOL_ONE_SPACE_RIGHT)
+                        append(slider.value.toInt().toString())
+                    }
                 )
             })
         }
@@ -68,12 +70,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun setValuesScreen(state: MainState) {
         with(binding) {
-            txtSizeList.text = buildString { append(Constantes.ID_WITH_SPACE + viewModel.getIdPersona()) }
+            txtSizeList.text =
+                buildString { append(Constantes.ID_WITH_SPACE + viewModel.getIdPersona()) }
             if (viewModel.getSize() == 0) {
                 if (viewModel.getSize() < 1) {
                     buttonUpdate.isEnabled = false
                 }
-                if(viewModel.getSize() == 1){
+                if (viewModel.getSize() == 1) {
                     buttonNext.isEnabled = false
                     buttonBack.isEnabled = false
                 }
@@ -89,7 +92,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setAllScreen(state: MainState) {
-        with(binding){
+        with(binding) {
             txtName.setText(state.persona?.name)
             txtSurname.setText(state.persona?.surname)
             switchTrabaja.isChecked = state.persona?.works!!
@@ -100,13 +103,14 @@ class MainActivity : AppCompatActivity() {
                     radioButtonFemale.id
                 }
             )
-            if(state.persona.salary > 10000){
+            if (state.persona.salary > 10000) {
                 slider.value = 10000f
-            }else{
+            } else {
                 slider.value = state.persona.salary
             }
         }
     }
+
     private fun buttonDeleteSetOnClick() {
         binding.buttonDelete.setOnClickListener {
             viewModel.deletePersona()
@@ -114,7 +118,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun buttonUpdateSetOnClick() {
-        with(binding){
+        with(binding) {
             buttonUpdate.setOnClickListener {
                 viewModel.updatePersona(
                     txtName.text.toString(),
@@ -128,7 +132,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun buttonAddSetOnClick() {
-        with(binding){
+        with(binding) {
             buttonAdd.setOnClickListener {
                 viewModel.addPersona(
                     txtName.text.toString(),
@@ -148,7 +152,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun buttonBackSetOnClick(){
+    private fun buttonBackSetOnClick() {
         binding.buttonBack.setOnClickListener {
             viewModel.getBeforePersona()
             binding.buttonNext.isEnabled = true

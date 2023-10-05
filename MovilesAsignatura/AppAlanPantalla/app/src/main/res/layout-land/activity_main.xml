@@ -14,7 +14,7 @@
         android:ems="10"
         android:inputType="text"
         android:minHeight="48dp"
-        android:text="Name"
+        android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.228"
@@ -31,7 +31,7 @@
         android:ems="10"
         android:inputType="text"
         android:minHeight="48dp"
-        android:text="Surname"
+        android:text="@string/surname"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.26"
@@ -45,7 +45,7 @@
         android:layout_width="57dp"
         android:layout_height="54dp"
         android:layout_marginTop="12dp"
-        android:text="U"
+        android:text="@string/u"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonNext"
         app:layout_constraintHorizontal_bias="0.702"
@@ -57,7 +57,7 @@
         android:id="@+id/buttonDelete"
         android:layout_width="57dp"
         android:layout_height="54dp"
-        android:text="D"
+        android:text="@string/d"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonNext"
         app:layout_constraintHorizontal_bias="0.513"
@@ -69,7 +69,7 @@
         android:id="@+id/buttonAdd"
         android:layout_width="57dp"
         android:layout_height="54dp"
-        android:text="A"
+        android:text="@string/a"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonNext"
         app:layout_constraintHorizontal_bias="0.325"
@@ -80,7 +80,7 @@
         android:id="@+id/buttonNext"
         android:layout_width="89dp"
         android:layout_height="52dp"
-        android:text="Next"
+        android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.975"
@@ -93,7 +93,7 @@
         android:layout_width="89dp"
         android:layout_height="52dp"
 
-        android:text="Back"
+        android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.062"
@@ -105,7 +105,7 @@
         android:id="@+id/txtSizeList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Id: "
+        android:text="@string/id"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
@@ -129,19 +129,20 @@
             android:id="@+id/radioButtonMale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Male" />
+            android:text="@string/male" />
 
         <RadioButton
             android:id="@+id/radioButtonFemale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Female" />
+            android:text="@string/female" />
     </RadioGroup>
 
     <com.google.android.material.slider.Slider
         android:id="@+id/slider"
         android:layout_width="361dp"
         android:layout_height="47dp"
+        android:contentDescription="@string/sliderdedinero"
         android:valueFrom="0.0"
         android:valueTo="10000.0"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -150,15 +151,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switchTrabaja"
         app:layout_constraintVertical_bias="0.387"
-        tools:ignore="MissingConstraints"
-        android:contentDescription="dineroPersona"
-        />
+        tools:ignore="MissingConstraints" />
 
     <Switch
         android:id="@+id/switchTrabaja"
         android:layout_width="109dp"
         android:layout_height="48dp"
-        android:text="Trabaja"
+        android:text="@string/trabaja"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.426"
@@ -173,14 +172,13 @@
         android:layout_height="48dp"
         android:autofillHints=""
         android:inputType=""
-        android:text="€"
+        android:text="@string/eur"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/slider"
         app:layout_constraintHorizontal_bias="0.668"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
         app:layout_constraintVertical_bias="0.277"
-        tools:ignore="LabelFor"
-        />
+        tools:ignore="LabelFor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
