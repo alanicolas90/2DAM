@@ -17,3 +17,13 @@ Japp/src/main/java/com/example/appalanpantalla/ui/pantallaMain/MainState.kt,b\7
 Mapp/src/main/java/com/example/appalanpantalla/ui/pantallaMain/MainActivity.kt,2\9\29da4ea72b72c15e65005eeb61eee04401e048fd
 ~
 Napp/src/main/java/com/example/appalanpantalla/ui/pantallaMain/MainViewModel.kt,c\1\c110a210e48e5feb9e7924ffdd073dde985d5505
+…
+Uapp/src/main/java/com/example/appalanpantalla/domain/usecases/DeletePersonaUseCase.kt,2\8\28e4dde03f6d005b011f232c8fe551345b768811
+‚
+Rapp/src/main/java/com/example/appalanpantalla/domain/usecases/AddPersonaUseCase.kt,3\9\39576b013a9db9b7370c9e655a2a4497c4766bb6
+‚
+Rapp/src/main/java/com/example/appalanpantalla/domain/usecases/GetPersonaUseCase.kt,0\0\00ace385274fe5bc9907c31715bd6f6a3b26cb68
+‡
+Wapp/src/main/java/com/example/appalanpantalla/domain/usecases/GetSizePersonasUseCase.kt,d\4\d40c0827cb724e83a097fda099abd41bc00b6e7a
+…
+Uapp/src/main/java/com/example/appalanpantalla/domain/usecases/UpdatePersonaUseCase.kt,6\e\6ea0c5a662543c68612f7addb3e42162a3589bcb
