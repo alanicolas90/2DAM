@@ -1,19 +1,29 @@
 package com.example.appalanpantalla.ui.pantallaMain
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.appalanpantalla.databinding.ActivityMainBinding
-import com.example.appalanpantalla.domain.usecases.PersonaUsecase
+import com.example.appalanpantalla.domain.usecases.AddPersonaUseCase
+import com.example.appalanpantalla.domain.usecases.DeletePersonaUseCase
+import com.example.appalanpantalla.domain.usecases.GetPersonaUseCase
+import com.example.appalanpantalla.domain.usecases.GetSizePersonasUseCase
+import com.example.appalanpantalla.domain.usecases.UpdatePersonaUseCase
 import com.example.appalanpantalla.utils.StringProvider
+import com.google.android.material.slider.Slider
+
 
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels {
         MainViewModelFactory(
-            StringProvider.instance(this),
-            PersonaUsecase()
+            StringProvider(this),
+            GetPersonaUseCase(),
+            GetSizePersonasUseCase(),
+            AddPersonaUseCase(),
+            DeletePersonaUseCase(),
+            UpdatePersonaUseCase(),
         )
     }
     private lateinit var binding: ActivityMainBinding
@@ -24,43 +34,141 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater).apply {
             setContentView(root)
         }
-        eventos()
-        observarViewModel()
+        events()
+        watchViewModel()
     }
 
-
-    private fun eventos() {
+    private fun events() {
         with(binding) {
-            buttonNext.setOnClickListener {
-                viewModel.getNextPersona()
-                buttonBack.isEnabled = true
-            }
-            buttonBack.setOnClickListener {
-                viewModel.getBeforePersona()
-                buttonNext.isEnabled = true
-            }
+            buttonNextSetOnClick()
+            buttonBackSetOnClick()
+            buttonAddSetOnClick()
+            buttonDeleteSetOnClick()
+            buttonUpdateSetOnClick()
+            slider.addOnChangeListener(Slider.OnChangeListener { slider, _, _ ->
+                textDineroSlider.setText(
+                    buildString { append(Constantes.EUR_SYMBOL_ONE_SPACE_RIGHT)
+                        append(slider.value.toInt().toString()) }
+                )
+            })
         }
     }
 
-
-    private fun observarViewModel() {
+    private fun watchViewModel() {
         viewModel.uiState.observe(this@MainActivity) { state ->
             state.message?.let { error ->
                 Toast.makeText(this@MainActivity, error, Toast.LENGTH_SHORT).show()
-                viewModel.errorMostrado()
+                viewModel.errorShownAlready()
             }
             if (state.message == null) {
-                with(binding) {
-                    txtName.setText(state.persona?.nombre)
-                    txtSizeList.text = "Size list: " + state.personasSize.toString()
-                    txtSurname.setText(state.persona?.apellido)
-                    if (viewModel.getIdPersona() + 1 == state.personasSize) {
-                        buttonNext.isEnabled = false
-                    } else if (viewModel.getIdPersona() == 0) {
-                        buttonBack.isEnabled = false
-                    }
+                setValuesScreen(state)
+            }
+        }
+    }
+
+    private fun setValuesScreen(state: MainState) {
+        with(binding) {
+            txtSizeList.text = buildString { append(Constantes.ID_WITH_SPACE + viewModel.getIdPersona()) }
+            if (viewModel.getSize() == 0) {
+                if (viewModel.getSize() < 1) {
+                    buttonUpdate.isEnabled = false
+                }
+                if(viewModel.getSize() == 1){
+                    buttonNext.isEnabled = false
+                    buttonBack.isEnabled = false
+                }
+                txtName.setText("")
+                txtSurname.setText("")
+                radioGroup.clearCheck()
+
+            } else {
+                setAllScreen(state)
+                deactivateButtons()
+            }
+        }
+    }
+
+    private fun setAllScreen(state: MainState) {
+        with(binding){
+            txtName.setText(state.persona?.name)
+            txtSurname.setText(state.persona?.surname)
+            switchTrabaja.isChecked = state.persona?.works!!
+            radioGroup.check(
+                if (state.persona.gender == 0) {
+                    radioButtonMale.id
+                } else {
+                    radioButtonFemale.id
+                }
+            )
+            if(state.persona.salary > 10000){
+                slider.value = 10000f
+            }else{
+                slider.value = state.persona.salary
+            }
+        }
+    }
+    private fun buttonDeleteSetOnClick() {
+        binding.buttonDelete.setOnClickListener {
+            viewModel.deletePersona()
+        }
+    }
+
+    private fun buttonUpdateSetOnClick() {
+        with(binding){
+            buttonUpdate.setOnClickListener {
+                viewModel.updatePersona(
+                    txtName.text.toString(),
+                    txtSurname.text.toString(),
+                    radioGroup.id,
+                    switchTrabaja.isChecked,
+                    slider.value
+                )
+            }
+        }
+    }
+
+    private fun buttonAddSetOnClick() {
+        with(binding){
+            buttonAdd.setOnClickListener {
+                viewModel.addPersona(
+                    txtName.text.toString(),
+                    txtSurname.text.toString(),
+                    radioGroup.id,
+                    switchTrabaja.isChecked,
+                    slider.value
+                )
+                if (viewModel.getSize() == 1) {
+                    buttonUpdate.isEnabled = true
+                }
+                if (viewModel.getSize() > 1) {
+                    buttonBack.isEnabled = true
                 }
             }
         }
+    }
+
+
+    private fun buttonBackSetOnClick(){
+        binding.buttonBack.setOnClickListener {
+            viewModel.getBeforePersona()
+            binding.buttonNext.isEnabled = true
+        }
+    }
+
+
+    private fun buttonNextSetOnClick() {
+        binding.buttonNext.setOnClickListener {
+            viewModel.getNextPersona()
+            binding.buttonBack.isEnabled = true
+        }
+    }
+
+    private fun deactivateButtons() {
+        if (viewModel.getIdPersona() + 1 == viewModel.getSize()) {
+            binding.buttonNext.isEnabled = false
+        } else if (viewModel.getIdPersona() == 0) {
+            binding.buttonBack.isEnabled = false
+        }
+
     }
 }

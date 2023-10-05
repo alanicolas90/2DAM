@@ -4,24 +4,27 @@ import com.example.appalanpantalla.domain.modelo.Persona
 
 object Repository {
     private val personas = mutableListOf<Persona>()
-    //private val mapPersonas = mutableMapOf<String, Persona>()
 
     init {
-        personas.add(Persona("Pepito","Grillo","M",true,1800))
-        personas.add(Persona("Jaimito","Grillo","M",true,1800))
-        personas.add(Persona("Grillo","Jimenez","F",true,1800))
-        personas.add(Persona("Alan","Mikolajczyk","M",true,1800))
+        personas.add(Persona("Pepito", "Grillo", 0, true, 25000F))
+        personas.add(Persona("Jaimito", "Grillo", 0, true, 1800F))
+        personas.add(Persona("Grillo", "Jimenez", 1, false, 1800F))
+        personas.add(Persona("Alan", "Mikolajczyk", 0, true, 1800F))
     }
 
-    fun getSizePersonas():Int = personas.size
+    fun getSizePersonas() = personas.size
 
 
     fun addPersona(persona: Persona) = personas.add(persona)
 
-    fun deletePersona(persona: Persona) = personas.remove(persona)
+    fun deletePersona(idPersona: Int) = personas.remove(personas[idPersona])
 
 
-    fun getPersona(idPersona: Int): Persona {
-        return personas[idPersona]
+    fun getPersona(idPersona: Int) = personas[idPersona]
+    fun updatePersona(nuevaPersona: Persona, idPersona: Int) {
+        personas[idPersona] = nuevaPersona
     }
+
 }
+
+

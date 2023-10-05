@@ -1,9 +1,9 @@
 package com.example.appalanpantalla.domain.modelo
 
 data class Persona(
-    val nombre: String,
-    val apellido: String,
-    val genero: String,
-    val trabaja: Boolean,
-    val sueldo: Int
+    val name: String,
+    val surname: String,
+    val gender: Int,
+    val works: Boolean,
+    val salary: Float
 )
