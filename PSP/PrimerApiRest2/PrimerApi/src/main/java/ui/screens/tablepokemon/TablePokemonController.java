@@ -58,7 +58,8 @@ public class TablePokemonController extends BaseScreenController {
         String nombrePokemon = txtPokemonSearch.getText();
 
         if (nombrePokemon.isEmpty() || nombrePokemon.isBlank()) {
-            getPrincipalController().showInformation("The field is empty", "Error");
+            tablePokemons.getItems().clear();
+            tablePokemons.getItems().addAll(pokemonService.getAllPokemonsIds().get());
         } else if (pokemonService.getAllPokemonsIdsFiltered(nombrePokemon).isRight()) {
             tablePokemons.getItems().clear();
             tablePokemons.getItems().addAll(pokemonService.getAllPokemonsIdsFiltered(nombrePokemon).get());

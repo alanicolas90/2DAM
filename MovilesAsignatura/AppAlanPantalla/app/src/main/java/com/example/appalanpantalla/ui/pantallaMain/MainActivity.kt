@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.appalanpantalla.databinding.ActivityMainBinding
-import com.example.appalanpantalla.domain.modelo.Persona
 import com.example.appalanpantalla.domain.usecases.PersonaUsecase
 import com.example.appalanpantalla.utils.StringProvider
 
@@ -32,22 +31,35 @@ class MainActivity : AppCompatActivity() {
 
     private fun eventos() {
         with(binding) {
-            button.setOnClickListener {
-                viewModel.getPersona(0)
-                viewModel.getSize()
+            buttonNext.setOnClickListener {
+                viewModel.getNextPersona()
+                buttonBack.isEnabled = true
+            }
+            buttonBack.setOnClickListener {
+                viewModel.getBeforePersona()
+                buttonNext.isEnabled = true
             }
         }
     }
+
 
     private fun observarViewModel() {
         viewModel.uiState.observe(this@MainActivity) { state ->
             state.message?.let { error ->
                 Toast.makeText(this@MainActivity, error, Toast.LENGTH_SHORT).show()
+                viewModel.errorMostrado()
             }
             if (state.message == null) {
-                binding.txtName.setText(state.persona?.nombre.toString())
-                binding.txtSizeList.text = "Size list: " + state.personasSize.toString()
-
+                with(binding) {
+                    txtName.setText(state.persona?.nombre)
+                    txtSizeList.text = "Size list: " + state.personasSize.toString()
+                    txtSurname.setText(state.persona?.apellido)
+                    if (viewModel.getIdPersona() + 1 == state.personasSize) {
+                        buttonNext.isEnabled = false
+                    } else if (viewModel.getIdPersona() == 0) {
+                        buttonBack.isEnabled = false
+                    }
+                }
             }
         }
     }

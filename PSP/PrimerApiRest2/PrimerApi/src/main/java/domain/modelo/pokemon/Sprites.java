@@ -12,7 +12,5 @@ public class Sprites{
 	private String backFemale;
 	private String frontShinyFemale;
 	private String frontFemale;
-
-
 	private Other other;
 }

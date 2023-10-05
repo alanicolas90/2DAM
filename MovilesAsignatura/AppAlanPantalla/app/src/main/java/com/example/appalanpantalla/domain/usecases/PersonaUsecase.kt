@@ -3,16 +3,13 @@ package com.example.appalanpantalla.domain.usecases
 import com.example.appalanpantalla.data.Repository
 import com.example.appalanpantalla.domain.modelo.Persona
 
-class PersonaUsecase() {
-    operator fun invoke(persona: Persona) =
-        Repository.addPersona(persona)
+class PersonaUsecase {
+    fun getSize(): Int? {
+        return Repository.getSizePersonas()
+    }
 
-    fun getSize(): Int =
-        Repository.getSizePersonas()
+    fun getPersona(idPersona: Int): Persona? {
+        return Repository.getPersona(idPersona)
+    }
 
-    fun getPersona(idPersona: Int) = Repository.getPersona(idPersona)
 }
-
-
-
-

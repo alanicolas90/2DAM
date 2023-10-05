@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.appalanpantalla.domain.modelo.Persona
 import com.example.appalanpantalla.domain.usecases.PersonaUsecase
 import com.example.appalanpantalla.utils.StringProvider
 
@@ -14,22 +13,60 @@ class MainViewModel(
     private val personaUsecase: PersonaUsecase,
 ) : ViewModel() {
 
+    private var idPersona= 0
     private val _uiState = MutableLiveData<MainState>()
     val uiState: LiveData<MainState> get() = _uiState
 
 
-    fun getSize(){
+    init{
+        this.initialize()
+    }
+
+    fun initialize() {
+        val persona = personaUsecase.getPersona(idPersona)
         val size = personaUsecase.getSize()
         _uiState.value = MainState(
+            persona = persona,
             personasSize = size
         )
     }
 
-    fun getPersona(idPersona: Int) {
-        val persona = personaUsecase.getPersona(idPersona)
-        _uiState.value = MainState(
-            persona = _uiState.value.let { persona }
-        )
+    fun getNextPersona() {
+        if (idPersona < _uiState.value?.personasSize!!) {
+            idPersona += 1
+            val persona = personaUsecase.getPersona(idPersona)
+            _uiState.value = MainState(
+                message = null,
+                persona = persona,
+                personasSize = _uiState.value?.personasSize
+            )
+        } else {
+            _uiState.value = MainState(
+                message = "No hay más personas"
+            )
+        }
+    }
+
+    fun getIdPersona(): Int {
+        return idPersona
+    }
+    fun getBeforePersona() {
+        if (idPersona > 0) {
+            idPersona -= 1
+            val persona = personaUsecase.getPersona(idPersona)
+            _uiState.value = _uiState.value?.copy(
+                message = null,
+                persona = persona,
+                personasSize = _uiState.value?.personasSize
+            )
+
+        } else {
+            _uiState.value = _uiState.value?.copy(message = "No hay más personas")
+        }
+    }
+
+    fun errorMostrado() {
+        _uiState.value = _uiState.value?.copy(message = null)
     }
 
 

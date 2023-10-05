@@ -10,12 +10,15 @@ object Repository {
         personas.add(Persona("Pepito","Grillo","M",true,1800))
         personas.add(Persona("Jaimito","Grillo","M",true,1800))
         personas.add(Persona("Grillo","Jimenez","F",true,1800))
+        personas.add(Persona("Alan","Mikolajczyk","M",true,1800))
     }
 
     fun getSizePersonas():Int = personas.size
 
 
     fun addPersona(persona: Persona) = personas.add(persona)
+
+    fun deletePersona(persona: Persona) = personas.remove(persona)
 
 
     fun getPersona(idPersona: Int): Persona {
