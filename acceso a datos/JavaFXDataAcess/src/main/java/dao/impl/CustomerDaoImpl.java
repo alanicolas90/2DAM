@@ -26,9 +26,7 @@ public class CustomerDaoImpl implements CustomerDao {
             fileList = Files.readAllLines(file);
             fileList.forEach(line -> {
                 if (!line.isEmpty()) {
-                    Customer customer = new Customer();
-                    Customer customerResult;
-                    customerResult = customer.parseToClass(line);
+                    Customer customerResult = new Customer(line);
                     customerList.add(customerResult);
                 }
             });

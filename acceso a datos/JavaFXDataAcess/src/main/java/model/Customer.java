@@ -47,22 +47,20 @@ public class Customer {
         }
     }
 
-    public Customer parseToClass(String s) {
-        String[] customerData = s.split(";");
-        Customer c = new Customer();
+    public Customer(String line) {
+        String[] customerData = line.split(";");
         if (!customerData[0].equals("id")) {
-            c.setId(Integer.parseInt(customerData[0]));
-            c.setName(customerData[1]);
-            c.setSurname(customerData[2]);
-            c.setEmail(customerData[3]);
+            this.id = Integer.parseInt(customerData[0]);
+            this.name = customerData[1];
+            this.surname = customerData[2];
+            this.email = customerData[3];
             if (customerData[4].isEmpty()) {
-                c.setPhone(0);
+                this.phone = 0;
             } else {
-                c.setPhone(Integer.parseInt(customerData[4]));
+                this.phone = Integer.parseInt(customerData[4]) ;
             }
-            c.setBirthDate(LocalDate.parse(customerData[5]));
+            this.birthDate = LocalDate.parse(customerData[5]);
         }
-        return c;
     }
 
 

@@ -15,8 +15,9 @@ public class Order {
     int customerId;
     int tableNumber;
 
-    public Order(LocalDateTime date, int customerId, int tableNumber) {
-        this.date = date;
+    public Order(int id, int customerId, int tableNumber) {
+        this.id = id;
+        this.date = LocalDateTime.now();
         this.customerId = customerId;
         this.tableNumber = tableNumber;
     }
@@ -25,21 +26,23 @@ public class Order {
 
     }
 
-    public Order parseToClass(String s) {
-        Order o = new Order();
-        if (!s.isBlank()) {
-            String[] orderData = s.split(";");
+    public Order(String line) {
+        if (!line.isBlank()) {
+            String[] orderData = line.split(";");
             if (orderData[0].isBlank()) {
-                o.setId(0);
+                this.id =0;
             } else {
-                o.setId(Integer.parseInt(orderData[0]));
+                this.id = Integer.parseInt(orderData[0]);
             }
-            o.setDate(LocalDateTime.parse(orderData[1].replace(" ", "T")));
-            o.setCustomerId(Integer.parseInt(orderData[2]));
-            o.setTableNumber(Integer.parseInt(orderData[3]));
-            return o;
+            this.date = LocalDateTime.parse(orderData[1].replace(" ", "T"));
+            this.customerId = Integer.parseInt(orderData[2]);
+            this.tableNumber = Integer.parseInt(orderData[3]);
+
         }else{
-            return null;
+            this.id = Integer.parseInt(null);
+            this.date = LocalDateTime.parse(null);
+            this.customerId = Integer.parseInt(null);
+            this.tableNumber = Integer.parseInt(null);
         }
     }
 

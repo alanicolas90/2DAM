@@ -34,8 +34,7 @@ public class OrderDaoImpl implements OrderDao {
 
             while ((line = reader.readLine()) != null) {
                 if (line.isEmpty()) continue;
-                Order order = new Order();
-                order = order.parseToClass(line);
+                Order order = new Order(line);
                 orders.add(order);
             }
         } catch (IOException x) {

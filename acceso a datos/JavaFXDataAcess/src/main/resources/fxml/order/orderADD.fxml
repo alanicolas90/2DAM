@@ -11,16 +11,13 @@
         </font>
     </Label>
 
-    <Label layoutX="46.0" layoutY="148.0" text="Date" />
+    <Label layoutX="46.0" layoutY="173.0" text="CustomerID" />
+    <ComboBox fx:id="comboBoxCustomer" layoutX="46.0" layoutY="190.0" prefWidth="150.0" />
 
-    <Label layoutX="46.0" layoutY="215.0" text="CustomerID" />
-    <ComboBox fx:id="comboBoxCustomer" layoutX="46.0" layoutY="238.0" prefWidth="150.0" />
+    <Label layoutX="49.0" layoutY="242.0" text="Table Number" />
+    <TextField fx:id="txtTableNumber" layoutX="47.0" layoutY="259.0" />
 
-    <Label layoutX="49.0" layoutY="281.0" text="Table Number" />
-    <TextField fx:id="txtTableNumber" layoutX="46.0" layoutY="302.0" />
-    <DatePicker fx:id="dateOrder" layoutX="46.0" layoutY="165.0" />
-
-    <Button layoutX="87.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#addOrderItem" text="Add" />
+    <Button layoutX="90.0" layoutY="307.0" mnemonicParsing="false" onMouseClicked="#addOrderItem" text="Add" />
    <ComboBox fx:id="comboBoxMenuItem" layoutX="420.0" layoutY="63.0" prefWidth="150.0" />
    <Label layoutX="420.0" layoutY="46.0" text="MenuItem" />
    <TextField layoutX="623.0" layoutY="63.0" />

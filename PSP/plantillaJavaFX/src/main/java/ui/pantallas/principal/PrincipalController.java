@@ -81,9 +81,7 @@ public class PrincipalController {
         switch (((MenuItem) actionEvent.getSource()).getId()) {
             case "menuExit" -> exit(actionEvent);
             case "menuLogout" -> logout(actionEvent);
-            default -> {
-                alertExit();
-            }
+            default -> alertExit();
         }
     }
 

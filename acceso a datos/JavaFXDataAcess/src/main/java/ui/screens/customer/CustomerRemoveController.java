@@ -77,7 +77,7 @@ public class CustomerRemoveController extends BaseScreenController {
         Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
         if (customer == null) {
             getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_A_CUSTOMER, ConstantNormal.ERROR);
-        } else if (tableOrdersCustomer.getItems() != null) {
+        } else if (orderService.getOrdersCustomer(customer.getId()).isRight()) {
             if (getPrincipalController().alertDeleteConfirmation(ConstantNormal.CUSTOMER_HAS_ORDERS, ConstantNormal.WARNING)) {
                 if (customerService.delete(customer).isRight()) {
                     getPrincipalController().showInformation(ConstantNormal.CUSTOMER_DELETED_CORRECTLY, ConstantNormal.INFORMATION);

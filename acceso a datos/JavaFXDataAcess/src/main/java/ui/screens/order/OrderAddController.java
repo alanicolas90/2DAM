@@ -27,8 +27,6 @@ public class OrderAddController extends BaseScreenController {
     private ComboBox<Integer> comboBoxCustomer;
     @FXML
     private TextField txtTableNumber;
-    @FXML
-    private DatePicker dateOrder;
 
     @FXML
     private ComboBox<MenuItem> comboBoxMenuItem;
@@ -50,11 +48,11 @@ public class OrderAddController extends BaseScreenController {
 
 
     public void addOrderItem() {
-        if (dateOrder.getValue() == null || txtTableNumber.getText().isEmpty() || comboBoxCustomer.getValue() == null) {
+        if (txtTableNumber.getText().isEmpty() || comboBoxCustomer.getValue() == null) {
             getPrincipalController().alertWarning(ConstantNormal.ALL_THE_FIELDS_MUST_BE_FILLED, ConstantNormal.ERROR);
         } else {
             int orderId = orderService.getAll().get().stream().mapToInt(Order::getId).max().orElse(0) + 1;
-            Order order = new Order(orderId, LocalDateTime.of(dateOrder.getValue(), LocalTime.now()), comboBoxCustomer.getValue(), Integer.parseInt(txtTableNumber.getText()));
+            Order order = new Order(orderId, comboBoxCustomer.getValue(), Integer.parseInt(txtTableNumber.getText()));
 
             if (orderService.save(order).isRight()) {
                 getPrincipalController().showInformation(ConstantNormal.ORDER_ADDED_SUCCESSFULLY, ConstantNormal.SUCCESS);
