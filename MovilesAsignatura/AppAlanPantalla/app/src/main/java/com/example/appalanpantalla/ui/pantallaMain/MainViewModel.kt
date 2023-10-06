@@ -10,11 +10,9 @@ import com.example.appalanpantalla.domain.usecases.DeletePersonaUseCase
 import com.example.appalanpantalla.domain.usecases.GetPersonaUseCase
 import com.example.appalanpantalla.domain.usecases.GetSizePersonasUseCase
 import com.example.appalanpantalla.domain.usecases.UpdatePersonaUseCase
-import com.example.appalanpantalla.utils.StringProvider
 
 
 class MainViewModel(
-    private val stringProvider: StringProvider,
     private val getPersonaUseCase: GetPersonaUseCase,
     private val getSizePersonasUseCase: GetSizePersonasUseCase,
     private val addPersonaUseCase: AddPersonaUseCase,
@@ -55,15 +53,36 @@ class MainViewModel(
     fun addPersona(
         name: String, surname: String, gender: Int, works: Boolean, salary: Float
     ) {
-        if (idPersona == 0 && getSize() == 0) {
-            val persona = Persona(name, surname, gender, works, salary)
-            addPersonaUseCase(persona)
-            _uiState.value = _uiState.value?.copy(persona = persona)
-        } else {
-            val persona = Persona(name, surname, gender, works, salary)
-            addPersonaUseCase(persona)
-            idPersona = getSize() - 1
-            _uiState.value = _uiState.value?.copy(persona = persona)
+        val persona = Persona(name, surname, gender, works, salary)
+        when {
+            name.isBlank() || name.isEmpty() -> {
+                _uiState.value = _uiState.value?.copy(
+                    message = Constantes.EL_NOMBRE_NO_PUEDE_ESTAR_VACIO,
+                )
+            }
+
+            surname.isBlank() || surname.isEmpty() -> {
+                _uiState.value = _uiState.value?.copy(
+                    message = Constantes.EL_APELLIDO_NO_PUEDE_ESTAR_VACIO
+                )
+            }
+
+            gender == -1 -> {
+                _uiState.value = _uiState.value?.copy(
+                    message = Constantes.EL_GENERO_NO_PUEDE_ESTAR_VACIO,
+                )
+            }
+
+            this.getSize() == 0 && idPersona == 0 -> {
+                addPersonaUseCase(persona)
+                _uiState.value = _uiState.value?.copy(persona = persona)
+            }
+
+            else -> {
+                addPersonaUseCase(persona)
+                idPersona = getSize() - 1
+                _uiState.value = _uiState.value?.copy(persona = persona)
+            }
         }
     }
 
@@ -103,24 +122,32 @@ class MainViewModel(
         salary: Float
     ) {
         val persona = Persona(name, surname, gender, works, salary)
-        if (name.isBlank() || name.isEmpty()) {
-            _uiState.value = _uiState.value?.copy(
-                message = Constantes.EL_NOMBRE_NO_PUEDE_ESTAR_VACIO,
-            )
-        } else if (surname.isBlank() || surname.isEmpty()) {
-            _uiState.value = _uiState.value?.copy(
-                message = Constantes.EL_APELLIDO_NO_PUEDE_ESTAR_VACIO
-            )
-        } else if (gender == -1) {
-            _uiState.value = _uiState.value?.copy(
-                message = Constantes.EL_GENERO_NO_PUEDE_ESTAR_VACIO,
-            )
-        } else {
-            updatePersonaUseCase(persona, idPersona)
-            _uiState.value = _uiState.value?.copy(
-                message = null,
-                persona = persona,
-            )
+        when {
+            name.isBlank() || name.isEmpty() -> {
+                _uiState.value = _uiState.value?.copy(
+                    message = Constantes.EL_NOMBRE_NO_PUEDE_ESTAR_VACIO,
+                )
+            }
+
+            surname.isBlank() || surname.isEmpty() -> {
+                _uiState.value = _uiState.value?.copy(
+                    message = Constantes.EL_APELLIDO_NO_PUEDE_ESTAR_VACIO
+                )
+            }
+
+            gender == -1 -> {
+                _uiState.value = _uiState.value?.copy(
+                    message = Constantes.EL_GENERO_NO_PUEDE_ESTAR_VACIO,
+                )
+            }
+
+            else -> {
+                updatePersonaUseCase(persona, idPersona)
+                _uiState.value = _uiState.value?.copy(
+                    message = null,
+                    persona = persona,
+                )
+            }
         }
     }
 
@@ -129,7 +156,6 @@ class MainViewModel(
             idPersona += 1
             val persona = getPersonaUseCase(idPersona)
             _uiState.value = MainState(
-                message = null,
                 persona = persona,
             )
         } else {
@@ -144,7 +170,6 @@ class MainViewModel(
             idPersona -= 1
             val persona = getPersonaUseCase(idPersona)
             _uiState.value = _uiState.value?.copy(
-                message = null,
                 persona = persona,
             )
 
@@ -157,15 +182,12 @@ class MainViewModel(
         _uiState.value = _uiState.value?.copy(message = null)
     }
 
-
 }
-
 
 /**
  * Factory class to instantiate the [ViewModel] instance.
  */
 class MainViewModelFactory(
-    private val stringProvider: StringProvider,
     private val getPersonaUseCase: GetPersonaUseCase,
     private val getSizePersonasUseCase: GetSizePersonasUseCase,
     private val addPersonaUseCase: AddPersonaUseCase,
@@ -176,7 +198,6 @@ class MainViewModelFactory(
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST") return MainViewModel(
-                stringProvider,
                 getPersonaUseCase,
                 getSizePersonasUseCase,
                 addPersonaUseCase,

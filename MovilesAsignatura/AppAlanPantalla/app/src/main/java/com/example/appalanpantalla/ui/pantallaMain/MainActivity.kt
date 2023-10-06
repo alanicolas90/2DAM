@@ -10,7 +10,6 @@ import com.example.appalanpantalla.domain.usecases.DeletePersonaUseCase
 import com.example.appalanpantalla.domain.usecases.GetPersonaUseCase
 import com.example.appalanpantalla.domain.usecases.GetSizePersonasUseCase
 import com.example.appalanpantalla.domain.usecases.UpdatePersonaUseCase
-import com.example.appalanpantalla.utils.StringProvider
 import com.google.android.material.slider.Slider
 
 
@@ -18,7 +17,6 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels {
         MainViewModelFactory(
-            StringProvider(this),
             GetPersonaUseCase(),
             GetSizePersonasUseCase(),
             AddPersonaUseCase(),
@@ -91,6 +89,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    //funciones privadas que se usan arriba
     private fun setAllScreen(state: MainState) {
         with(binding) {
             txtName.setText(state.persona?.name)
@@ -109,6 +109,15 @@ class MainActivity : AppCompatActivity() {
                 slider.value = state.persona.salary
             }
         }
+    }
+
+    private fun deactivateButtons() {
+        if (viewModel.getIdPersona() + 1 == viewModel.getSize()) {
+            binding.buttonNext.isEnabled = false
+        } else if (viewModel.getIdPersona() == 0) {
+            binding.buttonBack.isEnabled = false
+        }
+
     }
 
     private fun buttonDeleteSetOnClick() {
@@ -151,7 +160,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun buttonBackSetOnClick() {
         binding.buttonBack.setOnClickListener {
             viewModel.getBeforePersona()
@@ -159,20 +167,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun buttonNextSetOnClick() {
         binding.buttonNext.setOnClickListener {
             viewModel.getNextPersona()
             binding.buttonBack.isEnabled = true
         }
-    }
-
-    private fun deactivateButtons() {
-        if (viewModel.getIdPersona() + 1 == viewModel.getSize()) {
-            binding.buttonNext.isEnabled = false
-        } else if (viewModel.getIdPersona() == 0) {
-            binding.buttonBack.isEnabled = false
-        }
-
     }
 }
