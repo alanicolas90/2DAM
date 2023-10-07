@@ -47,3 +47,9 @@ l
 <src/main/java/ui/screens/customer/common/CustomerCommon.java,f\b\fb9b5b4cc72485d876efdaa1282dfaed7ff2dacd
 l
 <src/main/java/ui/screens/customer/CustomerAddController.java,a\b\abd42a904ec23a80ace18ee000bf3145175ad19f
+f
+6src/main/java/ui/screens/order/OrderAddController.java,8\5\85542a4f9488e482bd7139024b89c0578125146c
+i
+9src/main/java/ui/screens/order/OrderRemoveController.java,4\a\4a70e0a9c35954dbfeba88cf606ecf0ec938673d
+o
+?src/main/java/ui/screens/customer/CustomerRemoveController.java,6\c\6ce6c7170a067b1355aa43ed606fcc68992872db

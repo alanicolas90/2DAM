@@ -10,10 +10,6 @@ X
 (src/main/java/dao/impl/LoginDaoImpl.java,e\5\e5e7325d267fea1076a19b594d74415233ba72cd
 \
 ,src/main/java/ui/screens/common/Screens.java,5\2\52dc46b0b3bde95f2b46bfbf1f9b056f290c25fd
-g
-7src/main/java/ui/screens/welcome/WelcomeController.java,0\e\0e25272d029d77043346d45e7f523b66f1a853cb
-c
-3src/main/java/ui/screens/login/LoginController.java,d\3\d31a9f12ac475e8a39ceb69663c6063f796579c2
 k
 ;src/main/java/ui/screens/principal/PrincipalController.java,0\a\0a2a894bb55359e43284a787d07f1d373d6ee3e6
 ^
@@ -50,8 +46,6 @@ c
 -src/main/java/domain/retrofit/PokemonApi.java,c\1\c12322dbf5e23663abd77e20991c616cfb885065
 S
 #src/main/java/ui/main/DIJavafx.java,5\3\535169814ef8dd70f8f23c95a2032d8268f48d6d
-r
-Bsrc/main/java/ui/screens/todospokemon/TodosPokemonsController.java,c\1\c11bbd5bff194b7109edc8203fe3e1675aefafd6
 `
 0src/main/java/domain/modelo/pokemon/Pokemon.java,7\6\7691e95db223573692efffb77f153afa1c1290c6
 _

@@ -21,28 +21,26 @@ module plantillaJavaFX {
     exports ui.main to javafx.graphics;
     exports ui.screens.principal;
     exports ui.screens.common;
-    exports ui.screens.login to javafx.fxml;
     exports common.config;
     exports dao.impl;
     exports domain.service;
     exports dao;
-    exports ui.screens.welcome;
     exports domain.modelo.pokemon;
     exports ui.screens.tablepokemon;
+    exports ui.screens.tableberrie;
 
 
     opens ui.screens.principal;
     opens ui.main;
     opens fxml;
-    opens ui.screens.login;
     opens ui.screens.common;
-    opens ui.screens.welcome;
     opens dao;
     opens common.config;
     opens domain.modelo.pokemon;
-    exports ui.screens.todospokemon;
-    opens ui.screens.todospokemon;
     opens ui.screens.tablepokemon;
+    exports domain.modelo.berry;
+    opens domain.modelo.berry;
+    opens ui.screens.tableberrie;
 
 
 }

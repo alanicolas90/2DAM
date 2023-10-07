@@ -14,22 +14,13 @@
         <MenuBar fx:id="menuPrincipal">
             <Menu fx:id="menuOptions" mnemonicParsing="false" text="Options">
 
-                <MenuItem fx:id="menuLogout" mnemonicParsing="false" onAction="#menuClick" text="Logout"/>
                 <MenuItem fx:id="menuExit" mnemonicParsing="false" onAction="#menuClick" text="Exit"/>
 
             </Menu>
             <Menu fx:id="menuCustomer" mnemonicParsing="false" text="Customers">
 
-                <MenuItem fx:id="todosPokemon" mnemonicParsing="false" onAction="#menuClick" text="List"/>
-                <MenuItem fx:id="tablePokemons" mnemonicParsing="false" onAction="#menuClick" text="Table"/>
-
-            </Menu>
-            <Menu fx:id="menuOrders" mnemonicParsing="false" text="Orders">
-
-                <MenuItem fx:id="listOrder" onAction="#menuClick" mnemonicParsing="false" text="List"/>
-                <MenuItem fx:id="addOrder" onAction="#menuClick" mnemonicParsing="false" text="Add"/>
-                <MenuItem fx:id="removeOrder" onAction="#menuClick" mnemonicParsing="false" text="Remove"/>
-                <MenuItem fx:id="updateOrder" onAction="#menuClick" mnemonicParsing="false" text="Update"/>
+                <MenuItem fx:id="tablePokemons" mnemonicParsing="false" onAction="#menuClick" text="Pokemons"/>
+                <MenuItem fx:id="tableBerries" mnemonicParsing="false" onAction="#menuClick" text="Berries"/>
 
             </Menu>
         </MenuBar>

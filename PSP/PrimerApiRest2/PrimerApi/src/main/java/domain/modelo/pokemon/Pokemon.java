@@ -11,8 +11,19 @@ public class Pokemon {
     private String name;
     private int height;
     private int weight;
-    private int baseExperience;
     private List<StatsItem> stats;
     private Sprites sprites;
+
+    @Override
+    public String toString() {
+        return "Pokemon{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", stats=" + stats +
+                ", sprites=" + sprites +
+                '}';
+    }
 }
 

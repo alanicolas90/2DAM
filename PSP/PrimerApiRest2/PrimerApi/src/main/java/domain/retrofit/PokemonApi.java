@@ -18,6 +18,7 @@ public interface PokemonApi {
     @GET("pokemon")
     Call<PokemonResponse> getAllPokemonsIds(@Query("limit") int numberLimit);
 
+
 }
 
 

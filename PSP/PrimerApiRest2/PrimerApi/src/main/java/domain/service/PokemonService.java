@@ -17,17 +17,17 @@ public class PokemonService {
         this.daoPokemon = daoPokemon;
     }
 
-    public Either<String,List<Result>> getAllPokemonsIds() {
+    public Either<String, List<Result>> getAllPokemonsIds() {
         return Either.right(daoPokemon.getAllPokemonsIds().get());
     }
 
-    public Either<String,List<Result>> getAllPokemonsIdsFiltered(String nombreABuscar) {
+    public Either<String, List<Result>> getAllPokemonsIdsFiltered(String nombreABuscar) {
         List<Result> listaEnteraPokemons = daoPokemon.getAllPokemonsIds().get();
         List<Result> listaConPokemonsNombreSimilar = listaEnteraPokemons.stream().filter(result -> result.getName().contains(nombreABuscar)).toList();
 
-        if(listaConPokemonsNombreSimilar.isEmpty()){
+        if (listaConPokemonsNombreSimilar.isEmpty()) {
             return Either.left("No hay Pokemons");
-        }else {
+        } else {
             return Either.right(listaConPokemonsNombreSimilar);
         }
     }

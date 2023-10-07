@@ -8,12 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.Screens;
@@ -32,9 +30,6 @@ public class PrincipalController {
         alert = new Alert(Alert.AlertType.NONE);
     }
 
-    @FXML
-    private MenuBar menuPrincipal;
-
     private Stage primaryStage;
 
     @FXML
@@ -42,8 +37,6 @@ public class PrincipalController {
 
     private final Alert alert;
 
-    @Getter
-    private String user;
 
     private void loadScreen(Screens screen) {
         changeScreen(loadScreen(screen.getRoute()));
@@ -71,29 +64,16 @@ public class PrincipalController {
 
 
     public void initialize() {
-        menuPrincipal.setVisible(false);
-        loadScreen(Screens.LOGIN);
+        loadScreen(Screens.TABLE_POKEMONS);
     }
 
-    public void onLogin(String username) {
-        this.user = username;
-        loadScreen(Screens.BIENVENIDA);
-        menuPrincipal.setVisible(true);
-    }
-
-    public void logout() {
-        this.user = null;
-        menuPrincipal.setVisible(false);
-        loadScreen(Screens.LOGIN);
-    }
 
     @FXML
     private void menuClick(ActionEvent actionEvent) {
         switch (((MenuItem) actionEvent.getSource()).getId()) {
             case "menuExit" -> exit(actionEvent);
-            case "menuLogout" -> logout();
-            case "todosPokemon" -> loadScreen(Screens.TODOS_POKEMON);
             case "tablePokemons" -> loadScreen(Screens.TABLE_POKEMONS);
+            case "tableBerries" -> loadScreen(Screens.TABLE_BERRIES);
             default -> alertExit();
         }
     }
@@ -114,18 +94,9 @@ public class PrincipalController {
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Exit");
         alert.setHeaderText("Exit");
-        alert.setContentText("Are yous ure you want to exit?");
+        alert.setContentText("Are you sure you want to exit?");
         alert.showAndWait();
         return alert.getResult() == ButtonType.OK;
-    }
-
-    public void alertWarning(String messageForUser, String titleWarning) {
-        alert.setAlertType(Alert.AlertType.WARNING);
-        alert.setTitle(titleWarning);
-        alert.setHeaderText(titleWarning);
-        alert.setContentText(messageForUser);
-
-        alert.showAndWait();
     }
 
     public void showInformation(String messageForUser, String titleInformation) {

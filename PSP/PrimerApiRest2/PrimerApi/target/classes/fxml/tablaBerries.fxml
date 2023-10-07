@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.tableberrie.TableBerriesController">
+    <TableView fx:id="tablePokemons" layoutX="63.0" layoutY="60.0" onMouseClicked="#showPokemonMarked"
+               prefHeight="238.0" prefWidth="236.0">
+        <columns>
+            <TableColumn fx:id="columnId" prefWidth="46.0" text="ID"/>
+            <TableColumn fx:id="columnName" prefWidth="188.0" text="name"/>
+        </columns>
+    </TableView>
+    <TextField fx:id="txtPokemonSearch" layoutX="65.0" layoutY="317.0" promptText="search"/>
+    <Button fx:id="bttnSearch" layoutX="232.0" layoutY="317.0" mnemonicParsing="false"
+            onMouseClicked="#searchBerryByName" text="Search"/>
+    <Button fx:id="bttnReset" layoutX="140.0" layoutY="361.0" mnemonicParsing="false" onAction="#resetTableSearch"
+            onMouseClicked="#resetTableSearch" text="Reset"/>
+    <Label fx:id="txtId" layoutX="341.0" layoutY="120.0" text="id:"/>
+    <Label fx:id="txtSmoothness" layoutX="341.0" layoutY="154.0" text="smoothness:"/>
+    <Label fx:id="txtSize" layoutX="341.0" layoutY="171.0" text="size"/>
+    <Label fx:id="txtGrowthTIme" layoutX="341.0" layoutY="188.0" text="growth_time:"/>
+    <Label fx:id="txtNaturalGrowthPower" layoutX="341.0" layoutY="205.0" text="natural gift power:"/>
+    <Label fx:id="txtMaxHarvest" layoutX="341.0" layoutY="222.0" text="max harvest:"/>
+    <Label fx:id="txtName" layoutX="340.0" layoutY="137.0" text="name: "/>
+    <Label layoutX="481.0" layoutY="71.0" text="Potency flavour"/>
+    <Label fx:id="txtFlavourSpicy" layoutX="500.0" layoutY="103.0" text="flavour spicy:"/>
+    <Label fx:id="txtflavourDry" layoutX="500.0" layoutY="129.0" text="flavour dry:"/>
+    <Label fx:id="txtFalvourSweet" layoutX="500.0" layoutY="154.0" text="flavour sweet:"/>
+    <Label fx:id="txtFlavourBitter" layoutX="500.0" layoutY="180.0" text="flavour bitter"/>
+    <Label fx:id="txtFlavourSour" layoutX="500.0" layoutY="205.0" text="flavour sour:"/>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="157.0" layoutX="481.0" layoutY="88.0"
+               stroke="BLACK" strokeType="INSIDE" width="137.0"/>
+
+
+</AnchorPane>
