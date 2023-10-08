@@ -12,8 +12,7 @@
         </columns>
     </TableView>
     <TextField fx:id="txtPokemonSearch" layoutX="65.0" layoutY="317.0" promptText="search" />
-    <Button fx:id="bttnSearch" layoutX="232.0" layoutY="317.0" mnemonicParsing="false"
-            onMouseClicked="#searchPokemonByName" text="Search"/>
+    <Button fx:id="bttnSearch" layoutX="232.0" layoutY="317.0" mnemonicParsing="false" onMouseClicked="#searchPokemonByName" text="Search" />
     <ImageView fx:id="frontViewNormalImg" fitHeight="150.0" fitWidth="200.0" layoutX="374.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
     <ImageView fx:id="frontViewShinyImg" fitHeight="150.0" fitWidth="200.0" layoutX="574.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
     <Label layoutX="637.0" layoutY="36.0" text="Shiny" />
@@ -25,7 +24,6 @@
     <Label fx:id="labelSPAttack" layoutX="391.0" layoutY="315.0" text="special-attack:" />
     <Label fx:id="labelSPDefense" layoutX="390.0" layoutY="333.0" text="special-defense:" />
     <Label fx:id="labelSpeed" layoutX="392.0" layoutY="298.0" text="speed" />
-   <Button fx:id="bttnShowMore" layoutX="536.0" layoutY="214.0" mnemonicParsing="false" text="Show More" />
    <Button fx:id="bttnReset" layoutX="140.0" layoutY="361.0" mnemonicParsing="false" onAction="#resetTableSearch" text="Reset" />
 
 
