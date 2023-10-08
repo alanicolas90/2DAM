@@ -8,6 +8,7 @@ import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import common.constantes.Constantes;
 import ui.screens.common.BaseScreenController;
 
 import java.util.List;
@@ -15,12 +16,12 @@ import java.util.List;
 public class TableBerriesController extends BaseScreenController {
 
 
-    private final DaoBerry daoBerry;
+    private final DaoBerry daoBerryImpl;
     private final BerriesService berriesService;
 
     @Inject
-    public TableBerriesController(DaoBerry daoBerry, BerriesService berriesService) {
-        this.daoBerry = daoBerry;
+    public TableBerriesController(DaoBerry daoBerryImpl, BerriesService berriesService) {
+        this.daoBerryImpl = daoBerryImpl;
         this.berriesService = berriesService;
     }
 
@@ -65,45 +66,66 @@ public class TableBerriesController extends BaseScreenController {
 
     @Override
     public void principalCargado() {
-        List<ResultsItem> resultsItems = daoBerry.getAllBerriesWithIdMod().get();
+        List<ResultsItem> resultsItems = daoBerryImpl.getAllBerriesWithIdMod().get();
         tablePokemons.getItems().addAll(resultsItems);
     }
 
     public void showPokemonMarked() {
         ResultsItem resultsItem = tablePokemons.getSelectionModel().getSelectedItem();
-        BerryResponse berryResponse = berriesService.getSpecificBerry(Integer.parseInt(resultsItem.getUrl())).get();
-        txtId.setText("id: " + berryResponse.getId());
-        txtName.setText("name: " + berryResponse.getName());
-        txtSmoothness.setText("smoothness: " + berryResponse.getSmoothness());
-        txtSize.setText("size: " + berryResponse.getSize());
-        txtGrowthTIme.setText("growth time: " + berryResponse.getGrowth_time());
-        txtMaxHarvest.setText("max harvest: " + berryResponse.getMax_harvest());
-        txtNaturalGrowthPower.setText("natural gift power: " + berryResponse.getNatural_gift_power());
+        if (berriesService.getSpecificBerry(Integer.parseInt(resultsItem.getUrl())).isLeft()) {
+            getPrincipalController().showInformation(Constantes.NO_HAY_BERRIES_CON_ESE_NOMBRE, Constantes.ERROR);
+            setAllTextsToEmpty();
 
 
-        txtFlavourSpicy.setText("spicy: " + berryResponse.getFlavors().get(0).getPotency());
-        txtflavourDry.setText("dry: " + berryResponse.getFlavors().get(1).getPotency());
-        txtFalvourSweet.setText("sweet: " + berryResponse.getFlavors().get(2).getPotency());
-        txtFlavourBitter.setText("bitter: " + berryResponse.getFlavors().get(3).getPotency());
-        txtFlavourSour.setText("sour: " + berryResponse.getFlavors().get(4).getPotency());
+        } else {
+            BerryResponse berryResponse = berriesService.getSpecificBerry(Integer.parseInt(resultsItem.getUrl())).get();
+            txtId.setText(Constantes.ID + berryResponse.getId());
+            txtName.setText(Constantes.NAME + berryResponse.getName());
+            txtSmoothness.setText(Constantes.SMOOTHNESS + berryResponse.getSmoothness());
+            txtSize.setText(Constantes.SIZE + berryResponse.getSize());
+            txtGrowthTIme.setText(Constantes.GROWTH_TIME + berryResponse.getGrowth_time());
+            txtMaxHarvest.setText(Constantes.MAX_HARVEST + berryResponse.getMax_harvest());
+            txtNaturalGrowthPower.setText(Constantes.NATURAL_GIFT_POWER + berryResponse.getNatural_gift_power());
 
 
+            txtFlavourSpicy.setText(Constantes.SPICY + berryResponse.getFlavors().get(0).getPotency());
+            txtflavourDry.setText(Constantes.DRY + berryResponse.getFlavors().get(1).getPotency());
+            txtFalvourSweet.setText(Constantes.SWEET + berryResponse.getFlavors().get(2).getPotency());
+            txtFlavourBitter.setText(Constantes.BITTER + berryResponse.getFlavors().get(3).getPotency());
+            txtFlavourSour.setText(Constantes.SOUR + berryResponse.getFlavors().get(4).getPotency());
+        }
     }
 
     public void resetTableSearch() {
         tablePokemons.getItems().clear();
-        tablePokemons.getItems().addAll(daoBerry.getAllBerriesWithIdMod().get());
+        tablePokemons.getItems().addAll(daoBerryImpl.getAllBerriesWithIdMod().get());
     }
 
     public void searchBerryByName() {
         String nombreABuscar = txtPokemonSearch.getText();
         if (nombreABuscar.isEmpty() || nombreABuscar.isBlank()) {
             tablePokemons.getItems();
-            tablePokemons.getItems().addAll(daoBerry.getAllBerriesWithIdMod().get());
+            tablePokemons.getItems().addAll(daoBerryImpl.getAllBerriesWithIdMod().get());
         } else if (berriesService.filteresBerriesByName(nombreABuscar).isRight()) {
             tablePokemons.getItems().clear();
             tablePokemons.getItems().addAll(berriesService.filteresBerriesByName(nombreABuscar).get());
 
         }
+    }
+
+
+    private void setAllTextsToEmpty() {
+        txtId.setText(Constantes.ID);
+        txtName.setText(Constantes.NAME);
+        txtSmoothness.setText(Constantes.SMOOTHNESS);
+        txtSize.setText(Constantes.SIZE);
+        txtGrowthTIme.setText(Constantes.GROWTH_TIME);
+        txtMaxHarvest.setText(Constantes.MAX_HARVEST);
+        txtNaturalGrowthPower.setText(Constantes.NATURAL_GIFT_POWER);
+        txtFlavourSpicy.setText(Constantes.SPICY);
+        txtflavourDry.setText(Constantes.DRY);
+        txtFalvourSweet.setText(Constantes.SWEET);
+        txtFlavourBitter.setText(Constantes.BITTER);
+        txtFlavourSour.setText(Constantes.SOUR);
     }
 }

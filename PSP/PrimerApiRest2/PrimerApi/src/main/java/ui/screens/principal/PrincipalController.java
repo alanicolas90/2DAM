@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lombok.extern.log4j.Log4j2;
+import common.constantes.Constantes;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.Screens;
 
@@ -92,9 +93,9 @@ public class PrincipalController {
 
     private boolean alertExit() {
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Exit");
-        alert.setHeaderText("Exit");
-        alert.setContentText("Are you sure you want to exit?");
+        alert.setTitle(Constantes.EXIT);
+        alert.setHeaderText(Constantes.EXIT);
+        alert.setContentText(Constantes.ARE_YOU_SURE_YOU_WANT_TO_EXIT);
         alert.showAndWait();
         return alert.getResult() == ButtonType.OK;
     }

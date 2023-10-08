@@ -41,6 +41,8 @@ module plantillaJavaFX {
     exports domain.modelo.berry;
     opens domain.modelo.berry;
     opens ui.screens.tableberrie;
+    opens ui;
+    opens common.constantes;
 
 
 }

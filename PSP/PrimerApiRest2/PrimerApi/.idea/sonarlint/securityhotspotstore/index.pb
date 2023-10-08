@@ -4,10 +4,6 @@
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-O
-src/main/java/dao/LoginDao.java,9\3\9375bc06d3ba0fc9785564498a9b9d5049935538
-X
-(src/main/java/dao/impl/LoginDaoImpl.java,e\5\e5e7325d267fea1076a19b594d74415233ba72cd
 \
 ,src/main/java/ui/screens/common/Screens.java,5\2\52dc46b0b3bde95f2b46bfbf1f9b056f290c25fd
 k
@@ -20,8 +16,6 @@ N
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 O
 src/main/java/dao/RetroFit.java,8\8\88b246ad147cd112e846cd7344447d25c352c259
-^
-.src/main/java/domain/service/LoginService.java,8\b\8bcf3bb5ffea62f804443a80a80379be53b86220
 c
 3src/main/java/ui/screens/common/ConstantScreen.java,2\2\2247e75e13d4a19563e62ca5353113c0d87634a9
 [
@@ -54,3 +48,29 @@ q
 Asrc/main/java/ui/screens/tablepokemon/TablePokemonController.java,4\3\43d46670de2c1387adcea47be660dfdcd9faaf5d
 `
 0src/main/java/domain/service/PokemonService.java,d\7\d7edb3dc246b25de5245768213ce26ae2cd02005
+Q
+!src/main/java/ui/main/MainFX.java,2\e\2e7801e75bc7d7b888b07031d0746a50f31ff377
+]
+-src/main/java/ui/main/FXMLLoaderProducer.java,8\8\889e8b07e827237e9db61a8b268bc7b0c770ff00
+W
+'src/main/java/ui/main/StartupScene.java,6\7\67e2e8cd1ccdf2df73312c03c460f4b3fbed5ef4
+f
+6src/main/java/domain/modelo/berry/BerriesResponse.java,d\a\da9739460ecc0c4148476f8fb8b018b54aaeac1c
+[
++src/main/java/domain/retrofit/BerryApi.java,8\8\88bfaa195130e4b00564b284fcad3e2cb3ed2df4
+b
+2src/main/java/domain/modelo/berry/ResultsItem.java,9\d\9d2ca44db5243442681e3bf72e84251abf470c67
+d
+4src/main/java/domain/modelo/berry/BerryResponse.java,d\3\d3b89cafdbde9d90ce65426baa1007549894b9d7
+b
+2src/main/java/domain/modelo/berry/FlavorsItem.java,2\3\23866459471de559b7506b2075145127b9a714e4
+`
+0src/main/java/domain/service/BerriesService.java,a\1\a199c86e966938a31149b29973bbe9f565199ffc
+]
+-src/main/java/domain/modelo/berry/Flavor.java,3\7\37f7aa0141820fa1d1df8cc39becbb78a9432a47
+p
+@src/main/java/ui/screens/tableberrie/TableBerriesController.java,6\1\61fbe065b84af04c2af775d2c53749b2a1151dbd
+i
+9src/main/java/ui/screens/common/BaseScreenController.java,a\e\ae79ee02edc280c513f494b106c451fc7fb7cbe3
+O
+src/main/java/dao/DaoBerry.java,3\b\3b07e393425e14744ed315f6460aa011090907da

@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import common.constantes.Constantes;
 import ui.screens.common.BaseScreenController;
 
 
@@ -17,6 +18,7 @@ import java.util.List;
 
 
 public class TablePokemonController extends BaseScreenController {
+
 
     private final PokemonService pokemonService;
 
@@ -76,7 +78,7 @@ public class TablePokemonController extends BaseScreenController {
             tablePokemons.getItems().addAll(pokemonService.getAllPokemonsIdsFiltered(nombrePokemon).get());
 
         } else {
-            getPrincipalController().showInformation("No hay pokemons con ese nombre", "Null");
+            getPrincipalController().showInformation(Constantes.NO_HAY_POKEMONS_CON_ESE_NOMBRE, Constantes.ERROR);
         }
     }
 
@@ -87,23 +89,23 @@ public class TablePokemonController extends BaseScreenController {
         Pokemon pokemon = pokemonService.getPokemonById(idPokemon).get();
         frontViewNormalImg.setImage(null);
         frontViewShinyImg.setImage(null);
-        labelHp.setText("hp:");
-        labelAttack.setText("attack:");
-        labelDefense.setText("defense:");
-        labelSPAttack.setText("special-attack:");
-        labelSPDefense.setText("special-defense:");
-        labelSpeed.setText("speed:");
+        labelHp.setText(Constantes.HP);
+        labelAttack.setText(Constantes.ATTACK);
+        labelDefense.setText(Constantes.DEFENSE);
+        labelSPAttack.setText(Constantes.SPECIAL_ATTACK);
+        labelSPDefense.setText(Constantes.SPECIAL_DEFENSE);
+        labelSpeed.setText(Constantes.SPEED);
 
         if (pokemon.getSprites().getFront_default() == null) {
-            getPrincipalController().showInformation("Pokemon no disponible", "Error");
+            getPrincipalController().showInformation(Constantes.POKEMON_NO_DISPONIBLE, Constantes.ERROR);
         } else if (pokemonService.getPokemonById(idPokemon).get().getSprites().getFront_default() != null) {
 
-            labelHp.setText(pokemon.getStats().get(0).getStat().getName() + " : " + pokemon.getStats().get(0).getBase_stat());
-            labelAttack.setText(pokemon.getStats().get(1).getStat().getName() + " : " + pokemon.getStats().get(1).getBase_stat());
-            labelDefense.setText(pokemon.getStats().get(2).getStat().getName() + " : " + pokemon.getStats().get(2).getBase_stat());
-            labelSPAttack.setText(pokemon.getStats().get(3).getStat().getName() + " : " + pokemon.getStats().get(3).getBase_stat());
-            labelSPDefense.setText(pokemon.getStats().get(4).getStat().getName() + " : " + pokemon.getStats().get(4).getBase_stat());
-            labelSpeed.setText(pokemon.getStats().get(5).getStat().getName() + " : " + pokemon.getStats().get(5).getBase_stat());
+            labelHp.setText(pokemon.getStats().get(0).getStat().getName() + Constantes.DOS_PUNTOS + pokemon.getStats().get(0).getBase_stat());
+            labelAttack.setText(pokemon.getStats().get(1).getStat().getName() + Constantes.DOS_PUNTOS + pokemon.getStats().get(1).getBase_stat());
+            labelDefense.setText(pokemon.getStats().get(2).getStat().getName() + Constantes.DOS_PUNTOS + pokemon.getStats().get(2).getBase_stat());
+            labelSPAttack.setText(pokemon.getStats().get(3).getStat().getName() + Constantes.DOS_PUNTOS + pokemon.getStats().get(3).getBase_stat());
+            labelSPDefense.setText(pokemon.getStats().get(4).getStat().getName() + Constantes.DOS_PUNTOS + pokemon.getStats().get(4).getBase_stat());
+            labelSpeed.setText(pokemon.getStats().get(5).getStat().getName() + Constantes.DOS_PUNTOS + pokemon.getStats().get(5).getBase_stat());
 
 
             Image imgPokemonNormal = new Image(pokemon.getSprites().getFront_default());
@@ -115,7 +117,7 @@ public class TablePokemonController extends BaseScreenController {
             }
 
         } else {
-            getPrincipalController().showInformation("No pokemon selected", "Error");
+            getPrincipalController().showInformation(Constantes.NO_POKEMON_SELECTED, Constantes.ERROR);
         }
 
     }
@@ -124,7 +126,7 @@ public class TablePokemonController extends BaseScreenController {
     public void resetTableSearch() {
         tablePokemons.getItems().clear();
         tablePokemons.getItems().addAll(pokemonService.getAllPokemonsIds().get());
-        txtPokemonSearch.setText("");
+        txtPokemonSearch.setText(Constantes.EMPTY_STRING);
     }
 
 }
