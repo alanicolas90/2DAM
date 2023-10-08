@@ -74,3 +74,13 @@ i
 9src/main/java/ui/screens/common/BaseScreenController.java,a\e\ae79ee02edc280c513f494b106c451fc7fb7cbe3
 O
 src/main/java/dao/DaoBerry.java,3\b\3b07e393425e14744ed315f6460aa011090907da
+[
++src/main/java/domain/modelo/berry/Item.java,1\e\1e37299b79705ff0f847264f661a15b2d5a35325
+f
+6src/main/java/domain/modelo/berry/NaturalGiftType.java,8\f\8f8769a2d97cb052ce534735a17bf3a9bcd29f6e
+X
+(src/main/java/dao/impl/DaoBerryImpl.java,b\f\bf98f6e44f4d97e4d1d04ba9d1bedbb141d873e3
+Z
+*src/main/java/dao/impl/DaoPokemonImpl.java,3\e\3ef17829e8b28d6ecbd1fae6f702051140d39dee
+_
+/src/main/java/common/constantes/Constantes.java,1\c\1cc089226aff0d44d0c945a10b399d8c4ab54657
