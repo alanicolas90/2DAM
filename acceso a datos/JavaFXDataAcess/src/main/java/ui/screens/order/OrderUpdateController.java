@@ -4,6 +4,7 @@ import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Order;
+import service.CustomerService;
 import service.OrderService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantNormal;
@@ -16,11 +17,13 @@ public class OrderUpdateController extends BaseScreenController {
 
     private final OrderService orderService;
     private final CommonOrder common;
+    private final CustomerService customerService;
 
     @Inject
-    public OrderUpdateController(OrderService orderService, CommonOrder common) {
+    public OrderUpdateController(OrderService orderService, CommonOrder common, CustomerService customerService) {
         this.orderService = orderService;
         this.common = common;
+        this.customerService = customerService;
     }
 
     @FXML
@@ -67,7 +70,13 @@ public class OrderUpdateController extends BaseScreenController {
             getPrincipalController().alertWarning(ConstantNormal.CUSTOMER_ID_MUST_BE_A_NUMBER, ConstantNormal.ERROR);
         } else if (!txtTableNumber.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
             getPrincipalController().alertWarning(ConstantNormal.TABLE_NUMBER_MUST_BE_A_NUMBER, ConstantNormal.ERROR);
+        } else if (customerService.get(Integer.parseInt(txtCustomerId.getText())).isLeft()) {
+            getPrincipalController().alertWarning("customer not found", ConstantNormal.ERROR);
         } else {
+            Order newOrder = new Order(order.getId(), order.getDate(), Integer.parseInt(txtCustomerId.getText()), Integer.parseInt(txtTableNumber.getText()));
+            orderService.update(newOrder);
+            tableOrders.getItems().clear();
+            tableOrders.getItems().addAll(orderService.getAll().get());
             getPrincipalController().showInformation(ConstantNormal.ORDER_UPDATED_SUCCESSFULLY, ConstantNormal.INFORMATION);
         }
     }

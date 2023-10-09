@@ -58,6 +58,14 @@ public class CustomerService {
         }
     }
 
+    public Either<ErrorC, Integer> save(Customer c) {
+        return dao.save(c);
+    }
+
+    public Either<ErrorC, Integer> update(Customer c) {
+        return dao.update(c);
+    }
+
 
 
     public static final String NO_CUSTOMERS_FOUND = "No customers found";

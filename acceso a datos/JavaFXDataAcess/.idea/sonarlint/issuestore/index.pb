@@ -53,3 +53,5 @@ i
 9src/main/java/ui/screens/order/OrderRemoveController.java,4\a\4a70e0a9c35954dbfeba88cf606ecf0ec938673d
 o
 ?src/main/java/ui/screens/customer/CustomerRemoveController.java,6\c\6ce6c7170a067b1355aa43ed606fcc68992872db
+S
+#src/main/java/model/Credential.java,6\8\68d39015010349188c785512b71dfb08d2e37972

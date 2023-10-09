@@ -14,7 +14,7 @@ public class Configuration {
     private Configuration() {
         try {
             p = new Properties();
-            p.load(Configuration.class.getClassLoader().getResourceAsStream("config/properties.txt"));
+            p.loadFromXML(Configuration.class.getClassLoader().getResourceAsStream("config/properties.xml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,7 +28,7 @@ public class Configuration {
         return instance;
     }
 
-    public String getProperty(String key) {
+    public String getPropertyTxt(String key) {
         return p.getProperty(key);
     }
 

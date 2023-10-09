@@ -65,12 +65,15 @@ public class CustomerAddController extends BaseScreenController {
         } else if (!txtPhoneNumber.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
             getPrincipalController().alertWarning(ConstantNormal.PHONE_NUMBER_CANNOT_CONTAIN_LETTERS, ConstantNormal.ERROR);
         } else {
-            int size = tableCustomers.getItems().size();
-            int lastIdTable = tableCustomers.getItems().get(size - 1).getId();
+            int lastIdTable = tableCustomers.getItems().stream().mapToInt(Customer::getId).max().orElse(0);
             Customer customer = new Customer(lastIdTable + 1, txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue());
-            tableCustomers.getItems().add(customer);
-            getPrincipalController().showInformation(ConstantNormal.CLIENT_ADDED_CORRECTLY, ConstantNormal.INFORMATION);
-
+            if(customerService.save(customer).isLeft()){
+                getPrincipalController().alertWarning("Error", ConstantNormal.ERROR);
+            }else{
+                tableCustomers.getItems().clear();
+                tableCustomers.getItems().addAll(customerService.getAll().get());
+                getPrincipalController().showInformation(ConstantNormal.CLIENT_ADDED_CORRECTLY, ConstantNormal.INFORMATION);
+            }
         }
     }
 }

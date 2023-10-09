@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>XML file</comment>
+    <entry key="xmlClientPath">data/menuitems.xml</entry>
+    <entry key="xmlEmployeePath">data/orderitems.xml</entry>
+    <entry key="txtCustomersFile">data/customers.csv</entry>
+    <entry key="txtOrdersFile">data/orders.csv</entry>
+</properties>

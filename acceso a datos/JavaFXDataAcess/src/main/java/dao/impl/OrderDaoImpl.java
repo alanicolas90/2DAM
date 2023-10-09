@@ -21,7 +21,7 @@ import static java.nio.file.StandardOpenOption.*;
 public class OrderDaoImpl implements OrderDao {
 
     public static final String ERROR_READING_FILE = "Error reading file";
-    Path file = Paths.get(Configuration.getInstance().getProperty("ordersFile"));
+    Path file = Paths.get(Configuration.getInstance().getPropertyTxt("txtOrdersFile"));
 
 
     @Override
@@ -66,6 +66,26 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public Either<ErrorC, Integer> update(Order c) {
+        List<Order> allOrders = getAll().get();
+        String orderLine = c.toStringTextFile();
+
+        try (BufferedWriter writer = java.nio.file.Files.newBufferedWriter(file, TRUNCATE_EXISTING)) {
+            for (Order allOrder : allOrders) {
+                if (allOrder.getId() == c.getId()) {
+                    writer.write(orderLine, 0, orderLine.length());
+                    writer.newLine();
+                } else {
+                    String line = allOrder.toStringTextFile();
+                    writer.write(line, 0, line.length());
+                    writer.newLine();
+                }
+            }
+        } catch (IOException x) {
+            return Either.left(new ErrorC(ERROR_READING_FILE));
+        }
+
+
+
         return Either.right(1);
     }
 

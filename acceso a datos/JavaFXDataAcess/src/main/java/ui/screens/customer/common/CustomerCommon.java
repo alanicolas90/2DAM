@@ -28,7 +28,7 @@ public class CustomerCommon {
         columnTableNumber.setCellValueFactory(new PropertyValueFactory<>(ConstantNormal.TABLE_NUMBER));
     }
 
-    public void setsNameSurnameEmailPhoneBirth(Customer customer, TextField txtName, TextField txtSurname, TextField txtEmail, TextField txtPhoneNumber, DatePicker dateOfBirthCustomer) {
+    public Customer setsNameSurnameEmailPhoneBirth(Customer customer, TextField txtName, TextField txtSurname, TextField txtEmail, TextField txtPhoneNumber, DatePicker dateOfBirthCustomer) {
         customer.setName(txtName.getText());
         customer.setSurname(txtSurname.getText());
         customer.setEmail(txtEmail.getText());
@@ -36,6 +36,7 @@ public class CustomerCommon {
         if (dateOfBirthCustomer.getValue() != null) {
             customer.setBirthDate(dateOfBirthCustomer.getValue());
         }
+        return customer;
     }
     private CustomerCommon() {
     }

@@ -80,8 +80,14 @@ public class CustomerUpdateController extends BaseScreenController {
         } else if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPhoneNumber.getText().isEmpty()) {
             getPrincipalController().alertWarning(ConstantNormal.THERE_ARE_MISSING_FIELDS, ConstantNormal.ERROR);
         } else {
-            customerCommon.setsNameSurnameEmailPhoneBirth(customer, txtName, txtSurname, txtEmail, txtPhoneNumber, dateOfBirthCustomer);
-            getPrincipalController().showInformation(ConstantNormal.CLIENT_GOT_UPDATED_CORRECTLY, ConstantNormal.INFORMATION);
+            Customer customerUpdated = customerCommon.setsNameSurnameEmailPhoneBirth(customer, txtName, txtSurname, txtEmail, txtPhoneNumber, dateOfBirthCustomer);
+            if (customerService.update(customerUpdated).isLeft()) {
+                getPrincipalController().alertWarning("error", ConstantNormal.ERROR);
+            } else {
+                tableCustomers.getItems().clear();
+                tableCustomers.getItems().addAll(customerService.getAll().get());
+                getPrincipalController().showInformation(ConstantNormal.CLIENT_GOT_UPDATED_CORRECTLY, ConstantNormal.INFORMATION);
+            }
         }
     }
 }
