@@ -18,8 +18,6 @@ O
 src/main/java/dao/RetroFit.java,8\8\88b246ad147cd112e846cd7344447d25c352c259
 c
 3src/main/java/ui/screens/common/ConstantScreen.java,2\2\2247e75e13d4a19563e62ca5353113c0d87634a9
-[
-+src/main/java/domain/modelo/Credential.java,f\0\f09d2770b738845f18441b000fd0daf72fca5020
 Q
 !src/main/java/dao/DaoPokemon.java,0\4\048720ac2a2a6ed86ce1abdaeb42e9940cadf891
 h
