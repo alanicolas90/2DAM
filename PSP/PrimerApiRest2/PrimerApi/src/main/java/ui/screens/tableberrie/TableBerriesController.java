@@ -16,12 +16,10 @@ import java.util.List;
 public class TableBerriesController extends BaseScreenController {
 
 
-    private final DaoBerry daoBerryImpl;
     private final BerriesService berriesService;
 
     @Inject
-    public TableBerriesController(DaoBerry daoBerryImpl, BerriesService berriesService) {
-        this.daoBerryImpl = daoBerryImpl;
+    public TableBerriesController(BerriesService berriesService) {
         this.berriesService = berriesService;
     }
 
@@ -66,7 +64,7 @@ public class TableBerriesController extends BaseScreenController {
 
     @Override
     public void principalCargado() {
-        List<ResultsItem> resultsItems = daoBerryImpl.getAllBerriesWithIdMod().get();
+        List<ResultsItem> resultsItems = berriesService.getAllBerriesResult().get();
         tablePokemons.getItems().addAll(resultsItems);
     }
 
@@ -98,14 +96,14 @@ public class TableBerriesController extends BaseScreenController {
 
     public void resetTableSearch() {
         tablePokemons.getItems().clear();
-        tablePokemons.getItems().addAll(daoBerryImpl.getAllBerriesWithIdMod().get());
+        tablePokemons.getItems().addAll(berriesService.getAllBerriesResult().get());
     }
 
     public void searchBerryByName() {
         String nombreABuscar = txtPokemonSearch.getText();
         if (nombreABuscar.isEmpty() || nombreABuscar.isBlank()) {
             tablePokemons.getItems();
-            tablePokemons.getItems().addAll(daoBerryImpl.getAllBerriesWithIdMod().get());
+            tablePokemons.getItems().addAll(berriesService.getAllBerriesResult().get());
         } else if (berriesService.filteresBerriesByName(nombreABuscar).isRight()) {
             tablePokemons.getItems().clear();
             tablePokemons.getItems().addAll(berriesService.filteresBerriesByName(nombreABuscar).get());

@@ -29,11 +29,11 @@ public class BerriesService {
         }
     }
 
-    public Either<String, BerriesResponse> getAllBerriesResult() {
+    public Either<String, List<ResultsItem>> getAllBerriesResult() {
         if (daoBerryImpl.getAllBerriesNormal().isLeft()) {
             return Either.left(Constantes.NO_HAY_BERRIES);
         } else {
-            return Either.right(daoBerryImpl.getAllBerriesNormal().get());
+            return Either.right(daoBerryImpl.getAllBerriesWithIdMod().get());
         }
     }
 
