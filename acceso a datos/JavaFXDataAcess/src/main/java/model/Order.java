@@ -7,8 +7,8 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
 public class Order {
     int id;
     LocalDateTime date;

@@ -11,6 +11,7 @@ module JavaFXDataAcess {
     requires jakarta.inject;
     requires jakarta.cdi;
     requires io.vavr;
+    requires jakarta.xml.bind;
 
 
     exports ui.main to javafx.graphics;
@@ -22,6 +23,7 @@ module JavaFXDataAcess {
     exports ui.screens.welcome;
     exports ui.screens.order.common;
     exports service;
+    exports model.xml;
 
 
     opens ui.screens.order.common;

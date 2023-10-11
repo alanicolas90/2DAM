@@ -62,12 +62,14 @@ public class CustomerUpdateController extends BaseScreenController {
 
     @FXML
     private void selectionTable() {
-        Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
-        txtName.setText(customer.getName());
-        txtSurname.setText(customer.getSurname());
-        txtEmail.setText(customer.getEmail());
-        txtPhoneNumber.setText(String.valueOf(customer.getPhone()));
-        dateOfBirthCustomer.setValue(customer.getBirthDate());
+        if(tableCustomers.getSelectionModel().getSelectedItem()!=null) {
+            Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
+            txtName.setText(customer.getName());
+            txtSurname.setText(customer.getSurname());
+            txtEmail.setText(customer.getEmail());
+            txtPhoneNumber.setText(String.valueOf(customer.getPhone()));
+            dateOfBirthCustomer.setValue(customer.getBirthDate());
+        }
     }
 
     @FXML

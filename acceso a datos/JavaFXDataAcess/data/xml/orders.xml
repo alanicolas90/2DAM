@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orders>
+    <order>
+        <id>1</id>
+        <orderItem>
+            <menuItem>Caesar Salad</menuItem>
+            <quantity>2</quantity>
+        </orderItem>
+        <orderItem>
+            <menuItem>Pasta</menuItem>
+            <quantity>1</quantity>
+        </orderItem>
+        <orderItem>
+            <menuItem>Salmon</menuItem>
+            <quantity>3</quantity>
+        </orderItem>
+        <orderItem>
+            <menuItem>Apple cake</menuItem>
+            <quantity>2</quantity>
+        </orderItem>
+    </order>
+    <order>
+        <id>2</id>
+        <orderItem>
+            <menuItem>Hamburger</menuItem>
+            <quantity>2</quantity>
+        </orderItem>
+        <orderItem>
+            <menuItem>Coffee</menuItem>
+            <quantity>2</quantity>
+        </orderItem>
+    </order>
+</orders>
