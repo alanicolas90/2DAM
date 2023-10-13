@@ -20,7 +20,7 @@ public class ConstantNormal {
     public static final String DATE = "date";
     public static final String CUSTOMER_ID = "customerId";
     public static final String TABLE_NUMBER = "tableNumber";
-    public static final String ITEM_NAME = "itemName";
+    public static final String ITEM_NAME = "menuItem";
     public static final String QUANTITY = "quantity";
     public static final String PRICE = "price";
     public static final String TOTAL_PRICE = "totalPrice";

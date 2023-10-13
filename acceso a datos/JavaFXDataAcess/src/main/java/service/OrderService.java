@@ -52,8 +52,8 @@ public class OrderService {
         return daoOrders.update(o);
     }
 
-    public Either<ErrorC, Integer> delete(List<Order> orderList) {
-        return daoOrders.delete(orderList);
+    public Either<ErrorC, Integer> delete(List<Integer> listIdsOrder) {
+        return daoOrders.delete(listIdsOrder);
     }
 
 

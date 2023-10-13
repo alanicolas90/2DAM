@@ -13,11 +13,12 @@ import java.util.List;
 @Data
 @Getter
 @Setter
-@XmlRootElement
+@XmlRootElement(name = "orders")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class OrdersXml {
     @XmlElement(name = "order")
     List<OrderXml> orders;
+
 
     public OrdersXml() {
         orders = new ArrayList<>();

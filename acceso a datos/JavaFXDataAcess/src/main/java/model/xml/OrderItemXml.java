@@ -19,6 +19,9 @@ public class OrderItemXml {
     String menuItem;
     int quantity;
 
+    public OrderItemXml() {
+    }
+
     @Override
     public String toString() {
         return "OrderItemXml{" +

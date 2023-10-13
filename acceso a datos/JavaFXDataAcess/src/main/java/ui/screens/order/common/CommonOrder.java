@@ -18,12 +18,10 @@ public class CommonOrder {
 
     }
 
-    public void initOrderItemList(TableColumn<OrderItem, String> columnItemName, TableColumn<OrderItem, Integer> columnQuantity, TableColumn<OrderItem, Integer> columnPrice, TableColumn<Integer, Integer> columnTotalPrice) {
+    public void initOrderItemList(TableColumn<OrderItem, String> columnItemName, TableColumn<OrderItem, Integer> columnQuantity) {
         columnItemName.setCellValueFactory(new PropertyValueFactory<>(ConstantNormal.ITEM_NAME));
         columnQuantity.setCellValueFactory(new PropertyValueFactory<>(ConstantNormal.QUANTITY));
-        columnPrice.setCellValueFactory(new PropertyValueFactory<>(ConstantNormal.PRICE));
-        columnTotalPrice.setCellValueFactory(new PropertyValueFactory<>(ConstantNormal.TOTAL_PRICE));
-    }
+        }
 
 
     private CommonOrder() {

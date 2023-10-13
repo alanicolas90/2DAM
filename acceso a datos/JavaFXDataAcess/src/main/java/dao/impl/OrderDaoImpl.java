@@ -90,13 +90,13 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public Either<ErrorC, Integer> delete(List<Order> orderList) {
+    public Either<ErrorC, Integer> delete(List<Integer> listIdsOrder) {
         List<Order> allOrders = getAll().get();
 
         String line;
         try (BufferedWriter writer = java.nio.file.Files.newBufferedWriter(file, TRUNCATE_EXISTING)) {
             for (Order allOrder : allOrders) {
-                if (!orderList.contains(allOrder)) {
+                if(!listIdsOrder.contains(allOrder.getId())){
                     line = allOrder.toStringTextFile();
                     writer.write(line, 0, line.length());
                     writer.newLine();

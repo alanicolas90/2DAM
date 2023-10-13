@@ -14,7 +14,7 @@
 
     <Label layoutX="45.0" layoutY="96.0" text="List of Orders"/>
 
-    <TableView fx:id="tableOrders" layoutX="22.0" layoutY="118.0" prefHeight="303.0" prefWidth="371.0">
+    <TableView fx:id="tableOrders" onMouseClicked="#orderSelected" layoutX="22.0" layoutY="118.0" prefHeight="303.0" prefWidth="371.0">
         <columns>
             <TableColumn fx:id="columnId" prefWidth="49.0" text="ID"/>
             <TableColumn fx:id="columnDate" prefWidth="143.0" text="Date"/>
@@ -24,7 +24,7 @@
     </TableView>
 
     <Label layoutX="416.0" layoutY="88.0" text="Order items"/>
-    <TableView layoutX="416.0" layoutY="118.0" prefHeight="303.0" prefWidth="316.0">
+    <TableView fx:id="tableOrderItems" layoutX="416.0" layoutY="118.0" prefHeight="303.0" prefWidth="316.0">
         <columns>
             <TableColumn fx:id="columnItemName" prefWidth="138.0" text="itemName"/>
             <TableColumn fx:id="columnQuantity" prefWidth="55.0" text="quantity"/>

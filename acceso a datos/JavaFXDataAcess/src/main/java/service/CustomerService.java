@@ -52,7 +52,8 @@ public class CustomerService {
             return Either.left(new ErrorC(CUSTOMER_NOT_FOUND));
         } else {
             List<Order> ordersCustomer = orderDao.getAll().get().stream().filter(order -> order.getCustomerId() == c.getId()).toList();
-            orderDao.delete(ordersCustomer);
+            List<Integer> listIdsOrder= ordersCustomer.stream().map(Order::getId).toList();
+            orderDao.delete(listIdsOrder);
             dao.delete(c);
             return Either.right(0);
         }

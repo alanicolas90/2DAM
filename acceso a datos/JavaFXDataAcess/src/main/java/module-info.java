@@ -4,10 +4,8 @@ module JavaFXDataAcess {
     requires javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
-
     requires lombok;
     requires org.apache.logging.log4j;
-
     requires jakarta.inject;
     requires jakarta.cdi;
     requires io.vavr;
@@ -24,7 +22,11 @@ module JavaFXDataAcess {
     exports ui.screens.order.common;
     exports service;
     exports model.xml;
-
+    exports ui;
+    exports ui.screens.customer.common;
+    exports ui.screens.order;
+    exports dao;
+    exports ui.screens.customer;
 
     opens ui.screens.order.common;
     opens ui.screens.principal;
@@ -36,11 +38,9 @@ module JavaFXDataAcess {
     opens ui.screens.welcome;
     opens ui.screens.customer.common;
     opens config;
-    exports ui.screens.customer;
     opens ui.screens.customer;
-    exports ui.screens.customer.common;
-    exports ui.screens.order;
     opens ui.screens.order;
+    opens model.xml;
 
 
 }

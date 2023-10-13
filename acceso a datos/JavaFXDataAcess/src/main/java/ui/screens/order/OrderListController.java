@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Order;
 import model.OrderItem;
+import model.xml.OrderItemXml;
 import service.CustomerService;
+import service.OrderItemService;
 import service.OrderService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.order.common.CommonOrder;
@@ -17,12 +19,14 @@ public class OrderListController extends BaseScreenController {
     private final OrderService orderService;
     private final CustomerService customerService;
     private final CommonOrder commonOrder;
+    private final OrderItemService orderItemService;
 
     @Inject
-    public OrderListController(OrderService orderService, CustomerService customerService, CommonOrder commonOrder) {
+    public OrderListController(OrderService orderService, CustomerService customerService, CommonOrder commonOrder, OrderItemService orderItemService) {
         this.orderService = orderService;
         this.customerService = customerService;
         this.commonOrder = commonOrder;
+        this.orderItemService = orderItemService;
     }
 
     @FXML
@@ -39,15 +43,11 @@ public class OrderListController extends BaseScreenController {
     private TableColumn<Order, Integer> columnTableNumber;
 
     @FXML
-    private TableView<OrderItem> tableOrderItems;
+    private TableView<OrderItemXml> tableOrderItems;
     @FXML
     private TableColumn<OrderItem, String> columnItemName;
     @FXML
     private TableColumn<OrderItem, Integer> columnQuantity;
-    @FXML
-    private TableColumn<OrderItem, Integer> columnPrice;
-    @FXML
-    private TableColumn<Integer, Integer> columnTotalPrice;
     @FXML
     private TextField txtCustomerName;
 
@@ -58,7 +58,8 @@ public class OrderListController extends BaseScreenController {
 
     public void initialize() {
         commonOrder.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
-        commonOrder.initOrderItemList(columnItemName, columnQuantity, columnPrice, columnTotalPrice);
+        commonOrder.initOrderItemList(columnItemName, columnQuantity);
+
         comboBoxCustomer.getItems().addAll(customerService.getAllIds().get());
         filterComboBox.getItems().addAll("Date", "Customer", "None");
         comboBoxCustomer.setDisable(true);
@@ -79,6 +80,10 @@ public class OrderListController extends BaseScreenController {
         if (tableOrders.getSelectionModel().getSelectedItem() != null) {
             int idCustomer = tableOrders.getSelectionModel().getSelectedItem().getCustomerId();
             txtCustomerName.setText(customerService.get(idCustomer).get().getName());
+            int idOrder = tableOrders.getSelectionModel().getSelectedItem().getId();
+            if (orderItemService.get(idOrder).isRight()){
+                tableOrderItems.getItems().addAll(orderItemService.get(idOrder).get());
+            }
         }
     }
 
