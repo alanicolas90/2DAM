@@ -1,33 +1,34 @@
 package model.xml;
 
-
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Data
+@AllArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
-@XmlRootElement
+@XmlRootElement(name = "items")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class OrderItemXml {
-    String menuItem;
-    int quantity;
+public class MenuItemXml {
 
-    public OrderItemXml() {
-        this.menuItem = null;
+    @XmlElement(name = "item")
+    List<String> items;
+
+    public MenuItemXml() {
     }
 
     @Override
     public String toString() {
-        return "OrderItemXml{" +
-                "menuItem='" + menuItem + '\'' +
-                ", quantity=" + quantity +
+        return "MenuItemXml{" +
+                "items=" + items +
                 '}';
     }
 }

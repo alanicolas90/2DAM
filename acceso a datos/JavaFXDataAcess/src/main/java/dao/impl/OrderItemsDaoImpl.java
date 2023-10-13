@@ -17,7 +17,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Log4j2
 public class OrderItemsDaoImpl implements OrderItemsDao {
@@ -66,13 +65,26 @@ public class OrderItemsDaoImpl implements OrderItemsDao {
     }
 
     @Override
-    public Either<ErrorC, Integer> save(Order c) {
-        return null;
-    }
+    public Either<ErrorC, Integer> save(int idOrder,OrderItemXml c) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(OrdersXml.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-    @Override
-    public Either<ErrorC, Integer> update(Order c) {
-        return null;
+            OrdersXml allOrders = getAll().get();
+
+            if(allOrders.getOrders().stream().noneMatch(orderXml -> orderXml.getId() == idOrder)){
+                allOrders.addOrder(new OrderXml(idOrder,List.of(c)));
+            }else{
+                allOrders.getOrders().stream().filter(orderXml -> orderXml.getId() == idOrder).findFirst().get().getOrderItems().add(c);
+            }
+
+            marshaller.marshal(allOrders, Files.newOutputStream(xmlFIle));
+
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return Either.right(1);
     }
 
     @Override
@@ -82,14 +94,11 @@ public class OrderItemsDaoImpl implements OrderItemsDao {
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-
-
             OrdersXml allOrdersXml = getAll().get();
 
             while (allOrdersXml.getOrders().stream().anyMatch(orderXml -> orderXml.getId() == idOrder)) {
                 allOrdersXml.getOrders().removeIf(orderXml -> orderXml.getId() == idOrder);
             }
-
 
             marshaller.marshal(allOrdersXml, Files.newOutputStream(xmlFIle));
 
@@ -101,5 +110,10 @@ public class OrderItemsDaoImpl implements OrderItemsDao {
             log.error(e.getMessage());
         }
         return Either.right(1);
+    }
+
+    @Override
+    public Either<ErrorC, Integer> update(Order c) {
+        return null;
     }
 }

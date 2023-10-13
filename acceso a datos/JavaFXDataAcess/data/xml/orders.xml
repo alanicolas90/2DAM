@@ -31,17 +31,25 @@
         </orderItem>
     </order>
     <order>
-        <id>3</id>
+        <id>9</id>
         <orderItem>
-            <menuItem>food</menuItem>
-            <quantity>12</quantity>
+            <menuItem>trufa</menuItem>
+            <quantity>9</quantity>
+        </orderItem>
+        <orderItem>
+            <menuItem>Apple cake</menuItem>
+            <quantity>2</quantity>
         </orderItem>
     </order>
     <order>
-        <id>4</id>
+        <id>10</id>
         <orderItem>
-            <menuItem>food</menuItem>
-            <quantity>12</quantity>
+            <menuItem>trufa</menuItem>
+            <quantity>10</quantity>
+        </orderItem>
+        <orderItem>
+            <menuItem>spinach</menuItem>
+            <quantity>10</quantity>
         </orderItem>
     </order>
 </orders>

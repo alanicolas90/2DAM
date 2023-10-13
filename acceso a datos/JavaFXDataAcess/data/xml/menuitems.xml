@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><menuItems>
-    <menuItem>
-        <id>1</id>
-        <itemName>Cola</itemName>
-        <description>Good cola</description>
-        <price>2.5</price>
-    </menuItem>
-</menuItems>

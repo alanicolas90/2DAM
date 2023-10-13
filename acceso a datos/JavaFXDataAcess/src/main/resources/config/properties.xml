@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment>XML file</comment>
-    <entry key="xmlMenuItemsPath">data/xml/menuitems.xml</entry>
+    <entry key="xmlItemsPath">data/xml/orderItems.xml</entry>
     <entry key="xmlOrdersPath">data/xml/orders.xml</entry>
     <entry key="txtCustomersFile">data/text/customers.csv</entry>
     <entry key="txtOrdersFile">data/text/orders.csv</entry>

@@ -4,7 +4,6 @@ import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.input.MouseEvent;
 import model.Order;
 import model.OrderItem;
 import model.xml.OrderItemXml;
@@ -49,10 +48,7 @@ public class OrderRemoveController extends BaseScreenController {
     private TableColumn<OrderItem, String> columnItemName;
     @FXML
     private TableColumn<OrderItem, Integer> columnQuantity;
-    @FXML
-    private TableColumn<OrderItem, Integer> columnPrice;
-    @FXML
-    private TableColumn<Integer, Integer> columnTotalPrice;
+
 
     public void initialize() {
         common.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
@@ -96,6 +92,5 @@ public class OrderRemoveController extends BaseScreenController {
                 tableOrderItems.getItems().addAll(orderItemService.get(idOrder).get());
             }
         }
-
     }
 }

@@ -3,7 +3,6 @@ package dao;
 import io.vavr.control.Either;
 import model.ErrorC;
 import model.Order;
-import model.OrderItem;
 import model.xml.OrderItemXml;
 import model.xml.OrdersXml;
 
@@ -15,7 +14,7 @@ public interface OrderItemsDao {
 
     Either<ErrorC, List<OrderItemXml>> get(int id);
 
-    Either<ErrorC, Integer> save(Order c);
+    Either<ErrorC, Integer> save(int idOrder,OrderItemXml c);
     Either<ErrorC, Integer> update(Order c);
     Either<ErrorC, Integer> delete(int idOrder);
 }
