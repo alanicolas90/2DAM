@@ -1,6 +1,7 @@
 package dao.impl;
 
 import config.Configuration;
+import config.common.Constants;
 import dao.OrderDao;
 import io.vavr.control.Either;
 import model.ErrorC;
@@ -20,7 +21,7 @@ import static java.nio.file.StandardOpenOption.*;
 
 public class OrderDaoImpl implements OrderDao {
 
-    public static final String ERROR_READING_FILE = "Error reading file";
+
     Path file = Paths.get(Configuration.getInstance().getPropertyTxt("txtOrdersFile"));
 
 
@@ -38,7 +39,7 @@ public class OrderDaoImpl implements OrderDao {
                 orders.add(order);
             }
         } catch (IOException x) {
-            return Either.left(new ErrorC(ERROR_READING_FILE));
+            return Either.left(new ErrorC(Constants.ERROR_READING_FILE));
         }
         return Either.right(orders);
     }
@@ -59,7 +60,7 @@ public class OrderDaoImpl implements OrderDao {
             writer.write(line, 0, line.length());
 
         } catch (IOException x) {
-            return Either.left(new ErrorC(ERROR_READING_FILE));
+            return Either.left(new ErrorC(Constants.ERROR_READING_FILE));
         }
         return Either.right(0);
     }
@@ -81,7 +82,7 @@ public class OrderDaoImpl implements OrderDao {
                 }
             }
         } catch (IOException x) {
-            return Either.left(new ErrorC(ERROR_READING_FILE));
+            return Either.left(new ErrorC(Constants.ERROR_READING_FILE));
         }
 
 
@@ -103,7 +104,7 @@ public class OrderDaoImpl implements OrderDao {
                 }
             }
         } catch (IOException x) {
-            return Either.left(new ErrorC(ERROR_READING_FILE));
+            return Either.left(new ErrorC(Constants.ERROR_READING_FILE));
         }
         return Either.right(0);
     }

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface MenuItemsDao {
 
-    public Either<ErrorC, List<String>> getAll();
+    Either<ErrorC, List<String>> getAll();
 }

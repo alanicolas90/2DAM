@@ -66,13 +66,13 @@ public class OrderRemoveController extends BaseScreenController {
         if (order == null) {
             getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_AN_ORDER, ConstantNormal.ERROR);
         } else if (orderItemService.get(idOrder).isRight()) {
-            if (getPrincipalController().alertDeleteConfirmation("There are order Items, are you sure youw ant to delete?", "Warning")) {
+            if (getPrincipalController().alertDeleteConfirmation(ConstantNormal.THERE_ARE_ORDER_ITEMS_ARE_YOU_SURE_YOUW_ANT_TO_DELETE, ConstantNormal.WARNING)) {
                 if (orderService.delete(List.of(order.getId())).isRight()) {
                     orderItemService.delete(idOrder);
                     getPrincipalController().showInformation(ConstantNormal.ORDER_DELETED_SUCCESSFULLY, ConstantNormal.INFORMATION);
                 }
             } else {
-                getPrincipalController().showInformation("Order not deleted", ConstantNormal.INFORMATION);
+                getPrincipalController().showInformation(ConstantNormal.ORDER_NOT_DELETED, ConstantNormal.INFORMATION);
             }
         } else {
             orderService.delete(List.of(order.getId()));

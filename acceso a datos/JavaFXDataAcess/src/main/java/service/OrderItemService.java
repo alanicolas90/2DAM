@@ -5,7 +5,6 @@ import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.ErrorC;
 import model.xml.OrderItemXml;
-import model.xml.OrderXml;
 import model.xml.OrdersXml;
 
 import java.util.List;

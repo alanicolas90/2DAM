@@ -84,7 +84,7 @@ public class CustomerUpdateController extends BaseScreenController {
         } else {
             Customer customerUpdated = customerCommon.setsNameSurnameEmailPhoneBirth(customer, txtName, txtSurname, txtEmail, txtPhoneNumber, dateOfBirthCustomer);
             if (customerService.update(customerUpdated).isLeft()) {
-                getPrincipalController().alertWarning("error", ConstantNormal.ERROR);
+                getPrincipalController().alertWarning(ConstantNormal.ERROR, ConstantNormal.ERROR);
             } else {
                 tableCustomers.getItems().clear();
                 tableCustomers.getItems().addAll(customerService.getAll().get());

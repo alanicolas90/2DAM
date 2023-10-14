@@ -15,15 +15,14 @@ import ui.screens.customer.common.CustomerCommon;
 import java.time.LocalDate;
 
 public class CustomerAddController extends BaseScreenController {
+    private final CustomerService customerService;
+    private final CustomerCommon customerCommon;
 
     @Inject
     public CustomerAddController(CustomerService customerService, CustomerCommon customerCommon) {
         this.customerService = customerService;
         this.customerCommon = customerCommon;
     }
-
-    private final CustomerService customerService;
-    private final CustomerCommon customerCommon;
 
     @FXML
     private TableView<Customer> tableCustomers;
@@ -68,7 +67,7 @@ public class CustomerAddController extends BaseScreenController {
             int lastIdTable = tableCustomers.getItems().stream().mapToInt(Customer::getId).max().orElse(0);
             Customer customer = new Customer(lastIdTable + 1, txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue());
             if(customerService.save(customer).isLeft()){
-                getPrincipalController().alertWarning("Error", ConstantNormal.ERROR);
+                getPrincipalController().alertWarning(ConstantNormal.ERROR, ConstantNormal.ERROR);
             }else{
                 tableCustomers.getItems().clear();
                 tableCustomers.getItems().addAll(customerService.getAll().get());

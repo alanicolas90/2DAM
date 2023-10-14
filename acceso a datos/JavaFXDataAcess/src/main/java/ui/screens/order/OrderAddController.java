@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 
 public class OrderAddController extends BaseScreenController {
 
+    public static final String Con = "\\d+";
     private final OrderService orderService;
     private final CustomerService customerService;
     private final OrderItemService orderItemService;
@@ -111,8 +112,8 @@ public class OrderAddController extends BaseScreenController {
             getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_AN_ORDER, ConstantNormal.ERROR);
         } else if (txtOrderItemQuantity.getText().isEmpty() || txtOrderItemQuantity.getText().isBlank() || comboBoxMenuItem.getValue() == null) {
             getPrincipalController().alertWarning(ConstantNormal.ALL_THE_FIELDS_MUST_BE_FILLED, ConstantNormal.ERROR);
-        } else if (!txtOrderItemQuantity.getText().matches("\\d+")) {
-            getPrincipalController().alertWarning("Quantity must be a number", ConstantNormal.ERROR);
+        } else if (!txtOrderItemQuantity.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
+            getPrincipalController().alertWarning(ConstantNormal.QUANTITY_MUST_BE_A_NUMBER, ConstantNormal.ERROR);
         } else {
             if (orderItemService.save(idOrder, new OrderItemXml(comboBoxMenuItem.getValue(), Integer.parseInt(txtOrderItemQuantity.getText()))).isRight()) {
                 getPrincipalController().showInformation(ConstantNormal.ORDER_ADDED_SUCCESSFULLY, ConstantNormal.SUCCESS);

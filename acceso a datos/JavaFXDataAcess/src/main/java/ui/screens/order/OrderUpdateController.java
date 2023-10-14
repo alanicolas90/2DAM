@@ -71,7 +71,7 @@ public class OrderUpdateController extends BaseScreenController {
         } else if (!txtTableNumber.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
             getPrincipalController().alertWarning(ConstantNormal.TABLE_NUMBER_MUST_BE_A_NUMBER, ConstantNormal.ERROR);
         } else if (customerService.get(Integer.parseInt(txtCustomerId.getText())).isLeft()) {
-            getPrincipalController().alertWarning("customer not found", ConstantNormal.ERROR);
+            getPrincipalController().alertWarning(ConstantNormal.CUSTOMER_NOT_FOUND, ConstantNormal.ERROR);
         } else {
             Order newOrder = new Order(order.getId(), order.getDate(), Integer.parseInt(txtCustomerId.getText()), Integer.parseInt(txtTableNumber.getText()));
             orderService.update(newOrder);

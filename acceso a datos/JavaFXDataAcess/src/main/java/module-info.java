@@ -22,7 +22,6 @@ module JavaFXDataAcess {
     exports ui.screens.order.common;
     exports service;
     exports model.xml;
-    exports ui;
     exports ui.screens.customer.common;
     exports ui.screens.order;
     exports dao;
@@ -41,6 +40,7 @@ module JavaFXDataAcess {
     opens ui.screens.customer;
     opens ui.screens.order;
     opens model.xml;
+    opens config.common;
 
 
 }

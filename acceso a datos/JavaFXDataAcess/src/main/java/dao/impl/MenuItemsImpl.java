@@ -1,6 +1,7 @@
 package dao.impl;
 
 import config.Configuration;
+import config.common.Constants;
 import dao.MenuItemsDao;
 import io.vavr.control.Either;
 import jakarta.xml.bind.JAXBContext;
@@ -9,7 +10,6 @@ import jakarta.xml.bind.Unmarshaller;
 import lombok.extern.log4j.Log4j2;
 import model.ErrorC;
 import model.xml.MenuItemXml;
-import model.xml.OrdersXml;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -36,7 +36,7 @@ public class MenuItemsImpl implements MenuItemsDao {
             log.error(e.getMessage());
         }
         if(result == null){
-            return Either.left(new ErrorC("Error reading file"));
+            return Either.left(new ErrorC(Constants.ERROR_READING_FILE));
         }
 
         return Either.right(result.getItems());

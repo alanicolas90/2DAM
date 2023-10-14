@@ -71,6 +71,10 @@ public class ConstantNormal {
     public static final String CUSTOMER_NOT_DELETED = "Customer not deleted";
     public static final String DELETE_CUSTOMER = "Are you sure you want to delete this customer?";
     public static final String ERROR_ADDING_ORDER = "Error adding order";
+    public static final String QUANTITY_MUST_BE_A_NUMBER = "Quantity must be a number";
+    public static final String THERE_ARE_ORDER_ITEMS_ARE_YOU_SURE_YOUW_ANT_TO_DELETE = "There are order Items, are you sure youw ant to delete?";
+    public static final String ORDER_NOT_DELETED = "Order not deleted";
+    public static final String CUSTOMER_NOT_FOUND = "customer not found";
 
 
     private ConstantNormal() {

@@ -1,6 +1,7 @@
 package dao.impl;
 
 import config.Configuration;
+import config.common.Constants;
 import dao.CustomerDao;
 import io.vavr.control.Either;
 import model.Customer;
@@ -32,7 +33,7 @@ public class CustomerDaoImpl implements CustomerDao {
                 }
             });
         } catch (IOException e) {
-            return Either.left(new ErrorC("Error reading file"));
+            return Either.left(new ErrorC(Constants.ERROR_READING_FILE));
         }
         return Either.right(customerList);
     }
@@ -51,7 +52,7 @@ public class CustomerDaoImpl implements CustomerDao {
         try {
             Files.write(file, fileList, StandardOpenOption.TRUNCATE_EXISTING);
         } catch (IOException e) {
-            return Either.left(new ErrorC("Error reading file"));
+            return Either.left(new ErrorC(Constants.ERROR_READING_FILE));
         }
         return Either.right(1);
     }
@@ -72,7 +73,7 @@ public class CustomerDaoImpl implements CustomerDao {
         try {
             Files.write(file, fileList, java.nio.file.StandardOpenOption.TRUNCATE_EXISTING);
         } catch (IOException e) {
-            return Either.left(new ErrorC("Error reading file"));
+            return Either.left(new ErrorC(Constants.ERROR_READING_FILE));
         }
         return Either.right(1);
     }
@@ -91,7 +92,7 @@ public class CustomerDaoImpl implements CustomerDao {
         try {
             Files.write(file, fileList, java.nio.file.StandardOpenOption.TRUNCATE_EXISTING);
         } catch (IOException e) {
-            return Either.left(new ErrorC("Error reading file"));
+            return Either.left(new ErrorC(Constants.ERROR_READING_FILE));
         }
         return Either.right(0);
     }

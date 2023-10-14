@@ -1,6 +1,7 @@
 package dao.impl;
 
 import config.Configuration;
+import config.common.Constants;
 import dao.OrderItemsDao;
 import io.vavr.control.Either;
 import jakarta.xml.bind.JAXBContext;
@@ -41,7 +42,7 @@ public class OrderItemsDaoImpl implements OrderItemsDao {
             log.error(e.getMessage());
         }
         if (orderList == null) {
-            return Either.left(new ErrorC("Error reading file"));
+            return Either.left(new ErrorC(Constants.ERROR_READING_FILE));
         }
         return Either.right(orderList);
 

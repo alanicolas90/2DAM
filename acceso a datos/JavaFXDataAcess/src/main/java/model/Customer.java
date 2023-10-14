@@ -2,11 +2,13 @@ package model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Customer {
     int id;
     String name;
@@ -61,10 +63,5 @@ public class Customer {
             }
             this.birthDate = LocalDate.parse(customerData[5]);
         }
-    }
-
-
-    public Customer() {
-
     }
 }

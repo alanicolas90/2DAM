@@ -1,5 +1,6 @@
 package service;
 
+import config.common.Constants;
 import dao.OrderDao;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class OrderService {
 
-    public static final String NO_ORDERS_FOUND = "No orders found";
+
     private final OrderDao daoOrders;
 
     @Inject
@@ -38,7 +39,7 @@ public class OrderService {
             }
         }
         if (customerOrders.isEmpty()) {
-            return Either.left(new ErrorC(NO_ORDERS_FOUND));
+            return Either.left(new ErrorC(Constants.NO_ORDERS_FOUND));
         } else {
             return Either.right(customerOrders);
         }
@@ -67,7 +68,7 @@ public class OrderService {
             }
         }
         if (ordersContainDate.isEmpty()) {
-            return Either.left(new ErrorC(NO_ORDERS_FOUND));
+            return Either.left(new ErrorC(Constants.NO_ORDERS_FOUND));
         } else {
             return Either.right(ordersContainDate);
         }
