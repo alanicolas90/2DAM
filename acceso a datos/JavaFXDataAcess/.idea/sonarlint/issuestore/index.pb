@@ -89,8 +89,6 @@ g
 7src/main/java/ui/screens/order/OrderListController.java,c\3\c320e222e183f44a0ecbda724e9c0ce8390eb7da
 G
 data/text/customers.csv,2\f\2f8c3db51fd6be09f7c31c213d2b685705b54d30
-G
-data/xml/orderItems.xml,9\8\98256088cf3fdca350da63db420615bf048e8039
 S
 #src/main/java/dao/MenuItemsDao.java,7\9\7929804c4559f2c08452a3c5c80005cc3459e79d
 Z
