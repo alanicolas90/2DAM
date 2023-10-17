@@ -1,0 +1,58 @@
+Objetivos:
+Evaluar la usabilidad de Discord, considerando una amplia gama de factores, incluyendo los principios de usabilidad, encuestas y cuestionarios de usabilidad, pruebas de usuario, análisis de métricas de uso, evaluación heurística y mapas de calor. Los objetivos específicos son:
+
+Identificar problemas y áreas de mejora en la interfaz de usuario.
+Recopilar retroalimentación de los usuarios para orientar mejoras en la plataforma.
+Contexto:
+Las pruebas se llevarán a cabo en un laboratorio de usabilidad o en línea, en un entorno que simule el uso cotidiano de Discord, incluyendo servidores, canales y roles ficticios.
+
+Participantes:
+Se reclutarán 10 a 15 participantes que representen la diversidad de usuarios de Discord, desde principiantes hasta usuarios avanzados.
+
+Escenarios de Uso:
+Los escenarios de uso incluirán tareas relacionadas con los principios de usabilidad previamente mencionados, así como actividades específicas para evaluar la interfaz de usuario en términos de encuestas y cuestionarios, pruebas de usuario, análisis de métricas de uso, evaluación heurística y mapas de calor.
+
+Métricas de Evaluación:
+
+Métricas específicas relacionadas con cada uno de los principios de usabilidad mencionados.
+Resultados de encuestas y cuestionarios de usabilidad.
+Datos recopilados de pruebas de usuario, incluyendo tiempo requerido, tasa de éxito y retroalimentación cualitativa.
+Métricas de uso, como la frecuencia de acceso, las acciones más comunes realizadas y la duración de las sesiones.
+Evaluación heurística para identificar problemas de diseño siguiendo pautas heurísticas específicas.
+Análisis de mapas de calor para comprender el comportamiento y las áreas de interacción más comunes de los usuarios en la interfaz.
+Equipo y Recursos:
+
+Facilitadores para supervisar las pruebas y recopilar datos.
+Acceso a servidores de Discord de prueba o servidores de prueba temporales.
+Equipos de grabación de sesiones y cuestionarios.
+Consentimiento informado de los participantes.
+Herramientas de análisis de mapas de calor.
+Metodología:
+Se llevarán a cabo pruebas de usabilidad moderadas, con facilitadores que guiarán a los participantes a través de los escenarios de uso, además de la recopilación de datos a través de encuestas y cuestionarios, pruebas de usuario, análisis de métricas de uso, evaluación heurística y mapas de calor.
+
+Plan de Entrevistas y Cuestionarios:
+
+Se realizarán entrevistas pre y post-prueba para comprender las expectativas y experiencias de los usuarios en relación con los principios de usabilidad.
+Se administrará un cuestionario SUS al final de las pruebas para medir la satisfacción general con Discord, además de encuestas específicas relacionadas con la interfaz de usuario.
+Horario y Cronograma:
+
+Las pruebas se realizarán a lo largo de 2 semanas.
+Cada participante dedicará aproximadamente 1 hora a las pruebas.
+Las sesiones de prueba se programarán en horarios que sean convenientes para los participantes.
+Registro y Análisis de Datos:
+
+Se grabarán en video todas las sesiones de prueba.
+Se registrarán las métricas cuantitativas relacionadas con cada principio de usabilidad y las métricas de uso.
+Se llevará a cabo una evaluación heurística de la interfaz y se analizarán los mapas de calor para comprender el comportamiento del usuario.
+Informe de Resultados:
+
+Se elaborará un informe que resuma los hallazgos relacionados con cada uno de los enfoques de evaluación, incluyendo los principios de usabilidad, encuestas y cuestionarios de usabilidad, pruebas de usuario, análisis de métricas de uso, evaluación heurística y mapas de calor.
+Se ofrecerán recomendaciones específicas para mejorar Discord en función de los resultados de cada método de evaluación.
+Acciones Posteriores:
+
+Se discutirán las recomendaciones con el equipo de desarrollo y diseño de Discord.
+Se planificarán mejoras en la plataforma que aborden los problemas identificados en relación con los diferentes métodos de evaluación.
+Se realizará una segunda evaluación de usabilidad para medir el impacto de las mejoras implementadas en Discord.
+
+
+-------------------------------------------------------------------------------------------------------------------
