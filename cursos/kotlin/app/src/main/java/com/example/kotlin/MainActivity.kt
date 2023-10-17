@@ -23,8 +23,23 @@ class MainActivity : AppCompatActivity() {
 //            Log.d(tag, "${it.name} ${it.age} ${it.language}")
 //        }
         //condicionalesif()
-        condicionalesWhen()
+        //condicionalesWhen()
+        lsitados()
     }
+
+    private fun lsitados() {
+        val list = listOf<String>()
+        val list2: List<String> = listOf()
+
+        val arrayList = arrayListOf<String>()
+        val arrayList2: ArrayList<String> = arrayListOf()
+
+        val myList = listOf("Rodrigo", "Jose", "Juan")
+        val myArrayList = arrayListOf("Rodrigo", "Jose", "Juan")
+
+        
+    }
+
 
     private fun condicionalesWhen() {
         val language = "Kotlin"
