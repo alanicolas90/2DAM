@@ -22,43 +22,55 @@ class MainActivity : AppCompatActivity() {
 //        rodri.getProgrammerData().let {
 //            Log.d(tag, "${it.name} ${it.age} ${it.language}")
 //        }
-
-
-
-
-
+        //condicionalesif()
+        
     }
 
 
+    private fun condicionalesif() {
+        val num1 = 10
+        val num2 = 5
+        val booleano = true
+
+        if (num1 > num2) {
+            Log.d(tag, "num1 es mayor que num2")
+        }  else {
+            Log.d(tag, "num1 es menor que num2")
+        }
+        if(booleano) Log.d(tag, "Es true") else Log.d(tag, "Es false")
+        val resultado:Int = if (!booleano){
+            17
+        }else{
+            18
+        }
+        Log.d(tag, "$resultado")
+    }
 
 
-
-    
-    private fun interfaces(){
-        val rodrigo= Persona(PersonaData("Rodrigo", 26))
+    private fun interfaces() {
+        val rodrigo = Persona(PersonaData("Rodrigo", 26))
 
         rodrigo.returnAge(1995)
         rodrigo.presentacion()
     }
 
-    interface PersonaInterface{
-        fun returnAge(birthYear: Int):Int
+    interface PersonaInterface {
+        fun returnAge(birthYear: Int): Int
     }
 
 
-    class Persona(private val data: PersonaData) : PersonaInterface{
+    class Persona(private val data: PersonaData) : PersonaInterface {
         fun presentacion() {
             data.name?.let {//si es null no se ejecuta
                 Log.d(tag, "Hola soy ${data.name} y mi edad es ${data.age}")
-            }?: run {//si es null se ejecuta
+            } ?: run {//si es null se ejecuta
                 Log.d(tag, "Hola soy juancho y mi edad es ${data.age}")
             }
         }
 
-        override fun returnAge(birthYear: Int):Int = Log.d(tag, "Mi edad es ${2021 - birthYear}")
+        override fun returnAge(birthYear: Int): Int = Log.d(tag, "Mi edad es ${2021 - birthYear}")
 
     }
-
 
 
     data class PersonaData(
@@ -71,8 +83,6 @@ class MainActivity : AppCompatActivity() {
         val rodrigo = Persona(rodrigoData)
         rodrigo.presentacion()
     }
-
-
 
 
     private fun funciones() {
