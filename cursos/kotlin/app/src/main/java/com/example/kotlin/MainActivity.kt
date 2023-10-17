@@ -4,8 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 
+private val tag = ":::TAG"
+
 class MainActivity : AppCompatActivity() {
-    private val tag = ":::TAG"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -15,12 +16,64 @@ class MainActivity : AppCompatActivity() {
         //operadores()
         //nullSafety()
         //funciones()
+        //clases()
+        //interfaces()
+//        val rodri = Programador()
+//        rodri.getProgrammerData().let {
+//            Log.d(tag, "${it.name} ${it.age} ${it.language}")
+//        }
+
+
+
+
+
     }
 
 
 
 
+
     
+    private fun interfaces(){
+        val rodrigo= Persona(PersonaData("Rodrigo", 26))
+
+        rodrigo.returnAge(1995)
+        rodrigo.presentacion()
+    }
+
+    interface PersonaInterface{
+        fun returnAge(birthYear: Int):Int
+    }
+
+
+    class Persona(private val data: PersonaData) : PersonaInterface{
+        fun presentacion() {
+            data.name?.let {//si es null no se ejecuta
+                Log.d(tag, "Hola soy ${data.name} y mi edad es ${data.age}")
+            }?: run {//si es null se ejecuta
+                Log.d(tag, "Hola soy juancho y mi edad es ${data.age}")
+            }
+        }
+
+        override fun returnAge(birthYear: Int):Int = Log.d(tag, "Mi edad es ${2021 - birthYear}")
+
+    }
+
+
+
+    data class PersonaData(
+        val name: String?,
+        val age: Int
+    )
+
+    private fun clases() {
+        val rodrigoData = PersonaData(null, 26)
+        val rodrigo = Persona(rodrigoData)
+        rodrigo.presentacion()
+    }
+
+
+
 
     private fun funciones() {
         val nombre = "Jose"
@@ -33,12 +86,12 @@ class MainActivity : AppCompatActivity() {
         Log.d(tag, "$calculaEdad")
     }
 
-    private fun funcionSimple(){
+    private fun funcionSimple() {
         Log.d(tag, "Jose")
         Log.d(tag, 30.toString())
     }
 
-    private fun printNameAge(name:String, age:Int){
+    private fun printNameAge(name: String, age: Int) {
         //Log.d(tag, "Mi nombre es $name y mi edad es $age")
         Log.d(tag, name)
         Log.d(tag, age.toString())
@@ -47,9 +100,9 @@ class MainActivity : AppCompatActivity() {
     //para trozos de codigo cortos se puede hacer asi (es como un return) y se sobre entiende el :Int (se puede borrar)
     private fun funcionRetorno(birthYear: Int): Int = 2021 - birthYear
 
-    private fun nullSafety(){
+    private fun nullSafety() {
         var nullString: String? = null
-        if(nullString != null) {
+        if (nullString != null) {
             Log.d(tag, "$nullString")
         }
 
