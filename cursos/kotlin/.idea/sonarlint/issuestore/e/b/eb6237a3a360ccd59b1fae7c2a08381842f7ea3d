@@ -1,0 +1,30 @@
+
+?kotlin:S6615¹" Remove this useless initializer.(Á¯Ğe8ĞÍ£ë³1
+Bkotlin:S125"Remove this commented out code.(ŸÈòÛùÿÿÿÿ8ÒÍ£ë³1
+Bkotlin:S125i"Remove this commented out code.(‰Ô°ƒùÿÿÿÿ8ÒÍ£ë³1
+Xkotlin:S1144"4Remove this unused private "condicionalesif" method.(–ç³ÿùÿÿÿÿ8õÄÿë³1
+Skotlin:S11442"/Remove this unused private "interfaces" method.(»©¬Ùûÿÿÿÿ8ÔÍ£ë³1
+Okotlin:S1144Q"+Remove this unused private "clases" method.(ñà­®øÿÿÿÿ8ÔÍ£ë³1
+Rkotlin:S1144X".Remove this unused private "funciones" method.(²–çôúÿÿÿÿ8ÔÍ£ë³1
+Skotlin:S1144q"/Remove this unused private "nullSafety" method.(Ñï«’ıÿÿÿÿ8ÕÍ£ë³1
+Nkotlin:S1144‡"/Remove this unused private "operadores" method.(–Üêj8ÕÍ£ë³1
+Vkotlin:S1144¢"1Remove this unused private "tiposDeDatos" method.(ÅÀ×‚ıÿÿÿÿ8ÕÍ£ë³1
+Nkotlin:S1144µ".Remove this unused private "variables" method.(“ÄœÁ8ÕÍ£ë³1
+Hkotlin:S1481"(Remove this unused "not" local variable.(‡À½¹8ˆÎ£ë³1
+Lkotlin:S1481œ"'Remove this unused "or" local variable.(Ô¨é‹üÿÿÿÿ8ˆÎ£ë³1
+Mkotlin:S1481›"(Remove this unused "and" local variable.(œ—«øüÿÿÿÿ8ˆÎ£ë³1
+Xkotlin:S1481˜"3Remove this unused "isLessOrEquals" local variable.(”ÉÂúÿÿÿÿ8ˆÎ£ë³1
+Vkotlin:S1481—"6Remove this unused "isGreaterOrEquals" local variable.(Æâ8ˆÎ£ë³1
+Kkotlin:S1481–"+Remove this unused "isLess" local variable.(óÍ’¨8ˆÎ£ë³1
+Mkotlin:S1481•".Remove this unused "isGreater" local variable.(¬ã58ˆÎ£ë³1
+Mkotlin:S1481"(Remove this unused "mod" local variable.(®—Ã¬şÿÿÿÿ8ˆÎ£ë³1
+Hkotlin:S1481"(Remove this unused "div" local variable.(•‘¶Ë8ˆÎ£ë³1
+Hkotlin:S1481")Remove this unused "mult" local variable.(œ¼Ú8ˆÎ£ë³1
+Hkotlin:S1481")Remove this unused "rest" local variable.(ã‰ıR8ˆÎ£ë³1
+Mkotlin:S1481Œ"(Remove this unused "sum" local variable.(Íô·£ıÿÿÿÿ8ˆÎ£ë³1
+Mkotlin:S1481°"-Remove this unused "boolean2" local variable.(ĞÑ Å8ˆÎ£ë³1
+Qkotlin:S1481¯",Remove this unused "boolean" local variable.(§òı­úÿÿÿÿ8ˆÎ£ë³1
+Rkotlin:S1481¬"-Remove this unused "decimal2" local variable.(”ô‰Ûıÿÿÿÿ8ˆÎ£ë³1
+Qkotlin:S1481«",Remove this unused "decimal" local variable.(ÛúÒşÿÿÿÿ8‰Î£ë³1
+Kkotlin:S1481¤"+Remove this unused "string" local variable.(‚™‰8‰Î£ë³1
+akotlin:S65179"BMake this interface functional or replace it with a function type.(ÙŸší8ŒÎ£ë³1
