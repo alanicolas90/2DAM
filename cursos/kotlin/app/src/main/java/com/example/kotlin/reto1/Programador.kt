@@ -1,6 +1,6 @@
-package com.example.kotlin
+package com.example.kotlin.reto1
 
-class Programador:ProgramadorInterface {
+class Programador: ProgramadorInterface {
     override fun getProgrammerData(): ProgrammerData = ProgrammerData(getName(), getAge(), getLanguage())
     private fun getName():String = "Alan"
     private fun getAge():Int = 23

@@ -24,39 +24,150 @@ class MainActivity : AppCompatActivity() {
 //        }
         //condicionalesif()
         //condicionalesWhen()
-        lsitados()
+        //listados()
+        //buclesFor()
+        //buclesWhile()
+        //buclesDoWhile()
+        //controlDeErrores()
+
+
+//        val yo = Persona("Alan", 60, listOf("Programar", "Jugar", "Dormir"))
+//        botDeSeguridad (yo)
+        
+
+
     }
 
-    private fun lsitados() {
+
+    data class Persona(
+        val nombre: String,
+        val edad: Int,
+        val hobbies: List<String>
+    )
+
+    private fun onCreate(personaVerificar: Persona) {
+        botDeSeguridad(personaVerificar)
+    }
+
+    private fun botDeSeguridad(personaVerificar: Persona) {
+        if (personaVerificar.nombre != "Alan") {
+            Log.d(tag, "No eres Alan")
+        } else {
+            Log.d(tag, "Bienvenido ${personaVerificar.nombre}")
+            when (personaVerificar.edad) {
+                in 0..17 -> Log.d(tag, "Demasiado joven para entrar")
+                in 65..100 -> Log.d(tag, "Demasiado mayor para entrar")
+                else -> {
+                    Log.d(tag, "Éxito")
+                    Log.d(tag, "Me gusta:")
+                    for (hobbie in personaVerificar.hobbies) {
+                        Log.d(tag, hobbie)
+                    }
+                }
+            }
+        }
+    }
+
+
+    private fun controlDeErrores() {
+        val myArrayList = arrayListOf(1, 2, 3, 4, 5)
+        try {
+            for (position in 0..myArrayList.size) {
+
+                Log.d(tag, myArrayList[position].toString())
+            }
+        } catch (e: Exception) {
+            Log.d(tag, "Ha ocurrido un error")
+            e.printStackTrace()
+        } finally { //para que se ejecute siempre, por ejemplo cerrar la base de datos
+            Log.d(tag, "Se ha ejecutado el bloque finally")
+        }
+
+    }
+
+    private fun buclesDoWhile() {
+        var contador = 0
+        //primero entra en el bucle y luego comprueba la condicion
+        do {
+            Log.d(tag, "$contador")
+            contador++
+        } while (contador < 10)
+    }
+
+    private fun buclesWhile() {
+        var contador = 0
+        while (contador < 10) {
+            Log.d(tag, "$contador")
+            contador += 3
+        }
+    }
+
+    private fun buclesFor() {
+        val myArrayList = arrayListOf("Rodrigoarray", "Jose", "Juan", "Sandra", "papa")
+
+        for (persona in myArrayList) {
+            Log.d(tag, persona)
+        }
+        for (position in 0..100 step 10) {
+            Log.d(tag, "$position")
+        }
+        for (position in 0 until 10) {
+            Log.d(tag, "$position")
+        }
+        for (position in 10 downTo 0) {
+            Log.d(tag, "$position")
+        }
+    }
+
+    private fun listados() {
+        //inmutable
         val list = listOf<String>()
         val list2: List<String> = listOf()
 
+        //mutable
         val arrayList = arrayListOf<String>()
         val arrayList2: ArrayList<String> = arrayListOf()
 
         val myList = listOf("Rodrigo", "Jose", "Juan")
-        val myArrayList = arrayListOf("Rodrigo", "Jose", "Juan")
+        val myArrayList = arrayListOf("Rodrigoarray", "Jose", "Juan")
 
-        
+        myArrayList[2] = "Sandra"
+
+        val listItem = myList[0]
+        val arrayListItem = myArrayList[0]
+
+        myArrayList.remove("Jose")
+        myArrayList.removeAt(1)
+
+
+        //.clear() todo el array borrado
+        //.addAll(array) añadir un array a otro
+        //.sortByDescending() ordenar de mayor a menor
+
+        Log.d(tag, "$listItem")
+        Log.d(tag, "$myArrayList")
+
     }
 
 
     private fun condicionalesWhen() {
         val language = "Kotlin"
-        when(language){
-            "Kotlin" , "Scala"-> {
+        when (language) {
+            "Kotlin", "Scala" -> {
                 Log.d(tag, "Kotlin")
             }
+
             "Java" -> Log.d(tag, "Java")
             "Python" -> Log.d(tag, "Python")
             else -> Log.d(tag, "No se que lenguaje es")
         }
 
         val num = 94
-        when(num){
-            in 0..10-> {
+        when (num) {
+            in 0..10 -> {
                 Log.d(tag, "Kotlin")
             }
+
             40 -> Log.d(tag, "Java")
             in 80..120 -> Log.d(tag, "Python")
             else -> Log.d(tag, "No se que lenguaje es")
@@ -71,55 +182,55 @@ class MainActivity : AppCompatActivity() {
 
         if (num1 > num2) {
             Log.d(tag, "num1 es mayor que num2")
-        }  else {
+        } else {
             Log.d(tag, "num1 es menor que num2")
         }
-        if(booleano) Log.d(tag, "Es true") else Log.d(tag, "Es false")
-        val resultado:Int = if (!booleano){
+        if (booleano) Log.d(tag, "Es true") else Log.d(tag, "Es false")
+        val resultado: Int = if (!booleano) {
             17
-        }else{
+        } else {
             18
         }
         Log.d(tag, "$resultado")
     }
 
 
-    private fun interfaces() {
-        val rodrigo = Persona(PersonaData("Rodrigo", 26))
-
-        rodrigo.returnAge(1995)
-        rodrigo.presentacion()
-    }
+//    private fun interfaces() {
+//        val rodrigo = Persona(PersonaData("Rodrigo", 26))
+//
+//        rodrigo.returnAge(1995)
+//        rodrigo.presentacion()
+//    }
 
     interface PersonaInterface {
         fun returnAge(birthYear: Int): Int
     }
 
 
-    class Persona(private val data: PersonaData) : PersonaInterface {
-        fun presentacion() {
-            data.name?.let {//si es null no se ejecuta
-                Log.d(tag, "Hola soy ${data.name} y mi edad es ${data.age}")
-            } ?: run {//si es null se ejecuta
-                Log.d(tag, "Hola soy juancho y mi edad es ${data.age}")
-            }
-        }
+//    class Persona(private val data: PersonaData) : PersonaInterface {
+//        fun presentacion() {
+//            data.name?.let {//si es null no se ejecuta
+//                Log.d(tag, "Hola soy ${data.name} y mi edad es ${data.age}")
+//            } ?: run {//si es null se ejecuta
+//                Log.d(tag, "Hola soy juancho y mi edad es ${data.age}")
+//            }
+//        }
+//
+//        override fun returnAge(birthYear: Int): Int = Log.d(tag, "Mi edad es ${2021 - birthYear}")
+//
+//    }
 
-        override fun returnAge(birthYear: Int): Int = Log.d(tag, "Mi edad es ${2021 - birthYear}")
 
-    }
+//data class PersonaData(
+//        val name: String?,
+//        val age: Int
+//    )
 
-
-    data class PersonaData(
-        val name: String?,
-        val age: Int
-    )
-
-    private fun clases() {
-        val rodrigoData = PersonaData(null, 26)
-        val rodrigo = Persona(rodrigoData)
-        rodrigo.presentacion()
-    }
+//    private fun clases() {
+//        val rodrigoData = PersonaData(null, 26)
+//        val rodrigo = Persona(rodrigoData)
+//        rodrigo.presentacion()
+//    }
 
 
     private fun funciones() {
