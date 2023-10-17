@@ -23,7 +23,29 @@ class MainActivity : AppCompatActivity() {
 //            Log.d(tag, "${it.name} ${it.age} ${it.language}")
 //        }
         //condicionalesif()
-        
+        condicionalesWhen()
+    }
+
+    private fun condicionalesWhen() {
+        val language = "Kotlin"
+        when(language){
+            "Kotlin" , "Scala"-> {
+                Log.d(tag, "Kotlin")
+            }
+            "Java" -> Log.d(tag, "Java")
+            "Python" -> Log.d(tag, "Python")
+            else -> Log.d(tag, "No se que lenguaje es")
+        }
+
+        val num = 94
+        when(num){
+            in 0..10-> {
+                Log.d(tag, "Kotlin")
+            }
+            40 -> Log.d(tag, "Java")
+            in 80..120 -> Log.d(tag, "Python")
+            else -> Log.d(tag, "No se que lenguaje es")
+        }
     }
 
 
