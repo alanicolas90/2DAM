@@ -65,15 +65,13 @@ public class CustomerAddController extends BaseScreenController {
         } else if (!txtPhoneNumber.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
             getPrincipalController().alertWarning(ConstantNormal.PHONE_NUMBER_CANNOT_CONTAIN_LETTERS, ConstantNormal.ERROR);
         } else {
-            int lastIdTable = tableCustomers.getItems().stream().mapToInt(Customer::getId).max().orElse(0);
-            Customer customer = new Customer(lastIdTable + 1, txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue());
-//            if(customerService.save(customer).isLeft()){
-//                getPrincipalController().alertWarning(ConstantNormal.ERROR, ConstantNormal.ERROR);
-//            }else{
-//                tableCustomers.getItems().clear();
-//                tableCustomers.getItems().addAll(customerService.getAll().get());
-//                getPrincipalController().showInformation(ConstantNormal.CLIENT_ADDED_CORRECTLY, ConstantNormal.INFORMATION);
-//            }
+            if(customerService.saveAutoIncrementalID(txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue()) == 0){
+                getPrincipalController().alertWarning(ConstantNormal.ERROR, ConstantNormal.ERROR);
+            }else{
+                tableCustomers.getItems().clear();
+                tableCustomers.getItems().addAll(customerService.getAll().get());
+                getPrincipalController().showInformation(ConstantNormal.CLIENT_ADDED_CORRECTLY, ConstantNormal.INFORMATION);
+            }
         }
     }
 }

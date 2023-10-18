@@ -8,10 +8,7 @@ import jakarta.inject.Inject;
 import model.Customer;
 import model.ErrorC;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +40,31 @@ public class CustomerDaoImpl implements CustomerDao {
         return Either.right(customers);
     }
 
+    @Override
+    public int saveAutoIncrementalID(String name, String surname, String email, int phone, LocalDate dateOfBirth){
+        Connection connection = null;
+        int rowsAffected=0;
+        try{
+            connection = dbConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into customer (name, surname, email, phone, date_of_birth) values (?,?,?,?,?)");
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, surname);
+            preparedStatement.setString(3, email);
+            preparedStatement.setInt(4, phone);
+            if(dateOfBirth == null){
+                preparedStatement.setNull(5, Types.DATE);
+            }else{
+                preparedStatement.setDate(5, Date.valueOf(dateOfBirth));
+            }
+            rowsAffected = preparedStatement.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            dbConnection.closeConnection(connection);
+        }
+        return rowsAffected;
+    }
+
     private List<Customer> readRS(ResultSet resultSet) {
         List<Customer> customers = new ArrayList<>();
         try {
@@ -51,14 +73,14 @@ public class CustomerDaoImpl implements CustomerDao {
                 int customerID = resultSet.getInt("id");
                 String customerName = resultSet.getString("name");
                 String customerSurname = resultSet.getString("surname");
+                String customerEmail = resultSet.getString("email");
+                int customerPhone = resultSet.getInt("phone");
                 LocalDate customerBirthDate;
                 if (resultSet.getTimestamp("date_of_birth") != null) {
                     customerBirthDate = resultSet.getTimestamp("date_of_birth").toLocalDateTime().toLocalDate();
                 } else {
                     customerBirthDate = null;
                 }
-                String customerEmail = resultSet.getString("email");
-                int customerPhone = resultSet.getInt("phone");
 
                 Customer customer = new Customer(customerID, customerName, customerSurname, customerEmail, customerPhone, customerBirthDate);
 

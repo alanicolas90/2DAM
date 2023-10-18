@@ -21,7 +21,6 @@ public class DBConnection {
     }
 
     public void closeConnection(Connection connArg) {
-        System.out.println("Releasing all open resources ...");
         try {
             if (connArg != null) {
                 connArg.close();

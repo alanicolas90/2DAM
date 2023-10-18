@@ -6,6 +6,7 @@ import jakarta.inject.Inject;
 import model.Customer;
 import model.ErrorC;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class CustomerService {
@@ -21,4 +22,7 @@ public class CustomerService {
         return customerDao.getAll();
     }
 
+    public int saveAutoIncrementalID(String name, String surname, String email, int phone, LocalDate dateOfBirth){
+        return customerDao.saveAutoIncrementalID(name, surname, email, phone, dateOfBirth);
+    }
 }
