@@ -17,13 +17,13 @@ import java.time.LocalDateTime;
 public class CustomerRemoveController extends BaseScreenController {
 
     private final CustomerService customerService;
+    private final CustomerCommon customerCommon;
+
     @Inject
     public CustomerRemoveController(CustomerCommon customerCommon, CustomerService customerService) {
         this.customerCommon = customerCommon;
         this.customerService = customerService;
     }
-
-    private final CustomerCommon customerCommon;
 
     @FXML
     private TableView<Customer> tableCustomers;
@@ -74,23 +74,14 @@ public class CustomerRemoveController extends BaseScreenController {
         Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
         if (customer == null) {
             getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_A_CUSTOMER, ConstantNormal.ERROR);
+        } else if (customerService.delete(customer.getId()) == 0) {
+            getPrincipalController().alertWarning(ConstantNormal.CUSTOMER_NOT_DELETED, ConstantNormal.ERROR);
+        } else {
+            getPrincipalController().showInformation(ConstantNormal.CUSTOMER_DELETED_CORRECTLY, ConstantNormal.INFORMATION);
         }
-//        else if (orderService.getOrdersCustomer(customer.getId()).isRight()) {
-//            if (getPrincipalController().alertDeleteConfirmation(ConstantNormal.CUSTOMER_HAS_ORDERS, ConstantNormal.WARNING)) {
-//                if (customerService.delete(customer).isRight()) {
-//                    getPrincipalController().showInformation(ConstantNormal.CUSTOMER_DELETED_CORRECTLY, ConstantNormal.INFORMATION);
-//                }
-//            } else {
-//                getPrincipalController().showInformation(ConstantNormal.CUSTOMER_NOT_DELETED, ConstantNormal.INFORMATION);
-//            }
-//        } else {
-//            if(getPrincipalController().alertDeleteConfirmation(ConstantNormal.DELETE_CUSTOMER, ConstantNormal.WARNING) && (customerService.delete(customer).isRight())) {
-//                    getPrincipalController().showInformation(ConstantNormal.CUSTOMER_DELETED_CORRECTLY, ConstantNormal.INFORMATION);
-//            }
-//            getPrincipalController().showInformation(ConstantNormal.CUSTOMER_DELETED_CORRECTLY, ConstantNormal.INFORMATION);
-//        }
+
         tableCustomers.getItems().clear();
-        //tableCustomers.getItems().addAll(customerService.getAll().get());
+        tableCustomers.getItems().addAll(customerService.getAll().get());
         tableOrdersCustomer.getItems().clear();
     }
 

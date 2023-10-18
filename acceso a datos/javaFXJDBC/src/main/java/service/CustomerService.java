@@ -25,4 +25,8 @@ public class CustomerService {
     public int saveAutoIncrementalID(String name, String surname, String email, int phone, LocalDate dateOfBirth){
         return customerDao.saveAutoIncrementalID(name, surname, email, phone, dateOfBirth);
     }
+
+    public int delete(int id){
+        return customerDao.delete(id);
+    }
 }
