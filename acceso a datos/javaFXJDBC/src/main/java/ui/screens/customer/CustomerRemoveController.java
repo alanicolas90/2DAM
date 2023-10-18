@@ -6,6 +6,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.Customer;
 import model.Order;
+import service.CustomerService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantNormal;
 import ui.screens.customer.common.CustomerCommon;
@@ -15,9 +16,11 @@ import java.time.LocalDateTime;
 
 public class CustomerRemoveController extends BaseScreenController {
 
+    private final CustomerService customerService;
     @Inject
-    public CustomerRemoveController(CustomerCommon customerCommon) {
+    public CustomerRemoveController(CustomerCommon customerCommon, CustomerService customerService) {
         this.customerCommon = customerCommon;
+        this.customerService = customerService;
     }
 
     private final CustomerCommon customerCommon;
@@ -55,7 +58,7 @@ public class CustomerRemoveController extends BaseScreenController {
 
     @Override
     public void principalCargado() {
-        //tableCustomers.getItems().addAll(customerService.getAll().get());
+        tableCustomers.getItems().addAll(customerService.getAll().get());
     }
 
     @FXML
