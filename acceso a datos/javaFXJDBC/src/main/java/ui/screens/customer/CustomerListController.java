@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.Customer;
+import service.CustomerService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.customer.common.CustomerCommon;
 
@@ -13,9 +14,11 @@ import java.time.LocalDate;
 public class CustomerListController extends BaseScreenController {
 
     private final CustomerCommon customerCommon;
+    private final CustomerService customerService;
     @Inject
-    public CustomerListController(CustomerCommon customerCommon) {
+    public CustomerListController(CustomerCommon customerCommon, CustomerService customerService) {
         this.customerCommon = customerCommon;
+        this.customerService = customerService;
     }
 
     @FXML
@@ -39,7 +42,7 @@ public class CustomerListController extends BaseScreenController {
 
     @Override
     public void principalCargado() {
-        //tableCustomers.getItems().addAll(customerService.getAll().get());
+        tableCustomers.getItems().addAll(customerService.getAll().get());
     }
 }
 

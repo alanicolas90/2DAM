@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -28,40 +28,45 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Either<ErrorC, List<Customer>> getAll() {
+        List<Customer> customers = new ArrayList<>();
         try (Connection connection = dbConnection.getConnection()) {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet resultSet = statement.executeQuery("select * from customer");
-            readRS(resultSet);
-            return null;
+            customers.addAll(readRS(resultSet));
+//            return Either.right(readRS(resultSet));
         } catch (SQLException e) {
             Logger.getLogger(CustomerDaoImpl.class.getName()).severe(e.getMessage());
         } finally {
             dbConnection.closeConnection(null);
         }
-
-        return null;
+        return Either.right(customers);
     }
 
-    private void readRS(ResultSet resultSet) {
+    private List<Customer> readRS(ResultSet resultSet) {
+        List<Customer> customers = new ArrayList<>();
         try {
             while (resultSet.next()) {
+
                 int customerID = resultSet.getInt("id");
                 String customerName = resultSet.getString("name");
                 String customerSurname = resultSet.getString("surname");
                 LocalDate customerBirthDate;
-                if(resultSet.getTimestamp("dateofbirth") != null) {
+                if (resultSet.getTimestamp("dateofbirth") != null) {
                     customerBirthDate = resultSet.getTimestamp("dateofbirth").toLocalDateTime().toLocalDate();
-                }else{
+                } else {
                     customerBirthDate = null;
                 }
                 String customerEmail = resultSet.getString("email");
                 int customerPhone = resultSet.getInt("phone");
-                System.out.println(customerID + ", " + customerName + ", " + customerSurname + ", " + customerBirthDate +
-                        ", " + customerEmail + ", " + customerPhone);
+
+                Customer customer = new Customer(customerID, customerName, customerSurname, customerEmail, customerPhone, customerBirthDate);
+
+                customers.add(customer);
 
             }
-        } catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+        return customers;
     }
 }
