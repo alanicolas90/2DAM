@@ -29,15 +29,16 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public Either<ErrorC, List<Customer>> getAll() {
         List<Customer> customers = new ArrayList<>();
-        try (Connection connection = dbConnection.getConnection()) {
+        Connection connection = null;
+        try {
+            connection = dbConnection.getConnection();
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet resultSet = statement.executeQuery("select * from customer");
             customers.addAll(readRS(resultSet));
-//            return Either.right(readRS(resultSet));
         } catch (SQLException e) {
             Logger.getLogger(CustomerDaoImpl.class.getName()).severe(e.getMessage());
         } finally {
-            dbConnection.closeConnection(null);
+            dbConnection.closeConnection(connection);
         }
         return Either.right(customers);
     }
@@ -51,8 +52,8 @@ public class CustomerDaoImpl implements CustomerDao {
                 String customerName = resultSet.getString("name");
                 String customerSurname = resultSet.getString("surname");
                 LocalDate customerBirthDate;
-                if (resultSet.getTimestamp("dateofbirth") != null) {
-                    customerBirthDate = resultSet.getTimestamp("dateofbirth").toLocalDateTime().toLocalDate();
+                if (resultSet.getTimestamp("date_of_birth") != null) {
+                    customerBirthDate = resultSet.getTimestamp("date_of_birth").toLocalDateTime().toLocalDate();
                 } else {
                     customerBirthDate = null;
                 }

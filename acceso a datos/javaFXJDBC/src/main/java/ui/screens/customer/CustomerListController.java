@@ -1,6 +1,7 @@
 package ui.screens.customer;
 
 import jakarta.inject.Inject;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -43,6 +44,13 @@ public class CustomerListController extends BaseScreenController {
     @Override
     public void principalCargado() {
         tableCustomers.getItems().addAll(customerService.getAll().get());
+    }
+
+    public void refreshTable() {
+        tableCustomers.getItems().clear();
+        tableCustomers.getItems().addAll(customerService.getAll().get());
+        getPrincipalController().showInformation("Se ha actualizado la tabla correctamente", "Info");
+
     }
 }
 
