@@ -9,8 +9,7 @@ module JavaFXDataAcess {
     requires jakarta.inject;
     requires jakarta.cdi;
     requires io.vavr;
-    requires jakarta.xml.bind;
-
+    requires java.sql;
 
     exports ui.main to javafx.graphics;
     exports ui.screens.principal;
@@ -27,6 +26,7 @@ module JavaFXDataAcess {
     exports ui.screens.customer;
     exports ui.pantallas.login;
     exports ui.pantallas.principal;
+    exports dao.db;
 
     opens ui.screens.order.common;
     opens ui.screens.principal;

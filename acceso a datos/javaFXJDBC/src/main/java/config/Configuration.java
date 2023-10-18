@@ -28,7 +28,7 @@ public class Configuration {
         return instance;
     }
 
-    public String getPropertyTxt(String key) {
+    public String getProperty(String key) {
         return p.getProperty(key);
     }
 
