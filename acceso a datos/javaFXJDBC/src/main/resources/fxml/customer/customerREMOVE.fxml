@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="599.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.customer.CustomerRemoveController">
+    <Label layoutX="32.0" layoutY="32.0" prefHeight="62.0" prefWidth="347.0" text="Remove Customer">
+        <font>
+            <Font size="42.0" />
+        </font>
+    </Label>
+
+    <Label layoutX="45.0" layoutY="96.0" text="List of Customers" />
+
+    <TableView fx:id="tableCustomers" layoutX="22.0" layoutY="118.0" onMouseClicked="#selectionTable" prefHeight="303.0" prefWidth="555.0">
+        <columns>
+            <TableColumn fx:id="columnIdCustomer" prefWidth="38.199981689453125" text="ID" />
+            <TableColumn fx:id="columnName" prefWidth="78.79998779296875" text="Name" />
+            <TableColumn fx:id="columnSurname" prefWidth="81.19998168945312" text="Surname" />
+            <TableColumn fx:id="columnEmail" prefWidth="179.0000457763672" text="Email" />
+            <TableColumn fx:id="columnPhone" prefWidth="83.199951171875" text="Phone" />
+            <TableColumn fx:id="columnDateBirth" prefWidth="92.80007934570312" text="Date of birth" />
+        </columns>
+    </TableView>
+
+    <Button layoutX="87.0" layoutY="430.0" mnemonicParsing="false" onMouseClicked="#removeSelected" text="Remove" />
+
+    <TableView fx:id="tableOrdersCustomer" layoutX="599.0" layoutY="118.0" prefHeight="303.0" prefWidth="325.0">
+        <columns>
+            <TableColumn fx:id="columnIdOrder" prefWidth="49.0" text="ID" />
+            <TableColumn fx:id="columnDate" prefWidth="116.0" text="Date" />
+            <TableColumn fx:id="columnCustomerIdOrder" prefWidth="73.0" text="CustomerID" />
+            <TableColumn fx:id="columnTableNumber" prefWidth="85.0" text="TableNumber" />
+        </columns>
+    </TableView>
+    <Label layoutX="599.0" layoutY="88.0" text="List of orders" />
+</AnchorPane>
