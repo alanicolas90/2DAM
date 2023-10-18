@@ -75,6 +75,7 @@ public class ConstantNormal {
     public static final String THERE_ARE_ORDER_ITEMS_ARE_YOU_SURE_YOUW_ANT_TO_DELETE = "There are order Items, are you sure youw ant to delete?";
     public static final String ORDER_NOT_DELETED = "Order not deleted";
     public static final String CUSTOMER_NOT_FOUND = "customer not found";
+    public static final String PHONE_NUMBER_MUST_HAVE_9_DIGITS = "Phone number must have 9 digits";
 
 
     private ConstantNormal() {

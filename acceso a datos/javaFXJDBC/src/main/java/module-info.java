@@ -40,7 +40,7 @@ module JavaFXDataAcess {
     opens config;
     opens ui.screens.customer;
     opens ui.screens.order;
-    opens config.common;
     opens ui.pantallas.common;
+    opens dao.utils;
 
 }

@@ -1,5 +1,6 @@
 package ui.screens.customer;
 
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -7,6 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Customer;
+import model.ErrorC;
 import service.CustomerService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantNormal;
@@ -83,15 +85,24 @@ public class CustomerUpdateController extends BaseScreenController {
             getPrincipalController().alertWarning(ConstantNormal.PHONE_NUMBER_CANNOT_CONTAIN_LETTERS, ConstantNormal.ERROR);
         } else if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPhoneNumber.getText().isEmpty()) {
             getPrincipalController().alertWarning(ConstantNormal.THERE_ARE_MISSING_FIELDS, ConstantNormal.ERROR);
+        } else if (txtPhoneNumber.getText().length() != 9) {
+            getPrincipalController().alertWarning(ConstantNormal.PHONE_NUMBER_MUST_HAVE_9_DIGITS, ConstantNormal.ERROR);
         } else {
-            Customer customerUpdated = customerCommon.setsNameSurnameEmailPhoneBirth(customer, txtName, txtSurname, txtEmail, txtPhoneNumber, dateOfBirthCustomer);
-//            if (customerService.update(customerUpdated).isLeft()) {
+            Customer customerUpdated = new Customer(customer.getId(), txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue());
+
+            int update = customerService.update(customer,customerUpdated);
+            if(update == 0){
+                getPrincipalController().alertWarning("No ha habido cambios", ConstantNormal.ERROR);
+            }else{
+                getPrincipalController().showInformation(ConstantNormal.CLIENT_GOT_UPDATED_CORRECTLY, ConstantNormal.INFORMATION);
+            }
+//            if(!customerService.update(customer, customerUpdated)){
 //                getPrincipalController().alertWarning(ConstantNormal.ERROR, ConstantNormal.ERROR);
-//            } else {
-//                tableCustomers.getItems().clear();
-//                tableCustomers.getItems().addAll(customerService.getAll().get());
+//            }else{
 //                getPrincipalController().showInformation(ConstantNormal.CLIENT_GOT_UPDATED_CORRECTLY, ConstantNormal.INFORMATION);
 //            }
         }
+        tableCustomers.getItems().clear();
+        tableCustomers.getItems().addAll(customerService.getAll().get());
     }
 }
