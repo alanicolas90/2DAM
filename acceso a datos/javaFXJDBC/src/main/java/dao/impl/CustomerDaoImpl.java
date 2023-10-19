@@ -31,16 +31,19 @@ public class CustomerDaoImpl implements CustomerDao {
     public Either<ErrorC, Customer> getCustomerById(int id) {
         Customer customer = null;
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         try{
             connection = dbConnection.getConnection();
-            statement = connection.createStatement();
-            statement.executeQuery("select * from customer where id =" + id);
-            ResultSet resultSet = statement.getResultSet();
+            preparedStatement = connection.prepareStatement("select * from customer where id = ?");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
             customer = readRS(resultSet).get(0);
-            System.out.println(customer.getId() + " " + customer.getName() + " " + customer.getSurname() + " " + customer.getEmail() + " " + customer.getPhone() + "" + customer.getBirthDate());
+            System.out.println(customer);
         }catch(Exception e){
             log.error(e.getMessage());
+        }finally {
+            dbConnection.closeConnection(connection);
+            dbConnection.releaseResource(preparedStatement);
         }
 
         if(customer == null){
@@ -115,42 +118,6 @@ public class CustomerDaoImpl implements CustomerDao {
         }
         return rowsAffected;
     }
-
-//    @Override
-//    public boolean update(Customer customerUpdated) {
-//        Connection connection = null;
-//        PreparedStatement preparedStatement = null;
-//        PreparedStatement preparedStatement2 = null;
-//        int rowsAffectedAdd = 0;
-//        int rowsAffectedDelete = 0;
-//        try {
-//            connection = dbConnection.getConnection();
-//            preparedStatement = connection.prepareStatement(SQLQueries.DELETE_CUSTOMER);
-//            preparedStatement.setInt(1, customerUpdated.getId());
-//            rowsAffectedDelete = preparedStatement.executeUpdate();
-//
-//            preparedStatement2 = connection.prepareStatement("INSERT INTO `alanmikolajczyk_restaurant`.`customer` (`id`, `name`, `surname`, `date_of_birth`, `email`, `phone`) VALUES (?, ?, ?, ?, ?, ?);");
-//            preparedStatement2.setInt(1, customerUpdated.getId());
-//            preparedStatement2.setString(2, customerUpdated.getName());
-//            preparedStatement2.setString(3, customerUpdated.getSurname());
-//            if (customerUpdated.getBirthDate() == null) {
-//                preparedStatement.setNull(4, Types.DATE);
-//            } else {
-//                preparedStatement.setDate(4, Date.valueOf(customerUpdated.getBirthDate()));
-//            }
-//            preparedStatement2.setString(5, customerUpdated.getEmail());
-//            preparedStatement2.setInt(6, customerUpdated.getPhone());
-//            rowsAffectedAdd = preparedStatement2.executeUpdate();
-//
-//        } catch (Exception e) {
-//            log.error(e.getMessage());
-//        } finally {
-//            dbConnection.closeConnection(connection);
-//            dbConnection.releaseResource(preparedStatement);
-//            dbConnection.releaseResource(preparedStatement2);
-//        }
-//        return rowsAffectedAdd > 0 && rowsAffectedDelete > 0;
-//    }
 
     @Override
     public void updateName(int id, String name) {
