@@ -28,6 +28,29 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
+    public Either<ErrorC, Customer> getCustomerById(int id) {
+        Customer customer = null;
+        Connection connection = null;
+        Statement statement = null;
+        try{
+            connection = dbConnection.getConnection();
+            statement = connection.createStatement();
+            statement.executeQuery("select * from customer where id =" + id);
+            ResultSet resultSet = statement.getResultSet();
+            customer = readRS(resultSet).get(0);
+            System.out.println(customer.getId() + " " + customer.getName() + " " + customer.getSurname() + " " + customer.getEmail() + " " + customer.getPhone() + "" + customer.getBirthDate());
+        }catch(Exception e){
+            log.error(e.getMessage());
+        }
+
+        if(customer == null){
+            return Either.left(new ErrorC("Customer not found"));
+        }else{
+            return Either.right(customer);
+        }
+    }
+
+    @Override
     public Either<ErrorC, List<Customer>> getAll() {
         List<Customer> customers = new ArrayList<>();
         Connection connection = null;

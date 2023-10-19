@@ -59,6 +59,10 @@ public class CustomerService {
 
     }
 
+    public Customer getCustomerById(int id) {
+        return customerDao.getCustomerById(id).get();
+    }
+
 //    public boolean update(Customer customerOld, Customer customerUpdated) {
 //        return customerDao.update(customerUpdated);
 //    }

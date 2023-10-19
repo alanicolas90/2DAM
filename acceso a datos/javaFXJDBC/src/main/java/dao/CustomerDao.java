@@ -14,6 +14,8 @@ public interface CustomerDao {
 
     int delete(int id);
 
+    Either<ErrorC, Customer> getCustomerById(int id);
+
 //    boolean update(Customer customerUpdated);
 
     void updateName(int id, String name);

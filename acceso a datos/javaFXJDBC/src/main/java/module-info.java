@@ -24,8 +24,6 @@ module JavaFXDataAcess {
     exports ui.screens.order;
     exports dao;
     exports ui.screens.customer;
-    exports ui.pantallas.login;
-    exports ui.pantallas.principal;
     exports dao.db;
 
     opens ui.screens.order.common;
@@ -40,7 +38,6 @@ module JavaFXDataAcess {
     opens config;
     opens ui.screens.customer;
     opens ui.screens.order;
-    opens ui.pantallas.common;
     opens dao.utils;
 
 }

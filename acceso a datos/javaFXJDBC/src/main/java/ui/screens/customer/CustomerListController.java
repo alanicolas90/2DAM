@@ -16,6 +16,7 @@ public class CustomerListController extends BaseScreenController {
 
     private final CustomerCommon customerCommon;
     private final CustomerService customerService;
+
     @Inject
     public CustomerListController(CustomerCommon customerCommon, CustomerService customerService) {
         this.customerCommon = customerCommon;
@@ -50,7 +51,6 @@ public class CustomerListController extends BaseScreenController {
         tableCustomers.getItems().clear();
         tableCustomers.getItems().addAll(customerService.getAll().get());
         getPrincipalController().showInformation("Se ha actualizado la tabla correctamente", "Info");
-
     }
 }
 
