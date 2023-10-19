@@ -1,0 +1,44 @@
+
+?kotlin:S6615Ν" Remove this useless initializer.(Α―Πe8¶—ιω³1
+Bkotlin:S125"Remove this commented out code.(ΘςΫωÿÿÿÿ8Έ—ιω³1
+<kotlin:S125""Remove this commented out code.(ώΆ{8® φω³1
+Ckotlin:S125Ζ"Remove this commented out code.(‘°έΏÿÿÿÿÿ8Έ—ιω³1
+>kotlin:S125Ò"Remove this commented out code.(‘ζ‚η8Ή—ιω³1
+>kotlin:S125ε"Remove this commented out code.(“ªα8Ή—ιω³1
+Ckotlin:S125ύ"Remove this commented out code.(‰Τ°ƒωÿÿÿÿ8Ή—ιω³1
+Ykotlin:S1144H"5Remove this unused private "controlDeErrores" method.(ª²Εψωÿÿÿÿ8Ό—ιω³1
+Vkotlin:S1144X"2Remove this unused private "buclesDoWhile" method.(ΑΏΤ’ϋÿÿÿÿ8½—ιω³1
+Okotlin:S1144a"0Remove this unused private "buclesWhile" method.(ΔυΥ8½—ιω³1
+Rkotlin:S1144i".Remove this unused private "buclesFor" method.(¶Χθαώÿÿÿÿ8Ύ—ιω³1
+Qkotlin:S1144z"-Remove this unused private "listados" method.(›Έΰ΄ωÿÿÿÿ8Ώ—ιω³1
+Vkotlin:S1144™"6Remove this unused private "condicionalesWhen" method.(ΏπΧ8Ώ—ιω³1
+Ykotlin:S1144²"4Remove this unused private "condicionalesif" method.(–η³ÿωÿÿÿÿ8ΐ—ιω³1
+Skotlin:S1144μ".Remove this unused private "funciones" method.(²–ητϊÿÿÿÿ8ΐ—ιω³1
+Tkotlin:S1144…"/Remove this unused private "nullSafety" method.(Ρο«’ύÿÿÿÿ8Α—ιω³1
+Nkotlin:S1144›"/Remove this unused private "operadores" method.(–άκj8Β—ιω³1
+Vkotlin:S1144¶"1Remove this unused private "tiposDeDatos" method.(ΕΐΧ‚ύÿÿÿÿ8Β—ιω³1
+Nkotlin:S1144Ι".Remove this unused private "variables" method.(“ΔΑ8Β—ιω³1
+Wkotlin:S1135"2Complete the task associated to this TODO comment.(πΆ¦Ηωÿÿÿÿ8Ζ—ιω³1
+Wkotlin:S1481‰"2Remove this unused "arrayListItem" local variable.(νυ«Ιÿÿÿÿÿ8Η—ιω³1
+Okotlin:S1481"/Remove this unused "arrayList2" local variable.(ΪΎιµ8Η—ιω³1
+Nkotlin:S1481€".Remove this unused "arrayList" local variable.(²ÒΜΆ8Η—ιω³1
+Nkotlin:S1481}"*Remove this unused "list2" local variable.(Δ™΅Πψÿÿÿÿ8Η—ιω³1
+Mkotlin:S1481|")Remove this unused "list" local variable.(μΈ΅ύÿÿÿÿ8Η—ιω³1
+Hkotlin:S1481±"(Remove this unused "not" local variable.(‡ΐ½Ή8Η—ιω³1
+Lkotlin:S1481°"'Remove this unused "or" local variable.(Τ¨ι‹όÿÿÿÿ8Η—ιω³1
+Mkotlin:S1481―"(Remove this unused "and" local variable.(—«ψόÿÿÿÿ8Η—ιω³1
+Xkotlin:S1481¬"3Remove this unused "isLessOrEquals" local variable.(”ΙΒϊÿÿÿÿ8Η—ιω³1
+Vkotlin:S1481«"6Remove this unused "isGreaterOrEquals" local variable.(Ζβ8Η—ιω³1
+Kkotlin:S1481ª"+Remove this unused "isLess" local variable.(σΝ’¨8Η—ιω³1
+Mkotlin:S1481©".Remove this unused "isGreater" local variable.(¬γ58Η—ιω³1
+Mkotlin:S1481¤"(Remove this unused "mod" local variable.(®—Γ¬ώÿÿÿÿ8Η—ιω³1
+Hkotlin:S1481£"(Remove this unused "div" local variable.(•‘¶Λ8Η—ιω³1
+Hkotlin:S1481Ά")Remove this unused "mult" local variable.(ΌΪ8Θ—ιω³1
+Hkotlin:S1481΅")Remove this unused "rest" local variable.(γ‰ύR8Θ—ιω³1
+Mkotlin:S1481 "(Remove this unused "sum" local variable.(Ντ·£ύÿÿÿÿ8Θ—ιω³1
+Mkotlin:S1481Δ"-Remove this unused "boolean2" local variable.(ΠΡ Ε8Θ—ιω³1
+Qkotlin:S1481Γ",Remove this unused "boolean" local variable.(§ςύ­ϊÿÿÿÿ8Θ—ιω³1
+Rkotlin:S1481ΐ"-Remove this unused "decimal2" local variable.(”τ‰Ϋύÿÿÿÿ8Θ—ιω³1
+Qkotlin:S1481Ώ",Remove this unused "decimal" local variable.(ΫϊÒώÿÿÿÿ8Θ—ιω³1
+Kkotlin:S1481Έ"+Remove this unused "string" local variable.(‚™‰8Θ—ιω³1
+bkotlin:S6517Ν"BMake this interface functional or replace it with a function type.(Ων8Ν—ιω³1
