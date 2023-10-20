@@ -54,6 +54,37 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
+    public Either<ErrorC, Integer> update(Customer customerUpdated) {
+        Either<ErrorC, Integer> result;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try{
+            connection = dbConnection.getConnection();
+            preparedStatement = connection.prepareStatement("update customer set name = ?, surname = ?, email = ?, phone = ?, date_of_birth = ? where id = ?");
+            preparedStatement.setString(1, customerUpdated.getName());
+            preparedStatement.setString(2, customerUpdated.getSurname());
+            preparedStatement.setString(3, customerUpdated.getEmail());
+            preparedStatement.setInt(4, customerUpdated.getPhone());
+            if(customerUpdated.getBirthDate() == null){
+                preparedStatement.setNull(5, Types.DATE);
+            }else{
+                preparedStatement.setDate(5, Date.valueOf(customerUpdated.getBirthDate()));
+            }
+            preparedStatement.setInt(6, customerUpdated.getId());
+            int rowsAffected = preparedStatement.executeUpdate();
+            result = Either.right(rowsAffected);
+            return result;
+
+        }catch(SQLException e){
+            log.error(e.getMessage());
+        }finally {
+            dbConnection.closeConnection(connection);
+            dbConnection.releaseResource(preparedStatement);
+        }
+        return null;
+    }
+
+    @Override
     public Either<ErrorC, List<Customer>> getAll() {
         List<Customer> customers = new ArrayList<>();
         Connection connection = null;
@@ -117,6 +148,21 @@ public class CustomerDaoImpl implements CustomerDao {
             dbConnection.releaseResource(preparedStatement);
         }
         return rowsAffected;
+    }
+
+    private Either<ErrorC, Integer> delete(int id, boolean confirm){
+        Connection connection;
+        if(!confirm){
+            try{
+                connection = dbConnection.getConnection();
+
+            }catch(SQLException e){
+                if(e.getErrorCode() == 1451){
+                    return Either.left(new ErrorC("Customer has orders, cannot be deleted"));
+                }
+            }
+        }
+        return Either.right(0);
     }
 
     @Override
