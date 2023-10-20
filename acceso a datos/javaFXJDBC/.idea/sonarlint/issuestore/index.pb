@@ -35,3 +35,5 @@ o
 ?src/main/java/ui/screens/customer/CustomerUpdateController.java,d\9\d99ee1a60610961d9db9672a7a46b340db1982d5
 c
 3src/main/java/ui/screens/common/ConstantNormal.java,8\9\8929e288ee727e6e4867da003a25bd36f7141768
+Q
+!src/main/java/model/Customer.java,d\8\d809aaf69069b4e367322db0008755f08edcc9a2

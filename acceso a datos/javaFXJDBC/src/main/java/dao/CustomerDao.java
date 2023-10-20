@@ -16,7 +16,7 @@ public interface CustomerDao {
 
     Either<ErrorC, Customer> getCustomerById(int id);
 
-//    boolean update(Customer customerUpdated);
+    Either<ErrorC, Integer> update(Customer customerUpdated);
 
     void updateName(int id, String name);
 
