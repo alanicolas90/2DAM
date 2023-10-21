@@ -26,7 +26,7 @@ public class OrdersService {
         }
     }
 
-    public Either<Object, List<Order>> getOrdersSpecificDate(LocalDate dateSelected) {
+    public Either<ErrorC, List<Order>> getOrdersSpecificDate(LocalDate dateSelected) {
         List<Order> orders = ordersDao.getAll().get();
         List<Order> ordersFiltered = orders.stream().filter(order -> {
             LocalDate date = LocalDate.from(order.getDate());

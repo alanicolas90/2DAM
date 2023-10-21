@@ -1,8 +1,10 @@
 package ui.screens.order;
 
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import model.ErrorC;
 import model.Order;
 import model.OrderItem;
 import service.CustomerService;
@@ -11,6 +13,7 @@ import ui.screens.common.BaseScreenController;
 import ui.screens.order.common.CommonOrder;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class OrderListController extends BaseScreenController {
 
@@ -87,8 +90,9 @@ public class OrderListController extends BaseScreenController {
     public void selectedBox() {
         if (comboBoxCustomer.getValue() != null) {
             tableOrders.getItems().clear();
-            if(ordersService.getOrdersSpecificCustomer(comboBoxCustomer.getValue()).isRight()) {
-                tableOrders.getItems().addAll(ordersService.getOrdersSpecificCustomer(comboBoxCustomer.getValue()).get());
+            Either<ErrorC, List<Order>> eitherOrders = ordersService.getOrdersSpecificCustomer(comboBoxCustomer.getValue());
+            if(eitherOrders.isRight()) {
+                tableOrders.getItems().addAll(eitherOrders.get());
             }
         }
     }
@@ -96,8 +100,9 @@ public class OrderListController extends BaseScreenController {
     public void selectedDate() {
         if (datePicker.getValue() != null) {
             tableOrders.getItems().clear();
-            if(ordersService.getOrdersSpecificDate(datePicker.getValue()).isRight()){
-                tableOrders.getItems().addAll(ordersService.getOrdersSpecificDate(datePicker.getValue()).get());
+            Either<ErrorC, List<Order>> eitherOrders = ordersService.getOrdersSpecificDate(datePicker.getValue());
+            if(eitherOrders.isRight()){
+                tableOrders.getItems().addAll(eitherOrders.get());
             }
         }
     }

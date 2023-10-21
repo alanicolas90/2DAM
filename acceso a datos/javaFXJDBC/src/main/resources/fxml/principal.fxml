@@ -29,8 +29,8 @@
             <Menu fx:id="menuOrders" mnemonicParsing="false" text="Orders">
 
                 <MenuItem fx:id="listOrder" onAction="#menuClick" mnemonicParsing="false" text="List"/>
-                <MenuItem fx:id="addOrder" onAction="#menuClick" mnemonicParsing="false" text="Add"/>
-                <MenuItem fx:id="removeOrder" onAction="#menuClick" mnemonicParsing="false" text="Remove"/>
+                <MenuItem fx:id="menuItemAddOrder" onAction="#menuClick" mnemonicParsing="false" text="Add"/>
+                <MenuItem fx:id="menuItemRemoveOrder" onAction="#menuClick" mnemonicParsing="false" text="Remove"/>
                 <MenuItem fx:id="updateOrder" onAction="#menuClick" mnemonicParsing="false" text="Update"/>
 
             </Menu>

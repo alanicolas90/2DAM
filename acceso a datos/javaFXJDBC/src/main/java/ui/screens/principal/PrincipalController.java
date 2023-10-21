@@ -34,6 +34,8 @@ public class PrincipalController {
 
     private final Alert alert;
 
+    @FXML
+    private MenuItem menuItemRemoveOrder;
     @Getter
     private String user;
 
@@ -41,6 +43,8 @@ public class PrincipalController {
     private int idUserLogged;
     @FXML
     private Menu menuCustomer;
+    @FXML
+    private MenuItem menuItemAddOrder;
 
     @Inject
     public PrincipalController(Instance<Object> instance) {
@@ -84,6 +88,12 @@ public class PrincipalController {
         menuPrincipal.setVisible(true);
         if(!credential.isPrivilege()){
             menuCustomer.setVisible(false);
+            menuItemAddOrder.setVisible(true);
+            menuItemRemoveOrder.setVisible(false);
+        }else{
+            menuCustomer.setVisible(true);
+            menuItemAddOrder.setVisible(false);
+            menuItemRemoveOrder.setVisible(true);
         }
         loadScreen(Screens.BIENVENIDA);
     }
@@ -104,7 +114,7 @@ public class PrincipalController {
             case "updateCustomer" -> loadScreen(Screens.UPDATE_CUSTOMER);
             case "listCustomer" -> loadScreen(Screens.LIST_CUSTOMER);
             case "listOrder" -> loadScreen(Screens.LIST_ORDER);
-            case "addOrder" -> loadScreen(Screens.ADD_ORDER);
+            case "menuItemAddOrder" -> loadScreen(Screens.ADD_ORDER);
             case "removeOrder" -> loadScreen(Screens.REMOVE_ORDER);
             case "updateOrder" -> loadScreen(Screens.UPDATE_ORDER);
             default -> alertExit();

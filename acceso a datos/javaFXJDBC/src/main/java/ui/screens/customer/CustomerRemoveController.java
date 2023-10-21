@@ -92,30 +92,11 @@ public class CustomerRemoveController extends BaseScreenController {
         if (customerService.delete(customer.getId(), false).isLeft()) {
             boolean wantsToDelete = getPrincipalController().alertDeleteConfirmation("There are orders in this customer. Are you sure you want to delete?", ConstantNormal.WARNING);
             if (wantsToDelete) {
-
-
-
-
-
-
-
-
-
                 if (customerService.delete(customer.getId(), true).isLeft()) {
                     getPrincipalController().alertWarning(ConstantNormal.ORDER_NOT_DELETED, ConstantNormal.ERROR);
                 } else {
                     getPrincipalController().showInformation(ConstantNormal.CUSTOMER_DELETED_CORRECTLY, ConstantNormal.INFORMATION);
                 }
-
-
-
-
-
-
-
-
-
-
             } else {
                 getPrincipalController().alertWarning(ConstantNormal.CUSTOMER_NOT_DELETED, ConstantNormal.ERROR);
             }
