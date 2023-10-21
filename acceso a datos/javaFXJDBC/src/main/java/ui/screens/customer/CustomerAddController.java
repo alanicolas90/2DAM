@@ -65,7 +65,7 @@ public class CustomerAddController extends BaseScreenController {
         } else if (!txtPhoneNumber.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
             getPrincipalController().alertWarning(ConstantNormal.PHONE_NUMBER_CANNOT_CONTAIN_LETTERS, ConstantNormal.ERROR);
         } else {
-            if(customerService.saveAutoIncrementalID(txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue()) == 0){
+            if(customerService.saveAutoIncrementalID(txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue()) <= 1){
                 getPrincipalController().alertWarning(ConstantNormal.ERROR, ConstantNormal.ERROR);
             }else{
                 tableCustomers.getItems().clear();

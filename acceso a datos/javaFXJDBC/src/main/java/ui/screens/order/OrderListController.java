@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Order;
 import model.OrderItem;
+import service.CustomerService;
+import service.OrdersService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.order.common.CommonOrder;
 
@@ -13,10 +15,16 @@ import java.time.LocalDateTime;
 public class OrderListController extends BaseScreenController {
 
     private final CommonOrder commonOrder;
+    private final OrdersService ordersService;
+    private final CustomerService customerService;
+
     @Inject
-    public OrderListController( CommonOrder commonOrder) {
+    public OrderListController(CommonOrder commonOrder, OrdersService ordersService, CustomerService customerService) {
         this.commonOrder = commonOrder;
+        this.ordersService = ordersService;
+        this.customerService = customerService;
     }
+
 
     @FXML
     private DatePicker datePicker;
@@ -49,7 +57,7 @@ public class OrderListController extends BaseScreenController {
         commonOrder.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
         commonOrder.initOrderItemList(columnItemName, columnQuantity);
 
-        comboBoxCustomer.getItems().addAll();//customerService.getAllIds().get()
+        comboBoxCustomer.getItems().addAll(customerService.getAllIdsCustomer());
         filterComboBox.getItems().addAll("Date", "Customer", "None");
         comboBoxCustomer.setDisable(true);
         datePicker.setDisable(true);
@@ -58,7 +66,7 @@ public class OrderListController extends BaseScreenController {
 
     @Override
     public void principalCargado() {
-        tableOrders.getItems().addAll();//orderService.getAll().get()
+        tableOrders.getItems().addAll(ordersService.getAll().get());
         filterComboBox.setOnAction(event -> selectedFilter());
         comboBoxCustomer.setOnAction(event -> selectedBox());
         datePicker.setOnAction(event -> selectedDate());
@@ -68,39 +76,35 @@ public class OrderListController extends BaseScreenController {
         tableOrderItems.getItems().clear();
         if (tableOrders.getSelectionModel().getSelectedItem() != null) {
             int idCustomer = tableOrders.getSelectionModel().getSelectedItem().getCustomerId();
-            txtCustomerName.setText("idCustomer");//customerService.get(idCustomer).get().getName()
-            int idOrder = tableOrders.getSelectionModel().getSelectedItem().getId();
-//            if (orderItemService.get(idOrder).isRight()){
-//                tableOrderItems.getItems().addAll(orderItemService.get(idOrder).get());
-//            }
+            if(customerService.getCustomerById(idCustomer).isRight()){
+                txtCustomerName.setText(customerService.getCustomerById(idCustomer).get().getName());
+            }else{
+                getPrincipalController().showInformation("Customer has no orders","Information");
+            }
         }
     }
 
     public void selectedBox() {
         if (comboBoxCustomer.getValue() != null) {
             tableOrders.getItems().clear();
-//            if (orderService.getOrdersCustomer(comboBoxCustomer.getValue()).isRight()) {
-//                tableOrders.getItems().addAll(orderService.getOrdersCustomer(comboBoxCustomer.getValue()).get());
-//            } else {
-//                tableOrders.getItems().clear();
-//            }
+            if(ordersService.getOrdersSpecificCustomer(comboBoxCustomer.getValue()).isRight()) {
+                tableOrders.getItems().addAll(ordersService.getOrdersSpecificCustomer(comboBoxCustomer.getValue()).get());
+            }
         }
     }
 
     public void selectedDate() {
         if (datePicker.getValue() != null) {
             tableOrders.getItems().clear();
-//            if (orderService.getOrdersByDate(datePicker.getValue()).isRight()) {
-//                tableOrders.getItems().addAll(orderService.getOrdersByDate(datePicker.getValue()).get());
-//            } else {
-//                tableOrders.getItems().clear();
-//            }
+            if(ordersService.getOrdersSpecificDate(datePicker.getValue()).isRight()){
+                tableOrders.getItems().addAll(ordersService.getOrdersSpecificDate(datePicker.getValue()).get());
+            }
         }
     }
 
     public void selectedFilter() {
         tableOrders.getItems().clear();
-        tableOrders.getItems().addAll();//orderService.getAll().get()
+        tableOrders.getItems().addAll(ordersService.getAll().get());
 
         if (filterComboBox.getValue() == null) {
             datePicker.setDisable(true);

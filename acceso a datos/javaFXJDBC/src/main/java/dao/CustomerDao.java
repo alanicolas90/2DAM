@@ -12,10 +12,9 @@ public interface CustomerDao {
     Either<ErrorC, List<Customer>> getAll();
     int saveAutoIncrementalID( String name, String surname, String email, int phone, LocalDate dateOfBirth);
 
-    int delete(int id);
-
     Either<ErrorC, Customer> getCustomerById(int id);
 
     Either<ErrorC, Integer> update(Customer customerUpdated);
 
+    Either<ErrorC, Integer> delete(int id, boolean confirm);
 }

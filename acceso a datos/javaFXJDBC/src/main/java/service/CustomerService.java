@@ -7,6 +7,7 @@ import model.Customer;
 import model.ErrorC;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 public class CustomerService {
@@ -26,16 +27,38 @@ public class CustomerService {
         return customerDao.saveAutoIncrementalID(name, surname, email, phone, dateOfBirth);
     }
 
-    public int delete(int id) {
-        return customerDao.delete(id);
+    public Either<ErrorC, Integer> delete(int id, boolean confirm){
+        if(customerDao.delete(id,confirm).isRight()){
+            return Either.right(1);
+        }else{
+            return Either.left(new ErrorC("Are you sure you want to delete this customer?"));
+        }
     }
 
-    public Integer update(Customer customerUpdated) {
-        return customerDao.update(customerUpdated).get();
+
+
+    public Either<ErrorC,Integer> update(Customer customerUpdated) {
+        if(customerDao.update(customerUpdated).isLeft() ){
+            return Either.left(new ErrorC("Customer not found"));
+        } else{
+            return Either.right(customerDao.update(customerUpdated).get());
+        }
     }
 
-    public Customer getCustomerById(int id) {
-        return customerDao.getCustomerById(id).get();
+    public Either<ErrorC,Customer> getCustomerById(int id) {
+        if(customerDao.getCustomerById(id).isLeft()){
+            return Either.left(new ErrorC("Customer not found"));
+        }else{
+            return Either.right(customerDao.getCustomerById(id).get());
+        }
     }
 
+    public List<Integer> getAllIdsCustomer() {
+        List<Customer> customers = customerDao.getAll().get();
+        if(customers.isEmpty()){
+            return Collections.emptyList();
+        }else{
+            return customers.stream().map(Customer::getId).toList();
+        }
+    }
 }

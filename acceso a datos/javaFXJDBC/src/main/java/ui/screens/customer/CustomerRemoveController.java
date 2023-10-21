@@ -7,6 +7,7 @@ import javafx.scene.control.TableView;
 import model.Customer;
 import model.Order;
 import service.CustomerService;
+import service.OrdersService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantNormal;
 import ui.screens.customer.common.CustomerCommon;
@@ -18,11 +19,13 @@ public class CustomerRemoveController extends BaseScreenController {
 
     private final CustomerService customerService;
     private final CustomerCommon customerCommon;
+    private final OrdersService orderService;
 
     @Inject
-    public CustomerRemoveController(CustomerCommon customerCommon, CustomerService customerService) {
+    public CustomerRemoveController(CustomerCommon customerCommon, CustomerService customerService, OrdersService orderService) {
         this.customerCommon = customerCommon;
         this.customerService = customerService;
+        this.orderService = orderService;
     }
 
     @FXML
@@ -65,24 +68,60 @@ public class CustomerRemoveController extends BaseScreenController {
     private void selectionTable() {
         Customer selectionTable = tableCustomers.getSelectionModel().getSelectedItem();
         tableOrdersCustomer.getItems().clear();
-//        if(orderService.getOrdersCustomer(selectionTable.getId()).isRight()){
-//            tableOrdersCustomer.getItems().addAll(orderService.getOrdersCustomer(selectionTable.getId()).get());
-//        }
+        if (selectionTable != null && (orderService.getOrdersSpecificCustomer(selectionTable.getId()).isRight())) {
+            tableOrdersCustomer.getItems().addAll(orderService.getOrdersSpecificCustomer(selectionTable.getId()).get());
+
+        }
     }
 
+    @FXML
     public void removeSelected() {
         Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
         if (customer == null) {
             getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_A_CUSTOMER, ConstantNormal.ERROR);
-        } else if (customerService.delete(customer.getId()) == 0) {
-            getPrincipalController().alertWarning(ConstantNormal.CUSTOMER_NOT_DELETED, ConstantNormal.ERROR);
         } else {
-            getPrincipalController().showInformation(ConstantNormal.CUSTOMER_DELETED_CORRECTLY, ConstantNormal.INFORMATION);
+            deleteCustomer(customer);
         }
 
         tableCustomers.getItems().clear();
         tableCustomers.getItems().addAll(customerService.getAll().get());
         tableOrdersCustomer.getItems().clear();
+    }
+
+    private void deleteCustomer(Customer customer) {
+        if (customerService.delete(customer.getId(), false).isLeft()) {
+            boolean wantsToDelete = getPrincipalController().alertDeleteConfirmation("There are orders in this customer. Are you sure you want to delete?", ConstantNormal.WARNING);
+            if (wantsToDelete) {
+
+
+
+
+
+
+
+
+
+                if (customerService.delete(customer.getId(), true).isLeft()) {
+                    getPrincipalController().alertWarning(ConstantNormal.ORDER_NOT_DELETED, ConstantNormal.ERROR);
+                } else {
+                    getPrincipalController().showInformation(ConstantNormal.CUSTOMER_DELETED_CORRECTLY, ConstantNormal.INFORMATION);
+                }
+
+
+
+
+
+
+
+
+
+
+            } else {
+                getPrincipalController().alertWarning(ConstantNormal.CUSTOMER_NOT_DELETED, ConstantNormal.ERROR);
+            }
+        } else {
+            getPrincipalController().showInformation(ConstantNormal.CUSTOMER_DELETED_CORRECTLY, ConstantNormal.INFORMATION);
+        }
     }
 
 

@@ -90,8 +90,7 @@ public class CustomerUpdateController extends BaseScreenController {
         } else {
             Customer customerUpdated = new Customer(customer.getId(), txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue());
 
-            int update = customerService.update(customerUpdated);
-            if (update == 0) {
+            if (customerService.update(customerUpdated).isLeft()) {
                 getPrincipalController().alertWarning("No ha habido cambios", ConstantNormal.ERROR);
             } else {
                 getPrincipalController().showInformation(ConstantNormal.CLIENT_GOT_UPDATED_CORRECTLY, ConstantNormal.INFORMATION);
