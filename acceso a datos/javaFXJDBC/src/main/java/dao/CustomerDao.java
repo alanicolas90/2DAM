@@ -10,7 +10,7 @@ import java.util.List;
 public interface CustomerDao {
 
     Either<ErrorC, List<Customer>> getAll();
-    int saveAutoIncrementalID(String name, String surname, String email, int phone, LocalDate dateOfBirth);
+    int saveAutoIncrementalID( String name, String surname, String email, int phone, LocalDate dateOfBirth);
 
     int delete(int id);
 
@@ -18,13 +18,4 @@ public interface CustomerDao {
 
     Either<ErrorC, Integer> update(Customer customerUpdated);
 
-    void updateName(int id, String name);
-
-    void updateSurname(int id, String surname);
-
-    void updatePhone(int id, int phone);
-
-    void updateEmail(int id, String email);
-
-    void updateDateOfBirth(int id, LocalDate dateOfBirth);
 }

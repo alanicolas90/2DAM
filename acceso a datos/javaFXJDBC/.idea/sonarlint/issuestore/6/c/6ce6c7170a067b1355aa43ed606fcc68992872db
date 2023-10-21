@@ -1,6 +1,6 @@
 
 _
-java:S1854B"BRemove this useless assignment to local variable "selectionTable".(„²ÜÉ8“ä«¤´1
+java:S1854B"BRemove this useless assignment to local variable "selectionTable".(„²ÜÉ8´ìÇþ´1
 P
-java:S1481B"3Remove this unused "selectionTable" local variable.(„²ÜÉ8“ä«¤´1
-X	java:S125D"<This block of commented-out lines of code should be removed.(¾ªñ›8“ä«¤´1
+java:S1481B"3Remove this unused "selectionTable" local variable.(„²ÜÉ8´ìÇþ´1
+X	java:S125D"<This block of commented-out lines of code should be removed.(¾ªñ›8µìÇþ´1

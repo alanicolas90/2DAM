@@ -62,29 +62,28 @@ class MainActivity : AppCompatActivity() {
             }
             if (state.message == null) {
                 setValuesScreen(state)
+                if(state.begginingList){
+                    binding.buttonBack.isEnabled = false
+                }else if(state.endList){
+                    binding.buttonNext.isEnabled = false
+                }
             }
         }
     }
+
 
     private fun setValuesScreen(state: MainState) {
         with(binding) {
             txtSizeList.text =
                 buildString { append(Constantes.ID_WITH_SPACE + viewModel.getIdPersona()) }
             if (viewModel.getSize() == 0) {
-                if (viewModel.getSize() < 1) {
-                    buttonUpdate.isEnabled = false
-                }
-                if (viewModel.getSize() == 1) {
-                    buttonNext.isEnabled = false
-                    buttonBack.isEnabled = false
-                }
                 txtName.setText("")
                 txtSurname.setText("")
                 radioGroup.clearCheck()
 
             } else {
                 setAllScreen(state)
-                deactivateButtons()
+//                deactivateButtons()
             }
         }
     }
@@ -111,14 +110,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun deactivateButtons() {
-        if (viewModel.getIdPersona() + 1 == viewModel.getSize()) {
-            binding.buttonNext.isEnabled = false
-        } else if (viewModel.getIdPersona() == 0) {
-            binding.buttonBack.isEnabled = false
-        }
-
-    }
+//    private fun deactivateButtons() {
+//        if (viewModel.getIdPersona() + 1 == viewModel.getSize()) {
+//            binding.buttonNext.isEnabled = false
+//        } else if (viewModel.getIdPersona() == 0) {
+//            binding.buttonBack.isEnabled = false
+//        }
+//    }
 
     private fun buttonDeleteSetOnClick() {
         binding.buttonDelete.setOnClickListener {

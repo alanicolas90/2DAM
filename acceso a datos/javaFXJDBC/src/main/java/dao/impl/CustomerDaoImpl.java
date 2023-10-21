@@ -34,11 +34,10 @@ public class CustomerDaoImpl implements CustomerDao {
         PreparedStatement preparedStatement = null;
         try{
             connection = dbConnection.getConnection();
-            preparedStatement = connection.prepareStatement("select * from customer where id = ?");
+            preparedStatement = connection.prepareStatement(SQLQueries.GET_CUSTOMER_SPECIFIC_ID);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             customer = readRS(resultSet).get(0);
-            System.out.println(customer);
         }catch(Exception e){
             log.error(e.getMessage());
         }finally {
@@ -60,7 +59,7 @@ public class CustomerDaoImpl implements CustomerDao {
         PreparedStatement preparedStatement = null;
         try{
             connection = dbConnection.getConnection();
-            preparedStatement = connection.prepareStatement("update customer set name = ?, surname = ?, email = ?, phone = ?, date_of_birth = ? where id = ?");
+            preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_CUSTOMER);
             preparedStatement.setString(1, customerUpdated.getName());
             preparedStatement.setString(2, customerUpdated.getSurname());
             preparedStatement.setString(3, customerUpdated.getEmail());
@@ -91,7 +90,7 @@ public class CustomerDaoImpl implements CustomerDao {
         Statement statement = null;
         try {
             connection = dbConnection.getConnection();
-            statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQLQueries.GET_ALL_CUSTOMERS);
             customers.addAll(readRS(resultSet));
         } catch (SQLException e) {
@@ -107,18 +106,28 @@ public class CustomerDaoImpl implements CustomerDao {
     public int saveAutoIncrementalID(String name, String surname, String email, int phone, LocalDate dateOfBirth) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement1 = null;
         int rowsAffected = 0;
         try {
             connection = dbConnection.getConnection();
-            preparedStatement = connection.prepareStatement(SQLQueries.ADD_CUSTOMER);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, surname);
-            preparedStatement.setString(3, email);
-            preparedStatement.setInt(4, phone);
+
+            preparedStatement1 = connection.prepareStatement("insert into credentials (user_name,password) values (?,?)");
+            preparedStatement1.setString(1, name);
+            preparedStatement1.setString(2, surname);
+            preparedStatement1.executeUpdate();
+
+            int lastId = getLastId(connection);
+
+            preparedStatement = connection.prepareStatement("INSERT INTO customers (`id`, `first_name`, `last_name`, `email`, `phone`, `date_of_birth`) VALUES (?, ?, ?, ?, ?, ?);");
+            preparedStatement.setInt(1, lastId);
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, surname);
+            preparedStatement.setString(4, email);
+            preparedStatement.setInt(5, phone);
             if (dateOfBirth == null) {
-                preparedStatement.setNull(5, Types.DATE);
+                preparedStatement.setNull(6, Types.DATE);
             } else {
-                preparedStatement.setDate(5, Date.valueOf(dateOfBirth));
+                preparedStatement.setDate(6, Date.valueOf(dateOfBirth));
             }
             rowsAffected = preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -137,7 +146,7 @@ public class CustomerDaoImpl implements CustomerDao {
         int rowsAffected = 0;
         try {
             connection = dbConnection.getConnection();
-            preparedStatement = connection.prepareStatement(SQLQueries.DELETE_CUSTOMER);
+            preparedStatement = connection.prepareStatement("delete from customers where id = ?");
             preparedStatement.setInt(1, id);
             rowsAffected = preparedStatement.executeUpdate();
 
@@ -152,114 +161,41 @@ public class CustomerDaoImpl implements CustomerDao {
 
     private Either<ErrorC, Integer> delete(int id, boolean confirm){
         Connection connection;
+        PreparedStatement preparedStatement;
+        int rowsAffected = 0;
         if(!confirm){
             try{
                 connection = dbConnection.getConnection();
-
+                preparedStatement = connection.prepareStatement("delete from customers where id = ?");
+                preparedStatement.setInt(1, id);
+                rowsAffected = preparedStatement.executeUpdate();
             }catch(SQLException e){
                 if(e.getErrorCode() == 1451){
-                    return Either.left(new ErrorC("Customer has orders, cannot be deleted"));
+                    return Either.left(new ErrorC("Customer has orders, are you sure you want to delete it?"));
+                }else{
+                    log.error(e.getMessage());
                 }
             }
         }
-        return Either.right(0);
+        return Either.right(rowsAffected);
     }
 
-    @Override
-    public void updateName(int id, String name) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            connection = dbConnection.getConnection();
-            preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_NAME_CUSTOMER);
-            preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, id);
-
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
+    private int getLastId(Connection connection) {
+        Statement statement = null;
+        int result = 0;
+        try{
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select id from credentials order by id desc limit 1");
+            resultSet.next();
+            result = resultSet.getInt("id");
+        } catch (SQLException e) {
             log.error(e.getMessage());
         } finally {
-            dbConnection.closeConnection(connection);
-            dbConnection.releaseResource(preparedStatement);
+            dbConnection.releaseResource(statement);
         }
+        return result;
     }
 
-    @Override
-    public void updateSurname(int id, String surname) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            connection = dbConnection.getConnection();
-            preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_SURNAME_CUSTOMER);
-            preparedStatement.setString(1, surname);
-            preparedStatement.setInt(2, id);
-
-            preparedStatement.executeUpdate();
-
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        } finally {
-            dbConnection.closeConnection(connection);
-            dbConnection.releaseResource(preparedStatement);
-        }
-    }
-
-    @Override
-    public void updatePhone(int id, int phone) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            connection = dbConnection.getConnection();
-            preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_PHONE_CUSTOMER);
-            preparedStatement.setInt(1, phone);
-            preparedStatement.setInt(2, id);
-
-            preparedStatement.executeUpdate();
-
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        } finally {
-            dbConnection.closeConnection(connection);
-            dbConnection.releaseResource(preparedStatement);
-        }
-    }
-
-    @Override
-    public void updateEmail(int id, String email) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            connection = dbConnection.getConnection();
-            preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_EMAIL_CUSTOMER);
-            preparedStatement.setString(1, email);
-            preparedStatement.setInt(2, id);
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        } finally {
-            dbConnection.closeConnection(connection);
-            dbConnection.releaseResource(preparedStatement);
-        }
-    }
-
-    @Override
-    public void updateDateOfBirth(int id, LocalDate dateOfBirth) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            connection = dbConnection.getConnection();
-            preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_BIRTH_CUSTOMER);
-            preparedStatement.setDate(1, Date.valueOf(dateOfBirth));
-            preparedStatement.setInt(2, id);
-            preparedStatement.executeUpdate();
-
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        } finally {
-            dbConnection.closeConnection(connection);
-            dbConnection.releaseResource(preparedStatement);
-        }
-    }
 
     private List<Customer> readRS(ResultSet resultSet) {
         List<Customer> customers = new ArrayList<>();
@@ -267,8 +203,8 @@ public class CustomerDaoImpl implements CustomerDao {
             while (resultSet.next()) {
 
                 int customerID = resultSet.getInt("id");
-                String customerName = resultSet.getString("name");
-                String customerSurname = resultSet.getString("surname");
+                String customerName = resultSet.getString("first_name");
+                String customerSurname = resultSet.getString("last_name");
                 String customerEmail = resultSet.getString("email");
                 int customerPhone = resultSet.getInt("phone");
                 LocalDate customerBirthDate;
@@ -277,7 +213,7 @@ public class CustomerDaoImpl implements CustomerDao {
                 } else {
                     customerBirthDate = null;
                 }
-                Customer customer = new Customer(customerID, customerName, customerSurname, customerEmail, customerPhone, customerBirthDate);
+                Customer customer = new Customer(customerID, customerName, customerSurname,customerEmail,customerPhone,customerBirthDate);
                 customers.add(customer);
             }
         } catch (SQLException e) {

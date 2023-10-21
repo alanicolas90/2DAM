@@ -49,10 +49,6 @@ public class CustomerListController extends BaseScreenController {
 
 
     public void refreshTable() {
-        Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
-        if(customer!= null){
-            customerService.getCustomerById(customer.getId());
-        }
         tableCustomers.getItems().clear();
         tableCustomers.getItems().addAll(customerService.getAll().get());
         getPrincipalController().showInformation("Se ha actualizado la tabla correctamente", "Info");

@@ -25,11 +25,6 @@ class MainViewModel(
     val uiState: LiveData<MainState> get() = _uiState
 
     init {
-        initialize()
-    }
-
-
-    private fun initialize() {
         if (getSizePersonasUseCase() == 0) {
             _uiState.value = MainState(
                 message = Constantes.NO_HAY_MAS_PERSONAS
@@ -41,6 +36,7 @@ class MainViewModel(
             )
         }
     }
+
 
     fun getSize(): Int {
         return getSizePersonasUseCase()
@@ -157,10 +153,12 @@ class MainViewModel(
             val persona = getPersonaUseCase(idPersona)
             _uiState.value = MainState(
                 persona = persona,
+                endList = false,
             )
         } else {
             _uiState.value = MainState(
-                message = Constantes.NO_HAY_MAS_PERSONAS
+                message = Constantes.NO_HAY_MAS_PERSONAS,
+                endList = true,
             )
         }
     }
@@ -171,10 +169,14 @@ class MainViewModel(
             val persona = getPersonaUseCase(idPersona)
             _uiState.value = _uiState.value?.copy(
                 persona = persona,
+                begginingList = false,
             )
 
         } else {
-            _uiState.value = _uiState.value?.copy(message = Constantes.NO_HAY_MAS_PERSONAS)
+            _uiState.value = _uiState.value?.copy(
+                message = Constantes.NO_HAY_MAS_PERSONAS,
+                begginingList = true,
+            )
         }
     }
 

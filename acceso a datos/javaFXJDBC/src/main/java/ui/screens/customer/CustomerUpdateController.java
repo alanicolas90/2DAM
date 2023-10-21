@@ -66,7 +66,7 @@ public class CustomerUpdateController extends BaseScreenController {
 
     @FXML
     private void selectionTable() {
-        if(tableCustomers.getSelectionModel().getSelectedItem()!=null) {
+        if (tableCustomers.getSelectionModel().getSelectedItem() != null) {
             Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
             txtName.setText(customer.getName());
             txtSurname.setText(customer.getSurname());
@@ -90,17 +90,13 @@ public class CustomerUpdateController extends BaseScreenController {
         } else {
             Customer customerUpdated = new Customer(customer.getId(), txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue());
 
-            int update = customerService.update(customer,customerUpdated);
-            if(update == 0){
+            int update = customerService.update(customerUpdated);
+            if (update == 0) {
                 getPrincipalController().alertWarning("No ha habido cambios", ConstantNormal.ERROR);
-            }else{
+            } else {
                 getPrincipalController().showInformation(ConstantNormal.CLIENT_GOT_UPDATED_CORRECTLY, ConstantNormal.INFORMATION);
             }
-//            if(!customerService.update(customer, customerUpdated)){
-//                getPrincipalController().alertWarning(ConstantNormal.ERROR, ConstantNormal.ERROR);
-//            }else{
-//                getPrincipalController().showInformation(ConstantNormal.CLIENT_GOT_UPDATED_CORRECTLY, ConstantNormal.INFORMATION);
-//            }
+
         }
         tableCustomers.getItems().clear();
         tableCustomers.getItems().addAll(customerService.getAll().get());
