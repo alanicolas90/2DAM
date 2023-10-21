@@ -3,14 +3,15 @@ package model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Data
+
 @Getter
 @AllArgsConstructor
 public class Credential {
     int idCustomer;
     private String username;
     private String password;
-    boolean privilege;
+    private boolean privilege;
 
 }

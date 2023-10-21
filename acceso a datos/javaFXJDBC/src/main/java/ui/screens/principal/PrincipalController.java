@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
+import model.Credential;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantNormal;
 import ui.screens.common.Screens;
@@ -35,6 +36,11 @@ public class PrincipalController {
 
     @Getter
     private String user;
+
+    @Getter
+    private int idUserLogged;
+    @FXML
+    private Menu menuCustomer;
 
     @Inject
     public PrincipalController(Instance<Object> instance) {
@@ -72,10 +78,14 @@ public class PrincipalController {
         loadScreen(Screens.LOGIN);
     }
 
-    public void onLogin(String username) {
-        this.user = username;
-        loadScreen(Screens.BIENVENIDA);
+    public void onLogin(Credential credential) {
+        this.idUserLogged = credential.getIdCustomer();
+        this.user = credential.getUsername();
         menuPrincipal.setVisible(true);
+        if(!credential.isPrivilege()){
+            menuCustomer.setVisible(false);
+        }
+        loadScreen(Screens.BIENVENIDA);
     }
 
     public void logout() {
