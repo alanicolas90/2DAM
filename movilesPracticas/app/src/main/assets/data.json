@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "base_experience": 64,
+    "height": 7,
+    "weight": 69,
+    "sprites": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    "stats": [
+      {
+        "base_stat": 45,
+        "name": "hp"
+      },
+      {
+        "base_stat": 49,
+        "name": "attack"
+      },
+      {
+        "base_stat": 49,
+        "name": "defense"
+      },
+      {
+        "base_stat": 65,
+        "name": "special-attack"
+      },
+      {
+        "base_stat": 65,
+        "name": "special-defense"
+      },
+      {
+        "base_stat": 45,
+        "name": "speed"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "base_experience": 64,
+    "height": 7,
+    "weight": 69,
+    "sprites": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
+    "stats": [
+      {
+        "base_stat": 45,
+        "name": "hp"
+      },
+      {
+        "base_stat": 49,
+        "name": "attack"
+      },
+      {
+        "base_stat": 49,
+        "name": "defense"
+      },
+      {
+        "base_stat": 65,
+        "name": "special-attack"
+      },
+      {
+        "base_stat": 65,
+        "name": "special-defense"
+      },
+      {
+        "base_stat": 45,
+        "name": "speed"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "base_experience": 64,
+    "height": 7,
+    "weight": 69,
+    "sprites": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+    "stats": [
+      {
+        "base_stat": 45,
+        "name": "hp"
+      },
+      {
+        "base_stat": 49,
+        "name": "attack"
+      },
+      {
+        "base_stat": 49,
+        "name": "defense"
+      },
+      {
+        "base_stat": 65,
+        "name": "special-attack"
+      },
+      {
+        "base_stat": 65,
+        "name": "special-defense"
+      },
+      {
+        "base_stat": 45,
+        "name": "speed"
+      }
+    ]
+  }
+]

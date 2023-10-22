@@ -43,7 +43,7 @@ public class DaoPokemonImpl implements DaoPokemon {
             log.error(e.getMessage(), e);
             resultado = Either.left(e.getMessage());
         }
-
+        System.out.println(resultado);
         return resultado;
     }
 
@@ -71,7 +71,6 @@ public class DaoPokemonImpl implements DaoPokemon {
             log.error(e.getMessage(), e);
             resultado = Either.left(e.getMessage());
         }
-
         return resultado;
 
     }
