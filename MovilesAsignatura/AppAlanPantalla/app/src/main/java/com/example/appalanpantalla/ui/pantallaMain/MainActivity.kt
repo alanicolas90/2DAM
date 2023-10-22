@@ -62,11 +62,6 @@ class MainActivity : AppCompatActivity() {
             }
             if (state.message == null) {
                 setValuesScreen(state)
-                if(state.begginingList){
-                    binding.buttonBack.isEnabled = false
-                }else if(state.endList){
-                    binding.buttonNext.isEnabled = false
-                }
             }
         }
     }
@@ -76,15 +71,16 @@ class MainActivity : AppCompatActivity() {
         with(binding) {
             txtSizeList.text =
                 buildString { append(Constantes.ID_WITH_SPACE + viewModel.getIdPersona()) }
-            if (viewModel.getSize() == 0) {
-                txtName.setText("")
-                txtSurname.setText("")
-                radioGroup.clearCheck()
-
-            } else {
+//            if (viewModel.getSize() == 0) {
+//                txtName.setText("")
+//                txtSurname.setText("")
+//                radioGroup.clearCheck()
+//            } else {
                 setAllScreen(state)
-//                deactivateButtons()
-            }
+//            }
+            buttonNext.isEnabled = state.endList
+            buttonBack.isEnabled = state.begginingList
+            buttonDelete.isEnabled = state.activatedButtonDelete
         }
     }
 
@@ -110,13 +106,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    private fun deactivateButtons() {
-//        if (viewModel.getIdPersona() + 1 == viewModel.getSize()) {
-//            binding.buttonNext.isEnabled = false
-//        } else if (viewModel.getIdPersona() == 0) {
-//            binding.buttonBack.isEnabled = false
-//        }
-//    }
 
     private fun buttonDeleteSetOnClick() {
         binding.buttonDelete.setOnClickListener {
@@ -148,12 +137,6 @@ class MainActivity : AppCompatActivity() {
                     switchTrabaja.isChecked,
                     slider.value
                 )
-                if (viewModel.getSize() == 1) {
-                    buttonUpdate.isEnabled = true
-                }
-                if (viewModel.getSize() > 1) {
-                    buttonBack.isEnabled = true
-                }
             }
         }
     }
@@ -161,14 +144,12 @@ class MainActivity : AppCompatActivity() {
     private fun buttonBackSetOnClick() {
         binding.buttonBack.setOnClickListener {
             viewModel.getBeforePersona()
-            binding.buttonNext.isEnabled = true
         }
     }
 
     private fun buttonNextSetOnClick() {
         binding.buttonNext.setOnClickListener {
             viewModel.getNextPersona()
-            binding.buttonBack.isEnabled = true
         }
     }
 }

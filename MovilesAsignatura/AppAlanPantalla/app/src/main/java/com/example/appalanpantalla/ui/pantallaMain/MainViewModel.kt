@@ -38,7 +38,7 @@ class MainViewModel(
     }
 
 
-    fun getSize(): Int {
+    private fun getSize(): Int {
         return getSizePersonasUseCase()
     }
 
@@ -69,44 +69,68 @@ class MainViewModel(
                 )
             }
 
-            this.getSize() == 0 && idPersona == 0 -> {
+            this.getSize() == 0 -> {
                 addPersonaUseCase(persona)
-                _uiState.value = _uiState.value?.copy(persona = persona)
+                _uiState.value = _uiState.value?.copy(
+                    persona = persona,
+                    activatedButtonDelete = true,
+                )
             }
 
             else -> {
                 addPersonaUseCase(persona)
                 idPersona = getSize() - 1
-                _uiState.value = _uiState.value?.copy(persona = persona)
+                _uiState.value = _uiState.value?.copy(
+                    persona = persona,
+                    begginingList = true,
+                )
             }
         }
     }
 
     fun deletePersona() {
-        if (getSize() == 0) {
-            _uiState.value = _uiState.value?.copy(
-                message = Constantes.NO_HAY_MAS_PERSONAS,
-                persona = Persona(
-                    Constantes.EMPTY, Constantes.EMPTY, 0, false,
-                    0F
+        val size:Int = this.getSize()
+        when {
+            size == 1 -> {
+                deletePersonaUseCase(idPersona)
+                _uiState.value = _uiState.value?.copy(
+                    persona = Persona(
+                        Constantes.EMPTY, Constantes.EMPTY, 0, false,
+                        0F
+                    ),
+                    activatedButtonDelete = false,
                 )
-            )
-        } else if (getSize() != 1) {
-            deletePersonaUseCase(idPersona)
-            if (idPersona == getSize()) {
-                idPersona -= 1
+                idPersona = 0
             }
-            val persona = getPersonaUseCase(idPersona)
-            _uiState.value = _uiState.value?.copy(
-                message = null,
-                persona = persona,
-            )
-        } else {
-            deletePersonaUseCase(idPersona)
-            _uiState.value = _uiState.value?.copy(
-                message = Constantes.NO_HAY_MAS_PERSONAS,
-                persona = Persona(Constantes.EMPTY, Constantes.EMPTY, 0, false, 0F),
-            )
+            size == 2 -> {
+                deletePersonaUseCase(idPersona)
+                if(idPersona == getSize()){
+                    idPersona -= 1
+                }
+                val persona = getPersonaUseCase(idPersona)
+                _uiState.value = _uiState.value?.copy(
+                    persona = persona,
+                    begginingList = false,
+                    endList = false,
+                )
+            }
+            size > 1 -> {
+                deletePersonaUseCase(idPersona)
+                if(idPersona == getSize()){
+                    idPersona -= 1
+                }
+                val persona = getPersonaUseCase(idPersona)
+                _uiState.value = _uiState.value?.copy(
+                    persona = persona,
+                )
+            }
+            else -> {
+                _uiState.value = _uiState.value?.copy(
+                    activatedButtonDelete = false,
+                    begginingList = false,
+                    endList = false,
+                )
+            }
         }
     }
 
@@ -148,34 +172,47 @@ class MainViewModel(
     }
 
     fun getNextPersona() {
-        if (idPersona < this.getSize()) {
-            idPersona += 1
+        idPersona += 1
+        if (idPersona < this.getSize() - 1 && getSize() != 0) {
             val persona = getPersonaUseCase(idPersona)
-            _uiState.value = MainState(
+            _uiState.value = _uiState.value?.copy(
                 persona = persona,
+                begginingList = true,
+            )
+        } else if (idPersona == getSize() - 1 && getSize() != 0) {
+            val persona = getPersonaUseCase(idPersona)
+            _uiState.value = _uiState.value?.copy(
+                persona = persona,
+                begginingList = true,
                 endList = false,
             )
         } else {
-            _uiState.value = MainState(
+            _uiState.value = _uiState.value?.copy(
                 message = Constantes.NO_HAY_MAS_PERSONAS,
-                endList = true,
+                endList = false,
             )
         }
     }
 
     fun getBeforePersona() {
+        idPersona -= 1
         if (idPersona > 0) {
-            idPersona -= 1
             val persona = getPersonaUseCase(idPersona)
             _uiState.value = _uiState.value?.copy(
                 persona = persona,
+                endList = true,
+            )
+        } else if (idPersona == 0 && getSize() != 0) {
+            val persona = getPersonaUseCase(idPersona)
+            _uiState.value = _uiState.value?.copy(
+                persona = persona,
+                endList = true,
                 begginingList = false,
             )
-
         } else {
             _uiState.value = _uiState.value?.copy(
                 message = Constantes.NO_HAY_MAS_PERSONAS,
-                begginingList = true,
+                begginingList = false,
             )
         }
     }
