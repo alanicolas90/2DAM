@@ -2,6 +2,7 @@ package dao.impl;
 
 import dao.LoginDao;
 import dao.db.DBConnection;
+import dao.utils.DaoConstants;
 import dao.utils.SQLQueries;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
@@ -10,8 +11,6 @@ import model.Credential;
 import model.ErrorC;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Log4j2
@@ -23,6 +22,7 @@ public class LoginDaoImpl implements LoginDao {
     public LoginDaoImpl(DBConnection dbConnection) {
         this.dbConnection = dbConnection;
     }
+
 
     @Override
     public Either<ErrorC, Credential> login(String username, String password) {
@@ -37,7 +37,7 @@ public class LoginDaoImpl implements LoginDao {
             credential = readRS(resultSet);
 
             if (credential == null) {
-                return Either.left(new ErrorC("User not found"));
+                return Either.left(new ErrorC(DaoConstants.USER_NOT_FOUND));
             }
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -49,9 +49,9 @@ public class LoginDaoImpl implements LoginDao {
         Credential credential = null;
         try {
             if (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String username = resultSet.getString("username");
-                String password = resultSet.getString("password");
+                int id = resultSet.getInt(DaoConstants.ID);
+                String username = resultSet.getString(DaoConstants.USERNAME);
+                String password = resultSet.getString(DaoConstants.PASSWORD);
                 boolean priviledged = id < 0;
                 credential = new Credential(id, username, password, priviledged);
             }

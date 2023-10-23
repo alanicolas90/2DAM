@@ -10,7 +10,8 @@ import java.util.List;
 public interface CustomerDao {
 
     Either<ErrorC, List<Customer>> getAll();
-    int saveAutoIncrementalID( String name, String surname, String email, int phone, LocalDate dateOfBirth);
+
+    int saveAutoIncrementalID(String name, String surname, String email, int phone, LocalDate dateOfBirth);
 
     Either<ErrorC, Customer> get(int id);
 

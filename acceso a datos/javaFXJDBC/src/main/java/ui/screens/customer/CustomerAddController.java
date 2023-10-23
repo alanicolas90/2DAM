@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import model.Customer;
 import service.CustomerService;
 import ui.screens.common.BaseScreenController;
-import ui.screens.common.ConstantNormal;
+import ui.screens.common.ConstantsController;
 import ui.screens.customer.common.CustomerCommon;
 
 import java.time.LocalDate;
@@ -19,7 +19,7 @@ public class CustomerAddController extends BaseScreenController {
     private final CustomerService customerService;
 
     @Inject
-    public CustomerAddController( CustomerCommon customerCommon, CustomerService customerService) {
+    public CustomerAddController(CustomerCommon customerCommon, CustomerService customerService) {
 
         this.customerCommon = customerCommon;
         this.customerService = customerService;
@@ -59,18 +59,19 @@ public class CustomerAddController extends BaseScreenController {
         tableCustomers.getItems().addAll(customerService.getAll().get());
     }
 
-    public void addCustomer() {
+    @FXML
+    private void addCustomer() {
         if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPhoneNumber.getText().isEmpty() || dateOfBirthCustomer.getValue() == null) {
-            getPrincipalController().alertWarning(ConstantNormal.THERE_ARE_EMPTY_FIELDS, ConstantNormal.ERROR);
-        } else if (!txtPhoneNumber.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
-            getPrincipalController().alertWarning(ConstantNormal.PHONE_NUMBER_CANNOT_CONTAIN_LETTERS, ConstantNormal.ERROR);
+            getPrincipalController().alertWarning(ConstantsController.THERE_ARE_EMPTY_FIELDS, ConstantsController.ERROR);
+        } else if (!txtPhoneNumber.getText().matches(ConstantsController.CONTAINS_NUMBERS)) {
+            getPrincipalController().alertWarning(ConstantsController.PHONE_NUMBER_CANNOT_CONTAIN_LETTERS, ConstantsController.ERROR);
         } else {
-            if(customerService.saveAutoIncrementalID(txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue()) <= 1){
-                getPrincipalController().alertWarning(ConstantNormal.ERROR, ConstantNormal.ERROR);
-            }else{
+            if (customerService.saveAutoIncrementalID(txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue()) <= 1) {
+                getPrincipalController().alertWarning(ConstantsController.ERROR, ConstantsController.ERROR);
+            } else {
                 tableCustomers.getItems().clear();
                 tableCustomers.getItems().addAll(customerService.getAll().get());
-                getPrincipalController().showInformation(ConstantNormal.CLIENT_ADDED_CORRECTLY, ConstantNormal.INFORMATION);
+                getPrincipalController().showInformation(ConstantsController.CLIENT_ADDED_CORRECTLY, ConstantsController.INFORMATION);
             }
         }
     }

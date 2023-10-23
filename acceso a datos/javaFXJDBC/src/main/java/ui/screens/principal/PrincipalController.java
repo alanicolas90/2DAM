@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import model.Credential;
 import ui.screens.common.BaseScreenController;
-import ui.screens.common.ConstantNormal;
+import ui.screens.common.ConstantsController;
 import ui.screens.common.Screens;
 
 import java.io.IOException;
@@ -135,9 +135,9 @@ public class PrincipalController {
 
     private boolean alertExit() {
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(ConstantNormal.EXIT);
-        alert.setHeaderText(ConstantNormal.EXIT);
-        alert.setContentText(ConstantNormal.ARE_YOU_SURE_YOU_WANT_TO_EXIT);
+        alert.setTitle(ConstantsController.EXIT);
+        alert.setHeaderText(ConstantsController.EXIT);
+        alert.setContentText(ConstantsController.ARE_YOU_SURE_YOU_WANT_TO_EXIT);
         alert.showAndWait();
         return alert.getResult() == ButtonType.OK;
     }

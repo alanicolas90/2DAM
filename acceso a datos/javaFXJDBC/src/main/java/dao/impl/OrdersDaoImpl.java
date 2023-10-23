@@ -2,6 +2,7 @@ package dao.impl;
 
 import dao.OrdersDao;
 import dao.db.DBConnection;
+import dao.utils.DaoConstants;
 import dao.utils.SQLQueries;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
@@ -37,11 +38,11 @@ public class OrdersDaoImpl implements OrdersDao {
 
         } catch (SQLException e) {
             log.error(e.getMessage());
-            return Either.left(new ErrorC("Error getting orders"));
+            return Either.left(new ErrorC(DaoConstants.ERROR_GETTING_ORDERS));
         }
 
         if (orders.isEmpty()) {
-            return Either.left(new ErrorC("No orders found"));
+            return Either.left(new ErrorC(DaoConstants.NO_ORDERS_FOUND));
         } else {
             return Either.right(orders);
         }
@@ -60,11 +61,11 @@ public class OrdersDaoImpl implements OrdersDao {
 
         } catch (SQLException e) {
             log.error(e.getMessage());
-            return Either.left(new ErrorC("Error getting orders"));
+            return Either.left(new ErrorC(DaoConstants.ERROR_GETTING_ORDERS));
         }
 
         if (orders.isEmpty()) {
-            return Either.left(new ErrorC("No orders found"));
+            return Either.left(new ErrorC(DaoConstants.NO_ORDERS_FOUND));
         } else {
             return Either.right(orders);
         }
@@ -111,24 +112,26 @@ public class OrdersDaoImpl implements OrdersDao {
     public Either<ErrorC, Integer> delete(int id) {
         int rowsAffected = 0;
         Connection connection = null;
-        try{
+        try {
             connection = dbConnection.getConnection();
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDERS_WHERE_ORDER_ID);
             preparedStatement.setInt(1, id);
             rowsAffected = preparedStatement.executeUpdate();
             connection.commit();
-        }catch(SQLException e){
+        } catch (SQLException e) {
             log.error(e.getMessage());
             tryCatchRollbak(connection);
         }
-         if(rowsAffected == 0){
-            return Either.left(new ErrorC("No order found"));
-        }else{
+        if (rowsAffected == 0) {
+            return Either.left(new ErrorC(DaoConstants.NO_ORDER_FOUND));
+        } else {
             return Either.right(rowsAffected);
-         }
+        }
     }
 
+
+    //Utility methods
     private void tryCatchRollbak(Connection connection) {
         try {
             connection.rollback();

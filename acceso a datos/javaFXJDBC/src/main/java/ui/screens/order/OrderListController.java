@@ -10,6 +10,7 @@ import model.OrderItem;
 import service.CustomerService;
 import service.OrdersService;
 import ui.screens.common.BaseScreenController;
+import ui.screens.common.ConstantsController;
 import ui.screens.order.common.CommonOrder;
 
 import java.time.LocalDateTime;
@@ -43,7 +44,7 @@ public class OrderListController extends BaseScreenController {
     private TableColumn<Order, Integer> columnTableNumber;
 
     @FXML
-    private TableView tableOrderItems;
+    private TableView<OrderItem> tableOrderItems;
     @FXML
     private TableColumn<OrderItem, String> columnItemName;
     @FXML
@@ -61,7 +62,7 @@ public class OrderListController extends BaseScreenController {
         commonOrder.initOrderItemList(columnItemName, columnQuantity);
 
         comboBoxCustomer.getItems().addAll(customerService.getAllIdsCustomer());
-        filterComboBox.getItems().addAll("Date", "Customer", "None");
+        filterComboBox.getItems().addAll(ConstantsController.DATE, ConstantsController.CUSTOMER, ConstantsController.NONE);
         comboBoxCustomer.setDisable(true);
         datePicker.setDisable(true);
 
@@ -75,39 +76,43 @@ public class OrderListController extends BaseScreenController {
         datePicker.setOnAction(event -> selectedDate());
     }
 
-    public void orderSelected() {
+    @FXML
+    private void orderSelected() {
         tableOrderItems.getItems().clear();
         if (tableOrders.getSelectionModel().getSelectedItem() != null) {
             int idCustomer = tableOrders.getSelectionModel().getSelectedItem().getCustomerId();
-            if(customerService.getCustomerById(idCustomer).isRight()){
+            if (customerService.getCustomerById(idCustomer).isRight()) {
                 txtCustomerName.setText(customerService.getCustomerById(idCustomer).get().getName());
-            }else{
-                getPrincipalController().showInformation("Customer has no orders","Information");
+            } else {
+                getPrincipalController().showInformation(ConstantsController.CUSTOMER_HAS_NO_ORDERS, ConstantsController.INFORMATION);
             }
         }
     }
 
-    public void selectedBox() {
+    @FXML
+    private void selectedBox() {
         if (comboBoxCustomer.getValue() != null) {
             tableOrders.getItems().clear();
             Either<ErrorC, List<Order>> eitherOrders = ordersService.getOrdersSpecificCustomer(comboBoxCustomer.getValue());
-            if(eitherOrders.isRight()) {
+            if (eitherOrders.isRight()) {
                 tableOrders.getItems().addAll(eitherOrders.get());
             }
         }
     }
 
-    public void selectedDate() {
+    @FXML
+    private void selectedDate() {
         if (datePicker.getValue() != null) {
             tableOrders.getItems().clear();
             Either<ErrorC, List<Order>> eitherOrders = ordersService.getOrdersSpecificDate(datePicker.getValue());
-            if(eitherOrders.isRight()){
+            if (eitherOrders.isRight()) {
                 tableOrders.getItems().addAll(eitherOrders.get());
             }
         }
     }
 
-    public void selectedFilter() {
+    @FXML
+    private void selectedFilter() {
         tableOrders.getItems().clear();
         tableOrders.getItems().addAll(ordersService.getAll().get());
 
@@ -115,11 +120,11 @@ public class OrderListController extends BaseScreenController {
             datePicker.setDisable(true);
             comboBoxCustomer.setDisable(true);
 
-        } else if (filterComboBox.getValue().equals("Date")) {
+        } else if (filterComboBox.getValue().equals(ConstantsController.DATE)) {
             datePicker.setDisable(false);
             comboBoxCustomer.setDisable(true);
 
-        } else if (filterComboBox.getValue().equals("Customer")) {
+        } else if (filterComboBox.getValue().equals(ConstantsController.CUSTOMER)) {
             comboBoxCustomer.setDisable(false);
             datePicker.setDisable(true);
 

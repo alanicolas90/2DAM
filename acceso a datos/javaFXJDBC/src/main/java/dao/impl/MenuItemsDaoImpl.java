@@ -2,6 +2,8 @@ package dao.impl;
 
 import dao.MenuItemsDao;
 import dao.db.DBConnection;
+import dao.utils.DaoConstants;
+import dao.utils.SQLQueries;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
@@ -31,16 +33,16 @@ public class MenuItemsDaoImpl implements MenuItemsDao {
         try {
             Connection connection = dbConnection.getConnection();
             Statement statement = connection.createStatement();
-            statement.executeQuery("SELECT * FROM menu_items");
+            statement.executeQuery(SQLQueries.SELECT_ALL_FROM_MENU_ITEMS);
             ResultSet resultSet = statement.getResultSet();
             menuItems = readRS(resultSet);
         } catch (SQLException e) {
             log.error(e.getMessage());
-            return Either.left(new ErrorC("SQL error getting menu items"));
+            return Either.left(new ErrorC(DaoConstants.SQL_ERROR_GETTING_MENU_ITEMS));
         }
-        if(menuItems.isEmpty()){
-            return Either.left(new ErrorC("No menu items found"));
-        }else{
+        if (menuItems.isEmpty()) {
+            return Either.left(new ErrorC(DaoConstants.NO_MENU_ITEMS_FOUND));
+        } else {
             return Either.right(menuItems);
         }
     }
@@ -49,10 +51,10 @@ public class MenuItemsDaoImpl implements MenuItemsDao {
         List<MenuItem> menuItems = new ArrayList<>();
         try {
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                String description = resultSet.getString("description");
-                double price = resultSet.getDouble("price");
+                int id = resultSet.getInt(DaoConstants.ID);
+                String name = resultSet.getString(DaoConstants.NAME);
+                String description = resultSet.getString(DaoConstants.DESCRIPTION);
+                double price = resultSet.getDouble(DaoConstants.PRICE);
                 menuItems.add(new MenuItem(id, name, description, price));
             }
         } catch (SQLException e) {

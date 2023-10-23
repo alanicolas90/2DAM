@@ -5,6 +5,7 @@ import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Customer;
 import model.ErrorC;
+import service.utils.ServiceConstants;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -27,37 +28,36 @@ public class CustomerService {
         return customerDao.saveAutoIncrementalID(name, surname, email, phone, dateOfBirth);
     }
 
-    public Either<ErrorC, Integer> delete(int id, boolean confirm){
-        if(customerDao.delete(id,confirm).isRight()){
+    public Either<ErrorC, Integer> delete(int id, boolean confirm) {
+        if (customerDao.delete(id, confirm).isRight()) {
             return Either.right(1);
-        }else{
-            return Either.left(new ErrorC("Are you sure you want to delete this customer?"));
+        } else {
+            return Either.left(new ErrorC(ServiceConstants.ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_CUSTOMER));
         }
     }
 
 
-
-    public Either<ErrorC,Integer> update(Customer customerUpdated) {
-        if(customerDao.update(customerUpdated).isLeft() ){
-            return Either.left(new ErrorC("Customer not found"));
-        } else{
+    public Either<ErrorC, Integer> update(Customer customerUpdated) {
+        if (customerDao.update(customerUpdated).isLeft()) {
+            return Either.left(new ErrorC(ServiceConstants.CUSTOMER_NOT_FOUND));
+        } else {
             return Either.right(customerDao.update(customerUpdated).get());
         }
     }
 
-    public Either<ErrorC,Customer> getCustomerById(int id) {
-        if(customerDao.get(id).isLeft()){
-            return Either.left(new ErrorC("Customer not found"));
-        }else{
+    public Either<ErrorC, Customer> getCustomerById(int id) {
+        if (customerDao.get(id).isLeft()) {
+            return Either.left(new ErrorC(ServiceConstants.CUSTOMER_NOT_FOUND));
+        } else {
             return Either.right(customerDao.get(id).get());
         }
     }
 
     public List<Integer> getAllIdsCustomer() {
         List<Customer> customers = customerDao.getAll().get();
-        if(customers.isEmpty()){
+        if (customers.isEmpty()) {
             return Collections.emptyList();
-        }else{
+        } else {
             return customers.stream().map(Customer::getId).toList();
         }
     }

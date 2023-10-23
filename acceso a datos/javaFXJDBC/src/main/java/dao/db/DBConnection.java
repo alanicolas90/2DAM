@@ -2,9 +2,11 @@ package dao.db;
 
 import config.Configuration;
 import jakarta.inject.Inject;
+import lombok.extern.log4j.Log4j2;
 
 import java.sql.*;
 
+@Log4j2
 public class DBConnection {
 
     private final Configuration configuration;
@@ -14,7 +16,7 @@ public class DBConnection {
         this.configuration = configuration;
     }
 
-    public Connection getConnection() throws SQLException{
+    public Connection getConnection() throws SQLException {
         return DriverManager
                 .getConnection(configuration.getProperty("urlDB"), configuration.getProperty("user_name"), configuration.getProperty("password"));
 
@@ -26,7 +28,7 @@ public class DBConnection {
                 connArg.close();
             }
         } catch (SQLException sqle) {
-            sqle.printStackTrace();
+            log.error(sqle.getMessage());
         }
     }
 
@@ -36,7 +38,7 @@ public class DBConnection {
                 pstmt.close();
             }
         } catch (SQLException sqle) {
-            sqle.printStackTrace();
+            log.error(sqle.getMessage());
         }
     }
 
@@ -47,7 +49,7 @@ public class DBConnection {
             }
 
         } catch (SQLException sqle) {
-            sqle.printStackTrace();
+            log.error(sqle.getMessage());
         }
     }
 
@@ -57,7 +59,7 @@ public class DBConnection {
                 stmt.close();
             }
         } catch (SQLException sqle) {
-            sqle.printStackTrace();
+            log.error(sqle.getMessage());
         }
     }
 }

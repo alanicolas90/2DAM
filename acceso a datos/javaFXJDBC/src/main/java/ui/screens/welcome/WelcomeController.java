@@ -3,7 +3,7 @@ package ui.screens.welcome;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import ui.screens.common.BaseScreenController;
-import ui.screens.common.ConstantNormal;
+import ui.screens.common.ConstantsController;
 
 public class WelcomeController extends BaseScreenController {
 
@@ -12,6 +12,6 @@ public class WelcomeController extends BaseScreenController {
 
     @Override
     public void principalCargado() {
-        this.txtWelcome.setText(ConstantNormal.WELCOME + getPrincipalController().getUser());
+        this.txtWelcome.setText(ConstantsController.WELCOME + getPrincipalController().getUser());
     }
 }

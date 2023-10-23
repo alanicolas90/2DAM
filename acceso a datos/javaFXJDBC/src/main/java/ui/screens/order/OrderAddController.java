@@ -5,15 +5,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Order;
 import model.OrderItem;
-import service.CustomerService;
 import service.MenuItemsService;
 import service.OrdersService;
 import service.TablesServices;
 import ui.screens.common.BaseScreenController;
-import ui.screens.common.ConstantNormal;
+import ui.screens.common.ConstantsController;
 import ui.screens.order.common.CommonOrder;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class OrderAddController extends BaseScreenController {
@@ -22,6 +20,7 @@ public class OrderAddController extends BaseScreenController {
     private final OrdersService ordersService;
     private final TablesServices tablesServices;
     private final MenuItemsService menuItemsService;
+
     @Inject
     public OrderAddController(CommonOrder commonOrder, OrdersService ordersService, TablesServices tablesServices, MenuItemsService menuItemsService) {
         this.commonOrder = commonOrder;
@@ -29,7 +28,6 @@ public class OrderAddController extends BaseScreenController {
         this.tablesServices = tablesServices;
         this.menuItemsService = menuItemsService;
     }
-
 
 
     @FXML
@@ -79,56 +77,59 @@ public class OrderAddController extends BaseScreenController {
         }
     }
 
-    public void addOrder() {
-        if (!txtTableNumber.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
-            getPrincipalController().alertWarning("Table number must be a number", ConstantNormal.ERROR);
-        } else{
-            int tableNumber = Integer.parseInt(txtTableNumber.getText());
-            if(tablesServices.tableExists(tableNumber)){
-                if(ordersService.add(LocalDateTime.now(),getPrincipalController().getIdUserLogged(),tableNumber).isRight()){
-                    getPrincipalController().showInformation(ConstantNormal.ORDER_ADDED_SUCCESSFULLY, ConstantNormal.SUCCESS);
-                }else{
-                    getPrincipalController().alertWarning(ConstantNormal.ERROR_ADDING_ORDER, ConstantNormal.ERROR);
-                }
-            }else{
-                getPrincipalController().alertWarning("Table number does not exist", ConstantNormal.ERROR);
-            }
+    @FXML
+    private void addOrder() {
+        if (!txtTableNumber.getText().matches(ConstantsController.CONTAINS_NUMBERS)) {
+            getPrincipalController().alertWarning(ConstantsController.TABLE_NUMBER_MUST_BE_A_NUMBER, ConstantsController.ERROR);
+        } else {
+            tryAddOrder();
         }
-
         tableOrders.getItems().clear();
         tableOrders.getItems().addAll(ordersService.get(getPrincipalController().getIdUserLogged()).get());
     }
 
 
-    public void orderSelected() {
+    @FXML
+    private void orderSelected() {
         tableOrderItems.getItems().clear();
         if (tableOrders.getSelectionModel().getSelectedItem() != null) {
-            //int idOrder = tableOrders.getSelectionModel().getSelectedItem().getId();
-//            if (orderItemService.get(idOrder).isRight()) {
-//                tableOrderItems.getItems().addAll(orderItemService.get(idOrder).get());
-//            }
+            //TODO get order items with id order
         }
     }
 
-    public void addOrderItem() {
+    @FXML
+    private void addOrderItem() {
         Order order = tableOrders.getSelectionModel().getSelectedItem();
-        //int idOrder = tableOrders.getSelectionModel().getSelectedItem().getId();
 
         if (order == null) {
-            getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_AN_ORDER, ConstantNormal.ERROR);
+            getPrincipalController().alertWarning(ConstantsController.YOU_MUST_SELECT_AN_ORDER, ConstantsController.ERROR);
         } else if (txtOrderItemQuantity.getText().isEmpty() || txtOrderItemQuantity.getText().isBlank() || comboBoxMenuItem.getValue() == null) {
-            getPrincipalController().alertWarning(ConstantNormal.ALL_THE_FIELDS_MUST_BE_FILLED, ConstantNormal.ERROR);
-        } else if (!txtOrderItemQuantity.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
-            getPrincipalController().alertWarning(ConstantNormal.QUANTITY_MUST_BE_A_NUMBER, ConstantNormal.ERROR);
+            getPrincipalController().alertWarning(ConstantsController.ALL_THE_FIELDS_MUST_BE_FILLED, ConstantsController.ERROR);
+        } else if (!txtOrderItemQuantity.getText().matches(ConstantsController.CONTAINS_NUMBERS)) {
+            getPrincipalController().alertWarning(ConstantsController.QUANTITY_MUST_BE_A_NUMBER, ConstantsController.ERROR);
         } else {
-//            if (orderItemService.save(idOrder, new OrderItemXml(comboBoxMenuItem.getValue(), Integer.parseInt(txtOrderItemQuantity.getText()))).isRight()) {
-            getPrincipalController().showInformation(ConstantNormal.ORDER_ADDED_SUCCESSFULLY, ConstantNormal.SUCCESS);
-//            } else {
-//                getPrincipalController().alertWarning(ConstantNormal.ERROR_ADDING_ORDER, ConstantNormal.ERROR);
-//            }
+            getPrincipalController().showInformation(ConstantsController.ORDER_ADDED_SUCCESSFULLY, ConstantsController.SUCCESS);
+            //TODO add order item
         }
         tableOrders.getItems().clear();
         tableOrders.getItems().addAll(ordersService.get(getPrincipalController().getIdUserLogged()).get());
         tableOrderItems.getItems().clear();
+    }
+
+    private void tryAddOrder() {
+        int tableNumber = Integer.parseInt(txtTableNumber.getText());
+        if (tablesServices.tableExists(tableNumber)) {
+            addOrder(tableNumber);
+        } else {
+            getPrincipalController().alertWarning(ConstantsController.TABLE_NUMBER_DOES_NOT_EXIST, ConstantsController.ERROR);
+        }
+    }
+
+    private void addOrder(int tableNumber) {
+        if (ordersService.add(LocalDateTime.now(), getPrincipalController().getIdUserLogged(), tableNumber).isRight()) {
+            getPrincipalController().showInformation(ConstantsController.ORDER_ADDED_SUCCESSFULLY, ConstantsController.SUCCESS);
+        } else {
+            getPrincipalController().alertWarning(ConstantsController.ERROR_ADDING_ORDER, ConstantsController.ERROR);
+        }
     }
 }

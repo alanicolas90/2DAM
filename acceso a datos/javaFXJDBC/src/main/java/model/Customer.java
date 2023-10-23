@@ -59,7 +59,7 @@ public class Customer {
             if (customerData[4].isEmpty()) {
                 this.phone = 0;
             } else {
-                this.phone = Integer.parseInt(customerData[4]) ;
+                this.phone = Integer.parseInt(customerData[4]);
             }
             this.birthDate = LocalDate.parse(customerData[5]);
         }

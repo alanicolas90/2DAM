@@ -1,15 +1,13 @@
 package ui.screens.order;
 
-import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import model.ErrorC;
 import model.Order;
 import service.OrdersService;
 import service.TablesServices;
 import ui.screens.common.BaseScreenController;
-import ui.screens.common.ConstantNormal;
+import ui.screens.common.ConstantsController;
 import ui.screens.order.common.CommonOrder;
 
 import java.time.LocalDateTime;
@@ -55,8 +53,8 @@ public class OrderUpdateController extends BaseScreenController {
         tableOrders.getItems().addAll(ordersService.getAll().get());
     }
 
-
-    public void selectionTable() {
+    @FXML
+    private void selectionTable() {
         Order order = tableOrders.getSelectionModel().getSelectedItem();
         if (order != null) {
             dateOfBirthCustomer.setValue(order.getDate().toLocalDate());
@@ -65,23 +63,23 @@ public class OrderUpdateController extends BaseScreenController {
         }
     }
 
-    public void updateOrder() {
-        //int idCustomer = getPrincipalController().getIdUserLogged();
+    @FXML
+    private void updateOrder() {
         Order order = tableOrders.getSelectionModel().getSelectedItem();
         if (order == null) {
-            getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_AN_ORDER, ConstantNormal.ERROR);
+            getPrincipalController().alertWarning(ConstantsController.YOU_MUST_SELECT_AN_ORDER, ConstantsController.ERROR);
         } else if (txtTableNumber.getText().isEmpty() || dateOfBirthCustomer.getValue().toString().isBlank()) {
-            getPrincipalController().alertWarning(ConstantNormal.THERE_ARE_EMPTY_FIELDS, ConstantNormal.ERROR);
-        } else if (!txtTableNumber.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
-            getPrincipalController().alertWarning(ConstantNormal.TABLE_NUMBER_MUST_BE_A_NUMBER, ConstantNormal.ERROR);
+            getPrincipalController().alertWarning(ConstantsController.THERE_ARE_EMPTY_FIELDS, ConstantsController.ERROR);
+        } else if (!txtTableNumber.getText().matches(ConstantsController.CONTAINS_NUMBERS)) {
+            getPrincipalController().alertWarning(ConstantsController.TABLE_NUMBER_MUST_BE_A_NUMBER, ConstantsController.ERROR);
         } else {
             if (!tablesServices.tableExists(Integer.parseInt(txtTableNumber.getText()))) {
-                getPrincipalController().alertWarning("Table number does not exist, please write one that exists", ConstantNormal.ERROR);
+                getPrincipalController().alertWarning("Table number does not exist, please write one that exists", ConstantsController.ERROR);
             } else {
-                if (ordersService.update(dateOfBirthCustomer.getValue().atTime(0,0,0), Integer.parseInt(txtTableNumber.getText()), order.getId()).isLeft()) {
-                    getPrincipalController().alertWarning("Error updating order", ConstantNormal.ERROR);
+                if (ordersService.update(dateOfBirthCustomer.getValue().atTime(0, 0, 0), Integer.parseInt(txtTableNumber.getText()), order.getId()).isLeft()) {
+                    getPrincipalController().alertWarning("Error updating order", ConstantsController.ERROR);
                 } else {
-                    getPrincipalController().showInformation("Order updated successfully", ConstantNormal.INFORMATION);
+                    getPrincipalController().showInformation("Order updated successfully", ConstantsController.INFORMATION);
                 }
 
             }

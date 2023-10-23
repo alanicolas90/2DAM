@@ -1,6 +1,5 @@
 package ui.screens.customer;
 
-import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -8,10 +7,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Customer;
-import model.ErrorC;
 import service.CustomerService;
 import ui.screens.common.BaseScreenController;
-import ui.screens.common.ConstantNormal;
+import ui.screens.common.ConstantsController;
 import ui.screens.customer.common.CustomerCommon;
 
 import java.time.LocalDate;
@@ -80,24 +78,27 @@ public class CustomerUpdateController extends BaseScreenController {
     private void updateCustomer() {
         Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
         if (customer == null) {
-            getPrincipalController().alertWarning(ConstantNormal.NO_CLIENT_WAS_SELECTED, ConstantNormal.ERROR);
-        } else if (!txtPhoneNumber.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
-            getPrincipalController().alertWarning(ConstantNormal.PHONE_NUMBER_CANNOT_CONTAIN_LETTERS, ConstantNormal.ERROR);
+            getPrincipalController().alertWarning(ConstantsController.NO_CLIENT_WAS_SELECTED, ConstantsController.ERROR);
+        } else if (!txtPhoneNumber.getText().matches(ConstantsController.CONTAINS_NUMBERS)) {
+            getPrincipalController().alertWarning(ConstantsController.PHONE_NUMBER_CANNOT_CONTAIN_LETTERS, ConstantsController.ERROR);
         } else if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPhoneNumber.getText().isEmpty()) {
-            getPrincipalController().alertWarning(ConstantNormal.THERE_ARE_MISSING_FIELDS, ConstantNormal.ERROR);
+            getPrincipalController().alertWarning(ConstantsController.THERE_ARE_MISSING_FIELDS, ConstantsController.ERROR);
         } else if (txtPhoneNumber.getText().length() != 9) {
-            getPrincipalController().alertWarning(ConstantNormal.PHONE_NUMBER_MUST_HAVE_9_DIGITS, ConstantNormal.ERROR);
+            getPrincipalController().alertWarning(ConstantsController.PHONE_NUMBER_MUST_HAVE_9_DIGITS, ConstantsController.ERROR);
         } else {
-            Customer customerUpdated = new Customer(customer.getId(), txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue());
-
-            if (customerService.update(customerUpdated).isLeft()) {
-                getPrincipalController().alertWarning("No ha habido cambios", ConstantNormal.ERROR);
-            } else {
-                getPrincipalController().showInformation(ConstantNormal.CLIENT_GOT_UPDATED_CORRECTLY, ConstantNormal.INFORMATION);
-            }
-
+            updateCustomer(customer);
         }
         tableCustomers.getItems().clear();
         tableCustomers.getItems().addAll(customerService.getAll().get());
+    }
+
+
+    private void updateCustomer(Customer customer) {
+        Customer customerUpdated = new Customer(customer.getId(), txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue());
+        if (customerService.update(customerUpdated).isLeft()) {
+            getPrincipalController().alertWarning(ConstantsController.THERE_WERE_NO_CHANGE, ConstantsController.ERROR);
+        } else {
+            getPrincipalController().showInformation(ConstantsController.CLIENT_GOT_UPDATED_CORRECTLY, ConstantsController.INFORMATION);
+        }
     }
 }

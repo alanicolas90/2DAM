@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import model.Credential;
 import service.LoginService;
 import ui.screens.common.BaseScreenController;
-import ui.screens.common.ConstantNormal;
+import ui.screens.common.ConstantsController;
 
 public class LoginController extends BaseScreenController {
 
@@ -26,7 +26,7 @@ public class LoginController extends BaseScreenController {
         if (credential != null) {
             getPrincipalController().onLogin(credential);
         } else {
-            getPrincipalController().alertWarning(ConstantNormal.USERNAME_OR_PASSWORD_INCORRECT, ConstantNormal.ERROR);
+            getPrincipalController().alertWarning(ConstantsController.USERNAME_OR_PASSWORD_INCORRECT, ConstantsController.ERROR);
         }
     }
 }

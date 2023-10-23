@@ -9,7 +9,7 @@ import model.Order;
 import service.CustomerService;
 import service.OrdersService;
 import ui.screens.common.BaseScreenController;
-import ui.screens.common.ConstantNormal;
+import ui.screens.common.ConstantsController;
 import ui.screens.customer.common.CustomerCommon;
 
 import java.time.LocalDate;
@@ -75,10 +75,10 @@ public class CustomerRemoveController extends BaseScreenController {
     }
 
     @FXML
-    public void removeSelected() {
+    private void removeSelected() {
         Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
         if (customer == null) {
-            getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_A_CUSTOMER, ConstantNormal.ERROR);
+            getPrincipalController().alertWarning(ConstantsController.YOU_MUST_SELECT_A_CUSTOMER, ConstantsController.ERROR);
         } else {
             deleteCustomer(customer);
         }
@@ -88,20 +88,30 @@ public class CustomerRemoveController extends BaseScreenController {
         tableOrdersCustomer.getItems().clear();
     }
 
+    @FXML
     private void deleteCustomer(Customer customer) {
         if (customerService.delete(customer.getId(), false).isLeft()) {
-            boolean wantsToDelete = getPrincipalController().alertDeleteConfirmation("There are orders in this customer. Are you sure you want to delete?", ConstantNormal.WARNING);
-            if (wantsToDelete) {
-                if (customerService.delete(customer.getId(), true).isLeft()) {
-                    getPrincipalController().alertWarning(ConstantNormal.ORDER_NOT_DELETED, ConstantNormal.ERROR);
-                } else {
-                    getPrincipalController().showInformation(ConstantNormal.CUSTOMER_DELETED_CORRECTLY, ConstantNormal.INFORMATION);
-                }
-            } else {
-                getPrincipalController().alertWarning(ConstantNormal.CUSTOMER_NOT_DELETED, ConstantNormal.ERROR);
-            }
+            askIfWantToDeleteCustomerBecauseHasOrders(customer);
         } else {
-            getPrincipalController().showInformation(ConstantNormal.CUSTOMER_DELETED_CORRECTLY, ConstantNormal.INFORMATION);
+            getPrincipalController().showInformation(ConstantsController.CUSTOMER_DELETED_CORRECTLY, ConstantsController.INFORMATION);
+        }
+    }
+
+    private void askIfWantToDeleteCustomerBecauseHasOrders(Customer customer) {
+        boolean wantsToDelete = getPrincipalController().alertDeleteConfirmation(ConstantsController.THERE_ARE_ORDERS_IN_THIS_CUSTOMER_ARE_YOU_SURE_YOU_WANT_TO_DELETE, ConstantsController.WARNING);
+        if (wantsToDelete) {
+            deleteCustomerWithOrders(customer);
+        } else {
+            getPrincipalController().alertWarning(ConstantsController.CUSTOMER_NOT_DELETED, ConstantsController.ERROR);
+        }
+    }
+
+
+    private void deleteCustomerWithOrders(Customer customer) {
+        if (customerService.delete(customer.getId(), true).isLeft()) {
+            getPrincipalController().alertWarning(ConstantsController.ORDER_NOT_DELETED, ConstantsController.ERROR);
+        } else {
+            getPrincipalController().showInformation(ConstantsController.CUSTOMER_DELETED_CORRECTLY, ConstantsController.INFORMATION);
         }
     }
 

@@ -1,6 +1,6 @@
 package ui.screens.common;
 
-public class ConstantNormal {
+public class ConstantsController {
 
 
     //-------------------SCREEN/OVERALL-------------------// USED MORE THAN ONE TIME
@@ -76,8 +76,15 @@ public class ConstantNormal {
     public static final String ORDER_NOT_DELETED = "Order not deleted";
     public static final String CUSTOMER_NOT_FOUND = "customer not found";
     public static final String PHONE_NUMBER_MUST_HAVE_9_DIGITS = "Phone number must have 9 digits";
+    public static final String TABLE_GOT_REFRESHED_SUCCESSFULLY = "Table got refreshed successfully";
+    public static final String THERE_ARE_ORDERS_IN_THIS_CUSTOMER_ARE_YOU_SURE_YOU_WANT_TO_DELETE = "There are orders in this customer. Are you sure you want to delete?";
+    public static final String THERE_WERE_NO_CHANGE = "There were no change";
+    public static final String TABLE_NUMBER_DOES_NOT_EXIST = "Table number does not exist";
+    public static final String CUSTOMER_HAS_NO_ORDERS = "Customer has no orders";
+    public static final String CUSTOMER = "Customer";
+    public static final String NONE = "None";
 
 
-    private ConstantNormal() {
+    private ConstantsController() {
     }
 }

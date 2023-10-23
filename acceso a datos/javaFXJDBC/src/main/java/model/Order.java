@@ -30,7 +30,7 @@ public class Order {
         if (!line.isBlank()) {
             String[] orderData = line.split(";");
             if (orderData[0].isBlank()) {
-                this.id =0;
+                this.id = 0;
             } else {
                 this.id = Integer.parseInt(orderData[0]);
             }
@@ -38,7 +38,7 @@ public class Order {
             this.customerId = Integer.parseInt(orderData[2]);
             this.tableNumber = Integer.parseInt(orderData[3]);
 
-        }else{
+        } else {
             this.id = Integer.parseInt(null);
             this.date = LocalDateTime.parse(null);
             this.customerId = Integer.parseInt(null);
@@ -47,7 +47,7 @@ public class Order {
     }
 
     public String toStringTextFile() {
-        return id + ";" + date.toString().replace("T"," ") + ";" + customerId + ";" + tableNumber;
+        return id + ";" + date.toString().replace("T", " ") + ";" + customerId + ";" + tableNumber;
     }
 
 }

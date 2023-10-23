@@ -8,12 +8,12 @@ import java.time.LocalDateTime;
 
 @Data
 @Getter
-public class ErrorC{
+public class ErrorC {
     String message;
     LocalDateTime date;
     int errorNumber;
 
-    public ErrorC( String message) {
+    public ErrorC(String message) {
         this.message = message;
         this.date = LocalDateTime.now();
     }

@@ -8,7 +8,7 @@ import model.Order;
 import model.OrderItem;
 import service.OrdersService;
 import ui.screens.common.BaseScreenController;
-import ui.screens.common.ConstantNormal;
+import ui.screens.common.ConstantsController;
 import ui.screens.order.common.CommonOrder;
 
 import java.time.LocalDateTime;
@@ -54,39 +54,28 @@ public class OrderRemoveController extends BaseScreenController {
         tableOrders.getItems().addAll(ordersService.getAll().get());
     }
 
-    public void deleteOrder() {
+    @FXML
+    private void deleteOrder() {
         Order order = tableOrders.getSelectionModel().getSelectedItem();
         if (order == null) {
-            getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_AN_ORDER, ConstantNormal.ERROR);
-        }else{
-            //TODO: delete order
-            if(ordersService.delete(order.getId()).isRight()){
-                getPrincipalController().showInformation(ConstantNormal.ORDER_DELETED_SUCCESSFULLY, ConstantNormal.INFORMATION);
-            }else{
-                getPrincipalController().showInformation(ConstantNormal.ORDER_NOT_DELETED, ConstantNormal.INFORMATION);
+            getPrincipalController().alertWarning(ConstantsController.YOU_MUST_SELECT_AN_ORDER, ConstantsController.ERROR);
+        } else {
+            if (ordersService.delete(order.getId()).isRight()) {
+                getPrincipalController().showInformation(ConstantsController.ORDER_DELETED_SUCCESSFULLY, ConstantsController.INFORMATION);
+            } else {
+                getPrincipalController().showInformation(ConstantsController.ORDER_NOT_DELETED, ConstantsController.INFORMATION);
                 //TODO. error tiene items por eso no se ha podido borrar / comprobar si quiere borrar
             }
         }
-//        } else if (orderItemService.get(idOrder).isRight()) {
-//            if (getPrincipalController().alertDeleteConfirmation(ConstantNormal.THERE_ARE_ORDER_ITEMS_ARE_YOU_SURE_YOUW_ANT_TO_DELETE, ConstantNormal.WARNING)) {
-//                if (orderService.delete(List.of(order.getId())).isRight()) {
-//                    orderItemService.delete(idOrder);
-//                    getPrincipalController().showInformation(ConstantNormal.ORDER_DELETED_SUCCESSFULLY, ConstantNormal.INFORMATION);
-//                }
-//            } else {
-//                getPrincipalController().showInformation(ConstantNormal.ORDER_NOT_DELETED, ConstantNormal.INFORMATION);
-//            }
-//        } else {
-//            orderService.delete(List.of(order.getId()));
-//            getPrincipalController().showInformation(ConstantNormal.ORDER_DELETED_SUCCESSFULLY, ConstantNormal.INFORMATION);
-//        }
+
         tableOrders.getItems().clear();
         tableOrders.getItems().addAll(ordersService.getAll().get());
         tableOrderItems.getItems().clear();
 
     }
 
-    public void orderSelected() {
+    @FXML
+    private void orderSelected() {
         tableOrderItems.getItems().clear();
         if (tableOrders.getSelectionModel().getSelectedItem() != null) {
             int idOrder = tableOrders.getSelectionModel().getSelectedItem().getId();
