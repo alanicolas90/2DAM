@@ -66,7 +66,7 @@ public class OrderUpdateController extends BaseScreenController {
     }
 
     public void updateOrder() {
-        int idCustomer = getPrincipalController().getIdUserLogged();
+        //int idCustomer = getPrincipalController().getIdUserLogged();
         Order order = tableOrders.getSelectionModel().getSelectedItem();
         if (order == null) {
             getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_AN_ORDER, ConstantNormal.ERROR);

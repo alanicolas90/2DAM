@@ -69,4 +69,13 @@ public class OrdersService {
         return eitherUpdate;
 
     }
+
+    public Either<ErrorC, Integer> delete(int id) {
+        Either<ErrorC, Integer> eitherDelete = ordersDao.delete(id);
+        if(eitherDelete.isLeft()){
+            return Either.left(new ErrorC("No order found"));
+        }else{
+            return eitherDelete;
+        }
+    }
 }

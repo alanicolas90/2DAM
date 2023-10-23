@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import model.Order;
 import model.OrderItem;
 import service.CustomerService;
+import service.MenuItemsService;
 import service.OrdersService;
 import service.TablesServices;
 import ui.screens.common.BaseScreenController;
@@ -20,11 +21,13 @@ public class OrderAddController extends BaseScreenController {
     private final CommonOrder commonOrder;
     private final OrdersService ordersService;
     private final TablesServices tablesServices;
+    private final MenuItemsService menuItemsService;
     @Inject
-    public OrderAddController(CommonOrder commonOrder, OrdersService ordersService, TablesServices tablesServices) {
+    public OrderAddController(CommonOrder commonOrder, OrdersService ordersService, TablesServices tablesServices, MenuItemsService menuItemsService) {
         this.commonOrder = commonOrder;
         this.ordersService = ordersService;
         this.tablesServices = tablesServices;
+        this.menuItemsService = menuItemsService;
     }
 
 
@@ -53,7 +56,7 @@ public class OrderAddController extends BaseScreenController {
     private ComboBox<String> comboBoxMenuItem;
 
     @FXML
-    private TableView tableOrderItems;
+    private TableView<String> tableOrderItems;
     @FXML
     private TableColumn<OrderItem, String> columnItemName;
     @FXML
@@ -62,7 +65,7 @@ public class OrderAddController extends BaseScreenController {
 
     public void initialize() {
         comboBoxCustomer.setDisable(true);
-        //comboBoxMenuItem.getItems().addAll();
+        comboBoxMenuItem.getItems().addAll();
         commonOrder.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
         commonOrder.initOrderItemList(columnItemName, columnItemQuantity);
     }
@@ -70,6 +73,7 @@ public class OrderAddController extends BaseScreenController {
     @Override
     public void principalCargado() {
         comboBoxCustomer.setValue(getPrincipalController().getIdUserLogged());
+        comboBoxMenuItem.getItems().addAll(menuItemsService.getAllNames().get());
         if (ordersService.get(getPrincipalController().getIdUserLogged()).isRight()) {
             tableOrders.getItems().addAll(ordersService.get(getPrincipalController().getIdUserLogged()).get());
         }

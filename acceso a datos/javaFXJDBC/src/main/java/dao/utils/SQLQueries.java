@@ -14,6 +14,8 @@ public class SQLQueries {
     public static final String ADD_ORDER = "INSERT INTO orders (order_date,customer_id,table_number) VALUES (?,?,?)";
     public static final String GET_ORDERS_SPECIFIC_CUSTOMER = "SELECT * FROM orders where customer_id = ";
     public static final String GET_ALL_ORDERS = "SELECT * FROM orders";
+    public static final String DELETE_FROM_ORDERS_WHERE_ORDER_ID = "DELETE FROM orders WHERE order_id = ?";
+    public static final String UPDATE_ORDERS = "UPDATE orders SET order_date = ?, table_number = ? WHERE order_id = ?";
 
     private SQLQueries() {
     }

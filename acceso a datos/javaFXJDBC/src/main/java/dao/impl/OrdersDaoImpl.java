@@ -94,7 +94,7 @@ public class OrdersDaoImpl implements OrdersDao {
         int rowsAffected = 0;
         try {
             Connection connection = dbConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE orders SET order_date = ?, table_number = ? WHERE order_id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_ORDERS);
             preparedStatement.setTimestamp(1, Timestamp.valueOf(date));
             preparedStatement.setInt(2, tableNumber);
             preparedStatement.setInt(3, orderID);
@@ -105,6 +105,36 @@ public class OrdersDaoImpl implements OrdersDao {
             log.error(e.getMessage());
         }
         return Either.right(rowsAffected);
+    }
+
+    @Override
+    public Either<ErrorC, Integer> delete(int id) {
+        int rowsAffected = 0;
+        Connection connection = null;
+        try{
+            connection = dbConnection.getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDERS_WHERE_ORDER_ID);
+            preparedStatement.setInt(1, id);
+            rowsAffected = preparedStatement.executeUpdate();
+            connection.commit();
+        }catch(SQLException e){
+            log.error(e.getMessage());
+            tryCatchRollbak(connection);
+        }
+         if(rowsAffected == 0){
+            return Either.left(new ErrorC("No order found"));
+        }else{
+            return Either.right(rowsAffected);
+         }
+    }
+
+    private void tryCatchRollbak(Connection connection) {
+        try {
+            connection.rollback();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
     }
 
     private List<Order> readRS(ResultSet resultSet) {

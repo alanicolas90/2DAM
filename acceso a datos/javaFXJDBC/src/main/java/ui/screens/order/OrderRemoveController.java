@@ -56,9 +56,16 @@ public class OrderRemoveController extends BaseScreenController {
 
     public void deleteOrder() {
         Order order = tableOrders.getSelectionModel().getSelectedItem();
-        int idOrder = tableOrders.getSelectionModel().getSelectedItem().getId();
         if (order == null) {
             getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_AN_ORDER, ConstantNormal.ERROR);
+        }else{
+            //TODO: delete order
+            if(ordersService.delete(order.getId()).isRight()){
+                getPrincipalController().showInformation(ConstantNormal.ORDER_DELETED_SUCCESSFULLY, ConstantNormal.INFORMATION);
+            }else{
+                getPrincipalController().showInformation(ConstantNormal.ORDER_NOT_DELETED, ConstantNormal.INFORMATION);
+                //TODO. error tiene items por eso no se ha podido borrar / comprobar si quiere borrar
+            }
         }
 //        } else if (orderItemService.get(idOrder).isRight()) {
 //            if (getPrincipalController().alertDeleteConfirmation(ConstantNormal.THERE_ARE_ORDER_ITEMS_ARE_YOU_SURE_YOUW_ANT_TO_DELETE, ConstantNormal.WARNING)) {
