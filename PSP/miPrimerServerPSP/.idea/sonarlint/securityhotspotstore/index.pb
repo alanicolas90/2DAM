@@ -5,3 +5,19 @@ J
 src/main/webapp/index.html,1\3\1337d72a3b1928dba82aa5210f5cdc0e88ce895b
 Y
 )src/main/java/servlets/PrimerServlet.java,7\d\7d602956764c1f63e4bd906f42010de921cbb24d
+Y
+)src/main/java/servlets/ServletPrueba.java,3\3\3354c05579f076ce2d63110b9cf1d15d551b9757
+_
+/src/main/java/servlets/PlantillaBackground.java,1\b\1b273cc5f839c7ef3b915b367b3f736926e256ea
+P
+ src/main/java/domain/Equipo.java,d\5\d5185000c36603b3b497a8aa3e45006127c01fe7
+^
+.src/main/java/listeners/ThymeLeafListener.java,0\e\0e2f08c482897c3266bac1facee41e1b96ccf0a5
+V
+&src/main/java/servlets/Plantillas.java,f\4\f49301abf442281d8988eb5a42ad345c8abed255
+[
++src/main/webapp/WEB-INF/templates/home.html,b\6\b6ee712d09490d168097dfc1846c3b8b90a5fef5
+\
+,src/main/webapp/WEB-INF/templates/error.html,1\8\18dd71e41fd8baf246975fcb321d4c92ad84681e
+\
+,src/main/webapp/WEB-INF/templates/param.html,2\5\257a47288102ad233c54e91c6e93e64964c3f830
