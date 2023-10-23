@@ -1,5 +1,7 @@
 package servlets;
 
+import com.google.gson.Gson;
+import domain.Equipo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,17 +16,9 @@ public class PrimerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.getWriter().println("""
-                <html>
-                    <head>
-                        <title>Primer Servlet</title>
-                    </head>
-                    <body>
-                        <h1>Primer Servlet</h1>
-                        <p>Este es mi primer servlet</p>
-                    </body>
-                </html>
-                        """);
+        Equipo p = new Equipo( "1", "Madrid", "Madrid", "Santiago Bernabeu");
+        Gson g = new Gson();
+        g.toJson(p, resp.getWriter());
 
     }
 }
