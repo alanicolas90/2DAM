@@ -1,9 +1,13 @@
 package ui.screens.order;
 
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import model.ErrorC;
 import model.Order;
+import service.OrdersService;
+import service.TablesServices;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantNormal;
 import ui.screens.order.common.CommonOrder;
@@ -13,10 +17,14 @@ import java.time.LocalDateTime;
 public class OrderUpdateController extends BaseScreenController {
 
     private final CommonOrder common;
+    private final OrdersService ordersService;
+    private final TablesServices tablesServices;
 
     @Inject
-    public OrderUpdateController(CommonOrder common) {
+    public OrderUpdateController(CommonOrder common, OrdersService ordersService, TablesServices tablesServices) {
         this.common = common;
+        this.ordersService = ordersService;
+        this.tablesServices = tablesServices;
     }
 
     @FXML
@@ -38,41 +46,47 @@ public class OrderUpdateController extends BaseScreenController {
 
     public void initialize() {
         common.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
+        txtCustomerId.setDisable(true);
     }
 
     @Override
     public void principalCargado() {
-        //tableOrders.getItems().addAll(orderService.getAll().get());
+        txtCustomerId.setText(String.valueOf(getPrincipalController().getIdUserLogged()));
+        tableOrders.getItems().addAll(ordersService.getAll().get());
     }
 
 
     public void selectionTable() {
         Order order = tableOrders.getSelectionModel().getSelectedItem();
-        dateOfBirthCustomer.setValue(order.getDate().toLocalDate());
-        txtCustomerId.setText(String.valueOf(order.getCustomerId()));
-        txtTableNumber.setText(String.valueOf(order.getTableNumber()));
+        if (order != null) {
+            dateOfBirthCustomer.setValue(order.getDate().toLocalDate());
+            txtCustomerId.setText(String.valueOf(order.getCustomerId()));
+            txtTableNumber.setText(String.valueOf(order.getTableNumber()));
+        }
     }
 
     public void updateOrder() {
+        int idCustomer = getPrincipalController().getIdUserLogged();
         Order order = tableOrders.getSelectionModel().getSelectedItem();
         if (order == null) {
             getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_AN_ORDER, ConstantNormal.ERROR);
-        } else if (txtCustomerId.getText().isEmpty() || txtTableNumber.getText().isEmpty() || dateOfBirthCustomer.getValue().toString().isBlank()) {
+        } else if (txtTableNumber.getText().isEmpty() || dateOfBirthCustomer.getValue().toString().isBlank()) {
             getPrincipalController().alertWarning(ConstantNormal.THERE_ARE_EMPTY_FIELDS, ConstantNormal.ERROR);
-        } else if (!txtCustomerId.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
-            getPrincipalController().alertWarning(ConstantNormal.CUSTOMER_ID_MUST_BE_A_NUMBER, ConstantNormal.ERROR);
         } else if (!txtTableNumber.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
             getPrincipalController().alertWarning(ConstantNormal.TABLE_NUMBER_MUST_BE_A_NUMBER, ConstantNormal.ERROR);
+        } else {
+            if (!tablesServices.tableExists(Integer.parseInt(txtTableNumber.getText()))) {
+                getPrincipalController().alertWarning("Table number does not exist, please write one that exists", ConstantNormal.ERROR);
+            } else {
+                if (ordersService.update(dateOfBirthCustomer.getValue().atTime(0,0,0), Integer.parseInt(txtTableNumber.getText()), order.getId()).isLeft()) {
+                    getPrincipalController().alertWarning("Error updating order", ConstantNormal.ERROR);
+                } else {
+                    getPrincipalController().showInformation("Order updated successfully", ConstantNormal.INFORMATION);
+                }
+
+            }
         }
-//        else if (customerService.get(Integer.parseInt(txtCustomerId.getText())).isLeft()) {
-//            getPrincipalController().alertWarning(ConstantNormal.CUSTOMER_NOT_FOUND, ConstantNormal.ERROR);
-//        }
-        else {
-            Order newOrder = new Order(order.getId(), order.getDate(), Integer.parseInt(txtCustomerId.getText()), Integer.parseInt(txtTableNumber.getText()));
-            // orderService.update(newOrder);
-            tableOrders.getItems().clear();
-            //tableOrders.getItems().addAll(orderService.getAll().get());
-            getPrincipalController().showInformation(ConstantNormal.ORDER_UPDATED_SUCCESSFULLY, ConstantNormal.INFORMATION);
-        }
+        tableOrders.getItems().clear();
+        tableOrders.getItems().addAll(ordersService.getAll().get());
     }
 }

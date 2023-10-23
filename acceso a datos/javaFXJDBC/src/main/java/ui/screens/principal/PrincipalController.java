@@ -115,7 +115,7 @@ public class PrincipalController {
             case "listCustomer" -> loadScreen(Screens.LIST_CUSTOMER);
             case "listOrder" -> loadScreen(Screens.LIST_ORDER);
             case "menuItemAddOrder" -> loadScreen(Screens.ADD_ORDER);
-            case "removeOrder" -> loadScreen(Screens.REMOVE_ORDER);
+            case "menuItemRemoveOrder" -> loadScreen(Screens.REMOVE_ORDER);
             case "updateOrder" -> loadScreen(Screens.UPDATE_ORDER);
             default -> alertExit();
         }

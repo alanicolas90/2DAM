@@ -12,7 +12,7 @@ public interface CustomerDao {
     Either<ErrorC, List<Customer>> getAll();
     int saveAutoIncrementalID( String name, String surname, String email, int phone, LocalDate dateOfBirth);
 
-    Either<ErrorC, Customer> getCustomerById(int id);
+    Either<ErrorC, Customer> get(int id);
 
     Either<ErrorC, Integer> update(Customer customerUpdated);
 

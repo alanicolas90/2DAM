@@ -6,6 +6,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.Order;
 import model.OrderItem;
+import service.OrdersService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantNormal;
 import ui.screens.order.common.CommonOrder;
@@ -15,10 +16,12 @@ import java.time.LocalDateTime;
 public class OrderRemoveController extends BaseScreenController {
 
     private final CommonOrder common;
+    private final OrdersService ordersService;
 
     @Inject
-    public OrderRemoveController(CommonOrder common) {
+    public OrderRemoveController(CommonOrder common, OrdersService ordersService) {
         this.common = common;
+        this.ordersService = ordersService;
     }
 
 
@@ -48,7 +51,7 @@ public class OrderRemoveController extends BaseScreenController {
 
     @Override
     public void principalCargado() {
-        //tableOrders.getItems().addAll(orderService.getAll().get());
+        tableOrders.getItems().addAll(ordersService.getAll().get());
     }
 
     public void deleteOrder() {
@@ -71,7 +74,7 @@ public class OrderRemoveController extends BaseScreenController {
 //            getPrincipalController().showInformation(ConstantNormal.ORDER_DELETED_SUCCESSFULLY, ConstantNormal.INFORMATION);
 //        }
         tableOrders.getItems().clear();
-        //tableOrders.getItems().addAll(orderService.getAll().get());
+        tableOrders.getItems().addAll(ordersService.getAll().get());
         tableOrderItems.getItems().clear();
 
     }

@@ -46,10 +46,10 @@ public class CustomerService {
     }
 
     public Either<ErrorC,Customer> getCustomerById(int id) {
-        if(customerDao.getCustomerById(id).isLeft()){
+        if(customerDao.get(id).isLeft()){
             return Either.left(new ErrorC("Customer not found"));
         }else{
-            return Either.right(customerDao.getCustomerById(id).get());
+            return Either.right(customerDao.get(id).get());
         }
     }
 

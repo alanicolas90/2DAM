@@ -7,6 +7,7 @@ import model.ErrorC;
 import model.Order;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrdersService {
@@ -48,5 +49,24 @@ public class OrdersService {
         } else {
             return Either.right(ordersFiltered);
         }
+    }
+
+    public Either<ErrorC, List<Order>> get(int idUserLogged) {
+        if(ordersDao.get(idUserLogged).isLeft()){
+            return Either.left(new ErrorC("No orders found"));
+        }else{
+            return ordersDao.get(idUserLogged);
+        }
+    }
+
+    public Either<ErrorC, Integer> add(LocalDateTime date,int customerId,int tableNumber) {
+        return ordersDao.add(date, customerId, tableNumber);
+    }
+
+    public Either<ErrorC, Integer> update(LocalDateTime date,int tableNumber,int orderID) {
+        Either<ErrorC,Integer> eitherUpdate = ordersDao.update(date,tableNumber, orderID);
+
+        return eitherUpdate;
+
     }
 }

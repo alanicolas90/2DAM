@@ -29,7 +29,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public Either<ErrorC, Customer> getCustomerById(int id) {
+    public Either<ErrorC, Customer> get(int id) {
         Customer customer = null;
         Connection connection = null;
         PreparedStatement preparedStatement = null;

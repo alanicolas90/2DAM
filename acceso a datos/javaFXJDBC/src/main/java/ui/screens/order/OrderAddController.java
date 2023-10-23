@@ -5,20 +5,28 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Order;
 import model.OrderItem;
+import service.CustomerService;
+import service.OrdersService;
+import service.TablesServices;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantNormal;
 import ui.screens.order.common.CommonOrder;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class OrderAddController extends BaseScreenController {
 
     private final CommonOrder commonOrder;
-
+    private final OrdersService ordersService;
+    private final TablesServices tablesServices;
     @Inject
-    public OrderAddController(CommonOrder commonOrder) {
+    public OrderAddController(CommonOrder commonOrder, OrdersService ordersService, TablesServices tablesServices) {
         this.commonOrder = commonOrder;
+        this.ordersService = ordersService;
+        this.tablesServices = tablesServices;
     }
+
 
 
     @FXML
@@ -51,8 +59,9 @@ public class OrderAddController extends BaseScreenController {
     @FXML
     private TableColumn<OrderItem, Integer> columnItemQuantity;
 
+
     public void initialize() {
-        //comboBoxCustomer.getItems().addAll();
+        comboBoxCustomer.setDisable(true);
         //comboBoxMenuItem.getItems().addAll();
         commonOrder.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
         commonOrder.initOrderItemList(columnItemName, columnItemQuantity);
@@ -60,31 +69,37 @@ public class OrderAddController extends BaseScreenController {
 
     @Override
     public void principalCargado() {
-        tableOrders.getItems().addAll();//add orderService.getAll().get());
+        comboBoxCustomer.setValue(getPrincipalController().getIdUserLogged());
+        if (ordersService.get(getPrincipalController().getIdUserLogged()).isRight()) {
+            tableOrders.getItems().addAll(ordersService.get(getPrincipalController().getIdUserLogged()).get());
+        }
     }
 
     public void addOrder() {
-        if (txtTableNumber.getText().isEmpty() || comboBoxCustomer.getValue() == null) {
-            getPrincipalController().alertWarning(ConstantNormal.ALL_THE_FIELDS_MUST_BE_FILLED, ConstantNormal.ERROR);
+        if (!txtTableNumber.getText().matches(ConstantNormal.CONTAINS_NUMBERS)) {
+            getPrincipalController().alertWarning("Table number must be a number", ConstantNormal.ERROR);
+        } else{
+            int tableNumber = Integer.parseInt(txtTableNumber.getText());
+            if(tablesServices.tableExists(tableNumber)){
+                if(ordersService.add(LocalDateTime.now(),getPrincipalController().getIdUserLogged(),tableNumber).isRight()){
+                    getPrincipalController().showInformation(ConstantNormal.ORDER_ADDED_SUCCESSFULLY, ConstantNormal.SUCCESS);
+                }else{
+                    getPrincipalController().alertWarning(ConstantNormal.ERROR_ADDING_ORDER, ConstantNormal.ERROR);
+                }
+            }else{
+                getPrincipalController().alertWarning("Table number does not exist", ConstantNormal.ERROR);
+            }
         }
-        getPrincipalController().showInformation(ConstantNormal.ORDER_ADDED_SUCCESSFULLY, ConstantNormal.SUCCESS);
-//            int orderId = orderService.getAll().get().stream().mapToInt(Order::getId).max().orElse(0) + 1;
-//            Order order = new Order(orderId, comboBoxCustomer.getValue(), Integer.parseInt(txtTableNumber.getText()));
-//            if (orderService.save(order).isRight()) {
-//                getPrincipalController().showInformation(ConstantNormal.ORDER_ADDED_SUCCESSFULLY, ConstantNormal.SUCCESS);
-//            } else {
-//                getPrincipalController().alertWarning(ConstantNormal.ERROR_ADDING_ORDER, ConstantNormal.ERROR);
-//            }
 
         tableOrders.getItems().clear();
-        tableOrders.getItems().addAll();//add orderService.getAll().get());
+        tableOrders.getItems().addAll(ordersService.get(getPrincipalController().getIdUserLogged()).get());
     }
 
 
     public void orderSelected() {
         tableOrderItems.getItems().clear();
         if (tableOrders.getSelectionModel().getSelectedItem() != null) {
-            int idOrder = tableOrders.getSelectionModel().getSelectedItem().getId();
+            //int idOrder = tableOrders.getSelectionModel().getSelectedItem().getId();
 //            if (orderItemService.get(idOrder).isRight()) {
 //                tableOrderItems.getItems().addAll(orderItemService.get(idOrder).get());
 //            }
@@ -93,7 +108,7 @@ public class OrderAddController extends BaseScreenController {
 
     public void addOrderItem() {
         Order order = tableOrders.getSelectionModel().getSelectedItem();
-        int idOrder = tableOrders.getSelectionModel().getSelectedItem().getId();
+        //int idOrder = tableOrders.getSelectionModel().getSelectedItem().getId();
 
         if (order == null) {
             getPrincipalController().alertWarning(ConstantNormal.YOU_MUST_SELECT_AN_ORDER, ConstantNormal.ERROR);
@@ -103,13 +118,13 @@ public class OrderAddController extends BaseScreenController {
             getPrincipalController().alertWarning(ConstantNormal.QUANTITY_MUST_BE_A_NUMBER, ConstantNormal.ERROR);
         } else {
 //            if (orderItemService.save(idOrder, new OrderItemXml(comboBoxMenuItem.getValue(), Integer.parseInt(txtOrderItemQuantity.getText()))).isRight()) {
-                getPrincipalController().showInformation(ConstantNormal.ORDER_ADDED_SUCCESSFULLY, ConstantNormal.SUCCESS);
+            getPrincipalController().showInformation(ConstantNormal.ORDER_ADDED_SUCCESSFULLY, ConstantNormal.SUCCESS);
 //            } else {
 //                getPrincipalController().alertWarning(ConstantNormal.ERROR_ADDING_ORDER, ConstantNormal.ERROR);
 //            }
         }
         tableOrders.getItems().clear();
-        tableOrders.getItems().addAll();//orderService.getAll().get()
+        tableOrders.getItems().addAll(ordersService.get(getPrincipalController().getIdUserLogged()).get());
         tableOrderItems.getItems().clear();
     }
 }
