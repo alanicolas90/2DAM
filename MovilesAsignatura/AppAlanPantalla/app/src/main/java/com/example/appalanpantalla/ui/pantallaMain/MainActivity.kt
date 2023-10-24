@@ -71,13 +71,7 @@ class MainActivity : AppCompatActivity() {
         with(binding) {
             txtSizeList.text =
                 buildString { append(Constantes.ID_WITH_SPACE + viewModel.getIdPersona()) }
-//            if (viewModel.getSize() == 0) {
-//                txtName.setText("")
-//                txtSurname.setText("")
-//                radioGroup.clearCheck()
-//            } else {
-                setAllScreen(state)
-//            }
+            setAllScreen(state)
             buttonNext.isEnabled = state.endList
             buttonBack.isEnabled = state.begginingList
             buttonDelete.isEnabled = state.activatedButtonDelete
