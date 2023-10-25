@@ -9,8 +9,6 @@ import java.util.Properties;
 @Singleton
 @Log4j2
 public class Configuration {
-
-    private static Configuration instance = null;
     private Properties p;
 
     private Configuration() {
@@ -20,14 +18,6 @@ public class Configuration {
         } catch (IOException e) {
             log.error(e.getMessage());
         }
-    }
-
-    public static Configuration getInstance() {
-
-        if (instance == null) {
-            instance = new Configuration();
-        }
-        return instance;
     }
 
     public String getProperty(String key) {

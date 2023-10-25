@@ -4,6 +4,7 @@ import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import model.Customer;
 import model.ErrorC;
 import model.Order;
 import model.OrderItem;
@@ -70,7 +71,12 @@ public class OrderListController extends BaseScreenController {
 
     @Override
     public void principalCargado() {
-        tableOrders.getItems().addAll(ordersService.getAll().get());
+        int idUserLogged = getPrincipalController().getIdUserLogged();
+        if(idUserLogged< 0){
+            tableOrders.getItems().addAll(ordersService.getAll().get());
+        }else{
+            tableOrders.getItems().addAll(ordersService.get(idUserLogged).get());
+        }
         filterComboBox.setOnAction(event -> selectedFilter());
         comboBoxCustomer.setOnAction(event -> selectedBox());
         datePicker.setOnAction(event -> selectedDate());
@@ -81,8 +87,9 @@ public class OrderListController extends BaseScreenController {
         tableOrderItems.getItems().clear();
         if (tableOrders.getSelectionModel().getSelectedItem() != null) {
             int idCustomer = tableOrders.getSelectionModel().getSelectedItem().getCustomerId();
-            if (customerService.getCustomerById(idCustomer).isRight()) {
-                txtCustomerName.setText(customerService.getCustomerById(idCustomer).get().getName());
+            Either<ErrorC, Customer> customerSpecificId = customerService.getCustomerById(idCustomer);
+            if (customerSpecificId.isRight()) {
+                txtCustomerName.setText(customerSpecificId.get().getName());
             } else {
                 getPrincipalController().showInformation(ConstantsController.CUSTOMER_HAS_NO_ORDERS, ConstantsController.INFORMATION);
             }

@@ -29,11 +29,7 @@ public class CustomerService {
     }
 
     public Either<ErrorC, Integer> delete(int id, boolean confirm) {
-        if (customerDao.delete(id, confirm).isRight()) {
-            return Either.right(1);
-        } else {
-            return Either.left(new ErrorC(ServiceConstants.ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_CUSTOMER));
-        }
+        return customerDao.delete(id, confirm);
     }
 
 
@@ -46,11 +42,7 @@ public class CustomerService {
     }
 
     public Either<ErrorC, Customer> getCustomerById(int id) {
-        if (customerDao.get(id).isLeft()) {
-            return Either.left(new ErrorC(ServiceConstants.CUSTOMER_NOT_FOUND));
-        } else {
-            return Either.right(customerDao.get(id).get());
-        }
+        return customerDao.get(id);
     }
 
     public List<Integer> getAllIdsCustomer() {

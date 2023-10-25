@@ -25,7 +25,7 @@ public class LoginDaoImpl implements LoginDao {
 
 
     @Override
-    public Either<ErrorC, Credential> login(String username, String password) {
+    public Either<ErrorC, Credential> get(String username, String password) {
         Credential credential = null;
         try {
             Connection connection = dbConnection.getConnection();
@@ -41,6 +41,8 @@ public class LoginDaoImpl implements LoginDao {
             }
         } catch (Exception e) {
             log.error(e.getMessage());
+        } finally {
+            if (dbConnection != null) dbConnection.closeConnection(dbConnection.getConnection());
         }
         return Either.right(credential);
     }
