@@ -1,10 +1,10 @@
 
 Q
-java:S3740"/Provide the parametrized type for this generic.(Òåîõûÿÿÿÿ8™Îæµ1
+java:S3740 "/Provide the parametrized type for this generic.(Òåîõûÿÿÿÿ8°ñ”Å¶1
 T
-java:S1135C"2Complete the task associated to this TODO comment.(¢¯Óûÿÿÿÿ8„®æµ1
+java:S1135I"2Complete the task associated to this TODO comment.(¢¯Óûÿÿÿÿ8Ğñ”Å¶1
 X
-java:S1854Q";Remove this useless assignment to local variable "idOrder".(ê•Äâ8¶Îæµ1
+java:S1854W";Remove this useless assignment to local variable "idOrder".(ê•Äâ8Ğñ”Å¶1
 I
-java:S1481Q",Remove this unused "idOrder" local variable.(ê•Äâ8·Îæµ1
-W	java:S125R"<This block of commented-out lines of code should be removed.(Æ¨­?8·Îæµ1
+java:S1481W",Remove this unused "idOrder" local variable.(ê•Äâ8Ññ”Å¶1
+W	java:S125X"<This block of commented-out lines of code should be removed.(Æ¨­?8Ññ”Å¶1

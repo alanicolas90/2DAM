@@ -75,3 +75,11 @@ Y
 )src/main/java/dao/impl/OrdersDaoImpl.java,6\d\6d43d811500b448bd8f3499206a3b09b4c566089
 X
 (src/main/java/service/OrdersService.java,e\c\ec321af92689a2f45b2057047ca7f71d27b3eb0e
+\
+,src/main/java/dao/impl/MenuItemsDaoImpl.java,b\a\ba734fbba6d7c43270fb1c920dfb3799f24781cb
+Y
+)src/main/java/dao/impl/TablesDaoImpl.java,6\f\6f698a0fa066e1ea0f51e2736452ac14c5f334e5
+[
++src/main/java/service/MenuItemsService.java,b\8\b83afb7cad73bea66bf18801e9e347dbd172c817
+Y
+)src/main/java/service/TablesServices.java,9\1\914522271dd1b6aef6d493480452909a3c3248d8
