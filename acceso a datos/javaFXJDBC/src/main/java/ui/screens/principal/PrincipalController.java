@@ -69,7 +69,7 @@ public class PrincipalController {
             paneScreen = fxmlLoader.load(getClass().getResourceAsStream(ruta));
             BaseScreenController screenController = fxmlLoader.getController();
             screenController.setPrincipalController(this);
-            screenController.principalCargado();
+            screenController.principalLoaded();
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }

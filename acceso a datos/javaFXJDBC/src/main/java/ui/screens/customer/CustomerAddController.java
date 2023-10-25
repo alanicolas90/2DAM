@@ -55,7 +55,7 @@ public class CustomerAddController extends BaseScreenController {
     }
 
     @Override
-    public void principalCargado() {
+    public void principalLoaded() {
         tableCustomers.getItems().addAll(customerService.getAll().get());
     }
 

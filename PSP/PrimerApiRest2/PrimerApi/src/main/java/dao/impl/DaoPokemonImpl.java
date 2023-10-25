@@ -5,7 +5,7 @@ import dao.RetroFit;
 import domain.modelo.pokemon.Pokemon;
 import domain.modelo.pokemon.PokemonResponse;
 import domain.modelo.pokemon.Result;
-import domain.retrofit.PokemonApi;
+import dao.retrofit.llamadas.PokemonApi;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;

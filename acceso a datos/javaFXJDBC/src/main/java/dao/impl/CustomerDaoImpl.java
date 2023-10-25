@@ -170,7 +170,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 
     //Try catch methods
-    private int tryCatchAddCredentialAndCustomer(Connection connection, int rowsAffected, String name, String surname, String email, int phone, LocalDate dateOfBirth) {
+    private int tryCatchAddCredentialAndCustomer(Connection connection, int rowsAffected, String name, String surname, String email, int phone, LocalDate dateOfBirth) throws SQLException {
         try {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.INSERT_NEW_CREDENTIAL, Statement.RETURN_GENERATED_KEYS);
@@ -184,7 +184,7 @@ public class CustomerDaoImpl implements CustomerDao {
             }
 
 
-            rowsAffected += preparedStatementNewCustomer(generatedKey ,name, surname, email, phone, dateOfBirth, connection);
+            rowsAffected += preparedStatementNewCustomer(generatedKey, name, surname, email, phone, dateOfBirth, connection);
 
             //commit all changes done
             connection.commit();
@@ -195,6 +195,7 @@ public class CustomerDaoImpl implements CustomerDao {
             if (connection != null) {
                 dbConnection.closeConnection(connection);
             }
+            connection.setAutoCommit(true);
         }
         return rowsAffected;
     }
@@ -219,6 +220,7 @@ public class CustomerDaoImpl implements CustomerDao {
             if (connection != null) {
                 dbConnection.closeConnection(connection);
             }
+            connection.setAutoCommit(true);
         }
         return Either.right(rowsAffected);
     }
@@ -244,6 +246,7 @@ public class CustomerDaoImpl implements CustomerDao {
             if (connection != null) {
                 dbConnection.closeConnection(connection);
             }
+            connection.setAutoCommit(true);
         }
         return Either.right(rowsAffected);
     }

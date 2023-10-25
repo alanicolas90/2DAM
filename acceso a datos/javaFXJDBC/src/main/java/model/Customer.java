@@ -16,6 +16,7 @@ public class Customer {
     String email;
     int phone;
     LocalDate birthDate;
+    Credential credential;
 
 
     public Customer(int id, String name, String surname, String email) {
@@ -23,6 +24,15 @@ public class Customer {
         this.name = name;
         this.surname = surname;
         this.email = email;
+    }
+
+    public Customer(int id,String name,String surname,String email,int phone,LocalDate birthDate){
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.phone = phone;
+        this.birthDate = birthDate;
     }
 
     public Customer(String name, String surname, String email, int phone, LocalDate birthDate) {

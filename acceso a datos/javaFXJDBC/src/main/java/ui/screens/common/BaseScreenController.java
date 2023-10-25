@@ -13,7 +13,7 @@ public abstract class BaseScreenController {
         this.principalController = principalController;
     }
 
-    public void principalCargado() {
+public void principalLoaded() {
     }
 
 }

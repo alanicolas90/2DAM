@@ -43,13 +43,14 @@ public class CustomerListController extends BaseScreenController {
     }
 
     @Override
-    public void principalCargado() {
+    public void principalLoaded() {
         tableCustomers.getItems().addAll(customerService.getAll().get());
     }
 
     @FXML
     private void refreshTable() {
         tableCustomers.getItems().clear();
+
         tableCustomers.getItems().addAll(customerService.getAll().get());
         getPrincipalController().showInformation(ConstantsController.TABLE_GOT_REFRESHED_SUCCESSFULLY, ConstantsController.INFORMATION);
     }

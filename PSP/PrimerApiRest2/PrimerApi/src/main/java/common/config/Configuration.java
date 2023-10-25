@@ -21,7 +21,7 @@ public class Configuration {
             Properties p = new Properties();
             p.load(getClass().getClassLoader()
                     .getResourceAsStream("config.properties"));
-            this.pathDatos = p.getProperty("pathDatos");
+            this.pathDatos = p.getProperty("urlBase");
 
         } catch (IOException e) {
             log.error(e.getMessage(), e);

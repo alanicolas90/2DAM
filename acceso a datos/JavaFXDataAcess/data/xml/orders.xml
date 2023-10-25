@@ -40,16 +40,9 @@
             <menuItem>Apple cake</menuItem>
             <quantity>2</quantity>
         </orderItem>
-    </order>
-    <order>
-        <id>10</id>
         <orderItem>
-            <menuItem>trufa</menuItem>
-            <quantity>10</quantity>
-        </orderItem>
-        <orderItem>
-            <menuItem>spinach</menuItem>
-            <quantity>10</quantity>
+            <menuItem>Apple cake</menuItem>
+            <quantity>3</quantity>
         </orderItem>
     </order>
 </orders>

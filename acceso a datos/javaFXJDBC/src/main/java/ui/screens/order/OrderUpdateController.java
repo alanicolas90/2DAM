@@ -48,9 +48,18 @@ public class OrderUpdateController extends BaseScreenController {
     }
 
     @Override
-    public void principalCargado() {
+    public void principalLoaded() {
         txtCustomerId.setText(String.valueOf(getPrincipalController().getIdUserLogged()));
-        tableOrders.getItems().addAll(ordersService.getAll().get());
+        int idUserLogged = getPrincipalController().getIdUserLogged();
+        if(idUserLogged < 0){
+            if(ordersService.getAll().isRight()){
+                tableOrders.getItems().addAll(ordersService.getAll().get());
+            }
+        }else{
+            if(ordersService.getOrdersSpecificCustomer(idUserLogged).isRight()){
+                tableOrders.getItems().addAll(ordersService.getOrdersSpecificCustomer(idUserLogged).get());
+            }
+        }
     }
 
     @FXML
