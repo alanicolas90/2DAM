@@ -11,7 +11,7 @@ public class WelcomeController extends BaseScreenController {
     private Label txtWelcome;
 
     @Override
-    public void principalCargado() {
+    public void principalLoaded() {
         this.txtWelcome.setText(ConstantsController.WELCOME + getPrincipalController().getUser());
     }
 }

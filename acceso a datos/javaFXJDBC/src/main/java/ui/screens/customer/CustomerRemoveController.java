@@ -60,7 +60,7 @@ public class CustomerRemoveController extends BaseScreenController {
     }
 
     @Override
-    public void principalCargado() {
+    public void principalLoaded() {
         tableCustomers.getItems().addAll(customerService.getAll().get());
     }
 
@@ -68,9 +68,8 @@ public class CustomerRemoveController extends BaseScreenController {
     private void selectionTable() {
         Customer selectionTable = tableCustomers.getSelectionModel().getSelectedItem();
         tableOrdersCustomer.getItems().clear();
-        if (selectionTable != null && (orderService.getOrdersSpecificCustomer(selectionTable.getId()).isRight())) {
-            tableOrdersCustomer.getItems().addAll(orderService.getOrdersSpecificCustomer(selectionTable.getId()).get());
-
+        if (selectionTable != null && (orderService.getOrdersSpecificCustomer(selectionTable.getId()).isRight())){
+                tableOrdersCustomer.getItems().addAll(orderService.getOrdersSpecificCustomer(selectionTable.getId()).get());
         }
     }
 

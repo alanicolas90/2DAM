@@ -50,7 +50,7 @@ public class OrderRemoveController extends BaseScreenController {
     }
 
     @Override
-    public void principalCargado() {
+    public void principalLoaded() {
         tableOrders.getItems().addAll(ordersService.getAll().get());
     }
 

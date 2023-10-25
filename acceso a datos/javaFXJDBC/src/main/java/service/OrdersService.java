@@ -42,13 +42,10 @@ public class OrdersService {
     }
 
     public Either<ErrorC, List<Order>> getOrdersSpecificCustomer(int customerId) {
-        List<Order> orders = ordersDao.getAll().get();
-        List<Order> ordersFiltered = orders.stream().filter(order -> order.getCustomerId() == customerId).toList();
-
-        if (ordersFiltered.isEmpty()) {
+        if (ordersDao.get(customerId).isLeft()) {
             return Either.left(new ErrorC(ServiceConstants.NO_ORDERS_FOUND));
         } else {
-            return Either.right(ordersFiltered);
+            return Either.right(ordersDao.get(customerId).get());
         }
     }
 

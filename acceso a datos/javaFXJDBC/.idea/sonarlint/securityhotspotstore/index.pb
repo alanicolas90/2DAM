@@ -37,32 +37,16 @@ Q
 !src/main/java/model/Customer.java,d\8\d809aaf69069b4e367322db0008755f08edcc9a2
 \
 ,src/main/java/ui/screens/common/Screens.java,5\2\52dc46b0b3bde95f2b46bfbf1f9b056f290c25fd
-Y
-)src/main/java/dao/impl/OrdersDaoImpl.java,6\d\6d43d811500b448bd8f3499206a3b09b4c566089
 i
 9src/main/java/ui/screens/order/OrderUpdateController.java,e\1\e19c354b71e6eb1fdde39dc26995531fd17efb63
 f
 6src/main/java/ui/screens/order/OrderAddController.java,8\5\85542a4f9488e482bd7139024b89c0578125146c
 k
 ;src/main/java/ui/screens/principal/PrincipalController.java,0\a\0a2a894bb55359e43284a787d07f1d373d6ee3e6
-X
-(src/main/java/service/OrdersService.java,e\c\ec321af92689a2f45b2057047ca7f71d27b3eb0e
 g
 7src/main/java/ui/screens/order/OrderListController.java,c\3\c320e222e183f44a0ecbda724e9c0ce8390eb7da
 g
 7src/main/java/ui/screens/welcome/WelcomeController.java,0\e\0e25272d029d77043346d45e7f523b66f1a853cb
-\
-,src/main/java/dao/impl/MenuItemsDaoImpl.java,b\a\ba734fbba6d7c43270fb1c920dfb3799f24781cb
-Y
-)src/main/java/dao/impl/TablesDaoImpl.java,6\f\6f698a0fa066e1ea0f51e2736452ac14c5f334e5
-Y
-)src/main/java/dao/utils/DaoConstants.java,0\f\0fc0e1e01e6a7c68c5e59c977996643b2c075651
-S
-#src/main/java/dao/MenuItemsDao.java,7\9\7929804c4559f2c08452a3c5c80005cc3459e79d
-P
- src/main/java/dao/TablesDao.java,e\e\eedcde0f02dea4a6aabc7c5a902a7e97b2fc5792
-P
- src/main/java/dao/OrdersDao.java,6\b\6b3cddfa70942fee375a74d325ab79edba6d76c8
 S
 #src/main/java/model/Credential.java,6\8\68d39015010349188c785512b71dfb08d2e37972
 Q
@@ -75,16 +59,8 @@ R
 "src/main/java/model/OrderItem.java,1\6\167b8d66074bc236df1ebb0ba4dbeb2f1f0e659c
 N
 src/main/java/model/Table.java,3\5\35070f720f546ae66ec856f1b4ffaa35cccf4c67
-a
-1src/main/java/service/utils/ServiceConstants.java,9\f\9f16d87e761223fa7603c303dce036716e0c151c
 W
 'src/main/java/service/LoginService.java,7\b\7b11053eb434333bf8717d76ee6f3b9769fbf853
-[
-+src/main/java/service/MenuItemsService.java,b\8\b83afb7cad73bea66bf18801e9e347dbd172c817
-Y
-)src/main/java/service/TablesServices.java,9\1\914522271dd1b6aef6d493480452909a3c3248d8
-h
-8src/main/java/ui/screens/common/ConstantsController.java,d\9\d98468da9c680d4016b385283cfce8e78e9d4d6d
 i
 9src/main/java/ui/screens/common/BaseScreenController.java,a\e\ae79ee02edc280c513f494b106c451fc7fb7cbe3
 c

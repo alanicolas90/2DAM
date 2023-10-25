@@ -69,8 +69,17 @@ public class OrderListController extends BaseScreenController {
     }
 
     @Override
-    public void principalCargado() {
-        tableOrders.getItems().addAll(ordersService.getAll().get());
+    public void principalLoaded() {
+        int idUserLogged = getPrincipalController().getIdUserLogged();
+        if (idUserLogged < 0) {
+            if (ordersService.getAll().isRight()) {
+                tableOrders.getItems().addAll(ordersService.getAll().get());
+            }
+        } else {
+            if (ordersService.get(idUserLogged).isRight()) {
+                tableOrders.getItems().addAll(ordersService.get(idUserLogged).get());
+            }
+        }
         filterComboBox.setOnAction(event -> selectedFilter());
         comboBoxCustomer.setOnAction(event -> selectedBox());
         datePicker.setOnAction(event -> selectedDate());

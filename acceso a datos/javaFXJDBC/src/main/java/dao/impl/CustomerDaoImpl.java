@@ -152,7 +152,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 
     //Try catch methods
-    private int tryCatchAddCredentialAndCustomer(Connection connection, int rowsAffected, String name, String surname, String email, int phone, LocalDate dateOfBirth) {
+    private int tryCatchAddCredentialAndCustomer(Connection connection, int rowsAffected, String name, String surname, String email, int phone, LocalDate dateOfBirth) throws SQLException {
         try {
             connection.setAutoCommit(false);
             rowsAffected += preparedStatementNewCredential(name, surname, connection);
@@ -162,6 +162,8 @@ public class CustomerDaoImpl implements CustomerDao {
         } catch (SQLException sqle) {
             log.error(sqle.getMessage());
             tryCatchRollback(connection);
+        } finally {
+            connection.setAutoCommit(true);
         }
         return rowsAffected;
     }
@@ -182,6 +184,8 @@ public class CustomerDaoImpl implements CustomerDao {
             } else {
                 log.error(e.getMessage());
             }
+        } finally {
+            connection.setAutoCommit(true);
         }
         return Either.right(rowsAffected);
     }
@@ -203,6 +207,8 @@ public class CustomerDaoImpl implements CustomerDao {
             } else {
                 log.error(e.getMessage());
             }
+        } finally {
+            connection.setAutoCommit(true);
         }
         return Either.right(rowsAffected);
     }

@@ -5,7 +5,7 @@ import dao.RetroFit;
 import domain.modelo.berry.BerriesResponse;
 import domain.modelo.berry.BerryResponse;
 import domain.modelo.berry.ResultsItem;
-import domain.retrofit.BerryApi;
+import dao.retrofit.llamadas.BerryApi;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;

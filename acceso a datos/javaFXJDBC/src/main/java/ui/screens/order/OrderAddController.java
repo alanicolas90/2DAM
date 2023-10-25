@@ -69,7 +69,7 @@ public class OrderAddController extends BaseScreenController {
     }
 
     @Override
-    public void principalCargado() {
+    public void principalLoaded() {
         comboBoxCustomer.setValue(getPrincipalController().getIdUserLogged());
         comboBoxMenuItem.getItems().addAll(menuItemsService.getAllNames().get());
         if (ordersService.get(getPrincipalController().getIdUserLogged()).isRight()) {
