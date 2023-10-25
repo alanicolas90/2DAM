@@ -13,10 +13,10 @@ public class LoginService {
     }
 
     public Credential login(String username, String password) {
-        if (dao.login(username, password).isLeft()) {
+        if (dao.get(username, password).isLeft()) {
             return null;
         } else {
-            return dao.login(username, password).get();
+            return dao.get(username, password).get();
         }
     }
 }

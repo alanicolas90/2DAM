@@ -10,6 +10,7 @@ module JavaFXDataAcess {
     requires jakarta.cdi;
     requires io.vavr;
     requires java.sql;
+    requires com.zaxxer.hikari;
 
     exports ui.main to javafx.graphics;
     exports ui.screens.principal;

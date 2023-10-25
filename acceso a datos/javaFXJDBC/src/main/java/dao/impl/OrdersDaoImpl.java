@@ -157,6 +157,8 @@ public class OrdersDaoImpl implements OrdersDao {
             log.error(e.getMessage());
         } catch (Exception e) {
             log.error(e.getMessage());
+        }finally {
+            if (dbConnection != null) dbConnection.closeConnection(dbConnection.getConnection());
         }
         return orders;
     }
