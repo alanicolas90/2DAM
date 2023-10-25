@@ -82,3 +82,5 @@ Z
 *src/main/java/dao/impl/DaoPokemonImpl.java,3\e\3ef17829e8b28d6ecbd1fae6f702051140d39dee
 _
 /src/main/java/common/constantes/Constantes.java,1\c\1cc089226aff0d44d0c945a10b399d8c4ab54657
+a
+1src/main/java/dao/retrofit/llamadas/BerryApi.java,5\b\5b20e935f1a2c3d2bafb40aad4072a5a9eabb52a

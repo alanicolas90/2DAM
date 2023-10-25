@@ -69,3 +69,9 @@ f
 6src/main/java/ui/screens/order/common/CommonOrder.java,e\7\e71810f0e23616a6eecbbfa3be51e6489d253acd
 i
 9src/main/java/ui/screens/order/OrderRemoveController.java,4\a\4a70e0a9c35954dbfeba88cf606ecf0ec938673d
+P
+ src/main/java/dao/OrdersDao.java,6\b\6b3cddfa70942fee375a74d325ab79edba6d76c8
+Y
+)src/main/java/dao/impl/OrdersDaoImpl.java,6\d\6d43d811500b448bd8f3499206a3b09b4c566089
+X
+(src/main/java/service/OrdersService.java,e\c\ec321af92689a2f45b2057047ca7f71d27b3eb0e
