@@ -1,8 +1,10 @@
 package service;
 
 import dao.LoginDao;
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Credential;
+import model.ErrorC;
 
 public class LoginService {
     private final LoginDao dao;
@@ -12,12 +14,8 @@ public class LoginService {
         this.dao = dao;
     }
 
-    public Credential login(String username, String password) {
-        if (dao.get(username, password).isLeft()) {
-            return null;
-        } else {
-            return dao.get(username, password).get();
-        }
+    public Either<ErrorC, Credential> login(String username, String password) {
+        return dao.get(username, password);
     }
 }
 

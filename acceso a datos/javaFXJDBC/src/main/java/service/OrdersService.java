@@ -21,11 +21,7 @@ public class OrdersService {
     }
 
     public Either<ErrorC, List<Order>> getAll() {
-        if (ordersDao.getAll().isLeft()) {
-            return Either.left(new ErrorC(ServiceConstants.NO_ORDERS_FOUND));
-        } else {
-            return ordersDao.getAll();
-        }
+        return ordersDao.getAll();
     }
 
     public Either<ErrorC, List<Order>> getOrdersSpecificDate(LocalDate dateSelected) {
@@ -42,19 +38,11 @@ public class OrdersService {
     }
 
     public Either<ErrorC, List<Order>> getOrdersSpecificCustomer(int customerId) {
-        if (ordersDao.get(customerId).isLeft()) {
-            return Either.left(new ErrorC(ServiceConstants.NO_ORDERS_FOUND));
-        } else {
-            return Either.right(ordersDao.get(customerId).get());
-        }
+        return ordersDao.get(customerId);
     }
 
     public Either<ErrorC, List<Order>> get(int idUserLogged) {
-        if (ordersDao.get(idUserLogged).isLeft()) {
-            return Either.left(new ErrorC(ServiceConstants.NO_ORDERS_FOUND));
-        } else {
-            return ordersDao.get(idUserLogged);
-        }
+        return ordersDao.get(idUserLogged);
     }
 
     public Either<ErrorC, Integer> add(LocalDateTime date, int customerId, int tableNumber) {
@@ -66,11 +54,6 @@ public class OrdersService {
     }
 
     public Either<ErrorC, Integer> delete(int id) {
-        Either<ErrorC, Integer> eitherDelete = ordersDao.delete(id);
-        if (eitherDelete.isLeft()) {
-            return Either.left(new ErrorC(ServiceConstants.NO_ORDER_FOUND));
-        } else {
-            return eitherDelete;
-        }
+        return ordersDao.delete(id);
     }
 }

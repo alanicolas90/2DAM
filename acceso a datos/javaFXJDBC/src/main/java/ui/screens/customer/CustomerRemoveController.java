@@ -14,6 +14,7 @@ import ui.screens.customer.common.CustomerCommon;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collections;
 
 public class CustomerRemoveController extends BaseScreenController {
 
@@ -68,8 +69,8 @@ public class CustomerRemoveController extends BaseScreenController {
     private void selectionTable() {
         Customer selectionTable = tableCustomers.getSelectionModel().getSelectedItem();
         tableOrdersCustomer.getItems().clear();
-        if (selectionTable != null && (orderService.getOrdersSpecificCustomer(selectionTable.getId()).isRight())){
-                tableOrdersCustomer.getItems().addAll(orderService.getOrdersSpecificCustomer(selectionTable.getId()).get());
+        if (selectionTable != null) {
+            tableOrdersCustomer.getItems().addAll(orderService.getOrdersSpecificCustomer(selectionTable.getId()).getOrElse(Collections.emptyList()));
         }
     }
 
@@ -87,7 +88,7 @@ public class CustomerRemoveController extends BaseScreenController {
         tableOrdersCustomer.getItems().clear();
     }
 
-    @FXML
+
     private void deleteCustomer(Customer customer) {
         if (customerService.delete(customer.getId(), false).isLeft()) {
             askIfWantToDeleteCustomerBecauseHasOrders(customer);

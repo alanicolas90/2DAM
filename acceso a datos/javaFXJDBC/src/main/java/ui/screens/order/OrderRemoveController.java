@@ -1,9 +1,11 @@
 package ui.screens.order;
 
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import model.ErrorC;
 import model.Order;
 import model.OrderItem;
 import service.OrdersService;
@@ -12,6 +14,7 @@ import ui.screens.common.ConstantsController;
 import ui.screens.order.common.CommonOrder;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class OrderRemoveController extends BaseScreenController {
 
@@ -51,7 +54,10 @@ public class OrderRemoveController extends BaseScreenController {
 
     @Override
     public void principalLoaded() {
-        tableOrders.getItems().addAll(ordersService.getAll().get());
+        Either<ErrorC, List<Order>> eitherGetOrders = ordersService.getAll();
+        if (eitherGetOrders.isRight()) {
+            tableOrders.getItems().addAll(eitherGetOrders.get());
+        }
     }
 
     @FXML

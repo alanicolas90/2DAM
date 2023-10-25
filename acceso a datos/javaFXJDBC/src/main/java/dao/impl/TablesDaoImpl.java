@@ -40,8 +40,6 @@ public class TablesDaoImpl implements TablesDao {
         } catch (SQLException e) {
             log.error(e.getMessage());
             return Either.left(new ErrorC(DaoConstants.ERROR_GETTING_TABLES));
-        }finally {
-            if (dbConnection != null) dbConnection.closeConnection(dbConnection.getConnection());
         }
 
         if (tables.isEmpty()) {
@@ -68,8 +66,6 @@ public class TablesDaoImpl implements TablesDao {
         } catch (SQLException e) {
             log.error(e.getMessage());
             return Either.left(new ErrorC(DaoConstants.ERROR_GETTING_TABLES));
-        }finally {
-            if (dbConnection != null) dbConnection.closeConnection(dbConnection.getConnection());
         }
 
         return Either.right(table);
@@ -90,8 +86,6 @@ public class TablesDaoImpl implements TablesDao {
             log.error(e.getMessage());
         } catch (Exception e) {
             log.error(e.getMessage());
-        }finally {
-            if (dbConnection != null) dbConnection.closeConnection(dbConnection.getConnection());
         }
         return tables;
     }

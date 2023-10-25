@@ -38,11 +38,11 @@ public class LoginDaoImpl implements LoginDao {
 
             if (credential == null) {
                 return Either.left(new ErrorC(DaoConstants.USER_NOT_FOUND));
+            } else {
+                return Either.right(credential);
             }
         } catch (Exception e) {
             log.error(e.getMessage());
-        } finally {
-            if (dbConnection != null) dbConnection.closeConnection(dbConnection.getConnection());
         }
         return Either.right(credential);
     }

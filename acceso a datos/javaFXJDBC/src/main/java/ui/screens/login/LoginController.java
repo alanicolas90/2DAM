@@ -1,10 +1,12 @@
 package ui.screens.login;
 
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.Credential;
+import model.ErrorC;
 import service.LoginService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantsController;
@@ -22,9 +24,9 @@ public class LoginController extends BaseScreenController {
 
     @FXML
     private void login() {
-        Credential credential = loginService.login(username.getText(), password.getText());
-        if (credential != null) {
-            getPrincipalController().onLogin(credential);
+        Either<ErrorC, Credential> eitherCredential= loginService.login(username.getText(), password.getText());
+        if (eitherCredential.isRight()) {
+            getPrincipalController().onLogin(eitherCredential.get());
         } else {
             getPrincipalController().alertWarning(ConstantsController.USERNAME_OR_PASSWORD_INCORRECT, ConstantsController.ERROR);
         }

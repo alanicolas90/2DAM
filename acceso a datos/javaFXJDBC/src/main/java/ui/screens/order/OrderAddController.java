@@ -83,9 +83,9 @@ public class OrderAddController extends BaseScreenController {
             getPrincipalController().alertWarning(ConstantsController.TABLE_NUMBER_MUST_BE_A_NUMBER, ConstantsController.ERROR);
         } else {
             tryAddOrder();
+            tableOrders.getItems().clear();
+            tableOrders.getItems().addAll(ordersService.get(getPrincipalController().getIdUserLogged()).get());
         }
-        tableOrders.getItems().clear();
-        tableOrders.getItems().addAll(ordersService.get(getPrincipalController().getIdUserLogged()).get());
     }
 
 

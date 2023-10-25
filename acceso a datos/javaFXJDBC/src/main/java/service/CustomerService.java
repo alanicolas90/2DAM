@@ -34,11 +34,7 @@ public class CustomerService {
 
 
     public Either<ErrorC, Integer> update(Customer customerUpdated) {
-        if (customerDao.update(customerUpdated).isLeft()) {
-            return Either.left(new ErrorC(ServiceConstants.CUSTOMER_NOT_FOUND));
-        } else {
-            return Either.right(customerDao.update(customerUpdated).get());
-        }
+        return customerDao.update(customerUpdated);
     }
 
     public Either<ErrorC, Customer> getCustomerById(int id) {
@@ -47,10 +43,7 @@ public class CustomerService {
 
     public List<Integer> getAllIdsCustomer() {
         List<Customer> customers = customerDao.getAll().get();
-        if (customers.isEmpty()) {
-            return Collections.emptyList();
-        } else {
-            return customers.stream().map(Customer::getId).toList();
-        }
+        return customers.stream().map(Customer::getId).toList();
+
     }
 }

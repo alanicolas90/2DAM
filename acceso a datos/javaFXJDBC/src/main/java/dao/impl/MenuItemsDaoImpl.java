@@ -39,8 +39,6 @@ public class MenuItemsDaoImpl implements MenuItemsDao {
         } catch (SQLException e) {
             log.error(e.getMessage());
             return Either.left(new ErrorC(DaoConstants.SQL_ERROR_GETTING_MENU_ITEMS));
-        }finally {
-            if (dbConnection != null) dbConnection.closeConnection(dbConnection.getConnection());
         }
         if (menuItems.isEmpty()) {
             return Either.left(new ErrorC(DaoConstants.NO_MENU_ITEMS_FOUND));
@@ -61,8 +59,6 @@ public class MenuItemsDaoImpl implements MenuItemsDao {
             }
         } catch (SQLException e) {
             log.error(e.getMessage());
-        }finally {
-            if (dbConnection != null) dbConnection.closeConnection(dbConnection.getConnection());
         }
 
         return menuItems;
