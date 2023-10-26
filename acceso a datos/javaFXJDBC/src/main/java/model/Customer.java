@@ -42,6 +42,14 @@ public class Customer {
         this.phone = phone;
         this.birthDate = birthDate;
     }
+    public Customer(String name, String surname, String email, int phone, LocalDate birthDate, Credential credential) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.phone = phone;
+        this.birthDate = birthDate;
+        this.credential = credential;
+    }
 
     public Customer(int id, String name, String surname, String email, int phone) {
         this.id = id;

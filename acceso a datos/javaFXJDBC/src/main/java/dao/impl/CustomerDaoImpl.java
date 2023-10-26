@@ -153,7 +153,7 @@ public class CustomerDaoImpl implements CustomerDao {
                 Connection connection = dbConnection.getConnection();
                 try {
                     connection.setAutoCommit(false);
-                    PreparedStatement preparedStatementDeleteOrderItems = connection.prepareStatement("delete from order_items where order_id in(select order_id from orders where customer_id = ?)");
+                    PreparedStatement preparedStatementDeleteOrderItems = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDER_ITEMS_WHERE_ORDER_ID_IN_SELECT_ORDER_ID_FROM_ORDERS_WHERE_CUSTOMER_ID);
                     preparedStatementDeleteOrderItems.setInt(1, id);
                     rowsAffected += preparedStatementDeleteOrderItems.executeUpdate();
 
@@ -197,8 +197,8 @@ public class CustomerDaoImpl implements CustomerDao {
         try {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.INSERT_NEW_CREDENTIAL, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, customer.getName());
-            preparedStatement.setString(2, customer.getSurname());
+            preparedStatement.setString(1, customer.getCredential().getUsername());
+            preparedStatement.setString(2, customer.getCredential().getPassword());
 
             rowsAffected += preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -238,7 +238,6 @@ public class CustomerDaoImpl implements CustomerDao {
             return preparedStatement.executeUpdate();
         }
     }
-
 
 
     //Utility methods
