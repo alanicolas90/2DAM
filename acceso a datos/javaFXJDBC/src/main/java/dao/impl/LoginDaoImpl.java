@@ -25,13 +25,12 @@ public class LoginDaoImpl implements LoginDao {
 
 
     @Override
-    public Either<ErrorC, Credential> get(String username, String password) {
-        Credential credential = null;
+    public Either<ErrorC, Credential> get(Credential credential) {
         try {
             Connection connection = dbConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.GET_CREDENTIALS);
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
+            preparedStatement.setString(1, credential.getUsername());
+            preparedStatement.setString(2, credential.getPassword());
 
             ResultSet resultSet = preparedStatement.executeQuery();
             credential = readRS(resultSet);
@@ -54,8 +53,8 @@ public class LoginDaoImpl implements LoginDao {
                 int id = resultSet.getInt(DaoConstants.ID);
                 String username = resultSet.getString(DaoConstants.USERNAME);
                 String password = resultSet.getString(DaoConstants.PASSWORD);
-                boolean priviledged = id < 0;
-                credential = new Credential(id, username, password, priviledged);
+                boolean privileged = id < 0;
+                credential = new Credential(id, username, password, privileged);
             }
         } catch (SQLException e) {
             log.error(e.getMessage());

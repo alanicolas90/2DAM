@@ -19,6 +19,7 @@ public class SQLQueries {
     public static final String SELECT_ALL_FROM_MENU_ITEMS = "SELECT * FROM menu_items";
     public static final String SELECT_FROM_TABLES_WHERE_TABLE_NUMBER = "SELECT * FROM tables where table_number = ";
     public static final String SELECT_ALL_FROM_TABLES = "SELECT * FROM tables";
+    public static final String DELETE_FROM_ORDER_ITEMS_WHERE_ORDER_ID = "DELETE FROM order_items WHERE order_id = ?";
 
     private SQLQueries() {
     }

@@ -18,11 +18,6 @@ public class CommonOrder {
 
     }
 
-    public void initOrderItemList(TableColumn<OrderItem, String> columnItemName, TableColumn<OrderItem, Integer> columnQuantity) {
-        columnItemName.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.ITEM_NAME));
-        columnQuantity.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.QUANTITY));
-    }
-
 
     private CommonOrder() {
     }

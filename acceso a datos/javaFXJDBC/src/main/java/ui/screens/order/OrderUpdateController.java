@@ -50,16 +50,7 @@ public class OrderUpdateController extends BaseScreenController {
     @Override
     public void principalLoaded() {
         txtCustomerId.setText(String.valueOf(getPrincipalController().getIdUserLogged()));
-        int idUserLogged = getPrincipalController().getIdUserLogged();
-        if(idUserLogged < 0){
-            if(ordersService.getAll().isRight()){
-                tableOrders.getItems().addAll(ordersService.getAll().get());
-            }
-        }else{
-            if(ordersService.getOrdersSpecificCustomer(idUserLogged).isRight()){
-                tableOrders.getItems().addAll(ordersService.getOrdersSpecificCustomer(idUserLogged).get());
-            }
-        }
+        loadTable();
     }
 
     @FXML
@@ -79,13 +70,18 @@ public class OrderUpdateController extends BaseScreenController {
             getPrincipalController().alertWarning(ConstantsController.YOU_MUST_SELECT_AN_ORDER, ConstantsController.ERROR);
         } else if (txtTableNumber.getText().isEmpty() || dateOfBirthCustomer.getValue().toString().isBlank()) {
             getPrincipalController().alertWarning(ConstantsController.THERE_ARE_EMPTY_FIELDS, ConstantsController.ERROR);
-        } else if (!txtTableNumber.getText().matches(ConstantsController.CONTAINS_NUMBERS)) {
+        } else if (!txtTableNumber.getText().matches(ConstantsController.CONTAINS_LETTERS)) {
             getPrincipalController().alertWarning(ConstantsController.TABLE_NUMBER_MUST_BE_A_NUMBER, ConstantsController.ERROR);
         } else {
+
             if (!tablesServices.tableExists(Integer.parseInt(txtTableNumber.getText()))) {
                 getPrincipalController().alertWarning("Table number does not exist, please write one that exists", ConstantsController.ERROR);
             } else {
-                if (ordersService.update(dateOfBirthCustomer.getValue().atTime(0, 0, 0), Integer.parseInt(txtTableNumber.getText()), order.getId()).isLeft()) {
+                Order orderUpdate = new Order(order.getId(),
+                        dateOfBirthCustomer.getValue().atTime(0, 0, 0), order.getCustomerId(),
+                        Integer.parseInt(txtTableNumber.getText()));
+
+                if (ordersService.update(orderUpdate).isLeft()) {
                     getPrincipalController().alertWarning("Error updating order", ConstantsController.ERROR);
                 } else {
                     getPrincipalController().showInformation("Order updated successfully", ConstantsController.INFORMATION);
@@ -93,7 +89,16 @@ public class OrderUpdateController extends BaseScreenController {
 
             }
         }
-        tableOrders.getItems().clear();
-        tableOrders.getItems().addAll(ordersService.getAll().get());
+        loadTable();
+    }
+
+    private void loadTable() {
+        if(getPrincipalController().getIdUserLogged()<0){
+            tableOrders.getItems().clear();
+            tableOrders.getItems().addAll(ordersService.getAll().get());
+        }else{
+            tableOrders.getItems().clear();
+            tableOrders.getItems().addAll(ordersService.get(getPrincipalController().getIdUserLogged()).get());
+        }
     }
 }

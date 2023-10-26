@@ -1,7 +1,5 @@
 
-L	java:S106"+Replace this use of System.out by a logger.(ÁŒŸûÿÿÿÿ8 ÙÈÄ¶1
-G	java:S106%"+Replace this use of System.out by a logger.(˜ÇÒÍ8 ÙÈÄ¶1
-X	java:S125O"<This block of commented-out lines of code should be removed.(¥‰Â¼8ÕÓÆÄ¶1
+X	java:S125L"<This block of commented-out lines of code should be removed.(¥‰Â¼8ÕÓÆÄ¶1
 ]
 java:S1128";Remove this unused import 'com.zaxxer.hikari.HikariConfig'.(§Â§¦ûÿÿÿÿ8ş°ÉÄ¶1
 a

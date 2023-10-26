@@ -26,7 +26,7 @@
     <Label layoutX="416.0" layoutY="88.0" text="Order items" />
     <TableView fx:id="tableOrderItems" layoutX="416.0" layoutY="118.0" prefHeight="303.0" prefWidth="302.0">
         <columns>
-            <TableColumn fx:id="columnItemName" prefWidth="114.0" text="itemName" />
+            <TableColumn fx:id="columnItemName" prefWidth="114.0" text="menuItemId" />
             <TableColumn fx:id="columnQuantity" prefWidth="54.0" text="quantity" />
             <TableColumn fx:id="columnPrice" prefWidth="57.0" text="price/u" />
             <TableColumn fx:id="columnTotalPrice" prefWidth="75.0" text="total" />
@@ -36,7 +36,7 @@
    <Label layoutX="457.0" layoutY="445.0" text="TotalAmount" />
    <TextField fx:id="txtCustomerName" layoutX="549.0" layoutY="32.0" />
    <Label layoutX="457.0" layoutY="36.0" text="CustomerName" />
-   <DatePicker fx:id="datePicker" layoutX="219.0" layoutY="433.0" onMouseClicked="#selectedDate"/>
+   <DatePicker fx:id="datePicker" layoutX="219.0" layoutY="433.0" onMouseClicked="#selectedDate" />
    <ComboBox fx:id="comboBoxCustomer" layoutX="231.0" layoutY="466.0" onMouseClicked="#selectedBox" prefWidth="150.0" promptText="CutomerID" />
    <ComboBox fx:id="filterComboBox" layoutX="41.0" layoutY="433.0" onMouseClicked="#selectedFilter" prefWidth="150.0" promptText="Filter" />
 </AnchorPane>

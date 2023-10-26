@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Getter
@@ -14,16 +16,26 @@ public class Order {
     LocalDateTime date;
     int customerId;
     int tableNumber;
+    List<OrderItem> orderItems;
 
-    public Order(int id, int customerId, int tableNumber) {
+    public Order(int id, LocalDateTime date, int customerId, int tableNumber) {
         this.id = id;
-        this.date = LocalDateTime.now();
+        this.date = date;
         this.customerId = customerId;
         this.tableNumber = tableNumber;
     }
 
     public Order() {
 
+    }
+
+
+
+    public Order(LocalDateTime date, int customerId, int tableNumber, List<OrderItem> orderItems) {
+        this.date = date;
+        this.customerId = customerId;
+        this.tableNumber = tableNumber;
+        this.orderItems = orderItems;
     }
 
     public Order(String line) {

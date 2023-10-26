@@ -24,17 +24,14 @@ public class DBConnection {
 
     public Connection getConnection() throws SQLException {
 
-        Connection conn = DriverManager
+        return DriverManager
                 .getConnection(configuration.getProperty("urlDB"), configuration.getProperty("user_name"), configuration.getProperty("password"));
-        System.out.println("Connected to DB");
-        return conn;
     }
 
     /**
      * Closes connection
      */
     public void closeConnection(Connection connArg) {
-        System.out.println("Releasing all open resources ...");
         try {
             if (connArg != null) {
                 connArg.close();

@@ -7,15 +7,15 @@ import model.Credential;
 import model.ErrorC;
 
 public class LoginService {
-    private final LoginDao dao;
+    private final LoginDao daoLogin;
 
     @Inject
-    public LoginService(LoginDao dao) {
-        this.dao = dao;
+    public LoginService(LoginDao daoLogin) {
+        this.daoLogin = daoLogin;
     }
 
-    public Either<ErrorC, Credential> login(String username, String password) {
-        return dao.get(username, password);
+    public Either<ErrorC, Credential> get(Credential credential) {
+        return daoLogin.get(credential);
     }
 }
 

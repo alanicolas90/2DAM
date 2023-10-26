@@ -63,10 +63,13 @@ public class CustomerAddController extends BaseScreenController {
     private void addCustomer() {
         if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPhoneNumber.getText().isEmpty() || dateOfBirthCustomer.getValue() == null) {
             getPrincipalController().alertWarning(ConstantsController.THERE_ARE_EMPTY_FIELDS, ConstantsController.ERROR);
-        } else if (!txtPhoneNumber.getText().matches(ConstantsController.CONTAINS_NUMBERS)) {
+        } else if (!txtPhoneNumber.getText().matches(ConstantsController.CONTAINS_LETTERS)) {
             getPrincipalController().alertWarning(ConstantsController.PHONE_NUMBER_CANNOT_CONTAIN_LETTERS, ConstantsController.ERROR);
         } else {
-            if (customerService.saveAutoIncrementalID(txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue()) <= 1) {
+
+            Customer customer = new Customer(txtName.getText(), txtSurname.getText(), txtEmail.getText(), Integer.parseInt(txtPhoneNumber.getText()), dateOfBirthCustomer.getValue());
+
+            if (customerService.saveAutoIncrementalID(customer).isLeft()) {
                 getPrincipalController().alertWarning(ConstantsController.ERROR, ConstantsController.ERROR);
             } else {
                 tableCustomers.getItems().clear();

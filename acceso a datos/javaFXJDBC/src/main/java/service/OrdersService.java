@@ -37,23 +37,19 @@ public class OrdersService {
         }
     }
 
-    public Either<ErrorC, List<Order>> getOrdersSpecificCustomer(int customerId) {
-        return ordersDao.get(customerId);
-    }
-
     public Either<ErrorC, List<Order>> get(int idUserLogged) {
         return ordersDao.get(idUserLogged);
     }
 
-    public Either<ErrorC, Integer> add(LocalDateTime date, int customerId, int tableNumber) {
-        return ordersDao.add(date, customerId, tableNumber);
+    public Either<ErrorC, Integer> add(Order order) {
+        return ordersDao.add(order);
     }
 
-    public Either<ErrorC, Integer> update(LocalDateTime date, int tableNumber, int orderID) {
-        return ordersDao.update(date, tableNumber, orderID);
+    public Either<ErrorC, Integer> update(Order order) {
+        return ordersDao.update(order);
     }
 
-    public Either<ErrorC, Integer> delete(int id) {
-        return ordersDao.delete(id);
+    public Either<ErrorC, Integer> delete(int id,boolean delete) {
+        return ordersDao.delete(id , delete);
     }
 }

@@ -79,7 +79,7 @@ public class CustomerUpdateController extends BaseScreenController {
         Customer customer = tableCustomers.getSelectionModel().getSelectedItem();
         if (customer == null) {
             getPrincipalController().alertWarning(ConstantsController.NO_CLIENT_WAS_SELECTED, ConstantsController.ERROR);
-        } else if (!txtPhoneNumber.getText().matches(ConstantsController.CONTAINS_NUMBERS)) {
+        } else if (!txtPhoneNumber.getText().matches(ConstantsController.CONTAINS_LETTERS)) {
             getPrincipalController().alertWarning(ConstantsController.PHONE_NUMBER_CANNOT_CONTAIN_LETTERS, ConstantsController.ERROR);
         } else if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPhoneNumber.getText().isEmpty()) {
             getPrincipalController().alertWarning(ConstantsController.THERE_ARE_MISSING_FIELDS, ConstantsController.ERROR);

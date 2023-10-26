@@ -24,8 +24,8 @@ public class CustomerService {
         return customerDao.getAll();
     }
 
-    public int saveAutoIncrementalID(String name, String surname, String email, int phone, LocalDate dateOfBirth) {
-        return customerDao.saveAutoIncrementalID(name, surname, email, phone, dateOfBirth);
+    public Either<ErrorC, Integer> saveAutoIncrementalID(Customer customer) {
+        return customerDao.saveAutoIncrementalID(customer);
     }
 
     public Either<ErrorC, Integer> delete(int id, boolean confirm) {

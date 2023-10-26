@@ -1,8 +1,10 @@
 package ui.screens.order;
 
 import jakarta.inject.Inject;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Order;
 import model.OrderItem;
 import service.MenuItemsService;
@@ -13,6 +15,8 @@ import ui.screens.common.ConstantsController;
 import ui.screens.order.common.CommonOrder;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderAddController extends BaseScreenController {
 
@@ -32,104 +36,99 @@ public class OrderAddController extends BaseScreenController {
 
     @FXML
     private TextField txtOrderItemQuantity;
-    @FXML
-    private TableView<Order> tableOrders;
-    @FXML
-    private TableColumn<Order, Integer> columnId;
-    @FXML
-    private TableColumn<Order, LocalDateTime> columnDate;
-    @FXML
-    private TableColumn<Order, Integer> columnCustomerId;
-    @FXML
-    private TableColumn<Order, Integer> columnTableNumber;
 
+    @FXML
+    private ComboBox<Integer> comboBoxTableNumber;
 
     @FXML
     private ComboBox<Integer> comboBoxCustomer;
 
     @FXML
-    private TextField txtTableNumber;
-
-    @FXML
     private ComboBox<String> comboBoxMenuItem;
 
     @FXML
-    private TableView<String> tableOrderItems;
+    private TableView<OrderItem> tableOrderItems;
     @FXML
-    private TableColumn<OrderItem, String> columnItemName;
+    private TableColumn<OrderItem, Integer> columnItemName;
     @FXML
     private TableColumn<OrderItem, Integer> columnItemQuantity;
 
+    private List<OrderItem> orderItems;
+
 
     public void initialize() {
+        columnItemName.setCellValueFactory(new PropertyValueFactory<>("menuItemId"));
+        columnItemQuantity.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.QUANTITY));
         comboBoxCustomer.setDisable(true);
-        comboBoxMenuItem.getItems().addAll();
-        commonOrder.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
-        commonOrder.initOrderItemList(columnItemName, columnItemQuantity);
+
+        comboBoxTableNumber.getItems().addAll(tablesServices.getAllTableNumbers());
+        comboBoxMenuItem.getItems().addAll(menuItemsService.getAllNames().get());
+        orderItems = new ArrayList<>();
     }
 
     @Override
     public void principalLoaded() {
         comboBoxCustomer.setValue(getPrincipalController().getIdUserLogged());
-        comboBoxMenuItem.getItems().addAll(menuItemsService.getAllNames().get());
-        if (ordersService.get(getPrincipalController().getIdUserLogged()).isRight()) {
-            tableOrders.getItems().addAll(ordersService.get(getPrincipalController().getIdUserLogged()).get());
-        }
+
     }
 
     @FXML
     private void addOrder() {
-        if (!txtTableNumber.getText().matches(ConstantsController.CONTAINS_NUMBERS)) {
+
+        if (comboBoxTableNumber.getValue() == null) {
             getPrincipalController().alertWarning(ConstantsController.TABLE_NUMBER_MUST_BE_A_NUMBER, ConstantsController.ERROR);
         } else {
-            tryAddOrder();
-            tableOrders.getItems().clear();
-            tableOrders.getItems().addAll(ordersService.get(getPrincipalController().getIdUserLogged()).get());
+            if (orderItems.isEmpty()) {
+                boolean confirmation = getPrincipalController().alertDeleteConfirmation("Are you sure you want to create a empty order?", "Create order");
+                if (confirmation) {
+                    tryAddOrder();
+                }
+            } else {
+                tryAddOrder();
+                orderItems.clear();
+            }
+            tableOrderItems.getItems().clear();
+            tableOrderItems.getItems().addAll(orderItems);
         }
-    }
 
-
-    @FXML
-    private void orderSelected() {
-        tableOrderItems.getItems().clear();
-        if (tableOrders.getSelectionModel().getSelectedItem() != null) {
-            //TODO get order items with id order
-        }
     }
 
     @FXML
     private void addOrderItem() {
-        Order order = tableOrders.getSelectionModel().getSelectedItem();
 
-        if (order == null) {
-            getPrincipalController().alertWarning(ConstantsController.YOU_MUST_SELECT_AN_ORDER, ConstantsController.ERROR);
-        } else if (txtOrderItemQuantity.getText().isEmpty() || txtOrderItemQuantity.getText().isBlank() || comboBoxMenuItem.getValue() == null) {
+        if (txtOrderItemQuantity.getText().isEmpty() || txtOrderItemQuantity.getText().isBlank() || comboBoxMenuItem.getValue() == null) {
             getPrincipalController().alertWarning(ConstantsController.ALL_THE_FIELDS_MUST_BE_FILLED, ConstantsController.ERROR);
-        } else if (!txtOrderItemQuantity.getText().matches(ConstantsController.CONTAINS_NUMBERS)) {
+        } else if (!txtOrderItemQuantity.getText().matches(ConstantsController.CONTAINS_LETTERS)) {
             getPrincipalController().alertWarning(ConstantsController.QUANTITY_MUST_BE_A_NUMBER, ConstantsController.ERROR);
         } else {
+            orderItems.add(new OrderItem(menuItemsService.getMenuItemIdByName(comboBoxMenuItem.getValue()), Integer.parseInt(txtOrderItemQuantity.getText())));
             getPrincipalController().showInformation(ConstantsController.ORDER_ADDED_SUCCESSFULLY, ConstantsController.SUCCESS);
-            //TODO add order item
+
         }
-        tableOrders.getItems().clear();
-        tableOrders.getItems().addAll(ordersService.get(getPrincipalController().getIdUserLogged()).get());
         tableOrderItems.getItems().clear();
+        tableOrderItems.getItems().addAll(orderItems);
     }
 
     private void tryAddOrder() {
-        int tableNumber = Integer.parseInt(txtTableNumber.getText());
-        if (tablesServices.tableExists(tableNumber)) {
-            addOrder(tableNumber);
-        } else {
-            getPrincipalController().alertWarning(ConstantsController.TABLE_NUMBER_DOES_NOT_EXIST, ConstantsController.ERROR);
-        }
-    }
+        int tableNumber = comboBoxTableNumber.getValue();
+        Order order = new Order(LocalDateTime.now(), getPrincipalController().getIdUserLogged(), tableNumber, orderItems);
 
-    private void addOrder(int tableNumber) {
-        if (ordersService.add(LocalDateTime.now(), getPrincipalController().getIdUserLogged(), tableNumber).isRight()) {
+        if (ordersService.add(order).isRight()) {
             getPrincipalController().showInformation(ConstantsController.ORDER_ADDED_SUCCESSFULLY, ConstantsController.SUCCESS);
         } else {
             getPrincipalController().alertWarning(ConstantsController.ERROR_ADDING_ORDER, ConstantsController.ERROR);
+        }
+    }
+
+    @FXML
+    private void removeOrderItem() {
+        if (tableOrderItems.getSelectionModel().getSelectedItem() == null) {
+            getPrincipalController().alertWarning("You must select a order item t delete it", ConstantsController.ERROR);
+        } else {
+            orderItems.remove(tableOrderItems.getSelectionModel().getSelectedItem());
+            getPrincipalController().showInformation("Order item deleted successfully", ConstantsController.SUCCESS);
+            tableOrderItems.getItems().clear();
+            tableOrderItems.getItems().addAll(orderItems);
         }
     }
 }

@@ -4,7 +4,7 @@ public class ConstantsController {
 
 
     //-------------------SCREEN/OVERALL-------------------// USED MORE THAN ONE TIME
-    public static final String CONTAINS_NUMBERS = "\\d+";
+    public static final String CONTAINS_LETTERS = "\\d+";
     public static final String ERROR = "Error";
     public static final String PHONE_NUMBER_CANNOT_CONTAIN_LETTERS = "Phone number cannot contain letters";
     public static final String INFORMATION = "Information";

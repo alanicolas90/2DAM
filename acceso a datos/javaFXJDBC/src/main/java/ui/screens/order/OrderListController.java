@@ -4,11 +4,13 @@ import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Customer;
 import model.ErrorC;
 import model.Order;
 import model.OrderItem;
 import service.CustomerService;
+import service.OrderItemsService;
 import service.OrdersService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantsController;
@@ -22,12 +24,14 @@ public class OrderListController extends BaseScreenController {
     private final CommonOrder commonOrder;
     private final OrdersService ordersService;
     private final CustomerService customerService;
+    private final OrderItemsService orderItemsService;
 
     @Inject
-    public OrderListController(CommonOrder commonOrder, OrdersService ordersService, CustomerService customerService) {
+    public OrderListController(CommonOrder commonOrder, OrdersService ordersService, CustomerService customerService, OrderItemsService orderItemsService) {
         this.commonOrder = commonOrder;
         this.ordersService = ordersService;
         this.customerService = customerService;
+        this.orderItemsService = orderItemsService;
     }
 
 
@@ -60,7 +64,8 @@ public class OrderListController extends BaseScreenController {
 
     public void initialize() {
         commonOrder.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
-        commonOrder.initOrderItemList(columnItemName, columnQuantity);
+        columnItemName.setCellValueFactory(new PropertyValueFactory<>("menuItemId"));
+        columnQuantity.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.QUANTITY));
 
         comboBoxCustomer.getItems().addAll(customerService.getAllIdsCustomer());
         filterComboBox.getItems().addAll(ConstantsController.DATE, ConstantsController.CUSTOMER, ConstantsController.NONE);
@@ -71,14 +76,14 @@ public class OrderListController extends BaseScreenController {
 
     @Override
     public void principalLoaded() {
-        int idUserLogged = getPrincipalController().getIdUserLogged();
-        if (idUserLogged < 0) {
-            if (ordersService.getAll().isRight()) {
-                tableOrders.getItems().addAll(ordersService.getAll().get());
-            }
+        Either<ErrorC, List<Order>> eitherOrders = ordersService.getAll();
+        Either<ErrorC, List<Order>> eitherOrdersSpecificCustomer = ordersService.get(getPrincipalController().getIdUserLogged());
+
+        if (getPrincipalController().getIdUserLogged() < 0 && eitherOrders.isRight()) {
+            tableOrders.getItems().addAll(eitherOrders.get());
         } else {
-            if (ordersService.get(idUserLogged).isRight()) {
-                tableOrders.getItems().addAll(ordersService.get(idUserLogged).get());
+            if (eitherOrdersSpecificCustomer.isRight()) {
+                tableOrders.getItems().addAll(eitherOrdersSpecificCustomer.get());
             }
         }
         filterComboBox.setOnAction(event -> selectedFilter());
@@ -90,13 +95,24 @@ public class OrderListController extends BaseScreenController {
     private void orderSelected() {
         tableOrderItems.getItems().clear();
         if (tableOrders.getSelectionModel().getSelectedItem() != null) {
-            int idCustomer = tableOrders.getSelectionModel().getSelectedItem().getCustomerId();
-            Either<ErrorC, Customer> customerSpecificId = customerService.getCustomerById(idCustomer);
-            if (customerSpecificId.isRight()) {
-                txtCustomerName.setText(customerSpecificId.get().getName());
-            } else {
-                getPrincipalController().showInformation(ConstantsController.CUSTOMER_HAS_NO_ORDERS, ConstantsController.INFORMATION);
+
+            showNameCustomerFromSelectedOrder();
+
+            Order order = tableOrders.getSelectionModel().getSelectedItem();
+            if(orderItemsService.get(order.getId()).isRight()){
+                tableOrderItems.getItems().addAll(orderItemsService.get(order.getId()).get());
             }
+
+        }
+    }
+
+    private void showNameCustomerFromSelectedOrder() {
+        int idCustomer = tableOrders.getSelectionModel().getSelectedItem().getCustomerId();
+        Either<ErrorC, Customer> customerSpecificId = customerService.getCustomerById(idCustomer);
+        if (customerSpecificId.isRight()) {
+            txtCustomerName.setText(customerSpecificId.get().getName());
+        } else {
+            getPrincipalController().showInformation(ConstantsController.CUSTOMER_HAS_NO_ORDERS, ConstantsController.INFORMATION);
         }
     }
 
@@ -104,7 +120,7 @@ public class OrderListController extends BaseScreenController {
     private void selectedBox() {
         if (comboBoxCustomer.getValue() != null) {
             tableOrders.getItems().clear();
-            Either<ErrorC, List<Order>> eitherOrders = ordersService.getOrdersSpecificCustomer(comboBoxCustomer.getValue());
+            Either<ErrorC, List<Order>> eitherOrders = ordersService.get(comboBoxCustomer.getValue());
             if (eitherOrders.isRight()) {
                 tableOrders.getItems().addAll(eitherOrders.get());
             }

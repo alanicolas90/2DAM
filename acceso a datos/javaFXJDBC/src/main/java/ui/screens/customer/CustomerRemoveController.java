@@ -70,7 +70,7 @@ public class CustomerRemoveController extends BaseScreenController {
         Customer selectionTable = tableCustomers.getSelectionModel().getSelectedItem();
         tableOrdersCustomer.getItems().clear();
         if (selectionTable != null) {
-            tableOrdersCustomer.getItems().addAll(orderService.getOrdersSpecificCustomer(selectionTable.getId()).getOrElse(Collections.emptyList()));
+            tableOrdersCustomer.getItems().addAll(orderService.get(selectionTable.getId()).getOrElse(Collections.emptyList()));
         }
     }
 
@@ -90,10 +90,10 @@ public class CustomerRemoveController extends BaseScreenController {
 
 
     private void deleteCustomer(Customer customer) {
-        if (customerService.delete(customer.getId(), false).isLeft()) {
-            askIfWantToDeleteCustomerBecauseHasOrders(customer);
-        } else {
+        if (customerService.delete(customer.getId(), false).isRight()) {
             getPrincipalController().showInformation(ConstantsController.CUSTOMER_DELETED_CORRECTLY, ConstantsController.INFORMATION);
+        } else {
+            askIfWantToDeleteCustomerBecauseHasOrders(customer);
         }
     }
 

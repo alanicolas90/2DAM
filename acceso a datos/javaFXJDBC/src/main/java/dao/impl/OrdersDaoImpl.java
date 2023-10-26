@@ -72,62 +72,127 @@ public class OrdersDaoImpl implements OrdersDao {
     }
 
     @Override
-    public Either<ErrorC, Integer> add(LocalDateTime date, int customerId, int tableNumber) {
-        int rowsAffected = 0;
-        try {
-            Connection connection = dbConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.ADD_ORDER);
-            preparedStatement.setTimestamp(1, Timestamp.valueOf(date));
-            preparedStatement.setInt(2, customerId);
-            preparedStatement.setInt(3, tableNumber);
-            rowsAffected = preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            log.error(e.getMessage());
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-        return Either.right(rowsAffected);
-    }
-
-    @Override
-    public Either<ErrorC, Integer> update(LocalDateTime date, int tableNumber, int orderID) {
-        int rowsAffected = 0;
-        try {
-            Connection connection = dbConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_ORDERS);
-            preparedStatement.setTimestamp(1, Timestamp.valueOf(date));
-            preparedStatement.setInt(2, tableNumber);
-            preparedStatement.setInt(3, orderID);
-            rowsAffected = preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            log.error(e.getMessage());
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-        return Either.right(rowsAffected);
-    }
-
-    @Override
-    public Either<ErrorC, Integer> delete(int id) {
+    public Either<ErrorC, Integer> add(Order order) {
         int rowsAffected = 0;
         Connection connection = null;
         try {
             connection = dbConnection.getConnection();
             connection.setAutoCommit(false);
-            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDERS_WHERE_ORDER_ID);
-            preparedStatement.setInt(1, id);
-            rowsAffected = preparedStatement.executeUpdate();
+            PreparedStatement preparedStatementOrderAdd = connection.prepareStatement(SQLQueries.ADD_ORDER, Statement.RETURN_GENERATED_KEYS);
+            preparedStatementOrderAdd.setTimestamp(1, Timestamp.valueOf(order.getDate()));
+            preparedStatementOrderAdd.setInt(2, order.getCustomerId());
+            preparedStatementOrderAdd.setInt(3, order.getTableNumber());
+            rowsAffected = preparedStatementOrderAdd.executeUpdate();
+            ResultSet rs = preparedStatementOrderAdd.getGeneratedKeys();
+            int orderId = -1;
+            if (rs.next()) {
+                orderId = rs.getInt(1);
+            }
+            if (!order.getOrderItems().isEmpty() && orderId != -1) {
+                PreparedStatement preparedStatementOrderItemsAdd = connection.prepareStatement("INSERT INTO order_items (order_id, menu_item_id, quantity) VALUES (?,?,?)");
+                for (int i = 0; i < order.getOrderItems().size(); i++) {
+                    preparedStatementOrderItemsAdd.setInt(1, orderId);
+                    preparedStatementOrderItemsAdd.setInt(2, order.getOrderItems().get(i).getMenuItemId());
+                    preparedStatementOrderItemsAdd.setInt(3, order.getOrderItems().get(i).getQuantity());
+                    preparedStatementOrderItemsAdd.addBatch();
+                }
+                preparedStatementOrderItemsAdd.executeBatch();
+            }
+
             connection.commit();
         } catch (SQLException e) {
-            log.error(e.getMessage());
             tryCatchRollbak(connection);
+            log.error(e.getMessage());
+            return Either.left(new ErrorC("Error adding order"));
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return Either.left(new ErrorC("Error adding order 32323"));
         }
-        if (rowsAffected == 0) {
-            return Either.left(new ErrorC(DaoConstants.NO_ORDER_FOUND));
-        } else {
+        return Either.right(rowsAffected);
+    }
+
+    @Override
+    public Either<ErrorC, Integer> update(Order order) {
+        int rowsAffected = 0;
+        try {
+            Connection connection = dbConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_ORDERS);
+            preparedStatement.setTimestamp(1, Timestamp.valueOf(order.getDate()));
+            preparedStatement.setInt(2, order.getTableNumber());
+            preparedStatement.setInt(3, order.getId());
+            rowsAffected = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return Either.right(rowsAffected);
+    }
+
+    @Override
+    public Either<ErrorC, Integer> delete(int id, boolean delete) {
+        int rowsAffected = 0;
+        if (!delete) {
+            try {
+                Connection connection = dbConnection.getConnection();
+                try {
+                    connection.setAutoCommit(false);
+                    PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDERS_WHERE_ORDER_ID);
+                    preparedStatement.setInt(1, id);
+                    rowsAffected = preparedStatement.executeUpdate();
+                    connection.commit();
+                } catch (SQLException e) {
+                    tryCatchRollbak(connection);
+                    if (e.getErrorCode() == 1451) {
+                        return Either.left(new ErrorC("Order has order items"));
+                    } else {
+                        log.error(e.getMessage());
+                    }
+                } finally {
+                    connection.setAutoCommit(true);
+                }
+            } catch (SQLException e) {
+                log.error(e.getMessage());
+            }
             return Either.right(rowsAffected);
         }
+        //delete Order with order items accepted by Customer
+        else {
+            try {
+                Connection connection = dbConnection.getConnection();
+                try {
+                    connection.setAutoCommit(false);
+
+                    PreparedStatement preparedStatementDeleteOrderItems = connection.prepareStatement("delete from order_items where order_id =" + id);
+
+                    PreparedStatement preparedStatementDeleteOrders = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDERS_WHERE_ORDER_ID);
+                    preparedStatementDeleteOrders.setInt(1, id);
+
+                    rowsAffected += preparedStatementDeleteOrderItems.executeUpdate();
+                    rowsAffected += preparedStatementDeleteOrders.executeUpdate();
+
+                    connection.commit();
+                } catch (SQLException e) {
+                    tryCatchRollbak(connection);
+                    if (e.getErrorCode() == 1451) {
+                        return Either.left(new ErrorC("Order has order items"));
+                    } else {
+                        log.error(e.getMessage());
+                    }
+                } finally {
+                    connection.setAutoCommit(true);
+                }
+
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+            if (rowsAffected < 1) {
+                return Either.left(new ErrorC("Error deleting order"));
+            } else {
+                return Either.right(rowsAffected);
+            }
+        }
+
     }
 
 
@@ -135,6 +200,7 @@ public class OrdersDaoImpl implements OrdersDao {
     private void tryCatchRollbak(Connection connection) {
         try {
             connection.rollback();
+            connection.setAutoCommit(true);
         } catch (Exception e) {
             log.error(e.getMessage());
         }

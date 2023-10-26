@@ -24,7 +24,8 @@ public class LoginController extends BaseScreenController {
 
     @FXML
     private void login() {
-        Either<ErrorC, Credential> eitherCredential= loginService.login(username.getText(), password.getText());
+        Credential credential = new Credential(username.getText(), password.getText());
+        Either<ErrorC, Credential> eitherCredential= loginService.get(credential);
         if (eitherCredential.isRight()) {
             getPrincipalController().onLogin(eitherCredential.get());
         } else {

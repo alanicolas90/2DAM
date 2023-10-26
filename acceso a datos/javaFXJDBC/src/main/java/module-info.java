@@ -43,5 +43,7 @@ module JavaFXDataAcess {
     opens dao.utils;
     exports dao.utils;
     opens service.utils;
+    opens dao.impl;
+    opens dao;
 
 }

@@ -83,3 +83,15 @@ Y
 +src/main/java/service/MenuItemsService.java,b\8\b83afb7cad73bea66bf18801e9e347dbd172c817
 Y
 )src/main/java/service/TablesServices.java,9\1\914522271dd1b6aef6d493480452909a3c3248d8
+\
+,src/main/java/service/OrderItemsService.java,8\4\84d11b66b766192c948143233e21c100ddb14b49
+]
+-src/main/java/dao/impl/OrderItemsDaoImpl.java,d\3\d3cdb29c1e31f10a40accd90b4dd1e8410015b75
+h
+8src/main/java/ui/screens/common/ConstantsController.java,d\9\d98468da9c680d4016b385283cfce8e78e9d4d6d
+S
+#src/main/java/dao/MenuItemsDao.java,7\9\7929804c4559f2c08452a3c5c80005cc3459e79d
+T
+$src/main/java/dao/OrderItemsDao.java,a\a\aae2c4a1f1839da15b08e0acf28089f8eac13a0b
+P
+ src/main/java/dao/TablesDao.java,e\e\eedcde0f02dea4a6aabc7c5a902a7e97b2fc5792

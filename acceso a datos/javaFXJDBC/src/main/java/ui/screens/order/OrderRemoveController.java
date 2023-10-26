@@ -5,9 +5,11 @@ import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.ErrorC;
 import model.Order;
 import model.OrderItem;
+import service.OrderItemsService;
 import service.OrdersService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantsController;
@@ -21,15 +23,18 @@ public class OrderRemoveController extends BaseScreenController {
     private final CommonOrder common;
     private final OrdersService ordersService;
 
+    private final OrderItemsService orderItemService;
+
     @Inject
-    public OrderRemoveController(CommonOrder common, OrdersService ordersService) {
+    public OrderRemoveController(CommonOrder common, OrdersService ordersService, OrderItemsService orderItemService) {
         this.common = common;
         this.ordersService = ordersService;
+        this.orderItemService = orderItemService;
     }
 
 
     @FXML
-    private TableView tableOrderItems;
+    private TableView<OrderItem> tableOrderItems;
     @FXML
     private TableView<Order> tableOrders;
     @FXML
@@ -49,7 +54,8 @@ public class OrderRemoveController extends BaseScreenController {
 
     public void initialize() {
         common.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
-        common.initOrderItemList(columnItemName, columnQuantity);
+        columnItemName.setCellValueFactory(new PropertyValueFactory<>("menuItemId"));
+        columnQuantity.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.QUANTITY));
     }
 
     @Override
@@ -66,12 +72,7 @@ public class OrderRemoveController extends BaseScreenController {
         if (order == null) {
             getPrincipalController().alertWarning(ConstantsController.YOU_MUST_SELECT_AN_ORDER, ConstantsController.ERROR);
         } else {
-            if (ordersService.delete(order.getId()).isRight()) {
-                getPrincipalController().showInformation(ConstantsController.ORDER_DELETED_SUCCESSFULLY, ConstantsController.INFORMATION);
-            } else {
-                getPrincipalController().showInformation(ConstantsController.ORDER_NOT_DELETED, ConstantsController.INFORMATION);
-                //TODO. error tiene items por eso no se ha podido borrar / comprobar si quiere borrar
-            }
+            deleteOrder(order);
         }
 
         tableOrders.getItems().clear();
@@ -80,14 +81,38 @@ public class OrderRemoveController extends BaseScreenController {
 
     }
 
+    private void deleteOrder(Order order) {
+        if (ordersService.delete(order.getId(), false).isLeft()) {
+            askIfUserWantsToDeleteOrdersWithItems(order);
+        } else {
+            getPrincipalController().showInformation(ConstantsController.ORDER_DELETED_SUCCESSFULLY, ConstantsController.INFORMATION);
+        }
+    }
+
+    private void askIfUserWantsToDeleteOrdersWithItems(Order order) {
+        boolean wantsToDelete = getPrincipalController().alertDeleteConfirmation("This order has order items. Are you sure you want to delete it?", "Confirmation delete");
+        if(wantsToDelete) {
+            deleteOrderWithOrderItems(order);
+        }else{
+            getPrincipalController().showInformation(ConstantsController.ORDER_NOT_DELETED, ConstantsController.INFORMATION);
+        }
+    }
+
+    private void deleteOrderWithOrderItems(Order order) {
+        if(ordersService.delete(order.getId(), true).isLeft())
+            getPrincipalController().showInformation(ConstantsController.ORDER_NOT_DELETED, ConstantsController.INFORMATION);
+        else
+            getPrincipalController().showInformation(ConstantsController.ORDER_DELETED_SUCCESSFULLY, ConstantsController.INFORMATION);
+    }
+
     @FXML
     private void orderSelected() {
         tableOrderItems.getItems().clear();
         if (tableOrders.getSelectionModel().getSelectedItem() != null) {
             int idOrder = tableOrders.getSelectionModel().getSelectedItem().getId();
-//            if (orderItemService.get(idOrder).isRight()) {
-//                tableOrderItems.getItems().addAll(orderItemService.get(idOrder).get());
-//            }
+            if (orderItemService.get(idOrder).isRight()) {
+                tableOrderItems.getItems().addAll(orderItemService.get(idOrder).get());
+            }
         }
     }
 }

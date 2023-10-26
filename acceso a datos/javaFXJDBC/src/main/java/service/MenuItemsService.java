@@ -24,4 +24,11 @@ public class MenuItemsService {
         List<String> names = menuItems.get().stream().map(MenuItem::getItemName).toList();
         return Either.right(names);
     }
+
+    public int getMenuItemIdByName(String value) {
+        Either<ErrorC, List<MenuItem>> menuItems = menuItemsDao.getAll();
+        return menuItems.get().stream().filter(menuItem -> menuItem.getItemName().equals(value)).findFirst().get().getId();
+
+
+    }
 }
