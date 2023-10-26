@@ -1,6 +1,5 @@
 package servlets;
 
-import domain.Equipo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,40 +13,31 @@ import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 
 import java.io.IOException;
 
-@WebServlet(name = "Plantillas", value = "/Plantillas")
+@WebServlet(name = "Plantillas", value = "/plantillas")
 public class Plantillas extends HttpServlet {
 
-
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Equipo p = new Equipo("1", "Madrid", "Madrid", "Santiago Bernabeu");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         TemplateEngine templateEngine = (TemplateEngine) getServletContext().getAttribute(
                 ThymeLeafListener.TEMPLATE_ENGINE_ATTR);
 
         IWebExchange webExchange = JakartaServletWebApplication.buildApplication(getServletContext())
-                .buildExchange(request, response);
+                .buildExchange(req, resp);
 
         WebContext context = new WebContext(webExchange);
 
-        String name = request.getParameter("name");
         String template = "home";
-        if(name == null || name.isEmpty()){
-            template = "error";
-            context.setVariable("error", "No se ha introducido ningun nombre");
-        }else{
-            context.setVariable("name", name);
-            context.setVariable("equipo", p);
-        }
+
+        context.setVariable("name", "y hola oscar");
+
+        templateEngine.process(template,context,resp.getWriter());
 
 
 
-        templateEngine.process(template, context, response.getWriter());
 
-    }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 
     }
 }

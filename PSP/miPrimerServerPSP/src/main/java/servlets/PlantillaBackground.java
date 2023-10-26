@@ -13,54 +13,50 @@ import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 
 import java.io.IOException;
 
-@WebServlet(name = "Juan", value = {"/a", "/b"})
+@WebServlet(name = "Juan", value = "/a")
 public class PlantillaBackground extends HttpServlet {
 
 
-
-
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
         TemplateEngine templateEngine = (TemplateEngine) getServletContext().getAttribute(
                 ThymeLeafListener.TEMPLATE_ENGINE_ATTR);
+
         IWebExchange webExchange = JakartaServletWebApplication.buildApplication(getServletContext())
                 .buildExchange(req, resp);
+
         WebContext context = new WebContext(webExchange);
 
 
+        String template;
 
-        String template = "param";
-        String color;
-
-
-        if (req.getParameter("today") != null && !req.getParameter("today").isEmpty()) {
-            color = req.getParameter("today");
-            req.getSession().setAttribute("color", color);
-        }
-        else
-            color = (String) req.getSession().getAttribute("color");
-
-        String mensaje = req.getParameter("mensaje");
         String sNumero = req.getParameter("numero");
-        if (sNumero != null && !sNumero.isEmpty()) {
 
 
-            try {
-                int valor = Integer.parseInt(sNumero);
-                context.setVariable("today", color);
-                context.setVariable("mensaje", mensaje + valor);
 
-            }
-            catch (NumberFormatException e) {
-                context.setVariable("error", "numero no valido");
 
+        try {
+            int valor = Integer.parseInt(sNumero);
+            if(valor == 4) {
+                context.setVariable("mensaje", "FELICIDADES HAS ADIVINADO EL NUMERO");
+                context.setVariable("backgroundColor", "#FFFF00");
+                template = "param";
+            }else{
+                context.setVariable("error", "no has adivinado el numero");
+                context.setVariable("backgroundColor", "#b01e3a");
                 template = "error";
             }
 
-        }
-        else {
-            context.setVariable("error", "numero no existe");
-
+        } catch (NumberFormatException e) {
+            if (sNumero.isEmpty() || sNumero.isBlank()) {
+                context.setVariable("error", "numero vacio, porfavor escriba un numero");
+            } else if (sNumero.matches(".*\\D.*")) {
+                context.setVariable("error", "Escribe un numero");
+            } else {
+                context.setVariable("error", "numero no valido");
+            }
+            context.setVariable("backgroundColor", "#2236e1");
             template = "error";
         }
 

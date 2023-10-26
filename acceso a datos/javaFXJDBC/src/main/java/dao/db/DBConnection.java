@@ -11,8 +11,10 @@ import lombok.extern.log4j.Log4j2;
 import javax.sql.DataSource;
 import java.sql.*;
 
-@Singleton
+
+
 @Log4j2
+@Singleton
 public class DBConnection {
 
     private final Configuration configuration;

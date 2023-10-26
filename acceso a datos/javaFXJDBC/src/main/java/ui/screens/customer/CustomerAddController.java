@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Credential;
 import model.Customer;
+import service.CredentialService;
 import service.CustomerService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantsController;
@@ -18,12 +19,14 @@ import java.time.LocalDate;
 public class CustomerAddController extends BaseScreenController {
     private final CustomerCommon customerCommon;
     private final CustomerService customerService;
+    private final CredentialService credentialService;
 
     @Inject
-    public CustomerAddController(CustomerCommon customerCommon, CustomerService customerService) {
+    public CustomerAddController(CustomerCommon customerCommon, CustomerService customerService,CredentialService credentialService) {
 
         this.customerCommon = customerCommon;
         this.customerService = customerService;
+        this.credentialService = credentialService;
     }
 
 
@@ -78,6 +81,8 @@ public class CustomerAddController extends BaseScreenController {
 
         } else if (!txtPhoneNumber.getText().matches(ConstantsController.CONTAINS_LETTERS)) {
             getPrincipalController().alertWarning(ConstantsController.PHONE_NUMBER_CANNOT_CONTAIN_LETTERS, ConstantsController.ERROR);
+        } else if(credentialService.usernameExists(txtUsername.getText()).isRight()){
+            getPrincipalController().alertWarning("Username already exists", ConstantsController.ERROR);
         } else {
             Customer customer = new Customer(txtName.getText(),
                     txtSurname.getText(),

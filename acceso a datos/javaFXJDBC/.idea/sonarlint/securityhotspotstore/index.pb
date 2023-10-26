@@ -95,3 +95,9 @@ T
 $src/main/java/dao/OrderItemsDao.java,a\a\aae2c4a1f1839da15b08e0acf28089f8eac13a0b
 P
  src/main/java/dao/TablesDao.java,e\e\eedcde0f02dea4a6aabc7c5a902a7e97b2fc5792
+\
+,src/main/java/service/CredentialService.java,3\c\3ce10a76c13cb5b7e185977a89a2b278bfe03bd1
+U
+%src/main/java/dao/CredentialsDao.java,1\0\10c46e7981e74dab127cb50d20102a156cdb3f8f
+^
+.src/main/java/dao/impl/CredentialsDaoImpl.java,c\4\c45ff22903975a0e2bd1d7892994c6cd6deb8522

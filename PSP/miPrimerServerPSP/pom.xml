@@ -41,12 +41,6 @@
             <version>3.1.0.M1</version>
         </dependency>
 
-        <!-- mirar si lo usamos-->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.10</version>
-        </dependency>
     </dependencies>
 
 </project>

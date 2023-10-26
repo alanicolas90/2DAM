@@ -21,6 +21,7 @@ public class SQLQueries {
     public static final String SELECT_ALL_FROM_TABLES = "SELECT * FROM tables";
     public static final String DELETE_FROM_ORDER_ITEMS_WHERE_ORDER_ID = "DELETE FROM order_items WHERE order_id = ?";
     public static final String DELETE_FROM_ORDER_ITEMS_WHERE_ORDER_ID_IN_SELECT_ORDER_ID_FROM_ORDERS_WHERE_CUSTOMER_ID = "delete from order_items where order_id in(select order_id from orders where customer_id = ?)";
+    public static final String QUERY_GET_CREDENTIALS_WHERE_USERNAME_IS = "SELECT * FROM credentials WHERE username = ?";
 
     private SQLQueries() {
     }
