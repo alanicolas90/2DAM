@@ -85,7 +85,7 @@ public class CustomerAddController extends BaseScreenController {
                     Integer.parseInt(txtPhoneNumber.getText()),
                     dateOfBirthCustomer.getValue(),
                     new Credential(txtUsername.getText(), txtPassword.getText()));
-            
+
             if (customerService.saveAutoIncrementalID(customer).isLeft()) {
                 getPrincipalController().alertWarning(ConstantsController.ERROR, ConstantsController.ERROR);
             } else {
