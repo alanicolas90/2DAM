@@ -18,7 +18,7 @@ public class ThymeLeafListener implements ServletContextListener {
     private ITemplateEngine templateEngine;
     private JakartaServletWebApplication application;
 
-    public ThymeLeafListener() {
+    private ThymeLeafListener() {
     }
 
     @Override
