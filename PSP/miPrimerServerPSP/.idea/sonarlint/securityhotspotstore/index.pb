@@ -7,8 +7,6 @@ Y
 )src/main/java/servlets/ServletPrueba.java,3\3\3354c05579f076ce2d63110b9cf1d15d551b9757
 _
 /src/main/java/servlets/PlantillaBackground.java,1\b\1b273cc5f839c7ef3b915b367b3f736926e256ea
-P
- src/main/java/domain/Equipo.java,d\5\d5185000c36603b3b497a8aa3e45006127c01fe7
 ^
 .src/main/java/listeners/ThymeLeafListener.java,0\e\0e2f08c482897c3266bac1facee41e1b96ccf0a5
 V
@@ -19,5 +17,5 @@ V
 ,src/main/webapp/WEB-INF/templates/error.html,1\8\18dd71e41fd8baf246975fcb321d4c92ad84681e
 \
 ,src/main/webapp/WEB-INF/templates/param.html,2\5\257a47288102ad233c54e91c6e93e64964c3f830
-Q
-!src/main/java/MainController.java,f\7\f7939739b984dc364c6f44c862e169aa2cb387f0
+P
+ src/main/java/domain/Number.java,c\1\c12c493dc8ca417d9a6d744f4820f586563a2b19

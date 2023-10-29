@@ -1,10 +1,19 @@
 [
   {
     "id": 1,
+    "name": "bulbasaur",
     "base_experience": 64,
     "height": 7,
     "weight": 69,
     "sprites": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    "types": [
+      {
+        "name": "grass"
+      },
+      {
+        "name": "poison"
+      }
+    ],
     "stats": [
       {
         "base_stat": 45,
@@ -34,66 +43,42 @@
   },
   {
     "id": 2,
-    "base_experience": 64,
-    "height": 7,
-    "weight": 69,
-    "sprites": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
-    "stats": [
+    "name": "ivysaur",
+    "base_experience": 142,
+    "height": 10,
+    "weight": 130,
+    "sprites": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.pn",
+    "types": [
       {
-        "base_stat": 45,
-        "name": "hp"
+        "name": "grass"
       },
       {
-        "base_stat": 49,
-        "name": "attack"
-      },
-      {
-        "base_stat": 49,
-        "name": "defense"
-      },
-      {
-        "base_stat": 65,
-        "name": "special-attack"
-      },
-      {
-        "base_stat": 65,
-        "name": "special-defense"
-      },
-      {
-        "base_stat": 45,
-        "name": "speed"
+        "name": "poison"
       }
-    ]
-  },
-  {
-    "id": 3,
-    "base_experience": 64,
-    "height": 7,
-    "weight": 69,
-    "sprites": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+    ],
     "stats": [
       {
-        "base_stat": 45,
+        "base_stat": 60,
         "name": "hp"
       },
       {
-        "base_stat": 49,
+        "base_stat": 62,
         "name": "attack"
       },
       {
-        "base_stat": 49,
+        "base_stat": 63,
         "name": "defense"
       },
       {
-        "base_stat": 65,
+        "base_stat": 80,
         "name": "special-attack"
       },
       {
-        "base_stat": 65,
+        "base_stat": 80,
         "name": "special-defense"
       },
       {
-        "base_stat": 45,
+        "base_stat": 60,
         "name": "speed"
       }
     ]

@@ -13,7 +13,7 @@ import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 
 import java.io.IOException;
 
-@WebServlet(name = "Plantillas", value = "/plantillas")
+@WebServlet(name = "plantillas", value = "/plantillas")
 public class Plantillas extends HttpServlet {
 
     @Override

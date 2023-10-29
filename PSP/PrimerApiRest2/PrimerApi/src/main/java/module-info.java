@@ -42,6 +42,8 @@ module plantillaJavaFX {
     opens domain.modelo.berry;
     opens ui.screens.tableberrie;
     opens common.constantes;
+    exports dao.retrofit;
+    opens dao.retrofit;
 
 
 }

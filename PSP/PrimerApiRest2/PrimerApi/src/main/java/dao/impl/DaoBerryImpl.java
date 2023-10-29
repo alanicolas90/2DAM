@@ -1,7 +1,7 @@
 package dao.impl;
 
 import dao.DaoBerry;
-import dao.RetroFit;
+import dao.retrofit.RetroFit;
 import domain.modelo.berry.BerriesResponse;
 import domain.modelo.berry.BerryResponse;
 import domain.modelo.berry.ResultsItem;

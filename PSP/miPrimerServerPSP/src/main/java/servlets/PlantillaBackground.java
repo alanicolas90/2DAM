@@ -33,9 +33,6 @@ public class PlantillaBackground extends HttpServlet {
 
         String sNumero = req.getParameter("numero");
 
-
-
-
         try {
             int valor = Integer.parseInt(sNumero);
             if(valor == 4) {

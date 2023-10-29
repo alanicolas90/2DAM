@@ -1,7 +1,7 @@
 package dao.impl;
 
 import dao.DaoPokemon;
-import dao.RetroFit;
+import dao.retrofit.RetroFit;
 import domain.modelo.pokemon.Pokemon;
 import domain.modelo.pokemon.PokemonResponse;
 import domain.modelo.pokemon.Result;

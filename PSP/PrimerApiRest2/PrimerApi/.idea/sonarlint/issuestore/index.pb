@@ -14,8 +14,6 @@ N
 src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-O
-src/main/java/dao/RetroFit.java,8\8\88b246ad147cd112e846cd7344447d25c352c259
 c
 3src/main/java/ui/screens/common/ConstantScreen.java,2\2\2247e75e13d4a19563e62ca5353113c0d87634a9
 Q
@@ -34,8 +32,6 @@ c
 -src/main/java/domain/modelo/pokemon/Home.java,1\c\1c35efa65dc23c7c0e2e484726f78576519ba0f1
 ^
 .src/main/java/domain/modelo/pokemon/Other.java,7\b\7b53f336845fe40aab77a0d257560067c2419c27
-]
--src/main/java/domain/retrofit/PokemonApi.java,c\1\c12322dbf5e23663abd77e20991c616cfb885065
 S
 #src/main/java/ui/main/DIJavafx.java,5\3\535169814ef8dd70f8f23c95a2032d8268f48d6d
 `
@@ -54,8 +50,6 @@ W
 'src/main/java/ui/main/StartupScene.java,6\7\67e2e8cd1ccdf2df73312c03c460f4b3fbed5ef4
 b
 2src/main/java/domain/modelo/berry/ResultsItem.java,9\d\9d2ca44db5243442681e3bf72e84251abf470c67
-[
-+src/main/java/domain/retrofit/BerryApi.java,8\8\88bfaa195130e4b00564b284fcad3e2cb3ed2df4
 f
 6src/main/java/domain/modelo/berry/BerriesResponse.java,d\a\da9739460ecc0c4148476f8fb8b018b54aaeac1c
 `
@@ -84,3 +78,7 @@ _
 /src/main/java/common/constantes/Constantes.java,1\c\1cc089226aff0d44d0c945a10b399d8c4ab54657
 a
 1src/main/java/dao/retrofit/llamadas/BerryApi.java,5\b\5b20e935f1a2c3d2bafb40aad4072a5a9eabb52a
+c
+3src/main/java/dao/retrofit/llamadas/PokemonApi.java,7\8\78544901a947ce7771ab060fad2a00acb8e25c49
+X
+(src/main/java/dao/retrofit/RetroFit.java,9\a\9aa2aa979bfc1c8810a368d4e581c7860a1e2ae6

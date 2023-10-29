@@ -1,9 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id ("kotlin-kapt")
-    id ("com.google.devtools.ksp")
-    id ("kotlin-parcelize")
+    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -48,15 +48,27 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    implementation ("androidx.recyclerview:recyclerview:1.3.2")
+    // Lifecycle libraries
+    // by ViewModels delegation extensions for activity
+    implementation("androidx.activity:activity-ktx:1.8.0")
 
-    //ksp("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
-    implementation ("com.squareup.moshi:moshi-kotlin:1.14.0")
+    //librerias del viewmodel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
-    implementation ("io.coil-kt:coil:2.3.0")
+    //Moshi
+//    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
 
-    implementation ("com.jakewharton.timber:timber:5.0.1")
+    //Timber
+    implementation("com.jakewharton.timber:timber:5.0.1")
 
+    //COIL
+    implementation("io.coil-kt:coil:2.3.0")
+
+
+    //TESTING
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
