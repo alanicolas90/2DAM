@@ -14,6 +14,7 @@ import com.example.ejerciciodatajsonlocal.ui.pantallas.detail.adapter.PokemonAda
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: PokemonAdapter
 
     private val viewModel: MainViewModel by viewModels {
         MainViewModelFactory(
@@ -29,25 +30,28 @@ class MainActivity : AppCompatActivity() {
             setContentView(root)
         }
 
-//        viewModel.uiState.observe(this@MainActivity) { state ->
-//            state.pokemons.let { listPokemons ->
-//                binding.rvPokemon.adapter = PokemonAdapter(listPokemons) {pokemon->
-//                    navigateTo(pokemon)
-//                }
-//            }
-//        }
+        //binding.rvPokemon.adapter = PokemonAdapter(viewModel.uiState.value.let { it?.pokemons ?: emptyList() }) { navigateTo(it) }
 
-        //meter la lista de pokemons en el adapter que genera el recycler view
-        binding.rvPokemon.adapter = PokemonAdapter(viewModel.uiState.value.let { it?.pokemons.orEmpty()  }) {
-            navigateTo(it)
-        }
-
-
+        observarViewModel()
     }
-    private fun navigateTo(pokemon:Pokemon) {
+
+    private fun observarViewModel() {
+        viewModel.uiState.observe(this@MainActivity) { state ->
+            state.pokemons.let {
+                adapter = PokemonAdapter(it) { navigateTo(it) }
+                binding.rvPokemon.adapter = adapter
+            }
+        }
+    }
+
+    private fun navigateTo(pokemon: Pokemon) {
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra(DetailActivity.POKEMON, pokemon)
         startActivity(intent)
+    }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.cargarPokemons()
     }
 }

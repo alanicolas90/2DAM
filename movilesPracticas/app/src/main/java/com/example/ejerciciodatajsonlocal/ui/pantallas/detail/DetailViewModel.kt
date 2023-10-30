@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.ejerciciodatajsonlocal.domain.model.Pokemon
 import com.example.ejerciciodatajsonlocal.domain.usecases.AddPokemonUseCase
+import com.example.ejerciciodatajsonlocal.domain.usecases.GetAllPokemonUseCase
 import com.example.ejerciciodatajsonlocal.domain.usecases.GetPokemonUseCase
 import com.example.ejerciciodatajsonlocal.domain.usecases.GetSizePokemonUseCase
 import com.example.ejerciciodatajsonlocal.domain.usecases.GetNextIdPokemonUseCase
+import com.example.ejerciciodatajsonlocal.ui.pantallas.main.MainState
 
 
 class DetailViewModel(
@@ -16,6 +18,7 @@ class DetailViewModel(
     private val getSizePokemonUseCase: GetSizePokemonUseCase,
     private val addPokemonUseCase: AddPokemonUseCase,
     private val getNextIdPokemonUseCase: GetNextIdPokemonUseCase,
+    private val getAllPokemonUseCase: GetAllPokemonUseCase,
 ) : ViewModel() {
 
     private var idPokemon = 0
@@ -24,16 +27,7 @@ class DetailViewModel(
     val uiState: LiveData<DetailState> get() = _uiState
 
     init {
-        if (getSizePokemonUseCase() == 0) {
-            _uiState.value = DetailState(
-                message = "No hay mas pokemons"
-            )
-        } else {
-            val pokemon = getPokemonUsecase(0)
-            _uiState.value = DetailState(
-                pokemon = pokemon,
-            )
-        }
+        _uiState.value = DetailState()
     }
 
 
@@ -41,10 +35,17 @@ class DetailViewModel(
         _uiState.value = _uiState.value?.copy(message = null)
     }
 
-    fun addPokemon(name:String, experienciaBase:Int, altura:Int, peso:Int, imagen:String, tipoPokemon:List<String>) {
+    fun addPokemon(
+        name: String,
+        experienciaBase: Int,
+        altura: Int,
+        peso: Int,
+        imagen: String,
+        tipoPokemon: List<String>
+    ) {
         //TODO MIRAR TAMBIEN SIZE DE LA LISTA Y EL RECILERVIEW
         val pokemon = Pokemon(
-            id= getNextIdPokemonUseCase(),
+            id = getNextIdPokemonUseCase(),
             nombre = name,
             experienciaBase = experienciaBase,
             altura = altura,
@@ -52,22 +53,12 @@ class DetailViewModel(
             imagen = imagen,
             tipoPokemon = tipoPokemon,
         )
+
         if(addPokemonUseCase(pokemon)){
             _uiState.value = _uiState.value?.copy(
                 message = "Pokemon añadido",
             )
         }
-        _uiState.value = _uiState.value?.copy(
-            pokemon = Pokemon(
-                id = 0,
-                nombre = name,
-                experienciaBase = 112,
-                altura = 4,
-                peso = 60,
-                imagen = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-                tipoPokemon = listOf("electric"),
-                ),
-        )
     }
 
     fun deletePokemon() {
@@ -96,7 +87,7 @@ class DetailViewModelFactory(
     private val getSizePokemonUseCase: GetSizePokemonUseCase,
     private val addPokemonUseCase: AddPokemonUseCase,
     private val getNextIdPokemonUseCase: GetNextIdPokemonUseCase,
-
+    private val getAllPokemonUseCase: GetAllPokemonUseCase,
     ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
@@ -105,6 +96,7 @@ class DetailViewModelFactory(
                 getSizePokemonUseCase,
                 addPokemonUseCase,
                 getNextIdPokemonUseCase,
+                getAllPokemonUseCase
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

@@ -8,7 +8,7 @@ import com.example.ejerciciodatajsonlocal.domain.usecases.GetAllPokemonUseCase
 import com.example.ejerciciodatajsonlocal.ui.pantallas.detail.DetailViewModel
 
 class MainViewModel(
-    getAllPokemonUseCase: GetAllPokemonUseCase,
+    private val getAllPokemonUseCase: GetAllPokemonUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData<MainState>()
@@ -17,6 +17,10 @@ class MainViewModel(
         _uiState.value = MainState(
             pokemons = getAllPokemonUseCase()
         )
+    }
+
+    fun cargarPokemons(){
+        _uiState.value = _uiState.value?.copy(pokemons = getAllPokemonUseCase())
     }
 
 }

@@ -5,15 +5,14 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import coil.load
 import com.example.ejerciciodatajsonlocal.databinding.ActivityDetailBinding
 import com.example.ejerciciodatajsonlocal.domain.model.Pokemon
 import com.example.ejerciciodatajsonlocal.domain.usecases.AddPokemonUseCase
+import com.example.ejerciciodatajsonlocal.domain.usecases.GetAllPokemonUseCase
 import com.example.ejerciciodatajsonlocal.domain.usecases.GetNextIdPokemonUseCase
 import com.example.ejerciciodatajsonlocal.domain.usecases.GetPokemonUseCase
 import com.example.ejerciciodatajsonlocal.domain.usecases.GetSizePokemonUseCase
-import com.example.ejerciciodatajsonlocal.ui.pantallas.detail.adapter.PokemonAdapter
 
 class DetailActivity : AppCompatActivity() {
 
@@ -23,6 +22,7 @@ class DetailActivity : AppCompatActivity() {
             GetSizePokemonUseCase(),
             AddPokemonUseCase(),
             GetNextIdPokemonUseCase(),
+            GetAllPokemonUseCase()
         )
     }
 
@@ -41,6 +41,17 @@ class DetailActivity : AppCompatActivity() {
 
         showPokemonFromIntent()
         eventos()
+        observarViewModel()
+    }
+
+    private fun observarViewModel() {
+        viewModel.uiState.observe(this){ state->
+            state.message?.let {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                viewModel.errorShownAlready()
+            }
+
+        }
     }
 
     private fun eventos() {
@@ -54,7 +65,7 @@ class DetailActivity : AppCompatActivity() {
                     imagen = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
                     tipoPokemon = listOf("grass", "poison")
                 )
-                Toast.makeText(this@DetailActivity, "Añadido", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@DetailActivity, "Añadido", Toast.LENGTH_SHORT).show()
             }
             buttonDelete.setOnClickListener {
                 Toast.makeText(this@DetailActivity, "Eliminado", Toast.LENGTH_SHORT).show()
@@ -77,7 +88,7 @@ class DetailActivity : AppCompatActivity() {
         if (pokemon != null) {
             with(binding) {
                 textViewIdPokemon.text = "Pokedex Number: " + pokemon.id.toString()
-                txtPokemonName.setText(pokemon?.nombre)
+                txtPokemonName.setText(pokemon.nombre)
                 intAltura.setText(pokemon.altura.toString())
                 intPesoPokemon.setText(pokemon.peso.toString())
                 intExperienciaBasePokemon.setText(pokemon.experienciaBase.toString())

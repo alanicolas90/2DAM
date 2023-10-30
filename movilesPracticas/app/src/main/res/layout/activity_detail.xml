@@ -27,43 +27,36 @@
         android:id="@+id/buttonAdd"
         android:layout_width="57dp"
         android:layout_height="54dp"
-        android:layout_marginTop="480dp"
+        android:layout_marginTop="632dp"
         android:text="@string/a"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.248"
-
+        app:layout_constraintHorizontal_bias="0.194"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonUpdate"
         android:layout_width="57dp"
         android:layout_height="54dp"
-        android:layout_marginTop="480dp"
+        android:layout_marginTop="632dp"
         android:text="@string/u"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.645"
+        app:layout_constraintHorizontal_bias="0.684"
         app:layout_constraintStart_toEndOf="@+id/buttonAdd"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    p
 
     <Button
         android:id="@+id/buttonDelete"
         android:layout_width="57dp"
         android:layout_height="54dp"
-        android:layout_marginTop="480dp"
+        android:layout_marginTop="632dp"
         android:text="@string/d"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonUpdate"
-        app:layout_constraintHorizontal_bias="0.443"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toEndOf="@+id/buttonAdd"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776" />
-
-    p
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"

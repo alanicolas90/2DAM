@@ -7,7 +7,7 @@ import com.example.ejerciciodatajsonlocal.databinding.ItemPokemonBinding
 import com.example.ejerciciodatajsonlocal.domain.model.Pokemon
 
 class PokemonAdapter(
-    private val pokemon: List<Pokemon>,
+    private var pokemon: List<Pokemon>,
     private val pokemonButtonClickedListener: (Pokemon) -> Unit
 ) : RecyclerView.Adapter<PokemonViewHolder>() {
 
@@ -31,13 +31,14 @@ class PokemonAdapter(
     }
 
     override fun getItemCount() = pokemon.size
-
-
 }
 
-class PokemonViewHolder(private val binding: ItemPokemonBinding) : RecyclerView.ViewHolder(binding.root){
-    fun bind(pokemon:Pokemon,
-             onClickButton: (Pokemon) -> Unit){
+class PokemonViewHolder(private val binding: ItemPokemonBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+    fun bind(
+        pokemon: Pokemon,
+        onClickButton: (Pokemon) -> Unit
+    ) {
         binding.txtNombrePokemon.text = pokemon.nombre
         binding.buttonPokemon.setOnClickListener {
             onClickButton(pokemon)
