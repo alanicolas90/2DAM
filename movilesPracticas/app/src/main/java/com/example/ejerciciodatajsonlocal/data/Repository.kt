@@ -1,6 +1,5 @@
 package com.example.ejerciciodatajsonlocal.data
 
-import com.example.ejerciciodatajsonlocal.domain.model.Estadistica
 import com.example.ejerciciodatajsonlocal.domain.model.Pokemon
 
 object Repository {
@@ -19,6 +18,29 @@ object Repository {
                 listOf("grass", "poison"),
             )
         )
+        pokemons.add(
+            Pokemon(
+                id = 2,
+                nombre = "Pikachu",
+                imagen = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+                altura = 4,
+                peso = 60,
+                experienciaBase = 112,
+                tipoPokemon = listOf("electric"),
+            )
+        )
+        pokemons.add(
+            Pokemon(
+                id = 3,
+                nombre = "Charmander",
+                imagen = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+                altura = 6,
+                peso = 85,
+                experienciaBase = 62,
+                tipoPokemon = listOf("fire"),
+            )
+        )
+
     }
 
 
@@ -27,7 +49,8 @@ object Repository {
         return pokemons.size
     }
 
-    fun getLista(): List<Pokemon> {
+    fun getListAllPokemons(): List<Pokemon> {
         return pokemons
     }
+
 }

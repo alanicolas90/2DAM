@@ -1,6 +1,7 @@
 package com.example.ejerciciodatajsonlocal.ui.pantallas.detail
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import com.example.ejerciciodatajsonlocal.databinding.ActivityDetailBinding
 import com.example.ejerciciodatajsonlocal.domain.model.Pokemon
 import com.example.ejerciciodatajsonlocal.domain.usecases.GetPokemonUseCase
 import com.example.ejerciciodatajsonlocal.domain.usecases.GetSizePokemonUseCase
+import com.example.ejerciciodatajsonlocal.ui.pantallas.detail.adapter.PokemonAdapter
 
 class DetailActivity : AppCompatActivity() {
 
@@ -57,6 +59,8 @@ class DetailActivity : AppCompatActivity() {
     private fun showPokemonFromIntent() {
         val pokemon = intent.getParcelableExtra<Pokemon>(POKEMON)
 
+
+        //TODO esto hay que llevarlo a VIEWMODEL (PREGUNTAR A OSCAR COMO HACERLO)
         if (pokemon != null) {
             with(binding) {
                 textViewIdPokemon.text = "Pokedex Number: " + pokemon.id.toString()
@@ -65,6 +69,11 @@ class DetailActivity : AppCompatActivity() {
                 intPesoPokemon.setText(pokemon.peso.toString())
                 intExperienciaBasePokemon.setText(pokemon.experienciaBase.toString())
                 imageView.load(pokemon.imagen)
+                listViewTipoPokemon.adapter = ArrayAdapter(
+                    this@DetailActivity,
+                    android.R.layout.simple_list_item_1,
+                    pokemon.tipoPokemon
+                )
             }
         }else{
             Toast.makeText(this, "Error al cargar el pokemon", Toast.LENGTH_SHORT).show()
