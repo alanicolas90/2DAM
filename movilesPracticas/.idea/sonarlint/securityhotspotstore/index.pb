@@ -17,14 +17,10 @@ P
 Lapp/src/main/java/com/example/ejerciciodatajsonlocal/domain/model/Pokemon.kt,3\c\3c9e3a614816b29c64de2de855336a2f390d9c0f
 w
 Gapp/src/main/java/com/example/ejerciciodatajsonlocal/data/Repository.kt,9\a\9ac0e71d25fa7683609476aa50aec2c0da278c1e
-ç
-]app/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/GetSizePokemonUseCase.kt,b\d\bd8827513b5b9420eb6aa57cd5f19e184748128b
 É
 Sapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/main/MainState.kt,5\c\5cc9958d19fab8faff9b4d83cad6109883298e11
 Ü
 Vapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/main/MainActivity.kt,a\f\af16f98f6838abe0d3dbb3262d06ff1e4998e560
-â
-Yapp/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/GetPokemonUsecase.kt,7\a\7a7d6e4e0b65e9f35d8b54aa1bc578c61accd1d4
 á
 Wapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/main/MainViewModel.kt,1\9\19533bad81cfb9476bc6339e9bcee119206045bf
 â
@@ -37,8 +33,6 @@ Wapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/Detail
 [app/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/DetailViewModel.kt,2\2\2240dfaa5e43e781a3a5d4cf72d802d2eacde7d1
 ä
 Zapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/DetailActivity.kt,a\c\ac9a0812c07138c7cfd28f182c1e597cdb114162
-â
-Yapp/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/GetPokemonUseCase.kt,9\1\91ddb2de1d79138ca2950b3b7a36695c19a85468
 í
 bapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/adapter/PokemonAdapter.kt,b\3\b3d9069abb545f8d60f7eea73e3133bdb7399a5f
 å
