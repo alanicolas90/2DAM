@@ -1,4 +1,4 @@
-package com.example.ejerciciodatajsonlocal.ui.pantallas.main
+package com.example.ejerciciodatajsonlocal.ui.pantallas.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,25 +9,25 @@ import com.example.ejerciciodatajsonlocal.domain.usecases.GetPokemonUseCase
 import com.example.ejerciciodatajsonlocal.domain.usecases.GetSizePokemonUseCase
 
 
-class MainViewModel(
+class DetailViewModel(
     getPokemonUsecase: GetPokemonUseCase,
     getSizePokemonUseCase: GetSizePokemonUseCase
 ) : ViewModel() {
 
     private var idPokemon = 0
-    private val _uiState = MutableLiveData<MainState>()
+    private val _uiState = MutableLiveData<DetailState>()
 
     //funcion de get del main state para modificar cosas de las pantallas
-    val uiState: LiveData<MainState> get() = _uiState
+    val uiState: LiveData<DetailState> get() = _uiState
 
     init {
         if (getSizePokemonUseCase() == 0) {
-            _uiState.value = MainState(
+            _uiState.value = DetailState(
                 message = "No hay mas pokemons"
             )
         }else{
             val pokemon = getPokemonUsecase(0)
-            _uiState.value = MainState(
+            _uiState.value = DetailState(
                 pokemon = pokemon,
             )
         }
@@ -69,14 +69,14 @@ class MainViewModel(
 /**
  * Factory class to instantiate the [ViewModel] instance.
  */
-class MainViewModelFactory(
+class DetailViewModelFactory(
     private val getPokemonUsecase: GetPokemonUseCase,
     private val getSizePokemonUseCase: GetSizePokemonUseCase,
 
     ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST") return MainViewModel(
+        if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST") return DetailViewModel(
                 getPokemonUsecase,
                 getSizePokemonUseCase,
             ) as T

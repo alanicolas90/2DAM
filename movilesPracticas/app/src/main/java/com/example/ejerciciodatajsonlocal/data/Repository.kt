@@ -26,4 +26,8 @@ object Repository {
     fun getSizePokemon(): Int {
         return pokemons.size
     }
+
+    fun getLista(): List<Pokemon> {
+        return pokemons
+    }
 }

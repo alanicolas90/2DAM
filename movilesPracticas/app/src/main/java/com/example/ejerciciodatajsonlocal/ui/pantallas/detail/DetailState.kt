@@ -1,8 +1,8 @@
-package com.example.ejerciciodatajsonlocal.ui.pantallas.main
+package com.example.ejerciciodatajsonlocal.ui.pantallas.detail
 
 import com.example.ejerciciodatajsonlocal.domain.model.Pokemon
 
-data class MainState(
+data class DetailState(
     val message:String? = null,
     val pokemon: Pokemon? = null,
     val activatedButtonDelete:Boolean = true,

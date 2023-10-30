@@ -24,8 +24,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.pantallas.reciclerView.ReciclerViewActivity"
+            android:name=".ui.pantallas.detail.DetailActivity"
             android:parentActivityName=".ui.pantallas.main.MainActivity" />
+
     </application>
 
 </manifest>
