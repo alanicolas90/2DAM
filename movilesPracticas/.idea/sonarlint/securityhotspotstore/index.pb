@@ -43,3 +43,7 @@ Yapp/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/GetPokemon
 bapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/adapter/PokemonAdapter.kt,b\3\b3d9069abb545f8d60f7eea73e3133bdb7399a5f
 Œ
 \app/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/GetAllPokemonUseCase.kt,b\3\b3a09b7b5f82b2f22330fdc8ffc5638f68ae6496
+Œ
+\app/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/DeletePokemonUseCase.kt,9\0\90a630fc0c7ff2d20ae43cc4929c14e2c840047c
+Œ
+\app/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/UpdatePokemonUseCase.kt,3\1\31aaf3f67f45f6460003e51c3659fb02f6ce67ca
