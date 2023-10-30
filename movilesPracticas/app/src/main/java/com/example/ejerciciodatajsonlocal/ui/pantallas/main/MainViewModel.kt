@@ -22,17 +22,14 @@ class MainViewModel(
 }
 
 
-
-//TODO CAMBIARLOOOOOOOOOOOOO
-
 /**
  * Factory class to instantiate the [ViewModel] instance.
  */
-class DetailViewModelFactory(
+class MainViewModelFactory(
     private val getAllPokemonUseCase: GetAllPokemonUseCase,
     ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST") return MainViewModel(
                 getAllPokemonUseCase
             ) as T

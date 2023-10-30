@@ -13,8 +13,6 @@ C
 settings.gradle.kts,7\4\749edfcc96398253e5b3416184e95c46621da850
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-w
-Gapp/src/main/java/com/example/ejerciciodatajsonlocal/data/pokemons.json,9\1\91f2f8377bf4e5bc6aa7714793abc01ae6c9d94f
 Ä
 Papp/src/main/java/com/example/ejerciciodatajsonlocal/domain/model/Estadistica.kt,0\9\09f7cae2ddebb06b98718b04b4e8954a8c4690ee
 |
@@ -31,3 +29,13 @@ Vapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/main/MainActi
 Yapp/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/GetPokemonUsecase.kt,7\a\7a7d6e4e0b65e9f35d8b54aa1bc578c61accd1d4
 á
 Wapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/main/MainViewModel.kt,1\9\19533bad81cfb9476bc6339e9bcee119206045bf
+â
+Yapp/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/AddPokemonUseCase.kt,8\e\8ea2ee77b4aaaf05d3e8c2df4caff80d9c686a57
+è
+_app/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/GetNextIdPokemonUseCase.kt,b\0\b01223b054351731cb4bc4d7a590490f11ddcaae
+á
+Wapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/DetailState.kt,8\5\85f5c588f410917bf437f4945bf4da220ed841ed
+ã
+[app/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/DetailViewModel.kt,2\2\2240dfaa5e43e781a3a5d4cf72d802d2eacde7d1
+ä
+Zapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/DetailActivity.kt,a\c\ac9a0812c07138c7cfd28f182c1e597cdb114162

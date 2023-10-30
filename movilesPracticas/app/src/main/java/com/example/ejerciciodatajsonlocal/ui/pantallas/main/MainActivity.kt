@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val viewModel: MainViewModel by viewModels {
-        DetailViewModelFactory(
+        MainViewModelFactory(
             GetAllPokemonUseCase()
         )
     }
@@ -29,41 +29,21 @@ class MainActivity : AppCompatActivity() {
             setContentView(root)
         }
 
-        binding.rvPokemon.adapter = PokemonAdapter(
-            listOf(
-                Pokemon(
-                    id = 1,
-                    nombre = "Bulbasaur",
-                    imagen = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-                    altura = 7,
-                    peso = 69,
-                    experienciaBase = 64,
-                    tipoPokemon = listOf("grass", "poison"),
-                ),
-                Pokemon(
-                    id = 2,
-                    nombre = "Pikachu",
-                    imagen = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-                    altura = 4,
-                    peso = 60,
-                    experienciaBase = 112,
-                    tipoPokemon = listOf("electric"),
-                ),
-                Pokemon(
-                    id = 3,
-                    nombre = "Charmander",
-                    imagen = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-                    altura = 6,
-                    peso = 85,
-                    experienciaBase = 62,
-                    tipoPokemon = listOf("fire"),
-                ),
-            )
-        ) {
+//        viewModel.uiState.observe(this@MainActivity) { state ->
+//            state.pokemons.let { listPokemons ->
+//                binding.rvPokemon.adapter = PokemonAdapter(listPokemons) {pokemon->
+//                    navigateTo(pokemon)
+//                }
+//            }
+//        }
+
+        //meter la lista de pokemons en el adapter que genera el recycler view
+        binding.rvPokemon.adapter = PokemonAdapter(viewModel.uiState.value.let { it?.pokemons.orEmpty()  }) {
             navigateTo(it)
         }
-    }
 
+
+    }
     private fun navigateTo(pokemon:Pokemon) {
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra(DetailActivity.POKEMON, pokemon)

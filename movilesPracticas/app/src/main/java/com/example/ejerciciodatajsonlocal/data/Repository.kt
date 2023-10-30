@@ -53,4 +53,11 @@ object Repository {
         return pokemons
     }
 
+    fun getNextIdPokemon(): Int {
+        return pokemons[pokemons.lastIndex].id + 1
+    }
+
+    fun addPokemon(pokemon: Pokemon) = pokemons.add(pokemon)
+
+
 }

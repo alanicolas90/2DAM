@@ -5,9 +5,12 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import coil.load
 import com.example.ejerciciodatajsonlocal.databinding.ActivityDetailBinding
 import com.example.ejerciciodatajsonlocal.domain.model.Pokemon
+import com.example.ejerciciodatajsonlocal.domain.usecases.AddPokemonUseCase
+import com.example.ejerciciodatajsonlocal.domain.usecases.GetNextIdPokemonUseCase
 import com.example.ejerciciodatajsonlocal.domain.usecases.GetPokemonUseCase
 import com.example.ejerciciodatajsonlocal.domain.usecases.GetSizePokemonUseCase
 import com.example.ejerciciodatajsonlocal.ui.pantallas.detail.adapter.PokemonAdapter
@@ -18,6 +21,8 @@ class DetailActivity : AppCompatActivity() {
         DetailViewModelFactory(
             GetPokemonUseCase(),
             GetSizePokemonUseCase(),
+            AddPokemonUseCase(),
+            GetNextIdPokemonUseCase(),
         )
     }
 
@@ -41,6 +46,14 @@ class DetailActivity : AppCompatActivity() {
     private fun eventos() {
         with(binding) {
             buttonAdd.setOnClickListener {
+                viewModel.addPokemon(
+                    name = txtPokemonName.text.toString(),
+                    experienciaBase = intExperienciaBasePokemon.text.toString().toInt(),
+                    altura = intAltura.text.toString().toInt(),
+                    peso = intPesoPokemon.text.toString().toInt(),
+                    imagen = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+                    tipoPokemon = listOf("grass", "poison")
+                )
                 Toast.makeText(this@DetailActivity, "Añadido", Toast.LENGTH_SHORT).show()
             }
             buttonDelete.setOnClickListener {

@@ -4,7 +4,5 @@ import com.example.ejerciciodatajsonlocal.domain.model.Pokemon
 
 data class DetailState(
     val message:String? = null,
-    val pokemon: Pokemon? = null,
-    val activatedButtonDelete:Boolean = true,
-    val activatedButtonUpdate:Boolean = true,
+    val pokemon: Pokemon? = null
 )
