@@ -39,3 +39,7 @@ Wapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/Detail
 [app/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/DetailViewModel.kt,2\2\2240dfaa5e43e781a3a5d4cf72d802d2eacde7d1
 Š
 Zapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/DetailActivity.kt,a\c\ac9a0812c07138c7cfd28f182c1e597cdb114162
+‰
+Yapp/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/GetPokemonUseCase.kt,9\1\91ddb2de1d79138ca2950b3b7a36695c19a85468
+’
+bapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/adapter/PokemonAdapter.kt,b\3\b3d9069abb545f8d60f7eea73e3133bdb7399a5f

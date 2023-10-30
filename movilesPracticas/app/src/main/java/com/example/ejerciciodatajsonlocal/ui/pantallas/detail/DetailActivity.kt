@@ -65,7 +65,6 @@ class DetailActivity : AppCompatActivity() {
                     imagen = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
                     tipoPokemon = listOf("grass", "poison")
                 )
-                //Toast.makeText(this@DetailActivity, "Añadido", Toast.LENGTH_SHORT).show()
             }
             buttonDelete.setOnClickListener {
                 Toast.makeText(this@DetailActivity, "Eliminado", Toast.LENGTH_SHORT).show()
