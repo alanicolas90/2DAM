@@ -6,22 +6,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.ejerciciodatajsonlocal.domain.model.Pokemon
 import com.example.ejerciciodatajsonlocal.domain.usecases.AddPokemonUseCase
-import com.example.ejerciciodatajsonlocal.domain.usecases.GetAllPokemonUseCase
-import com.example.ejerciciodatajsonlocal.domain.usecases.GetPokemonUseCase
-import com.example.ejerciciodatajsonlocal.domain.usecases.GetSizePokemonUseCase
+import com.example.ejerciciodatajsonlocal.domain.usecases.DeletePokemonUseCase
 import com.example.ejerciciodatajsonlocal.domain.usecases.GetNextIdPokemonUseCase
-import com.example.ejerciciodatajsonlocal.ui.pantallas.main.MainState
+import com.example.ejerciciodatajsonlocal.domain.usecases.UpdatePokemonUseCase
 
 
 class DetailViewModel(
-    private val getPokemonUsecase: GetPokemonUseCase,
-    private val getSizePokemonUseCase: GetSizePokemonUseCase,
     private val addPokemonUseCase: AddPokemonUseCase,
     private val getNextIdPokemonUseCase: GetNextIdPokemonUseCase,
-    private val getAllPokemonUseCase: GetAllPokemonUseCase,
+    private val deletePokemonUseCase: DeletePokemonUseCase,
+    private val updatePokemonUseCase: UpdatePokemonUseCase,
 ) : ViewModel() {
 
-    private var idPokemon = 0
     private val _uiState = MutableLiveData<DetailState>()
 
     val uiState: LiveData<DetailState> get() = _uiState
@@ -41,9 +37,8 @@ class DetailViewModel(
         altura: Int,
         peso: Int,
         imagen: String,
-        tipoPokemon: List<String>
+        tipoPokemon: String,
     ) {
-        //TODO MIRAR TAMBIEN SIZE DE LA LISTA Y EL RECILERVIEW
         val pokemon = Pokemon(
             id = getNextIdPokemonUseCase(),
             nombre = name,
@@ -54,25 +49,43 @@ class DetailViewModel(
             tipoPokemon = tipoPokemon,
         )
 
-        if(addPokemonUseCase(pokemon)){
+        if (addPokemonUseCase(pokemon)) {
             _uiState.value = _uiState.value?.copy(
                 message = "Pokemon añadido",
             )
         }
     }
 
-    fun deletePokemon() {
-        // TODO("Not yet implemented")
-        _uiState.value = _uiState.value?.copy(
-            message = "Pokemon eliminado",
-        )
+    fun deletePokemon(pokemonId: Int) {
+        if (deletePokemonUseCase(pokemonId)) {
+            _uiState.value = _uiState.value?.copy(
+                message = "Pokemon eliminado",
+            )
+        } else {
+            _uiState.value = _uiState.value?.copy(
+                message = "Pokemon NO eliminado!!!",
+            )
+        }
     }
 
-    fun updatePokemon() {
-        //TODO("Not yet implemented")
-        _uiState.value = _uiState.value?.copy(
-            message = "Pokemon actualizado",
-        )
+    fun updatePokemon(
+        pokemonId: Int,
+        name: String,
+        experienciaBase: Int,
+        weight: Int,
+        height: Int,
+    ) {
+        if (updatePokemonUseCase(pokemonId, name, experienciaBase, weight, height)) {
+            _uiState.value = _uiState.value?.copy(
+                message = "Pokemon actualizado",
+            )
+        } else {
+            _uiState.value = _uiState.value?.copy(
+                message = "Pokemon NO actualizado!!!",
+            )
+        }
+
+
     }
 
 
@@ -83,20 +96,18 @@ class DetailViewModel(
  * Factory class to instantiate the [ViewModel] instance.
  */
 class DetailViewModelFactory(
-    private val getPokemonUsecase: GetPokemonUseCase,
-    private val getSizePokemonUseCase: GetSizePokemonUseCase,
     private val addPokemonUseCase: AddPokemonUseCase,
     private val getNextIdPokemonUseCase: GetNextIdPokemonUseCase,
-    private val getAllPokemonUseCase: GetAllPokemonUseCase,
-    ) : ViewModelProvider.Factory {
+    private val deletePokemonUseCase: DeletePokemonUseCase,
+    private val updatePokemonUseCase: UpdatePokemonUseCase,
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST") return DetailViewModel(
-                getPokemonUsecase,
-                getSizePokemonUseCase,
                 addPokemonUseCase,
                 getNextIdPokemonUseCase,
-                getAllPokemonUseCase
+                deletePokemonUseCase,
+                updatePokemonUseCase,
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

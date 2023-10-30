@@ -13,8 +13,6 @@ C
 settings.gradle.kts,7\4\749edfcc96398253e5b3416184e95c46621da850
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-€
-Papp/src/main/java/com/example/ejerciciodatajsonlocal/domain/model/Estadistica.kt,0\9\09f7cae2ddebb06b98718b04b4e8954a8c4690ee
 |
 Lapp/src/main/java/com/example/ejerciciodatajsonlocal/domain/model/Pokemon.kt,3\c\3c9e3a614816b29c64de2de855336a2f390d9c0f
 w
@@ -43,3 +41,5 @@ Zapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/Detail
 Yapp/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/GetPokemonUseCase.kt,9\1\91ddb2de1d79138ca2950b3b7a36695c19a85468
 ’
 bapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/adapter/PokemonAdapter.kt,b\3\b3d9069abb545f8d60f7eea73e3133bdb7399a5f
+Œ
+\app/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/GetAllPokemonUseCase.kt,b\3\b3a09b7b5f82b2f22330fdc8ffc5638f68ae6496

@@ -9,17 +9,17 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Pokemon(
     @Json(name = "id")
-    val id:Int,
+    val id: Int,
     @Json(name = "name")
-    val nombre:String,
+    val nombre: String,
     @Json(name = "base_experience")
-    val experienciaBase:Int,
+    val experienciaBase: Int,
     @Json(name = "height")
-    val altura:Int,
+    val altura: Int,
     @Json(name = "weight")
-    val peso:Int,
+    val peso: Int,
     @Json(name = "sprites")
-    val imagen:String,
+    val imagen: String,
     @Json(name = "types")
-    val tipoPokemon:List<String>,
-): Parcelable
+    val tipoPokemon: String,
+) : Parcelable

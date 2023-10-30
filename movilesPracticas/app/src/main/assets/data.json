@@ -6,40 +6,7 @@
     "height": 7,
     "weight": 69,
     "sprites": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-    "types": [
-      {
-        "name": "grass"
-      },
-      {
-        "name": "poison"
-      }
-    ],
-    "stats": [
-      {
-        "base_stat": 45,
-        "name": "hp"
-      },
-      {
-        "base_stat": 49,
-        "name": "attack"
-      },
-      {
-        "base_stat": 49,
-        "name": "defense"
-      },
-      {
-        "base_stat": 65,
-        "name": "special-attack"
-      },
-      {
-        "base_stat": 65,
-        "name": "special-defense"
-      },
-      {
-        "base_stat": 45,
-        "name": "speed"
-      }
-    ]
+    "types": "grass"
   },
   {
     "id": 2,
@@ -48,39 +15,24 @@
     "height": 10,
     "weight": 130,
     "sprites": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.pn",
-    "types": [
-      {
-        "name": "grass"
-      },
-      {
-        "name": "poison"
-      }
-    ],
-    "stats": [
-      {
-        "base_stat": 60,
-        "name": "hp"
-      },
-      {
-        "base_stat": 62,
-        "name": "attack"
-      },
-      {
-        "base_stat": 63,
-        "name": "defense"
-      },
-      {
-        "base_stat": 80,
-        "name": "special-attack"
-      },
-      {
-        "base_stat": 80,
-        "name": "special-defense"
-      },
-      {
-        "base_stat": 60,
-        "name": "speed"
-      }
-    ]
+    "types": "grass"
+  },
+  {
+    "id": 3,
+    "name": "Pikachu",
+    "base_experience": 112,
+    "height": 4,
+    "weight": 60,
+    "sprites": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+    "types": "electric"
+  },
+  {
+    "id": 4,
+    "name": "Charmander",
+    "base_experience": 62,
+    "height": 6,
+    "weight": 85,
+    "sprites": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+    "types": "fire"
   }
 ]

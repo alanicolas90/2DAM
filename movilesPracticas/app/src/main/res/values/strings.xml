@@ -13,4 +13,9 @@
     <string name="peso">Peso:</string>
     <string name="altura">Altura:</string>
     <string name="imagen_pokemon">Imagen pokemon</string>
+    <string name="emty">Emty</string>
+    <string name="name">Name</string>
+    <string name="show_all">SHOW ALL</string>
+    <string name="pokemon_type">Pokemon Type:</string>
+    <string name="button">Button</string>
 </resources>

@@ -27,7 +27,7 @@
         android:layout_width="128dp"
         android:layout_height="52dp"
         android:backgroundTint="@color/design_default_color_error"
-        android:text="Button"
+        android:text="@string/button"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

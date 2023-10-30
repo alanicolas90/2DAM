@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.ejerciciodatajsonlocal.domain.usecases.GetAllPokemonUseCase
-import com.example.ejerciciodatajsonlocal.ui.pantallas.detail.DetailViewModel
 
 class MainViewModel(
     private val getAllPokemonUseCase: GetAllPokemonUseCase,

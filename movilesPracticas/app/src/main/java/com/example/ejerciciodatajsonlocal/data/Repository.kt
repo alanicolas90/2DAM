@@ -1,52 +1,35 @@
 package com.example.ejerciciodatajsonlocal.data
 
 import com.example.ejerciciodatajsonlocal.domain.model.Pokemon
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import java.io.InputStream
+import java.lang.reflect.Type
+import java.util.stream.Collectors
 
-object Repository {
+class Repository(file: InputStream? = null) {
 
-    private val pokemons = mutableListOf<Pokemon>()
-
-    init {
-        pokemons.add(
-            Pokemon(
-                1,
-                "Bulbasur",
-                64,
-                7,
-                69,
-                "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-                listOf("grass", "poison"),
-            )
-        )
-        pokemons.add(
-            Pokemon(
-                id = 2,
-                nombre = "Pikachu",
-                imagen = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-                altura = 4,
-                peso = 60,
-                experienciaBase = 112,
-                tipoPokemon = listOf("electric"),
-            )
-        )
-        pokemons.add(
-            Pokemon(
-                id = 3,
-                nombre = "Charmander",
-                imagen = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-                altura = 6,
-                peso = 85,
-                experienciaBase = 62,
-                tipoPokemon = listOf("fire"),
-            )
-        )
-
+    companion object {
+        private val pokemons = mutableListOf<Pokemon>()
     }
 
+    init {
+        if (pokemons.size == 0) {
+            val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
-    fun getPokemon(idPokemon: Int) = pokemons[idPokemon]
-    fun getSizePokemon(): Int {
-        return pokemons.size
+            val listOfCardsType: Type = Types.newParameterizedType(
+                MutableList::class.java, Pokemon::class.java
+            )
+            val pokemonList = file?.bufferedReader()?.readText()?.let { contenidoFichero ->
+                moshi.adapter<List<Pokemon>>(listOfCardsType).fromJson(contenidoFichero)
+            }
+
+
+            pokemons.addAll(pokemonList!!)
+
+        }
+
     }
 
     fun getListAllPokemons(): List<Pokemon> {
@@ -58,6 +41,45 @@ object Repository {
     }
 
     fun addPokemon(pokemon: Pokemon) = pokemons.add(pokemon)
+
+    fun deletePokemon(pokemonId: Int): Boolean {
+        val pokemon: Pokemon = pokemons.stream().filter { pokemon -> pokemon.id == pokemonId }
+            .collect(Collectors.toList())[0]
+
+        return pokemons.remove(pokemon)
+    }
+
+    fun updatePokemon(
+        pokemonId: Int,
+        pokemonName: String,
+        pokemonExperienciaBase: Int,
+        pokemonWeight: Int,
+        pokemonHeight: Int,
+    ): Boolean {
+
+
+        pokemons.replaceAll { pokemon ->
+            if (pokemon.id == pokemonId) {
+                Pokemon(
+                    id = pokemonId,
+                    nombre = pokemonName,
+                    experienciaBase = pokemonExperienciaBase,
+                    altura = pokemonHeight,
+                    peso = pokemonWeight,
+                    imagen = pokemon.imagen,
+                    tipoPokemon = pokemon.tipoPokemon
+                )
+            } else {
+                pokemon
+            }
+        }
+
+        val pokemon: Pokemon = pokemons.stream().filter { pokemon -> pokemon.id == pokemonId }
+            .collect(Collectors.toList())[0]
+
+
+        return pokemon.nombre == pokemonName && pokemon.experienciaBase == pokemonExperienciaBase && pokemon.altura == pokemonHeight && pokemon.peso == pokemonWeight
+    }
 
 
 }
