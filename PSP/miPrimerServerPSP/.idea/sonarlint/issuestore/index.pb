@@ -17,3 +17,7 @@ V
 ,src/main/webapp/WEB-INF/templates/error.html,1\8\18dd71e41fd8baf246975fcb321d4c92ad84681e
 \
 ,src/main/webapp/WEB-INF/templates/param.html,2\5\257a47288102ad233c54e91c6e93e64964c3f830
+V
+&src/main/java/servlets/Constantes.java,d\5\d54777a970a91b280d8e8bb43de4d7e5c0533e7b
+[
++src/main/java/servlets/AdivinaElNumero.java,c\5\c555fcdcc5af395c13d45e6c8594246a28bac985
