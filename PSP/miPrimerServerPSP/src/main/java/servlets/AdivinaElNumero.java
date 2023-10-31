@@ -13,8 +13,8 @@ import org.thymeleaf.web.servlet.JakartaServletWebApplication;
 
 import java.io.IOException;
 
-@WebServlet(name = "Juan", value = "/a")
-public class PlantillaBackground extends HttpServlet {
+@WebServlet(name = "AdivinaElNumero", value = "/a")
+public class AdivinaElNumero extends HttpServlet {
 
 
     @Override
@@ -36,24 +36,24 @@ public class PlantillaBackground extends HttpServlet {
         try {
             int valor = Integer.parseInt(sNumero);
             if(valor == 4) {
-                context.setVariable("mensaje", "FELICIDADES HAS ADIVINADO EL NUMERO");
-                context.setVariable("backgroundColor", "#FFFF00");
+                context.setVariable("mensaje", Constantes.FELICIDADES_HAS_ADIVINADO_EL_NUMERO);
+                context.setVariable("backgroundColor", Constantes.COLOR_AMARILLO);
                 template = "param";
             }else{
-                context.setVariable("error", "no has adivinado el numero");
-                context.setVariable("backgroundColor", "#b01e3a");
+                context.setVariable("error", Constantes.NO_HAS_ADIVINADO_EL_NUMERO);
+                context.setVariable("backgroundColor", Constantes.COLOR_ROJO);
                 template = "error";
             }
 
         } catch (NumberFormatException e) {
             if (sNumero.isEmpty() || sNumero.isBlank()) {
-                context.setVariable("error", "numero vacio, porfavor escriba un numero");
-            } else if (sNumero.matches(".*\\D.*")) {
-                context.setVariable("error", "Escribe un numero");
+                context.setVariable("error", Constantes.NUMERO_VACIO_PORFAVOR_ESCRIBA_UN_NUMERO);
+            } else if (sNumero.matches(Constantes.ES_UN_STRING)) {
+                context.setVariable("error", Constantes.ESCRIBE_UN_NUMERO);
             } else {
-                context.setVariable("error", "numero no valido");
+                context.setVariable("error", Constantes.NUMERO_NO_VALIDO);
             }
-            context.setVariable("backgroundColor", "#2236e1");
+            context.setVariable("backgroundColor", Constantes.COLOR_AZUL);
             template = "error";
         }
 
