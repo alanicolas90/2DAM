@@ -6,8 +6,9 @@ import lombok.extern.log4j.Log4j2;
 import java.io.IOException;
 import java.util.Properties;
 
-@Singleton
+
 @Log4j2
+@Singleton
 public class Configuration {
     private Properties p;
 

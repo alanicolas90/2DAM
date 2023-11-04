@@ -89,3 +89,5 @@ S
 #src/main/java/dao/MenuItemsDao.java,7\9\7929804c4559f2c08452a3c5c80005cc3459e79d
 P
  src/main/java/dao/TablesDao.java,e\e\eedcde0f02dea4a6aabc7c5a902a7e97b2fc5792
+^
+.src/main/java/dao/impl/CredentialsDaoImpl.java,c\4\c45ff22903975a0e2bd1d7892994c6cd6deb8522

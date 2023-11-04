@@ -75,6 +75,11 @@ public class DBConnection {
     }
 
 
+    //TODO Lucia este codigo es de hikari que no me funciona, bueno mas bien funciona un rato
+    // pero al cabo de un apr de cambios de pantalla se me queda pillado y se me apaga la aplicacion
+    // por ello te lo dejo comentado por si acaso  y te entrego con la conexion que funciona, basta con que descomentes
+    // el codigo de abajo y comentes el de arriba
+
 //    private final DataSource hikariDataSource;
 //
 //    @Inject

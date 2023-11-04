@@ -20,26 +20,21 @@ public class AdivinaElNumero extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        TemplateEngine templateEngine = (TemplateEngine) getServletContext().getAttribute(
-                ThymeLeafListener.TEMPLATE_ENGINE_ATTR);
-
-        IWebExchange webExchange = JakartaServletWebApplication.buildApplication(getServletContext())
-                .buildExchange(req, resp);
-
+        TemplateEngine templateEngine = (TemplateEngine) getServletContext().getAttribute("thymeleaf.TemplateEngineInstance");
+        IWebExchange webExchange = JakartaServletWebApplication.buildApplication(getServletContext()).buildExchange(req, resp);
         WebContext context = new WebContext(webExchange);
 
 
         String template;
-
         String sNumero = req.getParameter("numero");
 
         try {
             int valor = Integer.parseInt(sNumero);
-            if(valor == 4) {
+            if (valor == 4) {
                 context.setVariable("mensaje", Constantes.FELICIDADES_HAS_ADIVINADO_EL_NUMERO);
                 context.setVariable("backgroundColor", Constantes.COLOR_AMARILLO);
                 template = "param";
-            }else{
+            } else {
                 context.setVariable("error", Constantes.NO_HAS_ADIVINADO_EL_NUMERO);
                 context.setVariable("backgroundColor", Constantes.COLOR_ROJO);
                 template = "error";
