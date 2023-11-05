@@ -7,8 +7,6 @@ S
 #src/main/java/ui/main/DIJavafx.java,5\3\535169814ef8dd70f8f23c95a2032d8268f48d6d
 W
 'src/main/java/config/Configuration.java,7\f\7f9a1455549e9958f1cfe6993a695569484b133b
-V
-&src/main/java/dao/db/DBConnection.java,d\a\da616bb668b6abbf474afd8d1c6511a24b8fb1af
 ^
 .src/main/java/dao/impl/CredentialsDaoImpl.java,c\4\c45ff22903975a0e2bd1d7892994c6cd6deb8522
 [
@@ -59,3 +57,7 @@ Z
 *src/main/java/service/CustomerService.java,0\0\00a0a98e77662f269a6e0f4e6f2f323c3f643cf5
 R
 "src/main/java/dao/CustomerDao.java,4\d\4d73f8e21866a715c6674826f4163c18e5bd51c0
+i
+9src/main/java/ui/screens/order/OrderUpdateController.java,e\1\e19c354b71e6eb1fdde39dc26995531fd17efb63
+X
+(src/main/java/service/OrdersService.java,e\c\ec321af92689a2f45b2057047ca7f71d27b3eb0e

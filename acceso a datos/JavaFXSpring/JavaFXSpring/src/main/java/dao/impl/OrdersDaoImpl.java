@@ -29,9 +29,9 @@ public class OrdersDaoImpl implements OrdersDao {
     @Override
     public Either<ErrorC, List<Order>> getAll() {
         List<Order> orders;
-        try {
-            Connection connection = dbConnection.getDataSource().getConnection();
-            Statement statement = connection.createStatement();
+        try(Connection connection = dbConnection.getDataSource().getConnection();
+            Statement statement = connection.createStatement()) {
+
             statement.executeQuery(SQLQueries.GET_ALL_ORDERS);
             ResultSet resultSet = statement.getResultSet();
             orders = readRS(resultSet);
@@ -52,9 +52,9 @@ public class OrdersDaoImpl implements OrdersDao {
     @Override
     public Either<ErrorC, List<Order>> get(int idUserLogged) {
         List<Order> orders;
-        try {
-            Connection connection = dbConnection.getDataSource().getConnection();
-            Statement statement = connection.createStatement();
+        try(Connection connection = dbConnection.getDataSource().getConnection();
+            Statement statement = connection.createStatement()){
+
             statement.executeQuery(SQLQueries.GET_ORDERS_SPECIFIC_CUSTOMER + idUserLogged);
             ResultSet resultSet = statement.getResultSet();
             orders = readRS(resultSet);
@@ -114,9 +114,9 @@ public class OrdersDaoImpl implements OrdersDao {
     @Override
     public Either<ErrorC, Integer> update(Order order) {
         int rowsAffected = 0;
-        try {
-            Connection connection = dbConnection.getDataSource().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_ORDERS);
+        try(Connection connection = dbConnection.getDataSource().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_ORDERS)){
+
             preparedStatement.setTimestamp(1, Timestamp.valueOf(order.getDate()));
             preparedStatement.setInt(2, order.getTableNumber());
             preparedStatement.setInt(3, order.getId());

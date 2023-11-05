@@ -45,12 +45,12 @@ public class DBConnectionImpl implements DBConnection {
     }
 
 
-    @Override
-    public Connection getConnection() throws SQLException {
-        Connection conn = hikariDataSource.getConnection();
-        log.info("Connection to database established");
-        return conn;
-    }
+//    @Override
+//    public Connection getConnection() throws SQLException {
+//        Connection conn = hikariDataSource.getConnection();
+//        log.info("Connection to database established");
+//        return conn;
+//    }
 
     @Override
     public DataSource getDataSource() {

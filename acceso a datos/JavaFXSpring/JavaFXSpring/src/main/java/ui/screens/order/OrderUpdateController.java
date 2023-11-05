@@ -96,12 +96,16 @@ public class OrderUpdateController extends BaseScreenController {
     }
 
     private void loadTable() {
-        if(getPrincipalController().getIdUserLogged()<0){
+        if (getPrincipalController().getIdUserLogged() < 0) {
             tableOrders.getItems().clear();
-            tableOrders.getItems().addAll(ordersService.getAll().get());
-        }else{
+            if (ordersService.getAll().isRight()) {
+                tableOrders.getItems().addAll(ordersService.getAll().get());
+            }
+        } else {
             tableOrders.getItems().clear();
-            tableOrders.getItems().addAll(ordersService.get(getPrincipalController().getIdUserLogged()).get());
+            if (ordersService.getAll().isRight()) {
+                tableOrders.getItems().addAll(ordersService.get(getPrincipalController().getIdUserLogged()).get());
+            }
         }
     }
 }
