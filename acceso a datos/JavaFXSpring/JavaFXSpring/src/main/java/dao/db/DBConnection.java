@@ -1,10 +1,14 @@
 package dao.db;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import config.Configuration;
+import jakarta.annotation.PreDestroy;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import lombok.extern.log4j.Log4j2;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 
@@ -13,67 +17,55 @@ import java.sql.*;
 @Singleton
 public class DBConnection {
 
-    private final Configuration configuration;
+    private final Configuration config;
+    private DataSource hikariDataSource = null;
 
     @Inject
-    public DBConnection(Configuration configuration) {
-        this.configuration = configuration;
+    public DBConnection(Configuration config) {
+        this.config = config;
+        hikariDataSource = getDataSourceHikari();
     }
 
-    public Connection getConnection() throws SQLException {
+    private DataSource getDataSourceHikari() {
+        HikariConfig hikariConfig = new HikariConfig();
+        hikariConfig.setJdbcUrl(config.getProperty("urlDB"));
+        hikariConfig.setUsername(config.getProperty("user_name"));
+        hikariConfig.setPassword(config.getProperty("password"));
+        hikariConfig.setDriverClassName(config.getProperty("driver"));
+        hikariConfig.setMaximumPoolSize(8);
 
-        return DriverManager
-                .getConnection(configuration.getProperty("urlDB"), configuration.getProperty("user_name"), configuration.getProperty("password"));
+        hikariConfig.addDataSourceProperty("cachePrepStmts", true);
+        hikariConfig.addDataSourceProperty("prepStmtCacheSize", 250);
+        hikariConfig.addDataSourceProperty("prepStmtCacheSqlLimit", 2048);
+
+        return new HikariDataSource(hikariConfig);
     }
 
-    /**
-     * Closes connection
-     */
-    public void closeConnection(Connection connArg) {
+    public DataSource getDataSource() {
+        return hikariDataSource;
+    }
+
+//    public Connection getConnection() {
+//        Connection con=null;
+//        try {
+//            con = hikariDataSource.getConnection();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return con;
+//    }
+
+    public void closeConnection(Connection con) {
         try {
-            if (connArg != null) {
-                connArg.close();
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
-
-    public void releaseResource(PreparedStatement pstmt) {
-        try {
-            if (pstmt != null) {
-                pstmt.close();
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
+    @PreDestroy
+    public void closePool() {
+        ((HikariDataSource) hikariDataSource).close();
     }
-
-    public void releaseResource(ResultSet rs) {
-        try {
-            if (rs != null) {
-                rs.close();
-            }
-
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
-    }
-
-    public void releaseResource(Statement stmt) {
-        try {
-            if (stmt != null) {
-                stmt.close();
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
-    }
-
-
-    //TODO Lucia este codigo es de hikari que no me funciona, bueno mas bien funciona un rato
-    // pero al cabo de un apr de cambios de pantalla se me queda pillado y se me apaga la aplicacion
-    // por ello te lo dejo comentado por si acaso  y te entrego con la conexion que funciona, basta con que descomentes
-    // el codigo de abajo y comentes el de arriba
 
 }

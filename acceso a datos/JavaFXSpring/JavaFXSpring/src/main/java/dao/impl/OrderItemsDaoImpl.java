@@ -30,7 +30,7 @@ public class OrderItemsDaoImpl implements OrderItemsDao {
     public Either<ErrorC, List<OrderItem>> get(int orderId) {
         List<OrderItem> orderItems;
         try {
-            Connection connection = dbConnection.getConnection();
+            Connection connection = dbConnection.getDataSource().getConnection();
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM order_items WHERE order_id = " + orderId);
             orderItems = readRS(rs);

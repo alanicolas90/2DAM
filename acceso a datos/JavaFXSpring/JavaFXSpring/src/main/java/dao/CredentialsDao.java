@@ -5,5 +5,5 @@ import model.ErrorC;
 
 public interface CredentialsDao {
 
-    Either<ErrorC, Boolean> usernameExists(String username);
+    Either<Integer,Boolean> usernameExists(String username);
 }

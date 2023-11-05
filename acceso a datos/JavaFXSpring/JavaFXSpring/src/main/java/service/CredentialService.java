@@ -16,6 +16,15 @@ public class CredentialService {
 
 
     public Either<ErrorC, Boolean> usernameExists(String username) {
-        return credentialsDao.usernameExists(username);
+        Either<Integer, Boolean> credential = credentialsDao.usernameExists(username);
+        if (credential.isLeft()) {
+            return switch (credential.getLeft()) {
+                case 1-> Either.left(new ErrorC("Username does not exist"));
+                case 2-> Either.left(new ErrorC("Database error"));
+                default -> Either.left(new ErrorC("Unknown error"));
+            };
+        } else {
+            return Either.right(credential.get());
+        }
     }
 }

@@ -31,7 +31,7 @@ public class MenuItemsDaoImpl implements MenuItemsDao {
     public Either<ErrorC, List<MenuItem>> getAll() {
         List<MenuItem> menuItems;
         try {
-            Connection connection = dbConnection.getConnection();
+            Connection connection = dbConnection.getDataSource().getConnection();
             Statement statement = connection.createStatement();
             statement.executeQuery(SQLQueries.SELECT_ALL_FROM_MENU_ITEMS);
             ResultSet resultSet = statement.getResultSet();

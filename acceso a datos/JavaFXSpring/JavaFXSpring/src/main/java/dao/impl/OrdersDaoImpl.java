@@ -30,7 +30,7 @@ public class OrdersDaoImpl implements OrdersDao {
     public Either<ErrorC, List<Order>> getAll() {
         List<Order> orders;
         try {
-            Connection connection = dbConnection.getConnection();
+            Connection connection = dbConnection.getDataSource().getConnection();
             Statement statement = connection.createStatement();
             statement.executeQuery(SQLQueries.GET_ALL_ORDERS);
             ResultSet resultSet = statement.getResultSet();
@@ -53,7 +53,7 @@ public class OrdersDaoImpl implements OrdersDao {
     public Either<ErrorC, List<Order>> get(int idUserLogged) {
         List<Order> orders;
         try {
-            Connection connection = dbConnection.getConnection();
+            Connection connection = dbConnection.getDataSource().getConnection();
             Statement statement = connection.createStatement();
             statement.executeQuery(SQLQueries.GET_ORDERS_SPECIFIC_CUSTOMER + idUserLogged);
             ResultSet resultSet = statement.getResultSet();
@@ -76,7 +76,7 @@ public class OrdersDaoImpl implements OrdersDao {
         int rowsAffected = 0;
         Connection connection = null;
         try {
-            connection = dbConnection.getConnection();
+            connection = dbConnection.getDataSource().getConnection();
             connection.setAutoCommit(false);
             PreparedStatement preparedStatementOrderAdd = connection.prepareStatement(SQLQueries.ADD_ORDER, Statement.RETURN_GENERATED_KEYS);
             preparedStatementOrderAdd.setTimestamp(1, Timestamp.valueOf(order.getDate()));
@@ -115,7 +115,7 @@ public class OrdersDaoImpl implements OrdersDao {
     public Either<ErrorC, Integer> update(Order order) {
         int rowsAffected = 0;
         try {
-            Connection connection = dbConnection.getConnection();
+            Connection connection = dbConnection.getDataSource().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_ORDERS);
             preparedStatement.setTimestamp(1, Timestamp.valueOf(order.getDate()));
             preparedStatement.setInt(2, order.getTableNumber());
@@ -134,7 +134,7 @@ public class OrdersDaoImpl implements OrdersDao {
         int rowsAffected = 0;
         if (!delete) {
             try {
-                Connection connection = dbConnection.getConnection();
+                Connection connection = dbConnection.getDataSource().getConnection();
                 try {
                     connection.setAutoCommit(false);
                     PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDERS_WHERE_ORDER_ID);
@@ -159,7 +159,7 @@ public class OrdersDaoImpl implements OrdersDao {
         //delete Order with order items accepted by Customer
         else {
             try {
-                Connection connection = dbConnection.getConnection();
+                Connection connection = dbConnection.getDataSource().getConnection();
                 try {
                     connection.setAutoCommit(false);
 

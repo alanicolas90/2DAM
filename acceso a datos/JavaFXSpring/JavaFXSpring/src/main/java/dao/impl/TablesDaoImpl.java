@@ -31,7 +31,7 @@ public class TablesDaoImpl implements TablesDao {
     public Either<ErrorC, List<Table>> getAll() {
         List<Table> tables;
         try {
-            Connection connection = dbConnection.getConnection();
+            Connection connection = dbConnection.getDataSource().getConnection();
             Statement statement = connection.createStatement();
             statement.executeQuery(SQLQueries.SELECT_ALL_FROM_TABLES);
             ResultSet resultSet = statement.getResultSet();
@@ -53,7 +53,7 @@ public class TablesDaoImpl implements TablesDao {
     public Either<ErrorC, Table> get(int tableNumber) {
         Table table;
         try {
-            Connection connection = dbConnection.getConnection();
+            Connection connection = dbConnection.getDataSource().getConnection();
             Statement statement = connection.createStatement();
             statement.executeQuery(SQLQueries.SELECT_FROM_TABLES_WHERE_TABLE_NUMBER + tableNumber);
             ResultSet resultSet = statement.getResultSet();

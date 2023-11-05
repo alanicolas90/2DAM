@@ -10,6 +10,8 @@ module JavaFXSpring {
     requires java.sql;
     requires com.zaxxer.hikari;
     requires jakarta.annotation;
+    requires spring.jdbc;
+    requires spring.tx;
 
     exports ui.main to javafx.graphics;
     exports ui.screens.principal;
@@ -44,4 +46,6 @@ module JavaFXSpring {
     opens service.utils;
     opens dao.impl;
     opens dao;
+    exports dao.impl.rowmappers;
+    opens dao.impl.rowmappers;
 }
