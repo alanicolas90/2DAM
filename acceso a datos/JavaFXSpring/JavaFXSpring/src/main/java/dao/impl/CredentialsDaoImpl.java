@@ -1,18 +1,12 @@
 package dao.impl;
 
 import dao.CredentialsDao;
-import dao.db.DBConnection;
+import dao.DBConnection;
 import dao.utils.SQLQueries;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
-import model.ErrorC;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 @Log4j2
 public class CredentialsDaoImpl implements CredentialsDao {

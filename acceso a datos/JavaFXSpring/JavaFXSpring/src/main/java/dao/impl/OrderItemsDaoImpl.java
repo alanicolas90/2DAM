@@ -1,7 +1,7 @@
 package dao.impl;
 
+import dao.DBConnection;
 import dao.OrderItemsDao;
-import dao.db.DBConnection;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;

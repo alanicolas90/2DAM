@@ -2,8 +2,7 @@ package dao.impl;
 
 
 import dao.CustomerDao;
-import dao.db.DBConnection;
-import dao.impl.rowmappers.CustomerRowMapper;
+import dao.DBConnection;
 import dao.utils.DaoConstants;
 import dao.utils.SQLQueries;
 import io.vavr.control.Either;
@@ -12,6 +11,8 @@ import lombok.extern.log4j.Log4j2;
 import model.Customer;
 import model.ErrorC;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -19,8 +20,6 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-import java.sql.*;
-import java.sql.Date;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -40,11 +39,11 @@ public class CustomerDaoImpl implements CustomerDao {
     public Either<ErrorC, Customer> get(int id) {
         try {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
-            Customer customer = jdbcTemplate.queryForObject(SQLQueries.GET_CUSTOMER_SPECIFIC_ID, new CustomerRowMapper());
-            if (customer == null) {
+            List<Customer> customers = jdbcTemplate.query(SQLQueries.GET_CUSTOMER_SPECIFIC_ID, new BeanPropertyRowMapper<>(Customer.class), id);
+            if (customers.isEmpty()) {
                 return Either.left(new ErrorC(DaoConstants.CUSTOMER_NOT_FOUND));
             } else {
-                return Either.right(customer);
+                return Either.right(customers.get(0));
             }
 
         } catch (Exception e) {
@@ -75,7 +74,7 @@ public class CustomerDaoImpl implements CustomerDao {
     public Either<ErrorC, List<Customer>> getAll() {
         try {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
-            List<Customer> customers = jdbcTemplate.query(SQLQueries.GET_ALL_CUSTOMERS, new CustomerRowMapper());
+            List<Customer> customers = jdbcTemplate.query(SQLQueries.GET_ALL_CUSTOMERS, new BeanPropertyRowMapper<>(Customer.class));
 
             if (customers.isEmpty()) {
                 return Either.left(new ErrorC("No customers were found"));
@@ -91,7 +90,11 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public Either<ErrorC, Integer> saveAutoIncrementalID(Customer customer) {
         try {
-            SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(dbConnection.getDataSource()).withTableName("credentials").usingGeneratedKeyColumns("id").usingColumns("username", "password");
+            SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(dbConnection.getDataSource())
+                    .withTableName("credentials")
+                    .usingGeneratedKeyColumns("id")
+                    .usingColumns("username", "password");
+
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("username", customer.getCredential().getUsername());
             parameters.put("password", customer.getCredential().getPassword());
@@ -130,65 +133,35 @@ public class CustomerDaoImpl implements CustomerDao {
                 transactionManager.commit(txStatus);
 
             } catch (Exception e) {
+                transactionManager.rollback(txStatus);
                 log.error(e.getMessage());
-            }
-            if (rowsAffected > 0) {
-                return Either.right(rowsAffected);
-            } else {
-                return Either.left(new ErrorC(DaoConstants.ERROR_DELETING_CUSTOMER));
             }
         }
         //delete Customer accepts deleting orders
         else {
             try {
-                Connection connection = dbConnection.getDataSource().getConnection();
-                try {
-                    connection.setAutoCommit(false);
-                    PreparedStatement preparedStatementDeleteOrderItems = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDER_ITEMS_WHERE_ORDER_ID_IN_SELECT_ORDER_ID_FROM_ORDERS_WHERE_CUSTOMER_ID);
-                    preparedStatementDeleteOrderItems.setInt(1, id);
-                    rowsAffected += preparedStatementDeleteOrderItems.executeUpdate();
-
-                    PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.DELETE_ORDERS_OF_SPECIFIC_CUSTOMER_ID);
-                    preparedStatement.setInt(1, id);
-                    rowsAffected += preparedStatement.executeUpdate();
-
-                    PreparedStatement preparedStatementDeleteCustomer = connection.prepareStatement(SQLQueries.DELETE_CUSTOMER_WITHOUT_ORDERS);
-                    preparedStatementDeleteCustomer.setInt(1, id);
-                    rowsAffected += preparedStatementDeleteCustomer.executeUpdate();
-
-                    PreparedStatement preparedStatementDeleteCredentials = connection.prepareStatement(SQLQueries.DELETE_CREDENTIALS_THAT_HAS_SPECIFIC_CUSTOMER_ID);
-                    preparedStatementDeleteCredentials.setInt(1, id);
-                    rowsAffected += preparedStatementDeleteCredentials.executeUpdate();
-
-                    connection.commit();
-                } catch (SQLException e) {
-                    tryCatchRollback(connection);
-                    if (e.getErrorCode() == 1451) {
-                        return Either.left(new ErrorC(DaoConstants.CUSTOMER_HAS_ORDERS_ARE_YOU_SURE_YOU_WANT_TO_DELETE_IT));
-                    } else {
-                        log.error(e.getMessage());
-                    }
-                } finally {
-                    connection.setAutoCommit(true);
+                JdbcTemplate jtm = new JdbcTemplate(dbConnection.getDataSource());
+                jtm.update(SQLQueries.DELETE_FROM_ORDER_ITEMS_WHERE_ORDER_ID_IN_SELECT_ORDER_ID_FROM_ORDERS_WHERE_CUSTOMER_ID, id);
+                jtm.update(SQLQueries.DELETE_ORDERS_OF_SPECIFIC_CUSTOMER_ID, id);
+                jtm.update(SQLQueries.DELETE_CUSTOMER_WITHOUT_ORDERS, id);
+                jtm.update(SQLQueries.DELETE_CREDENTIALS_THAT_HAS_SPECIFIC_CUSTOMER_ID, id);
+                rowsAffected = 1;
+                transactionManager.commit(txStatus);
+            } catch (DataAccessException e) {
+                if(e instanceof DataIntegrityViolationException){
+                    rowsAffected = 0;
+                }else{
+                    rowsAffected = -1;
                 }
-            } catch (SQLException e) {
+                transactionManager.rollback(txStatus);
                 log.error(e.getMessage());
             }
-            if (rowsAffected < 1) {
-                return Either.left(new ErrorC(DaoConstants.ERROR_DELETING_CUSTOMER));
-            } else {
-                return Either.right(rowsAffected);
-            }
+        }
+        if (rowsAffected > 0) {
+            return Either.right(rowsAffected);
+        } else {
+            return Either.left(new ErrorC(DaoConstants.ERROR_DELETING_CUSTOMER));
         }
     }
 
-
-    //Utility methods
-    private void tryCatchRollback(Connection connection) {
-        try {
-            connection.rollback();
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-    }
 }

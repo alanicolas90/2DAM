@@ -5,45 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab0d3c51-1c8e-4405-8fe4-bc20db64da89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/c3e830e1-7d8b-46cb-9f6c-87bd22ba1f22/storage_v2/_src_/schema/alanmikolajczyk_restaurant.1nwTVw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/c3e830e1-7d8b-46cb-9f6c-87bd22ba1f22/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/c3e830e1-7d8b-46cb-9f6c-87bd22ba1f22/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/c3e830e1-7d8b-46cb-9f6c-87bd22ba1f22/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/c3e830e1-7d8b-46cb-9f6c-87bd22ba1f22/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/8/68d39015010349188c785512b71dfb08d2e37972" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/d/6d43d811500b448bd8f3499206a3b09b4c566089" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/f/6f698a0fa066e1ea0f51e2736452ac14c5f334e5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/0/b097a71462fafb3187d40e8a81877b675958fa3b" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/a/ba734fbba6d7c43270fb1c920dfb3799f24781cb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/4/c45ff22903975a0e2bd1d7892994c6cd6deb8522" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/0/d061804968c319d318d068ce0532cd3ae2cb53b9" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/3/d3cdb29c1e31f10a40accd90b4dd1e8410015b75" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/6/d6f354130eb7f54c914b500388874774302fc4cf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/8/d809aaf69069b4e367322db0008755f08edcc9a2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/5/e5e7325d267fea1076a19b594d74415233ba72cd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/c/fc3bb2fc83e0af0dc7b6c32bd8ca7ae62b22e06f" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/8/68d39015010349188c785512b71dfb08d2e37972" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/d/6d43d811500b448bd8f3499206a3b09b4c566089" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/f/6f698a0fa066e1ea0f51e2736452ac14c5f334e5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/b/0/b097a71462fafb3187d40e8a81877b675958fa3b" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/b/a/ba734fbba6d7c43270fb1c920dfb3799f24781cb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/4/c45ff22903975a0e2bd1d7892994c6cd6deb8522" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/0/d061804968c319d318d068ce0532cd3ae2cb53b9" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/3/d3cdb29c1e31f10a40accd90b4dd1e8410015b75" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/6/d6f354130eb7f54c914b500388874774302fc4cf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/8/d809aaf69069b4e367322db0008755f08edcc9a2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/e/5/e5e7325d267fea1076a19b594d74415233ba72cd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/f/c/fc3bb2fc83e0af0dc7b6c32bd8ca7ae62b22e06f" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/rowmappers/CredentialRowMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/rowmappers/CustomerRowMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/a/da616bb668b6abbf474afd8d1c6511a24b8fb1af" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/a/da616bb668b6abbf474afd8d1c6511a24b8fb1af" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/DBConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/DBConnectionImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/4/c45ff22903975a0e2bd1d7892994c6cd6deb8522" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/4/c45ff22903975a0e2bd1d7892994c6cd6deb8522" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/6/d6f354130eb7f54c914b500388874774302fc4cf" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/6/d6f354130eb7f54c914b500388874774302fc4cf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CredentialsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CredentialsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/db/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/db/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/db/DBConnection.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/CredentialsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/impl/CredentialsDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/CustomerDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/impl/CustomerDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/LoginDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/impl/LoginDaoImpl.java" afterDir="false" />
@@ -51,10 +20,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/OrderItemsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/impl/OrderItemsDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/OrdersDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/impl/OrdersDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/TablesDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/impl/TablesDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/utils/SQLQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/utils/SQLQueries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Credential.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Credential.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/CredentialService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/CredentialService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,6 +72,10 @@
       <recent name="C:\Users\Usuario\Desktop\2DAM\acceso a datos\JavaFXSpring\JavaFXSpring\src\main\resources" />
       <recent name="C:\Users\Usuario\Desktop\2DAM\acceso a datos\JavaFXSpring\JavaFXSpring\src\main\java" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dao.impl" />
+      <recent name="dao" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="DIJavafx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -136,7 +106,7 @@
       <option name="presentableId" value="Default" />
       <updated>1699200781213</updated>
       <workItem from="1699200782263" duration="9190000" />
-      <workItem from="1699210016897" duration="7037000" />
+      <workItem from="1699210016897" duration="9440000" />
     </task>
     <servers />
   </component>

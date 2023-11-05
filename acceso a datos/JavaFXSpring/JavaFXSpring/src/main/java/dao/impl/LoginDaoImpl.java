@@ -1,7 +1,7 @@
 package dao.impl;
 
+import dao.DBConnection;
 import dao.LoginDao;
-import dao.db.DBConnection;
 import dao.impl.rowmappers.CredentialRowMapper;
 import dao.utils.DaoConstants;
 import dao.utils.SQLQueries;
@@ -10,13 +10,7 @@ import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
 import model.Credential;
 import model.ErrorC;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 
 @Log4j2

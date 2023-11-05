@@ -1,7 +1,7 @@
 package dao.impl;
 
+import dao.DBConnection;
 import dao.TablesDao;
-import dao.db.DBConnection;
 import dao.utils.DaoConstants;
 import dao.utils.SQLQueries;
 import io.vavr.control.Either;

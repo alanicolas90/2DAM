@@ -26,7 +26,6 @@ module JavaFXSpring {
     exports ui.screens.order;
     exports dao;
     exports ui.screens.customer;
-    exports dao.db;
     exports config;
 
     opens ui.screens.order.common;
