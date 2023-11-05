@@ -23,9 +23,9 @@ public class CredentialsDaoImpl implements CredentialsDao {
     @Override
     public Either<ErrorC, Boolean> usernameExists(String username) {
         boolean exists = false;
-        try {
-            Connection connection = dbConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.QUERY_GET_CREDENTIALS_WHERE_USERNAME_IS);
+        try(Connection connection = dbConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.QUERY_GET_CREDENTIALS_WHERE_USERNAME_IS)) {
+
             preparedStatement.setString(1, username);
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();

@@ -33,10 +33,9 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public Either<ErrorC, Customer> get(int id) {
         Customer customer = null;
-        PreparedStatement preparedStatement;
-        try {
-            Connection connection = dbConnection.getConnection();
-            preparedStatement = connection.prepareStatement(SQLQueries.GET_CUSTOMER_SPECIFIC_ID);
+        try (Connection connection = dbConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.GET_CUSTOMER_SPECIFIC_ID);) {
+
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             customer = readRS(resultSet).get(0);
@@ -54,9 +53,9 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public Either<ErrorC, Integer> update(Customer customerUpdated) {
         Either<ErrorC, Integer> result = null;
-        try {
-            Connection connection = dbConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_CUSTOMER);
+        try (Connection connection = dbConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_CUSTOMER);) {
+
             preparedStatement.setString(1, customerUpdated.getName());
             preparedStatement.setString(2, customerUpdated.getSurname());
             preparedStatement.setString(3, customerUpdated.getEmail());
@@ -80,12 +79,12 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public Either<ErrorC, List<Customer>> getAll() {
         List<Customer> customers = new ArrayList<>();
-        try {
-            Connection connection = dbConnection.getConnection();
-            try (Statement statement = connection.createStatement()) {
-                ResultSet resultSet = statement.executeQuery(SQLQueries.GET_ALL_CUSTOMERS);
-                customers.addAll(readRS(resultSet));
-            }
+        try (Connection connection = dbConnection.getConnection();
+             Statement statement = connection.createStatement()) {
+
+            ResultSet resultSet = statement.executeQuery(SQLQueries.GET_ALL_CUSTOMERS);
+            customers.addAll(readRS(resultSet));
+
         } catch (SQLException e) {
             Logger.getLogger(CustomerDaoImpl.class.getName()).severe(e.getMessage());
         }
@@ -95,8 +94,7 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public Either<ErrorC, Integer> saveAutoIncrementalID(Customer customer) {
         int rowsAffected = 0;
-        try {
-            Connection connection = dbConnection.getConnection();
+        try(Connection connection = dbConnection.getConnection();) {
             rowsAffected = tryCatchAddCredentialAndCustomer(connection, rowsAffected, customer);
             if (rowsAffected == 0) {
                 return Either.left(new ErrorC("Error adding customer"));
@@ -113,18 +111,17 @@ public class CustomerDaoImpl implements CustomerDao {
         int rowsAffected = 0;
         //delete customer that has no orders, if its has orders it will send back an error
         if (!confirm) {
-            try {
-                Connection connection = dbConnection.getConnection();
-                try {
-                    connection.setAutoCommit(false);
-                    PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.DELETE_CUSTOMER_WITHOUT_ORDERS);
-                    preparedStatement.setInt(1, id);
+            try(Connection connection = dbConnection.getConnection();) {
+                connection.setAutoCommit(false);
 
-                    PreparedStatement preparedStatement2 = connection.prepareStatement(SQLQueries.DELETE_CREDENTIALS_THAT_HAS_SPECIFIC_CUSTOMER_ID);
+                try(PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.DELETE_CUSTOMER_WITHOUT_ORDERS);
+                    PreparedStatement preparedStatement2 = connection.prepareStatement(SQLQueries.DELETE_CREDENTIALS_THAT_HAS_SPECIFIC_CUSTOMER_ID);) {
+
+                    preparedStatement.setInt(1, id);
                     preparedStatement2.setInt(1, id);
 
-                    rowsAffected = preparedStatement.executeUpdate();
-                    rowsAffected = preparedStatement2.executeUpdate();
+                    rowsAffected += preparedStatement.executeUpdate();
+                    rowsAffected += preparedStatement2.executeUpdate();
 
                     connection.commit();
                 } catch (SQLException e) {
@@ -149,23 +146,22 @@ public class CustomerDaoImpl implements CustomerDao {
         }
         //delete Customer accepts deleting orders
         else {
-            try {
-                Connection connection = dbConnection.getConnection();
-                try {
-                    connection.setAutoCommit(false);
-                    PreparedStatement preparedStatementDeleteOrderItems = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDER_ITEMS_WHERE_ORDER_ID_IN_SELECT_ORDER_ID_FROM_ORDERS_WHERE_CUSTOMER_ID);
-                    preparedStatementDeleteOrderItems.setInt(1, id);
+            try(Connection connection = dbConnection.getConnection();) {
+                connection.setAutoCommit(false);
+                try(PreparedStatement preparedStatementDeleteOrderItems = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDER_ITEMS_WHERE_ORDER_ID_IN_SELECT_ORDER_ID_FROM_ORDERS_WHERE_CUSTOMER_ID);
+                    PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.DELETE_ORDERS_OF_SPECIFIC_CUSTOMER_ID);
+                    PreparedStatement preparedStatementDeleteCustomer = connection.prepareStatement(SQLQueries.DELETE_CUSTOMER_WITHOUT_ORDERS);
+                    PreparedStatement preparedStatementDeleteCredentials = connection.prepareStatement(SQLQueries.DELETE_CREDENTIALS_THAT_HAS_SPECIFIC_CUSTOMER_ID);
+                ) {
+                     preparedStatementDeleteOrderItems.setInt(1, id);
                     rowsAffected += preparedStatementDeleteOrderItems.executeUpdate();
 
-                    PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.DELETE_ORDERS_OF_SPECIFIC_CUSTOMER_ID);
                     preparedStatement.setInt(1, id);
                     rowsAffected += preparedStatement.executeUpdate();
 
-                    PreparedStatement preparedStatementDeleteCustomer = connection.prepareStatement(SQLQueries.DELETE_CUSTOMER_WITHOUT_ORDERS);
                     preparedStatementDeleteCustomer.setInt(1, id);
                     rowsAffected += preparedStatementDeleteCustomer.executeUpdate();
 
-                    PreparedStatement preparedStatementDeleteCredentials = connection.prepareStatement(SQLQueries.DELETE_CREDENTIALS_THAT_HAS_SPECIFIC_CUSTOMER_ID);
                     preparedStatementDeleteCredentials.setInt(1, id);
                     rowsAffected += preparedStatementDeleteCredentials.executeUpdate();
 
@@ -194,9 +190,9 @@ public class CustomerDaoImpl implements CustomerDao {
 
     //Try catch methods
     private int tryCatchAddCredentialAndCustomer(Connection connection, int rowsAffected, Customer customer) throws SQLException {
-        try {
+        try(PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.INSERT_NEW_CREDENTIAL, Statement.RETURN_GENERATED_KEYS);
+        ) {
             connection.setAutoCommit(false);
-            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.INSERT_NEW_CREDENTIAL, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, customer.getCredential().getUsername());
             preparedStatement.setString(2, customer.getCredential().getPassword());
 

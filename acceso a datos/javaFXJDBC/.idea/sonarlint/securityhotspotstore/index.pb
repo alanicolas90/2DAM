@@ -91,3 +91,5 @@ P
  src/main/java/dao/TablesDao.java,e\e\eedcde0f02dea4a6aabc7c5a902a7e97b2fc5792
 ^
 .src/main/java/dao/impl/CredentialsDaoImpl.java,c\4\c45ff22903975a0e2bd1d7892994c6cd6deb8522
+]
+-src/main/java/dao/impl/OrderItemsDaoImpl.java,d\3\d3cdb29c1e31f10a40accd90b4dd1e8410015b75

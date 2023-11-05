@@ -30,9 +30,9 @@ public class MenuItemsDaoImpl implements MenuItemsDao {
     @Override
     public Either<ErrorC, List<MenuItem>> getAll() {
         List<MenuItem> menuItems;
-        try {
-            Connection connection = dbConnection.getConnection();
+        try(Connection connection = dbConnection.getConnection();
             Statement statement = connection.createStatement();
+        ) {
             statement.executeQuery(SQLQueries.SELECT_ALL_FROM_MENU_ITEMS);
             ResultSet resultSet = statement.getResultSet();
             menuItems = readRS(resultSet);

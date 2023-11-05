@@ -26,9 +26,9 @@ public class LoginDaoImpl implements LoginDao {
 
     @Override
     public Either<ErrorC, Credential> get(Credential credential) {
-        try {
-            Connection connection = dbConnection.getConnection();
+        try(Connection connection = dbConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.GET_CREDENTIALS);
+        ) {
             preparedStatement.setString(1, credential.getUsername());
             preparedStatement.setString(2, credential.getPassword());
 

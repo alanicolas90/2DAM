@@ -29,9 +29,9 @@ public class OrdersDaoImpl implements OrdersDao {
     @Override
     public Either<ErrorC, List<Order>> getAll() {
         List<Order> orders;
-        try {
-            Connection connection = dbConnection.getConnection();
-            Statement statement = connection.createStatement();
+        try(Connection connection = dbConnection.getConnection();
+            Statement statement = connection.createStatement();) {
+
             statement.executeQuery(SQLQueries.GET_ALL_ORDERS);
             ResultSet resultSet = statement.getResultSet();
             orders = readRS(resultSet);
@@ -52,9 +52,9 @@ public class OrdersDaoImpl implements OrdersDao {
     @Override
     public Either<ErrorC, List<Order>> get(int idUserLogged) {
         List<Order> orders;
-        try {
-            Connection connection = dbConnection.getConnection();
-            Statement statement = connection.createStatement();
+        try(Connection connection = dbConnection.getConnection();
+            Statement statement = connection.createStatement();) {
+
             statement.executeQuery(SQLQueries.GET_ORDERS_SPECIFIC_CUSTOMER + idUserLogged);
             ResultSet resultSet = statement.getResultSet();
             orders = readRS(resultSet);
@@ -74,11 +74,11 @@ public class OrdersDaoImpl implements OrdersDao {
     @Override
     public Either<ErrorC, Integer> add(Order order) {
         int rowsAffected = 0;
-        Connection connection = null;
-        try {
-            connection = dbConnection.getConnection();
+        try(Connection connection = dbConnection.getConnection();) {
+
             connection.setAutoCommit(false);
-            PreparedStatement preparedStatementOrderAdd = connection.prepareStatement(SQLQueries.ADD_ORDER, Statement.RETURN_GENERATED_KEYS);
+            try(PreparedStatement preparedStatementOrderAdd = connection.prepareStatement(SQLQueries.ADD_ORDER, Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement preparedStatementOrderItemsAdd = connection.prepareStatement("INSERT INTO order_items (order_id, menu_item_id, quantity) VALUES (?,?,?)");){
             preparedStatementOrderAdd.setTimestamp(1, Timestamp.valueOf(order.getDate()));
             preparedStatementOrderAdd.setInt(2, order.getCustomerId());
             preparedStatementOrderAdd.setInt(3, order.getTableNumber());
@@ -89,7 +89,6 @@ public class OrdersDaoImpl implements OrdersDao {
                 orderId = rs.getInt(1);
             }
             if (!order.getOrderItems().isEmpty() && orderId != -1) {
-                PreparedStatement preparedStatementOrderItemsAdd = connection.prepareStatement("INSERT INTO order_items (order_id, menu_item_id, quantity) VALUES (?,?,?)");
                 for (int i = 0; i < order.getOrderItems().size(); i++) {
                     preparedStatementOrderItemsAdd.setInt(1, orderId);
                     preparedStatementOrderItemsAdd.setInt(2, order.getOrderItems().get(i).getMenuItemId());
@@ -99,11 +98,20 @@ public class OrdersDaoImpl implements OrdersDao {
                 preparedStatementOrderItemsAdd.executeBatch();
             }
 
-            connection.commit();
+            connection.commit();}
+            catch (SQLException e){
+                tryCatchRollbak(connection);
+                log.error(e.getMessage());
+                return Either.left(new ErrorC("SQLError adding order"));
+            }
+            catch (Exception e){
+                log.error(e.getMessage());
+                return Either.left(new ErrorC("Error adding order 32323"));
+            }
+
         } catch (SQLException e) {
-            tryCatchRollbak(connection);
             log.error(e.getMessage());
-            return Either.left(new ErrorC("Error adding order"));
+            return Either.left(new ErrorC("SQL Error adding order"));
         } catch (Exception e) {
             log.error(e.getMessage());
             return Either.left(new ErrorC("Error adding order 32323"));
@@ -133,11 +141,9 @@ public class OrdersDaoImpl implements OrdersDao {
     public Either<ErrorC, Integer> delete(int id, boolean delete) {
         int rowsAffected = 0;
         if (!delete) {
-            try {
-                Connection connection = dbConnection.getConnection();
-                try {
-                    connection.setAutoCommit(false);
-                    PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDERS_WHERE_ORDER_ID);
+            try(Connection connection = dbConnection.getConnection();) {
+                connection.setAutoCommit(false);
+                try( PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDERS_WHERE_ORDER_ID);) {
                     preparedStatement.setInt(1, id);
                     rowsAffected = preparedStatement.executeUpdate();
                     connection.commit();
@@ -158,14 +164,11 @@ public class OrdersDaoImpl implements OrdersDao {
         }
         //delete Order with order items accepted by Customer
         else {
-            try {
-                Connection connection = dbConnection.getConnection();
-                try {
-                    connection.setAutoCommit(false);
+            try(Connection connection = dbConnection.getConnection();) {
+                connection.setAutoCommit(false);
+                try(PreparedStatement preparedStatementDeleteOrderItems = connection.prepareStatement("delete from order_items where order_id =" + id);
+                    PreparedStatement preparedStatementDeleteOrders = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDERS_WHERE_ORDER_ID);) {
 
-                    PreparedStatement preparedStatementDeleteOrderItems = connection.prepareStatement("delete from order_items where order_id =" + id);
-
-                    PreparedStatement preparedStatementDeleteOrders = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDERS_WHERE_ORDER_ID);
                     preparedStatementDeleteOrders.setInt(1, id);
 
                     rowsAffected += preparedStatementDeleteOrderItems.executeUpdate();

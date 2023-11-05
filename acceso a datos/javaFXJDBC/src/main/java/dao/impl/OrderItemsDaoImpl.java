@@ -29,9 +29,9 @@ public class OrderItemsDaoImpl implements OrderItemsDao {
     @Override
     public Either<ErrorC, List<OrderItem>> get(int orderId) {
         List<OrderItem> orderItems;
-        try {
-            Connection connection = dbConnection.getConnection();
-            Statement statement = connection.createStatement();
+        try(Connection connection = dbConnection.getConnection();
+            Statement statement = connection.createStatement();) {
+
             ResultSet rs = statement.executeQuery("SELECT * FROM order_items WHERE order_id = " + orderId);
             orderItems = readRS(rs);
 
