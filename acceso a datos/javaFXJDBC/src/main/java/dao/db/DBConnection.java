@@ -3,10 +3,10 @@ package dao.db;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import config.Configuration;
-import jakarta.annotation.PreDestroy;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import lombok.extern.log4j.Log4j2;
+import jakarta.annotation.PreDestroy;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -83,19 +83,22 @@ public class DBConnection {
 //    private final DataSource hikariDataSource;
 //
 //    @Inject
-//    public DBConnection(Configuration configuration) {
-//        this.configuration = configuration;
+//    public DBConnection(Configuration config) {
+//        this.config = config;
 //        hikariDataSource = getHikariPool();
 //    }
 //
-//
 //    private DataSource getHikariPool() {
 //        HikariConfig hikariConfig = new HikariConfig();
-//        hikariConfig.setJdbcUrl(configuration.getProperty("urlDB"));
-//        hikariConfig.setUsername(configuration.getProperty("user_name"));
-//        hikariConfig.setPassword(configuration.getProperty("password"));
+//        hikariConfig.setJdbcUrl(config.getProperty("urlDB"));
+//        hikariConfig.setUsername(config.getProperty("user_name"));
+//        hikariConfig.setPassword(config.getProperty("password"));
+//        hikariConfig.setDriverClassName(config.getProperty("driver"));
 //        hikariConfig.setMaximumPoolSize(4);
 //
+//        hikariConfig.setIdleTimeout(3000);
+//        hikariConfig.setConnectionTimeout(3000);
+//        hikariConfig.setMaxLifetime(3000);
 //        hikariConfig.addDataSourceProperty("cachePrepStmts", true);
 //        hikariConfig.addDataSourceProperty("prepStmtCacheSize", 250);
 //        hikariConfig.addDataSourceProperty("prepStmtCacheSqlLimit", 2048);
@@ -103,27 +106,32 @@ public class DBConnection {
 //        return new HikariDataSource(hikariConfig);
 //    }
 //
-//    public Connection getConnection() {
-//        Connection con = null;
-//        try {
-//            con = hikariDataSource.getConnection();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
 //
-//        return con;
+//    public Connection getConnection() throws SQLException {
+//        Connection conn = hikariDataSource.getConnection();
+//        log.info("Connection to database established");
+//        return conn;
 //    }
 //
-//    public void closeConnection(Connection con) {
+//
+//    public DataSource getDataSource() {
+//        return hikariDataSource;
+//    }
+//
+//    public void closeConnection(Connection connArg) {
+//        log.info("Closing connection to database");
 //        try {
-//            con.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
+//            if (connArg != null) {
+//                connArg.close();
+//            }
+//        } catch (SQLException sqle) {
+//            sqle.printStackTrace();
 //        }
 //    }
 //
 //    @PreDestroy
 //    public void closePool() {
+//        log.info("Closing connection pool");
 //        ((HikariDataSource) hikariDataSource).close();
 //    }
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.order.OrderRemoveController">
+    <Label layoutX="32.0" layoutY="32.0" prefHeight="62.0" prefWidth="347.0" text="Remove Order">
+        <font>
+            <Font size="42.0"/>
+        </font>
+    </Label>
+
+    <Label layoutX="45.0" layoutY="96.0" text="List of Orders"/>
+
+    <TableView fx:id="tableOrders" onMouseClicked="#orderSelected" layoutX="22.0" layoutY="118.0" prefHeight="303.0" prefWidth="371.0">
+        <columns>
+            <TableColumn fx:id="columnId" prefWidth="49.0" text="ID"/>
+            <TableColumn fx:id="columnDate" prefWidth="143.0" text="Date"/>
+            <TableColumn fx:id="columnCustomerId" prefWidth="89.0" text="CustomerID"/>
+            <TableColumn fx:id="columnTableNumber" prefWidth="89.0" text="TableNumber"/>
+        </columns>
+    </TableView>
+
+    <Label layoutX="416.0" layoutY="88.0" text="Order items"/>
+    <TableView fx:id="tableOrderItems" layoutX="416.0" layoutY="118.0" prefHeight="303.0" prefWidth="316.0">
+        <columns>
+            <TableColumn fx:id="columnItemName" prefWidth="138.0" text="itemName"/>
+            <TableColumn fx:id="columnQuantity" prefWidth="55.0" text="quantity"/>
+            <TableColumn fx:id="columnPrice" prefWidth="48.0" text="price/u"/>
+            <TableColumn fx:id="columnTotalPrice" prefWidth="73.0" text="total"/>
+        </columns>
+    </TableView>
+
+    <Button layoutX="87.0" layoutY="430.0" mnemonicParsing="false" onMouseClicked="#deleteOrder" text="Remove"/>
+</AnchorPane>

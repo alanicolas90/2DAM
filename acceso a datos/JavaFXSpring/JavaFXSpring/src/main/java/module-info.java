@@ -1,6 +1,4 @@
-module JavaFXDataAcess {
-
-
+module JavaFXSpring {
     requires javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
@@ -46,5 +44,4 @@ module JavaFXDataAcess {
     opens service.utils;
     opens dao.impl;
     opens dao;
-
 }

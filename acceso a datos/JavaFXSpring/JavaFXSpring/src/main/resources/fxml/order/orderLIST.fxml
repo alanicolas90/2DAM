@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="520.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.order.OrderListController">
+    <Label layoutX="32.0" layoutY="32.0" prefHeight="62.0" prefWidth="347.0" text="List Orders">
+        <font>
+            <Font size="42.0" />
+        </font>
+    </Label>
+
+    <Label layoutX="45.0" layoutY="96.0" text="List of Orders" />
+
+    <TableView fx:id="tableOrders" layoutX="22.0" layoutY="118.0" onMouseClicked="#orderSelected" prefHeight="303.0" prefWidth="371.0">
+        <columns>
+            <TableColumn fx:id="columnId" prefWidth="49.0" text="ID" />
+            <TableColumn fx:id="columnDate" prefWidth="146.0" text="Date" />
+            <TableColumn fx:id="columnCustomerId" prefWidth="83.0" text="CustomerID" />
+            <TableColumn fx:id="columnTableNumber" prefWidth="92.0" text="TableNumber" />
+        </columns>
+    </TableView>
+
+
+    <Label layoutX="416.0" layoutY="88.0" text="Order items" />
+    <TableView fx:id="tableOrderItems" layoutX="416.0" layoutY="118.0" prefHeight="303.0" prefWidth="302.0">
+        <columns>
+            <TableColumn fx:id="columnItemName" prefWidth="114.0" text="menuItemId" />
+            <TableColumn fx:id="columnQuantity" prefWidth="54.0" text="quantity" />
+            <TableColumn fx:id="columnPrice" prefWidth="57.0" text="price/u" />
+            <TableColumn fx:id="columnTotalPrice" prefWidth="75.0" text="total" />
+        </columns>
+    </TableView>
+   <TextField layoutX="538.0" layoutY="441.0" />
+   <Label layoutX="457.0" layoutY="445.0" text="TotalAmount" />
+   <TextField fx:id="txtCustomerName" layoutX="549.0" layoutY="32.0" />
+   <Label layoutX="457.0" layoutY="36.0" text="CustomerName" />
+   <DatePicker fx:id="datePicker" layoutX="219.0" layoutY="433.0" onMouseClicked="#selectedDate" />
+   <ComboBox fx:id="comboBoxCustomer" layoutX="231.0" layoutY="466.0" onMouseClicked="#selectedBox" prefWidth="150.0" promptText="CutomerID" />
+   <ComboBox fx:id="filterComboBox" layoutX="41.0" layoutY="433.0" onMouseClicked="#selectedFilter" prefWidth="150.0" promptText="Filter" />
+</AnchorPane>

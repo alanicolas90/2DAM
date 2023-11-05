@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="root" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.principal.PrincipalController">
+    <center>
+        <StackPane prefHeight="300.0" prefWidth="1000.0">
+            <AnchorPane prefHeight="954.0" prefWidth="1356.0" BorderPane.alignment="CENTER"/>
+        </StackPane>
+    </center>
+    <top>
+        <MenuBar fx:id="menuPrincipal">
+            <Menu fx:id="menuOptions" mnemonicParsing="false" text="Options">
+
+                <MenuItem fx:id="menuLogout" mnemonicParsing="false" onAction="#menuClick" text="Logout"/>
+                <MenuItem fx:id="menuExit" mnemonicParsing="false" onAction="#menuClick" text="Exit"/>
+
+            </Menu>
+            <Menu fx:id="menuCustomer" mnemonicParsing="false" text="Customers">
+
+                <MenuItem fx:id="listCustomer" mnemonicParsing="false" onAction="#menuClick" text="List"/>
+                <MenuItem fx:id="addCustomer" mnemonicParsing="false" onAction="#menuClick" text="Add"/>
+                <MenuItem fx:id="removeCustomer" mnemonicParsing="false" onAction="#menuClick" text="Remove"/>
+                <MenuItem fx:id="updateCustomer" mnemonicParsing="false" onAction="#menuClick" text="Update"/>
+
+            </Menu>
+            <Menu fx:id="menuOrders" mnemonicParsing="false" text="Orders">
+
+                <MenuItem fx:id="listOrder" onAction="#menuClick" mnemonicParsing="false" text="List"/>
+                <MenuItem fx:id="menuItemAddOrder" onAction="#menuClick" mnemonicParsing="false" text="Add"/>
+                <MenuItem fx:id="menuItemRemoveOrder" onAction="#menuClick" mnemonicParsing="false" text="Remove"/>
+                <MenuItem fx:id="updateOrder" onAction="#menuClick" mnemonicParsing="false" text="Update"/>
+
+            </Menu>
+        </MenuBar>
+    </top>
+</BorderPane>
