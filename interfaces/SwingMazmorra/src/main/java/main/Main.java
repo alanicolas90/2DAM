@@ -2,6 +2,7 @@ package main;
 
 import common.Constantes;
 import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import lombok.extern.log4j.Log4j2;
@@ -97,63 +98,43 @@ public class Main {
 
         //TODO le damos acciones(funcionalidades) a los menuitems de la barra de arriba
         menuItemSalir.addActionListener(e -> System.exit(0));
+        mainPanel.updateUI();
 
         //TODO necesito añadir un filechooser si el profe quiere que lo hagamos asi
-        //menuItemSalir.addActionListener();
+        menuItemCargarTree.addActionListener(e -> {
+            File file = fileChooserSelectedFile(frame);
+            try {
+                JAXBContext context = JAXBContext.newInstance(Mazmorra.class);
+                Unmarshaller unmarshaller = context.createUnmarshaller();
+                Mazmorra mazmorra = (Mazmorra) unmarshaller.unmarshal(file);
+                habitacionActual = mazmorra.getRooms().get(0);
+                cargarMapaEnElTree(tree, mazmorra);
 
-        //TODO Iniciamos la mazmorra, en la primera sala
-        Mazmorra mazmorra = cargarMapaEnElTree(tree);
-        if (mazmorra != null) {
-            habitacionActual = mazmorra.getRooms().get(0);
-            log.setText(log.getText().replace(Constantes.BODY_HTML_FINAL_REPLACE, Constantes.BR_TE_ENCUENTRAS_EN_LA_HABITACION + habitacionActual.getId() + Constantes.BODY_HTML_FINAL_REPLACE));
-            textoEntreLosBotones.setText(habitacionActual.getDescription());
+                //TODO Iniciamos la mazmorra, en la primera sala
+                if (mazmorra != null) {
+                    habitacionActual = mazmorra.getRooms().get(0);
+                    log.setText(log.getText().replace(Constantes.BODY_HTML_FINAL_REPLACE, Constantes.BR_TE_ENCUENTRAS_EN_LA_HABITACION + habitacionActual.getId() + Constantes.BODY_HTML_FINAL_REPLACE));
+                    textoEntreLosBotones.setText(habitacionActual.getDescription());
 
-            //TODO USABILIDAD DE LOS BOTONES
-            loadBotones(bttnNorte, Constantes.NORTE, textoEntreLosBotones, log, mazmorra, bttnNorte, bttnSur, bttnEste, bttnOeste);
-            loadBotones(bttnSur, Constantes.SUR, textoEntreLosBotones, log, mazmorra, bttnNorte, bttnSur, bttnEste, bttnOeste);
-            loadBotones(bttnOeste, Constantes.OESTE, textoEntreLosBotones, log, mazmorra, bttnNorte, bttnSur, bttnEste, bttnOeste);
-            loadBotones(bttnEste, Constantes.ESTE, textoEntreLosBotones, log, mazmorra, bttnNorte, bttnSur, bttnEste, bttnOeste);
-        } else {
-            textoEntreLosBotones.setText(Constantes.NO_SE_HA_PODIDO_CARGAR_EL_MAPA);
-        }
-
-        //TODO para que se actualice la pantalla (para el tree, si no se queda la pantalla en blanco)
-        mainPanel.updateUI();
-    }
-
-    private static Mazmorra cargarMapaEnElTree(JTree tree) {
-
-        File file = new File(Constantes.SRC_MAIN_RESOURCES_MAPA_XML);
-        Mazmorra mazmorra = null;
-        try {
-            //el parser de xml
-            JAXBContext context = JAXBContext.newInstance(Mazmorra.class);
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-
-            //read the file
-            mazmorra = (Mazmorra) unmarshaller.unmarshal(file);
-
-            //primer nodo
-            DefaultMutableTreeNode root = new DefaultMutableTreeNode(Constantes.MAZMORRA);
-            tree.setModel(new DefaultTreeModel(root));
-            //este bucle es para generar las habitaciones
-            for (int i = 0; i < mazmorra.getRooms().size(); i++) {
-                DefaultMutableTreeNode room = new DefaultMutableTreeNode(Constantes.ROOM + mazmorra.getRooms().get(i).getId());
-                root.add(room);
-                room.add(new DefaultMutableTreeNode(mazmorra.getRooms().get(i).getDescription()));
-                //este bucle es para las puertas disponibles en cada habitacion
-                for (int j = 0; j < mazmorra.getRooms().get(i).getDoors().size(); j++) {
-                    room.add(new DefaultMutableTreeNode(mazmorra.getRooms().get(i).getDoors().get(j).getName() + Constantes.FLECHA + mazmorra.getRooms().get(i).getDoors().get(j).getDestination()));
+                    //TODO USABILIDAD DE LOS BOTONES
+                    loadBotones(bttnNorte, Constantes.NORTE, textoEntreLosBotones, log, mazmorra, bttnNorte, bttnSur, bttnEste, bttnOeste);
+                    loadBotones(bttnSur, Constantes.SUR, textoEntreLosBotones, log, mazmorra, bttnNorte, bttnSur, bttnEste, bttnOeste);
+                    loadBotones(bttnOeste, Constantes.OESTE, textoEntreLosBotones, log, mazmorra, bttnNorte, bttnSur, bttnEste, bttnOeste);
+                    loadBotones(bttnEste, Constantes.ESTE, textoEntreLosBotones, log, mazmorra, bttnNorte, bttnSur, bttnEste, bttnOeste);
+                } else {
+                    textoEntreLosBotones.setText(Constantes.NO_SE_HA_PODIDO_CARGAR_EL_MAPA);
                 }
+
+                //TODO para que se actualice la pantalla (para el tree, si no se queda la pantalla en blanco)
+                mainPanel.updateUI();
+            } catch (JAXBException exception) {
+                exception.printStackTrace();
             }
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-        return mazmorra;
+        });
+
+
     }
+
 
     private static void loadBotones(JButton boton, String direccion, JLabel textoEntreLosBotones, JLabel log, Mazmorra mazmorra, JButton bttnNorte, JButton bttnSur, JButton bttnEste, JButton bttnOeste) {
         //TODO LISTA DE PUERTAS
@@ -176,7 +157,6 @@ public class Main {
 
             //TODO ID DE LA PUERTA SELECCIONADA
             String nuevaHabitacionId = selectedDoor.getDestination();
-
 
             //TODO BUSCAR LA HABITACION EN LA MAZMORRA
             Room nuevaHabitacion = null;
@@ -203,5 +183,43 @@ public class Main {
         });
 
 
+    }
+
+    private static File fileChooserSelectedFile(JFrame frame) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                return f.getName().toLowerCase().endsWith(".xml") || f.isDirectory();
+            }
+
+            @Override
+            public String getDescription() {
+                return "XML files";
+            }
+        });
+        fileChooser.showOpenDialog(frame);
+        return fileChooser.getSelectedFile();
+    }
+
+    private static Mazmorra cargarMapaEnElTree(JTree tree, Mazmorra mazmorra) {
+        try {
+            //primer nodo
+            DefaultMutableTreeNode root = new DefaultMutableTreeNode(Constantes.MAZMORRA);
+            tree.setModel(new DefaultTreeModel(root));
+            //este bucle es para generar las habitaciones
+            for (int i = 0; i < mazmorra.getRooms().size(); i++) {
+                DefaultMutableTreeNode room = new DefaultMutableTreeNode(Constantes.ROOM + mazmorra.getRooms().get(i).getId());
+                root.add(room);
+                room.add(new DefaultMutableTreeNode(mazmorra.getRooms().get(i).getDescription()));
+                //este bucle es para las puertas disponibles en cada habitacion
+                for (int j = 0; j < mazmorra.getRooms().get(i).getDoors().size(); j++) {
+                    room.add(new DefaultMutableTreeNode(mazmorra.getRooms().get(i).getDoors().get(j).getName() + Constantes.FLECHA + mazmorra.getRooms().get(i).getDoors().get(j).getDestination()));
+                }
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return mazmorra;
     }
 }
