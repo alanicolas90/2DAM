@@ -61,3 +61,9 @@ i
 9src/main/java/ui/screens/order/OrderUpdateController.java,e\1\e19c354b71e6eb1fdde39dc26995531fd17efb63
 X
 (src/main/java/service/OrdersService.java,e\c\ec321af92689a2f45b2057047ca7f71d27b3eb0e
+N
+src/main/java/model/Order.java,d\a\da40720aeeaaed55b9015b87ce0ba9418140ed2f
+R
+"src/main/java/model/OrderItem.java,1\6\167b8d66074bc236df1ebb0ba4dbeb2f1f0e659c
+Q
+!src/main/java/model/MenuItem.java,3\e\3e6c670982a942e8ba153c81ff84c5075d583063
