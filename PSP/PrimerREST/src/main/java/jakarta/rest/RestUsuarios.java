@@ -8,11 +8,9 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.modelmapper.ModelMapper;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
-@Path("/users")
+@Path("/orders")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class RestUsuarios {
@@ -21,14 +19,11 @@ public class RestUsuarios {
 
     private ModelMapper mapper;
 
-//    @Context
-//    private SecurityContext security;
 
     @Inject
     public RestUsuarios(ServiciosUsuarios su, ModelMapper mapper) {
         this.su = su;
         this.mapper = mapper;
-//        this.security = security;
     }
 
     //para todos los metodos

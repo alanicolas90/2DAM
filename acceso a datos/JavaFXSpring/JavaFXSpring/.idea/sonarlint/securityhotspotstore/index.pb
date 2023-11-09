@@ -67,3 +67,5 @@ R
 "src/main/java/model/OrderItem.java,1\6\167b8d66074bc236df1ebb0ba4dbeb2f1f0e659c
 Q
 !src/main/java/model/MenuItem.java,3\e\3e6c670982a942e8ba153c81ff84c5075d583063
+O
+src/main/java/dao/LoginDao.java,9\3\9375bc06d3ba0fc9785564498a9b9d5049935538

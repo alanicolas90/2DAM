@@ -3,38 +3,36 @@ package jakarta.rest;
 
 
 import dao.model.Customer;
-import domain.servicios.ServiciosBuenosUsuarios;
+import domain.servicios.CustomerService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Path("/customers")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class RestBuenoUsuarios {
+public class CustomerREST {
 
-    private ServiciosBuenosUsuarios su;
+    private CustomerService su;
 
 
     @Inject
-    public RestBuenoUsuarios(ServiciosBuenosUsuarios su) {
+    public CustomerREST(CustomerService su) {
         this.su = su;
     }
 
 
     @GET
     public List<Customer> getAllUsuario() {
-        return su.dameTodos();
+        return su.getAll();
     }
 
     @GET
     @Path("/{id}")
-    public Customer getUsuario(@PathParam("id") String id) {
-        return su.dameUsuario(id);
+    public Customer getUsuario(@PathParam(Constantes.ID) String id) {
+        return su.get(id);
     }
 
 

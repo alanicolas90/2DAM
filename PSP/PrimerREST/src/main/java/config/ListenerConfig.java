@@ -33,7 +33,6 @@ public class ListenerConfig implements ServletContextListener {
       */
 
         config.cargar(sce.getServletContext().getResourceAsStream("/WEB-INF/config/config.yaml"));
-        System.out.println("ruta: "+config.getRuta());
         pool.loadPool();
     }
 
@@ -43,8 +42,6 @@ public class ListenerConfig implements ServletContextListener {
          Application Server shuts down.
       */
        pool.closePool();
-
-
     }
 
 }

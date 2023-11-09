@@ -6,20 +6,20 @@ import jakarta.inject.Inject;
 
 import java.util.List;
 
-public class ServiciosBuenosUsuarios {
+public class CustomerService {
 
     private CustomerDao dao;
 
     @Inject
-    public ServiciosBuenosUsuarios(CustomerDao dao) {
+    public CustomerService(CustomerDao dao) {
         this.dao = dao;
     }
 
-    public List<Customer> dameTodos() {
+    public List<Customer> getAll() {
         return dao.getAll().get();
     }
 
-    public Customer dameUsuario(String id) {
+    public Customer get(String id) {
 
         return dao.get(Integer.parseInt(id)).get();
     }
