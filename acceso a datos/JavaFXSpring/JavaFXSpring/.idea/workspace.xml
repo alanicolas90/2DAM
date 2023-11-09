@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab0d3c51-1c8e-4405-8fe4-bc20db64da89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../PSP/PrimerREST/src/main/java/config/EntityManagerProducer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/PrimerREST/src/main/java/domain/model/Singer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/PrimerREST/src/main/java/domain/model/Song.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/PrimerREST/src/main/java/jakarta/rest/JAXRSApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/PrimerREST/src/main/java/jakarta/rest/SongREST.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/PrimerREST/src/main/java/repository/SongRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/PrimerREST/src/main/webapp/WEB-INF/glassfish-resources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/PrimerREST/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/PrimerREST/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/PrimerREST/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/PrimerREST/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/PrimerREST/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/PrimerREST/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c3e830e1-7d8b-46cb-9f6c-87bd22ba1f22.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c3e830e1-7d8b-46cb-9f6c-87bd22ba1f22.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ab0d3c51-1c8e-4405-8fe4-bc20db64da89" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,6 +100,7 @@
       <workItem from="1699344627124" duration="1461000" />
       <workItem from="1699533450733" duration="312000" />
       <workItem from="1699536448307" duration="446000" />
+      <workItem from="1699539440382" duration="7501000" />
     </task>
     <servers />
   </component>
