@@ -1,14 +1,9 @@
 
-J
-java:S37402"/Provide the parametrized type for this generic.(‘Ææ´üÿÿÿÿ
-J
-java:S3740M"/Provide the parametrized type for this generic.(‘Ææ´üÿÿÿÿ
-Q	java:S125 "<This block of commented-out lines of code should be removed.(âë¡
-Q	java:S125&"<This block of commented-out lines of code should be removed.(ãªš¬
-L
-java:S1854>"6Remove this useless assignment to local variable "r1".(«ïä”
-V	java:S125*"<This block of commented-out lines of code should be removed.(ÖÒÂ‘ýÿÿÿÿ
-B
-java:S1481:"'Remove this unused "r1" local variable.(Î›´½ùÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(âë¡
+Q	java:S125"<This block of commented-out lines of code should be removed.(ãªš¬
+V	java:S125#"<This block of commented-out lines of code should be removed.(ÖÒÂ‘ýÿÿÿÿ
+]	java:S125)"<This block of commented-out lines of code should be removed.(ÔÖû‰ýÿÿÿÿ8®ùå«»1
+]	java:S125E"<This block of commented-out lines of code should be removed.(éë¼•ùÿÿÿÿ8ÎÂå«»1
+X	java:S125\"<This block of commented-out lines of code should be removed.(‡þí8‡å«»1
 E
-java:S1068"*Remove this unused "mapper" private field.(„¶¹˜ÿÿÿÿÿ
+java:S1068"*Remove this unused "mapper" private field.(„¶¹˜ÿÿÿÿÿ

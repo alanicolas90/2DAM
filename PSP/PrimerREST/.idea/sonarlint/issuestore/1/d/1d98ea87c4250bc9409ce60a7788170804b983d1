@@ -1,5 +1,2 @@
 
-o
-java:S6204<"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(Ô„æ³8éĞÆ¤»1
-X
-java:S2696A"6Make the enclosing method "static" or remove this set.(ã¯‘ëıÿÿÿÿ8ùĞÆ¤»1
+]	java:S125*"<This block of commented-out lines of code should be removed.(ÌÙ¦Ïùÿÿÿÿ8õæé«»1

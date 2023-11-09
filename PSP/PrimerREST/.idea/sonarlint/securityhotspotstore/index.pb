@@ -69,3 +69,35 @@ X
 (src/main/java/dao/ProducerHibernate.java,5\b\5bf62358d1e552dec5fc3c772c4987694fc950ab
 W
 'src/main/java/dao/DBConnectionPool.java,2\9\299b42bb1e6854997ec216a7ea7031195666e722
+\
+,src/main/java/dao/impl/DBConnectionImpl.java,a\c\ac3f09de0b0545829763a4b806599399d5761f62
+S
+#src/main/java/dao/MenuItemsDao.java,7\9\7929804c4559f2c08452a3c5c80005cc3459e79d
+W
+'src/main/java/dao/utils/SQLQueries.java,2\5\25c67e20ccfa5d3783bbbb084bcbb07f1383c3d5
+T
+$src/main/java/dao/OrderItemsDao.java,a\a\aae2c4a1f1839da15b08e0acf28089f8eac13a0b
+R
+"src/main/java/dao/CustomerDao.java,4\d\4d73f8e21866a715c6674826f4163c18e5bd51c0
+j
+:src/main/java/dao/impl/rowmappers/CredentialRowMapper.java,d\0\d061804968c319d318d068ce0532cd3ae2cb53b9
+[
++src/main/java/dao/impl/CustomerDaoImpl.java,d\6\d6f354130eb7f54c914b500388874774302fc4cf
+\
+,src/main/java/dao/impl/MenuItemsDaoImpl.java,b\a\ba734fbba6d7c43270fb1c920dfb3799f24781cb
+P
+ src/main/java/dao/OrdersDao.java,6\b\6b3cddfa70942fee375a74d325ab79edba6d76c8
+X
+(src/main/java/dao/impl/LoginDaoImpl.java,e\5\e5e7325d267fea1076a19b594d74415233ba72cd
+O
+src/main/java/dao/LoginDao.java,9\3\9375bc06d3ba0fc9785564498a9b9d5049935538
+Y
+)src/main/java/dao/impl/TablesDaoImpl.java,6\f\6f698a0fa066e1ea0f51e2736452ac14c5f334e5
+P
+ src/main/java/dao/TablesDao.java,e\e\eedcde0f02dea4a6aabc7c5a902a7e97b2fc5792
+]
+-src/main/java/dao/impl/OrderItemsDaoImpl.java,d\3\d3cdb29c1e31f10a40accd90b4dd1e8410015b75
+h
+8src/main/java/dao/impl/rowmappers/CustomerRowMapper.java,b\0\b097a71462fafb3187d40e8a81877b675958fa3b
+Y
+)src/main/java/dao/impl/OrdersDaoImpl.java,6\d\6d43d811500b448bd8f3499206a3b09b4c566089

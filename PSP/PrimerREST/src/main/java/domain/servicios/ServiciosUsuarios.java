@@ -1,8 +1,7 @@
 package domain.servicios;
 
-import dao.DaoUsuario;
-import dao.modelo.Usuario;
-import dao.modelo.UsuarioEntity;
+import dao.CustomerDao;
+import dao.model.Customer;
 import domain.modelo.errores.OtraException;
 import io.vavr.control.Either;
 import jakarta.errores.ApiError;
@@ -18,53 +17,53 @@ public class ServiciosUsuarios {
     private Validator validator;
 
 
-    private DaoUsuario dao;
+    private CustomerDao dao;
 
 
     @Inject
-    public ServiciosUsuarios(Validator validator, DaoUsuario dao) {
+    public ServiciosUsuarios(Validator validator, CustomerDao dao) {
         this.validator = validator;
         this.dao = dao;
     }
 
-    public Either<ApiError, Usuario> dameUno(String id)
+//    public Either<ApiError, Usuario> dameUno(String id)
+//    {
+//        return dao.dameUno(id);
+//    }
+
+    public List<Customer> dameTodos()
     {
-        return dao.dameUno(id);
+        return dao.getAll().get();
     }
 
-    public List<Usuario> dameTodos()
-    {
-        return dao.dameTodos();
-    }
-
-    public boolean borrar(String id )
-    {
-        return dao.borrar(id);
-    }
-
-    public boolean login(String user,String pass){
-
-        boolean loginOk=false;
-        if (dao.dameUsuarioPorNombre(user).isRight())
-        {
-            loginOk = pass.equals(dao.dameUsuarioPorNombre(user).get().getPassword());
-        }
-        return loginOk;
-
-    }
-
-    public  Usuario addUser(Usuario u)
-    {
-        final StringBuilder error = new StringBuilder();
-        validator.validate(u).stream().forEach(
-                testDtoConstraintViolation ->
-                        error.append(testDtoConstraintViolation.getMessage()));
-        if (!error.toString().isEmpty())
-            throw new OtraException(error.toString());
-        return dao.addUser(u);
-    }
-
-    public List<UsuarioEntity> dameTodosHibernate() {
-        return dao.dameTodosHibernate();
-    }
+//    public boolean borrar(String id )
+//    {
+//        return dao.borrar(id);
+//    }
+//
+//    public boolean login(String user,String pass){
+//
+//        boolean loginOk=false;
+//        if (dao.dameUsuarioPorNombre(user).isRight())
+//        {
+//            loginOk = pass.equals(dao.dameUsuarioPorNombre(user).get().getPassword());
+//        }
+//        return loginOk;
+//
+//    }
+//
+//    public  Usuario addUser(Usuario u)
+//    {
+//        final StringBuilder error = new StringBuilder();
+//        validator.validate(u).stream().forEach(
+//                testDtoConstraintViolation ->
+//                        error.append(testDtoConstraintViolation.getMessage()));
+//        if (!error.toString().isEmpty())
+//            throw new OtraException(error.toString());
+//        return dao.addUser(u);
+//    }
+//
+//    public List<UsuarioEntity> dameTodosHibernate() {
+//        return dao.dameTodosHibernate();
+//    }
 }

@@ -1,6 +1,6 @@
 package config;
 
-import dao.DBConnectionPool;
+import dao.DBConnection;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
@@ -10,10 +10,10 @@ import jakarta.servlet.annotation.WebListener;
 public class ListenerConfig implements ServletContextListener {
     Configuration config;
 
-    DBConnectionPool pool;
+    DBConnection pool;
 
     @Inject
-    public ListenerConfig(Configuration config,DBConnectionPool pool) {
+    public ListenerConfig(Configuration config,DBConnection pool) {
         this.config = config;
         this.pool = pool;
 
@@ -33,7 +33,8 @@ public class ListenerConfig implements ServletContextListener {
       */
 
         config.cargar(sce.getServletContext().getResourceAsStream("/WEB-INF/config/config.yaml"));
-        pool.cargarPool();
+        System.out.println("ruta: "+config.getRuta());
+        pool.loadPool();
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
@@ -45,8 +46,5 @@ public class ListenerConfig implements ServletContextListener {
 
 
     }
-
-
-
 
 }

@@ -1,26 +1,26 @@
 package domain.servicios;
 
-import dao.DaoErrores;
-import dao.modelo.Usuario;
+import dao.CustomerDao;
+import dao.model.Customer;
 import jakarta.inject.Inject;
 
 import java.util.List;
 
 public class ServiciosBuenosUsuarios {
 
-    private DaoErrores dao;
+    private CustomerDao dao;
 
     @Inject
-    public ServiciosBuenosUsuarios(DaoErrores dao) {
+    public ServiciosBuenosUsuarios(CustomerDao dao) {
         this.dao = dao;
     }
 
-    public List<Usuario> dameTodos() {
-        return dao.dameTodos();
+    public List<Customer> dameTodos() {
+        return dao.getAll().get();
     }
 
-    public Usuario dameUsuario(String id) {
+    public Customer dameUsuario(String id) {
 
-        return dao.dameUsuario(id);
+        return dao.get(Integer.parseInt(id)).get();
     }
 }

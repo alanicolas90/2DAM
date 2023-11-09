@@ -1,10 +1,15 @@
 
-j
-java:S1104"TMake usuarios a static final constant or non-public and provide accessors if needed.(«¹
-D
-java:S1444".Make this "public static usuarios" field final(«¹
-Q	java:S125"<This block of commented-out lines of code should be removed.(²Ñ´
-4
-java:S2119"Save and re-use this "Random".(¡Å”¦
-4
-java:S2119"Save and re-use this "Random".(¡Å”¦
+q
+java:S1104"TMake usuarios a static final constant or non-public and provide accessors if needed.(«¹8—÷Â¨»1
+K
+java:S1444".Make this "public static usuarios" field final(«¹8—÷Â¨»1
+:
+java:S2386"Make this member "protected".(«¹8Ÿ÷Â¨»1
+X
+java:S2696"6Make the enclosing method "static" or remove this set.(®à¦ÿÿÿÿÿ8¬üÃ¨»1
+;
+java:S2119#"Save and re-use this "Random".(¡Å”¦8¥÷Â¨»1
+N
+java:S1128"1Remove this unused import 'config.Configuration'.(ü·±ï8¥÷Â¨»1
+g
+java:S1128"JRemove this unused import 'domain.modelo.errores.BaseDatosCaidaException'.(îúŠ‡8‡İÃ¨»1
