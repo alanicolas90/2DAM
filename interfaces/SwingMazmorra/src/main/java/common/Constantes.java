@@ -14,9 +14,8 @@ public class Constantes {
     public static final String BODY_HTML_FINAL_REPLACE = "</body></html>";
     public static final String BR_TE_ENCUENTRAS_EN_LA_HABITACION = "<br>Te encuentras en la habitacion ";
     public static final String NO_SE_HA_PODIDO_CARGAR_EL_MAPA = "No se ha podido cargar el mapa";
-    public static final String SRC_MAIN_RESOURCES_MAPA_XML = "src/main/resources/mapa.xml";
     public static final String ROOM = "room";
     public static final String FLECHA = "->";
     public static final String BR_TE_HAS_DIRIGIDO_HACIA_EL = "<br>Te has dirigido hacia el ";
-    public static final String GAME_TITLE = "Dungeon Crawler";
+    public static final String GAME_TITLE = "Swing Mazmorra";
 }
