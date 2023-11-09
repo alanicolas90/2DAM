@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "ea2c367f-b8a1-4832-9987-d56bc9b34f53",
+		"name": "ApiRESTPSP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30168374"
+	},
+	"item": [
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/customers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCustomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/customers/74",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customers",
+								"74"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

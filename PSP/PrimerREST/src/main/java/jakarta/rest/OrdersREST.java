@@ -2,7 +2,8 @@ package jakarta.rest;
 
 
 import dao.model.Customer;
-import domain.servicios.ServiciosUsuarios;
+import dao.model.Order;
+import domain.servicios.OrderService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -13,15 +14,15 @@ import java.util.List;
 @Path("/orders")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class RestUsuarios {
+public class OrdersREST {
 
-    private ServiciosUsuarios su;
+    private OrderService su;
 
     private ModelMapper mapper;
 
 
     @Inject
-    public RestUsuarios(ServiciosUsuarios su, ModelMapper mapper) {
+    public OrdersREST(OrderService su, ModelMapper mapper) {
         this.su = su;
         this.mapper = mapper;
     }
@@ -78,7 +79,7 @@ public class RestUsuarios {
 //    }
 
     @GET
-    public List<Customer> getAllUsuario() {
+    public List<Order> getAllUsuario() {
         return su.dameTodos();
     }
 

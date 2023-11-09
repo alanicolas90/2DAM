@@ -13,13 +13,13 @@ import java.util.List;
 @Path("/customers")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class CustomerREST {
+public class CustomersREST {
 
     private CustomerService su;
 
 
     @Inject
-    public CustomerREST(CustomerService su) {
+    public CustomersREST(CustomerService su) {
         this.su = su;
     }
 

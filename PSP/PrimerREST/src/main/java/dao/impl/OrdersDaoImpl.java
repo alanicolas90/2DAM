@@ -215,6 +215,7 @@ public class OrdersDaoImpl implements OrdersDao {
                 LocalDateTime date = resultSet.getTimestamp("order_date").toLocalDateTime();
                 int customerId = resultSet.getInt("customer_id");
                 int tableNumber = resultSet.getInt("table_number");
+
                 Order order = new Order(id, date, customerId, tableNumber);
                 orders.add(order);
 

@@ -1,28 +1,23 @@
 package domain.servicios;
 
 import dao.CustomerDao;
+import dao.OrdersDao;
 import dao.model.Customer;
-import domain.modelo.errores.OtraException;
-import io.vavr.control.Either;
-import jakarta.errores.ApiError;
+import dao.model.Order;
 import jakarta.inject.Inject;
 import jakarta.validation.Validator;
 
 import java.util.List;
 
 
-public class ServiciosUsuarios {
+public class OrderService {
 
 
-    private Validator validator;
-
-
-    private CustomerDao dao;
+    private OrdersDao dao;
 
 
     @Inject
-    public ServiciosUsuarios(Validator validator, CustomerDao dao) {
-        this.validator = validator;
+    public OrderService(OrdersDao dao) {
         this.dao = dao;
     }
 
@@ -31,7 +26,7 @@ public class ServiciosUsuarios {
 //        return dao.dameUno(id);
 //    }
 
-    public List<Customer> dameTodos()
+    public List<Order> dameTodos()
     {
         return dao.getAll().get();
     }
