@@ -92,7 +92,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public Either<ErrorC, Integer> saveAutoIncrementalID(Customer customer) {
+    public Either<ErrorC, Integer> save(Customer customer) {
         int rowsAffected = 0;
         try(Connection connection = dbConnection.getConnection();) {
             rowsAffected = tryCatchAddCredentialAndCustomer(connection, rowsAffected, customer);

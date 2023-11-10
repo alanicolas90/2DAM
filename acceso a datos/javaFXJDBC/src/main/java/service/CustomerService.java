@@ -3,13 +3,9 @@ package service;
 import dao.CustomerDao;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import javafx.scene.control.TextField;
 import model.Customer;
 import model.ErrorC;
-import service.utils.ServiceConstants;
 
-import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 
 public class CustomerService {
@@ -26,7 +22,7 @@ public class CustomerService {
     }
 
     public Either<ErrorC, Integer> saveAutoIncrementalID(Customer customer) {
-        return customerDao.saveAutoIncrementalID(customer);
+        return customerDao.save(customer);
     }
 
     public Either<ErrorC, Integer> delete(int id, boolean confirm) {
