@@ -1,11 +1,0 @@
-
-X	java:S125"<This block of commented-out lines of code should be removed.(Ú°à¬8ƒ‚ë«»1
-X	java:S125("<This block of commented-out lines of code should be removed.(Ú°à¬8Ë§ë«»1
-\
-java:S1128"@Remove this unused import 'domain.modelo.errores.OtraException'.(Åù¶8˜«¾²»1
-P
-java:S1128"3Remove this unused import 'io.vavr.control.Either'.(÷¿œ’8˜«¾²»1
-W
-java:S1128"5Remove this unused import 'jakarta.errores.ApiError'.(¥œŠıÿÿÿÿ8™«¾²»1
-J
-java:S1068"-Remove this unused "validator" private field.(™­£Ü8Ë§ë«»1

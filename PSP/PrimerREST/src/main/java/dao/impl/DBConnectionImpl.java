@@ -33,7 +33,7 @@ public class DBConnectionImpl implements DBConnection {
         hikariConfig.setUsername(config.getUser());
         hikariConfig.setPassword(config.getPassword());
         hikariConfig.setDriverClassName(config.getDriver());
-        hikariConfig.setMaximumPoolSize(2);
+        hikariConfig.setMaximumPoolSize(5);
 
         hikariConfig.setIdleTimeout(3000);
         hikariConfig.setConnectionTimeout(3000);

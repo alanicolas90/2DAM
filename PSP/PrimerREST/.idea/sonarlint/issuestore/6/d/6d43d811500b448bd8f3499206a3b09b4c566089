@@ -1,7 +1,11 @@
 
-X
-java:S1141Š"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ßú”³»1
-X
-java:S1141£"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ßú”³»1
-u
-java:S3776…"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(½ĞÛˆùÿÿÿÿ8îú”³»1
+g	java:S112&"FDefine and throw a dedicated exception instead of using a generic one.(Ê“Åıÿÿÿÿ8 ÇÚ×»1
+g	java:S1123"FDefine and throw a dedicated exception instead of using a generic one.(Ê“Åıÿÿÿÿ8 ÇÚ×»1
+W
+java:S1141_"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¡ÇÚ×»1
+W
+java:S1141x"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¡ÇÚ×»1
+t
+java:S3776Z"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(½ĞÛˆùÿÿÿÿ8­ÇÚ×»1
+N
+java:S1144¦"+Remove this unused private "readRS" method.(®ş…şÿÿÿÿÿ8±ÇÚ×»1

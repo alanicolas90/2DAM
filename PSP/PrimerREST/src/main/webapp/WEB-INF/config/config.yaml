@@ -1,4 +1,4 @@
-ruta: jdbc:mysql://192.168.1.105:3306/alanmikolajczyk_restaurant?useSSL=false
+ruta: jdbc:mysql://192.168.1.105:3306/alan?useSSL=false&allowPublicKeyRetrieval=true
 user: root
 password: quevedo2dam
 driver: com.mysql.cj.jdbc.Driver

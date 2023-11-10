@@ -1,9 +1,0 @@
-
-X	java:S125"<This block of commented-out lines of code should be removed.(Ú°à¬8§œÜ²»1
-X	java:S125#"<This block of commented-out lines of code should be removed.(Ú°à¬8©œÜ²»1
-I
-java:S1128",Remove this unused import 'dao.CustomerDao'.(à§¶ä8œÆó²»1
-Q
-java:S1128"/Remove this unused import 'dao.model.Customer'.(ÆÔ…Ïúÿÿÿÿ8Æó²»1
-[
-java:S1128"9Remove this unused import 'jakarta.validation.Validator'.(ëªÒ†ûÿÿÿÿ8Æó²»1

@@ -7,8 +7,11 @@ import domain.servicios.CustomerService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
+import java.net.URI;
 import java.util.List;
+
 
 @Path("/customers")
 @Produces(MediaType.APPLICATION_JSON)
@@ -25,24 +28,29 @@ public class CustomersREST {
 
 
     @GET
-    public List<Customer> getAllUsuario() {
+    public List<Customer> getAllCustomers() {
         return su.getAll();
     }
 
     @GET
     @Path("/{id}")
-    public Customer getUsuario(@PathParam(Constantes.ID) String id) {
+    public Customer getCustomer(@PathParam(Constantes.ID) String id) {
         return su.get(id);
     }
 
+    @POST
+    public Response create(Customer customer){
+        su.add(customer);
+        return Response.created(URI.create("/customers/"+ customer.getId())).build();
+    }
 
-//    @POST
-//    public Response addUsuario(Usuario usuario) {
-//        DaoErrores.usuarios.add(usuario);
-//        usuario.setId("" + Math.random());
-//        return Response.status(Response.Status.CREATED)
-//                .entity(usuario).build();
-//    }
+    @DELETE
+    @Path("/{id}")
+    public Response delete(@PathParam(Constantes.ID) Integer id){
+        su.delete(id);
+        return Response.noContent().build();
+    }
+
 //
 //    @PUT
 //    public Usuario updateUsuario(Usuario usuario, @QueryParam("id") String id) {

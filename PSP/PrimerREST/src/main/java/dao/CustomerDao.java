@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface CustomerDao {
 
-    Either<ErrorC, List<Customer>> getAll();
+    List<Customer> getAll();
 
-    Either<ErrorC, Integer> saveAutoIncrementalID(Customer customer);
+    Customer saveAutoIncrementalID(Customer customer);
 
     Either<ErrorC, Customer> get(int id);
 
     Either<ErrorC, Integer> update(Customer customerUpdated);
 
-    Either<ErrorC, Integer> delete(int id, boolean confirm);
+    Integer delete(int id);
 }

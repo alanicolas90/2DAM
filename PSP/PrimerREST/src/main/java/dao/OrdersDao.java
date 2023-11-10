@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface OrdersDao {
 
-    Either<ErrorC, List<Order>> getAll();
+    List<Order> getAll();
 
-    Either<ErrorC, List<Order>> get(int idUserLogged);
+    List<Order> get(int idUserLogged);
 
-    Either<ErrorC, Integer> add(Order order);
+    Integer add(Order order);
 
     Either<ErrorC, Integer> update(Order order);
 
