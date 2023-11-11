@@ -2,7 +2,9 @@ package domain.servicios;
 
 import dao.OrdersDao;
 import dao.model.Order;
+import domain.modelo.errores.ModificacionException;
 import domain.modelo.errores.NotFoundException;
+import domain.utils.ConstantesDomain;
 import jakarta.inject.Inject;
 
 import java.util.List;
@@ -23,7 +25,7 @@ public class OrderService {
         List<Order> orders = dao.getAll();
 
         if (orders.isEmpty()) {
-            throw new NotFoundException("No hay pedidos");
+            throw new NotFoundException(ConstantesDomain.NO_HAY_PEDIDOS);
         } else {
             return orders;
         }
@@ -33,24 +35,30 @@ public class OrderService {
         Order order = dao.get(id);
 
         if(order == null) {
-            throw new NotFoundException("No existe pedido con el id: " + id);
+            throw new NotFoundException(ConstantesDomain.NO_EXISTE_PEDIDO_CON_EL_ID + id);
         }else{
             return order;
         }
     }
 
     public void add(Order order) {
-        dao.add(order);
+        int rowsAffected = dao.add(order);
+        if(rowsAffected == 0) {
+            throw new ModificacionException(ConstantesDomain.NO_SE_HA_PODIDO_ADD_EL_PEDIDO_VERIFICA_SI_EL_ID_DEL_PEDIDO_ES_EL_CORRECTO);
+        }
     }
 
     public void delete(Integer id) {
-        dao.delete(id);
+        int rowsAffected = dao.delete(id);
+        if(rowsAffected == 0) {
+            throw new ModificacionException(ConstantesDomain.NO_SE_HA_PODIDO_ELIMINAR_EL_PEDIDO_VERIFICA_SI_EL_PEDIDO_ES_EL_CORRECTO);
+        }
     }
 
     public void update(Order order) {
         int rowsAffected = dao.update(order);
         if(rowsAffected == 0) {
-            throw new NotFoundException("No se ha podido actualizar el pedido, verifica si el pedido es el correcto");
+            throw new ModificacionException(ConstantesDomain.NO_SE_HA_PODIDO_ACTUALIZAR_EL_PEDIDO_VERIFICA_SI_EL_PEDIDO_ES_EL_CORRECTO);
         }
     }
 }

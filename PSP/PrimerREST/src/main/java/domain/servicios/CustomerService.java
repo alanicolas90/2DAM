@@ -39,13 +39,11 @@ public class CustomerService {
         }
     }
 
-    public Integer add(Customer c) {
+    public void add(Customer c) {
         int rowsAffected = dao.save(c);
 
         if(rowsAffected == 0) {
             throw new ModificacionException(ConstantesDomain.ERROR_ADD_CLIENTE);
-        }else{
-            return rowsAffected;
         }
     }
 

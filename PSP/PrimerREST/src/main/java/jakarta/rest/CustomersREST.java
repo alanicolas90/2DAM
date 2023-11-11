@@ -9,7 +9,6 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import java.net.URI;
 import java.util.List;
 
 
@@ -34,7 +33,7 @@ public class CustomersREST {
 
     @GET
     @Path("/{id}")
-    public Customer getCustomer(@PathParam(Constantes.ID) int id) {
+    public Customer getCustomer(@PathParam(ConstantesJakarta.ID) int id) {
         return customerService.get(id);
     }
 
@@ -47,14 +46,14 @@ public class CustomersREST {
 
     @DELETE
     @Path("/{id}")
-    public Response delete(@PathParam(Constantes.ID) Integer id){
+    public Response delete(@PathParam(ConstantesJakarta.ID) Integer id){
         customerService.delete(id);
         return Response.ok().build();
     }
 
     @PUT
     @Path("/{id}")
-    public Response update(@PathParam(Constantes.ID)int id, Customer customer){
+    public Response update(@PathParam(ConstantesJakarta.ID)int id, Customer customer){
         customer.setId(id);
         customerService.update(customer);
         return Response.ok(customer).build();

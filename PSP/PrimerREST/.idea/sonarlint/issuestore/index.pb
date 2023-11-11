@@ -79,3 +79,5 @@ Z
 *src/main/java/config/CosntantesConfig.java,1\9\19e2c17adbf27f1fca4628e59222c7d5ab831cee
 Z
 *src/main/java/config/ConstantesConfig.java,2\e\2eee291ab171636e4412452b9130441e32ca03ae
+a
+1src/main/java/jakarta/rest/ConstantesJakarta.java,6\f\6fe51fd3804c0e58d0a8ad144f20b7112075cb19

@@ -8,7 +8,6 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import java.net.URI;
 import java.util.List;
 
 @Path("/orders")
@@ -16,7 +15,7 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class OrdersREST {
 
-    private OrderService orderService;
+    private final OrderService orderService;
 
 
 
@@ -54,7 +53,7 @@ public class OrdersREST {
 
     @PUT
     @Path("/{id}")
-    public Response update(@PathParam(Constantes.ID)int id, Order order){
+    public Response update(@PathParam(ConstantesJakarta.ID)int id, Order order){
         order.setId(id);
         orderService.update(order);
         return Response.ok(order).build();
