@@ -81,3 +81,7 @@ Z
 *src/main/java/config/ConstantesConfig.java,2\e\2eee291ab171636e4412452b9130441e32ca03ae
 a
 1src/main/java/jakarta/rest/ConstantesJakarta.java,6\f\6fe51fd3804c0e58d0a8ad144f20b7112075cb19
+`
+0src/main/java/config/utils/ConstantesDomain.java,d\3\d3c0aae2c5c3f3829d5b7699336b8144c7b09a5d
+?
+postman/READ.ME,7\e\7ee78ea6e9ed3d1622ab4afe953e28f3b27572db

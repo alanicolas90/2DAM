@@ -27,13 +27,13 @@ public class OrdersREST {
 
 
     @GET
-    public List<Order> getAllOrders() {
+    public List<Order> getAll() {
         return orderService.getAll();
     }
 
     @GET
     @Path("/{id}")
-    public Order getUsuario(@PathParam("id") int id) {
+    public Order get(@PathParam(ConstantesJakarta.ID) int id) {
         return orderService.get(id);
     }
 
@@ -46,7 +46,7 @@ public class OrdersREST {
 
     @DELETE
     @Path("/{id}")
-    public Response delete(@PathParam("id") Integer id){
+    public Response delete(@PathParam(ConstantesJakarta.ID) Integer id){
         orderService.delete(id);
         return Response.ok().build();
     }

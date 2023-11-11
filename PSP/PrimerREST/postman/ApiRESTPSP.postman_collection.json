@@ -57,7 +57,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"name\":\"juanchito\"}",
+							"raw": "{\"name\":\"seHaAñadidoALaDB\",\"birthDate\":\"2023-11-02\"}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -93,7 +93,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "6"
+									"value": "2"
 								}
 							]
 						}
@@ -107,7 +107,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \r\n    \"name\": \"cuatro\"\r\n}",
+							"raw": "{ \r\n    \"name\": \"nombre actualizado\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -126,7 +126,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "2"
+									"value": "3"
 								}
 							]
 						}
@@ -163,7 +163,7 @@
 					"response": []
 				},
 				{
-					"name": "GerOrderSpecificCustomer",
+					"name": "getSpecificOrder",
 					"event": [
 						{
 							"listen": "test",
@@ -190,7 +190,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "2"
 								}
 							]
 						}
@@ -240,7 +240,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "11"
+									"value": "3"
 								}
 							]
 						}
@@ -254,7 +254,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"customerId\": 1,\r\n        \"itemName\": \"yyy\",\r\n        \"quantity\": 3\r\n    }",
+							"raw": "{\r\n        \"customerId\": 1,\r\n        \"itemName\": \"updated Order\",\r\n        \"quantity\": 10\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"

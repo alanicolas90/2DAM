@@ -1,5 +1,6 @@
 package domain.servicios;
 
+import dao.CustomerDao;
 import dao.OrdersDao;
 import dao.model.Order;
 import domain.modelo.errores.ModificacionException;
@@ -14,11 +15,13 @@ public class OrderService {
 
 
     private final OrdersDao dao;
+    private final CustomerDao customerDao;
 
 
     @Inject
-    public OrderService(OrdersDao dao) {
+    public OrderService(OrdersDao dao,CustomerDao customerDao) {
         this.dao = dao;
+        this.customerDao = customerDao;
     }
 
     public List<Order> getAll() {
@@ -42,6 +45,9 @@ public class OrderService {
     }
 
     public void add(Order order) {
+        if(customerDao.get(order.getCustomerId()) == null) {
+            throw new NotFoundException(ConstantesDomain.NO_EXISTE_CLIENTE_CON_ID + order.getCustomerId());
+        }
         int rowsAffected = dao.add(order);
         if(rowsAffected == 0) {
             throw new ModificacionException(ConstantesDomain.NO_SE_HA_PODIDO_ADD_EL_PEDIDO_VERIFICA_SI_EL_ID_DEL_PEDIDO_ES_EL_CORRECTO);

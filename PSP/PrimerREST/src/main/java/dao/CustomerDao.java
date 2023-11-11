@@ -1,6 +1,7 @@
 package dao;
 
 import dao.model.Customer;
+import dao.model.Order;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface CustomerDao {
     Integer update(Customer customerUpdated);
 
     Integer delete(int id);
+
+    List<Order> customerHasOrders(Integer id);
 }

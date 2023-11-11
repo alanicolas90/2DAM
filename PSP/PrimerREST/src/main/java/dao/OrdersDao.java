@@ -15,4 +15,6 @@ public interface OrdersDao {
     Integer update(Order order);
 
     Integer delete(int id);
+
+    Integer deleteByCustomerId(Integer id);
 }

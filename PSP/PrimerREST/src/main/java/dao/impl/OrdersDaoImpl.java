@@ -90,5 +90,15 @@ public class OrdersDaoImpl implements OrdersDao {
         }
     }
 
+    @Override
+    public Integer deleteByCustomerId(Integer customerId) {
+        try{
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
+            return jdbcTemplate.update("DELETE FROM orders WHERE customerId = ?", customerId);
+        }catch (Exception e){
+            throw new BaseDatosCaidaException(DaoConstants.DATABASE_ERROR);
+        }
+    }
+
 
 }

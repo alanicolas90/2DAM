@@ -1,4 +1,6 @@
-ruta: jdbc:mysql://192.168.1.105:3306/alan?useSSL=false&allowPublicKeyRetrieval=true
+ruta: jdbc:mysql://dam2.mysql.iesquevedo.es:3335/AlanMikolajczyk_PSP?useSSL=false
 user: root
 password: quevedo2dam
 driver: com.mysql.cj.jdbc.Driver
+
+

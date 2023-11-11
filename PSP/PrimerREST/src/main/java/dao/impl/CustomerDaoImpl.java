@@ -4,6 +4,7 @@ package dao.impl;
 import dao.CustomerDao;
 import dao.DBConnection;
 import dao.model.Customer;
+import dao.model.Order;
 import dao.utils.DaoConstants;
 import dao.utils.SQLQueries;
 import dao.model.errores.BaseDatosCaidaException;
@@ -81,6 +82,19 @@ class CustomerDaoImpl implements CustomerDao {
         } catch (Exception e) {
             throw new BaseDatosCaidaException(DaoConstants.DATABASE_ERROR);
         }
+    }
+
+    @Override
+    public List<Order> customerHasOrders(Integer id) {
+        try{
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
+            return jdbcTemplate.query("SELECT * FROM orders WHERE customerId = ?",
+                    new BeanPropertyRowMapper<>(Order.class),
+                    id);
+        }catch (Exception e){
+            throw new BaseDatosCaidaException(DaoConstants.DATABASE_ERROR);
+        }
+
     }
 
 }
