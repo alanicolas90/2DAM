@@ -5,7 +5,6 @@ public class DaoConstants {
 
     public static final String NO_CUSTOMER_FOUND = "No customer found";
     public static final String DATABASE_ERROR = "Database error";
-    public static final String NO_CUSTOMERS_FOUND = "No customers found";
     public static final String ERROR_DELETING_CUSTOMER = "Error deleting customer";
     public static final String NO_ORDERS_FOUND = "No orders found";
     public static final String ERROR_ADDING_ORDER = "Error adding order";

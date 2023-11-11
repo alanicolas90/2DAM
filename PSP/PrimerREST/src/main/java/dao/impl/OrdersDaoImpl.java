@@ -78,18 +78,15 @@ public class OrdersDaoImpl implements OrdersDao {
     }
 
     @Override
-    public void update(Order order) {
+    public Integer update(Order order) {
         try {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
-            int rowsAffected = jdbcTemplate.update(SQLQueries.UPDATE_ORDERS_SET_ITEM_NAME_QUANTITY_CUSTOMER_ID_WHERE_ID,
+            return jdbcTemplate.update(SQLQueries.UPDATE_ORDERS_SET_ITEM_NAME_QUANTITY_CUSTOMER_ID_WHERE_ID,
                     order.getItemName(),
                     order.getQuantity(),
                     order.getCustomerId(),
                     order.getId());
 
-            if (rowsAffected == 0) {
-                throw new NotFoundException(DaoConstants.ERROR_UPDATING_ORDER_ORDER_ID_DOES_NOT_EXIST);
-            }
 
         }  catch (Exception e) {
             log.error(e.getMessage());

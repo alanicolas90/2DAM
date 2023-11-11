@@ -12,7 +12,7 @@ public interface OrdersDao {
 
     Integer add(Order order);
 
-    void update(Order order);
+    Integer update(Order order);
 
     Integer delete(int id);
 }
