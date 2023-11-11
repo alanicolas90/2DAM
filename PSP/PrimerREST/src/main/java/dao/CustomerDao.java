@@ -10,11 +10,11 @@ public interface CustomerDao {
 
     List<Customer> getAll();
 
-    void save(Customer customer);
+    Integer save(Customer customer);
 
     Customer get(int id);
 
-    void update(Customer customerUpdated);
+    Integer update(Customer customerUpdated);
 
     Integer delete(int id);
 }

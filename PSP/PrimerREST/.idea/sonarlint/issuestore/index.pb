@@ -99,3 +99,5 @@ a
 1src/main/java/jakarta/errores/ControlErrores.java,f\3\f316fe51cef47d70e97663f2ba351ea6b23929e5
 g
 7src/main/java/dao/impl/rowmapper/CustomerRowMapper.java,7\9\79f5292aee8e4b6ad2d1adf83280338a489bfe20
+Y
+)src/main/java/dao/utils/DaoConstants.java,0\f\0fc0e1e01e6a7c68c5e59c977996643b2c075651

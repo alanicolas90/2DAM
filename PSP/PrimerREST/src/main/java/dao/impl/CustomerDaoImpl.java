@@ -4,12 +4,10 @@ package dao.impl;
 import dao.CustomerDao;
 import dao.DBConnection;
 import dao.model.Customer;
-import dao.model.ErrorC;
 import dao.utils.DaoConstants;
 import dao.utils.SQLQueries;
 import domain.modelo.errores.BaseDatosCaidaException;
 import domain.modelo.errores.NotFoundException;
-import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.dao.DataAccessException;
@@ -40,30 +38,28 @@ public class CustomerDaoImpl implements CustomerDao {
                     id);
 
             if (customers == null) {
-                throw new NotFoundException("No customer found");
+                throw new NotFoundException(DaoConstants.NO_CUSTOMER_FOUND);
             } else {
                 return customers;
             }
 
         } catch (Exception e) {
             log.error(e.getMessage());
-            throw new BaseDatosCaidaException("Database error");
+            throw new BaseDatosCaidaException(DaoConstants.DATABASE_ERROR);
         }
     }
 
     @Override
-    public void update(Customer customerUpdated) {
+    public Integer update(Customer customerUpdated) {
         try {
             JdbcTemplate jtm = new JdbcTemplate(dbConnection.getDataSource());
-            int rows = jtm.update(SQLQueries.UPDATE_CUSTOMER,
+            return jtm.update(SQLQueries.UPDATE_CUSTOMER,
                     customerUpdated.getName(),
                     customerUpdated.getId());
-            if(rows == 0){
-                throw new NotFoundException("No customer found");
-            }
+
         } catch (Exception e) {
             log.error(e.getMessage());
-            throw new BaseDatosCaidaException("Database error");
+            throw new BaseDatosCaidaException(DaoConstants.DATABASE_ERROR);
         }
     }
 
@@ -71,27 +67,22 @@ public class CustomerDaoImpl implements CustomerDao {
     public List<Customer> getAll() {
         try {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
-            List<Customer> customers = jdbcTemplate.query(SQLQueries.GET_ALL_CUSTOMERS, new BeanPropertyRowMapper<>(Customer.class));
+            return jdbcTemplate.query(SQLQueries.GET_ALL_CUSTOMERS, new BeanPropertyRowMapper<>(Customer.class));
 
-            if (customers.isEmpty()) {
-                throw new NotFoundException("No customers found");
-            } else {
-                return customers;
-            }
         } catch (DataAccessException e) {
-            throw new BaseDatosCaidaException("Database error");
+            throw new BaseDatosCaidaException(DaoConstants.DATABASE_ERROR);
         }
     }
 
     @Override
-    public void save(Customer customer) {
+    public Integer save(Customer customer) {
         try {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
-            jdbcTemplate.update(SQLQueries.INSERT_INTO_CUSTOMERS_NAME_VALUES, customer.getName());
+            return jdbcTemplate.update(SQLQueries.INSERT_INTO_CUSTOMERS_NAME_VALUES, customer.getName());
 
         } catch (Exception e) {
             log.error(e.getMessage());
-            throw new NotFoundException("Error adding customer");
+            throw new BaseDatosCaidaException(DaoConstants.DATABASE_ERROR);
         }
     }
 
@@ -101,13 +92,13 @@ public class CustomerDaoImpl implements CustomerDao {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
             int rows = jdbcTemplate.update(SQLQueries.DELETE_CUSTOMER_WITHOUT_ORDERS, id);
             if(rows == 0){
-                throw new NotFoundException("Error deleting customer");
+                throw new NotFoundException(DaoConstants.ERROR_DELETING_CUSTOMER);
             }else{
                 return rows;
             }
         } catch (DataIntegrityViolationException e) {
             log.error(e.getMessage());
-            throw new NotFoundException("Error deleting customer");
+            throw new BaseDatosCaidaException(DaoConstants.DATABASE_ERROR);
         }
     }
 

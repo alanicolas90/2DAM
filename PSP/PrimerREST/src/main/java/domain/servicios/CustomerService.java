@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CustomerService {
 
-    private CustomerDao dao;
+    private final CustomerDao dao;
 
 
     @Inject
