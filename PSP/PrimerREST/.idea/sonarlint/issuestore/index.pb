@@ -95,3 +95,7 @@ b
 2src/main/java/jakarta/errores/PruebaException.java,4\3\4388667967012e08384a5d386d70cc45e10d7cd2
 d
 4src/main/java/jakarta/errores/NotFoundException.java,9\b\9bae20f655ab43f4733c4d51ad21f2e334b19838
+a
+1src/main/java/jakarta/errores/ControlErrores.java,f\3\f316fe51cef47d70e97663f2ba351ea6b23929e5
+g
+7src/main/java/dao/impl/rowmapper/CustomerRowMapper.java,7\9\79f5292aee8e4b6ad2d1adf83280338a489bfe20

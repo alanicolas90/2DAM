@@ -28,7 +28,10 @@ public class LoginDaoImpl implements LoginDao {
     public Either<ErrorC, Credential> get(Credential credential) {
         try {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
-            Credential credentialDB = jdbcTemplate.queryForObject(SQLQueries.GET_CREDENTIALS, new CredentialRowMapper(), credential.getUsername(), credential.getPassword());
+            Credential credentialDB = jdbcTemplate.queryForObject(SQLQueries.GET_CREDENTIALS,
+                    new CredentialRowMapper(),
+                    credential.getUsername(),
+                    credential.getPassword());
 
             if(credentialDB == null){
                 return Either.left(new ErrorC(DaoConstants.USER_NOT_FOUND));

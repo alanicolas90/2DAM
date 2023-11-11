@@ -8,8 +8,9 @@ public class SQLQueries {
     public static final String ADD_ORDER = "INSERT INTO orders (item_name,quantity,customerId) VALUES (?,?,?)";
     public static final String GET_ORDERS_SPECIFIC_CUSTOMER = "SELECT * FROM orders where customerId = ?";
     public static final String GET_ALL_ORDERS = "SELECT * FROM orders";
-    public static final String DELETE_FROM_ORDERS_WHERE_ORDER_ID = "DELETE FROM orders WHERE order_id = ?";
-    public static final String UPDATE_ORDERS = "UPDATE orders SET item_name = , quantity = ? WHERE order_id = ?";
+    public static final String DELETE_FROM_ORDERS_WHERE_ORDER_ID = "DELETE FROM orders WHERE id = ?";
+    public static final String UPDATE_ORDERS = "UPDATE orders SET item_name = ?, quantity = ?, customerId = ? WHERE id = ?";
+    public static final String INSERT_INTO_CUSTOMERS_NAME_VALUES = "INSERT INTO customers (`name`) VALUES (?);";
 
     private SQLQueries() {
     }

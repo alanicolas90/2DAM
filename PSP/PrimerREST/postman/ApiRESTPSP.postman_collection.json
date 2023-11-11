@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Customers",
+			"name": "Customers CRUD Rest",
 			"item": [
 				{
 					"name": "Customers",
@@ -32,13 +32,249 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/customers/74",
+							"raw": "{{base_url}}/customers/:id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"customers",
-								"74"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"juanchito\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/customers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCustomers",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/customers/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customers",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCustomer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \r\n    \"name\": \"cuatro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/customers/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customers",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders CRUD Rest",
+			"item": [
+				{
+					"name": "Orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/orders",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GerOrderSpecificCustomer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/orders/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddOrder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"customerId\": 1,\r\n        \"itemName\": \"pepinillos\",\r\n        \"quantity\": 2\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/orders",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteOrder",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/orders/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateOrder",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"customerId\": 1,\r\n        \"itemName\": \"yyy\",\r\n        \"quantity\": 3\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/orders/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
 							]
 						}
 					},

@@ -1,11 +1,2 @@
 
-g	java:S112&"FDefine and throw a dedicated exception instead of using a generic one.(Ê“Åıÿÿÿÿ8 ÇÚ×»1
-g	java:S1123"FDefine and throw a dedicated exception instead of using a generic one.(Ê“Åıÿÿÿÿ8 ÇÚ×»1
-W
-java:S1141_"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¡ÇÚ×»1
-W
-java:S1141x"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¡ÇÚ×»1
-t
-java:S3776Z"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(½ĞÛˆùÿÿÿÿ8­ÇÚ×»1
-N
-java:S1144¦"+Remove this unused private "readRS" method.(®ş…şÿÿÿÿÿ8±ÇÚ×»1
+E	java:S108L")Either remove or fill this block of code.(å¥‡8­›“ß»1

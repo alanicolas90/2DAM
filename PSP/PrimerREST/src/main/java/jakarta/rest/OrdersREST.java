@@ -45,6 +45,21 @@ public class OrdersREST {
                 .entity(order).build();
     }
 
+    @DELETE
+    @Path("/{id}")
+    public Response delete(@PathParam("id") Integer id){
+        orderService.delete(id);
+        return Response.ok().build();
+    }
+
+    @PUT
+    @Path("/{id}")
+    public Response update(@PathParam(Constantes.ID)int id, Order order){
+        order.setId(id);
+        orderService.update(order);
+        return Response.ok(order).build();
+    }
+
 
 
 }

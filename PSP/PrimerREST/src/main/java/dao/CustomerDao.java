@@ -10,11 +10,11 @@ public interface CustomerDao {
 
     List<Customer> getAll();
 
-    Customer saveAutoIncrementalID(Customer customer);
+    void save(Customer customer);
 
-    Either<ErrorC, Customer> get(int id);
+    Customer get(int id);
 
-    Either<ErrorC, Integer> update(Customer customerUpdated);
+    void update(Customer customerUpdated);
 
     Integer delete(int id);
 }

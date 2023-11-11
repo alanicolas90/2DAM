@@ -1,8 +1,6 @@
 package dao;
 
-import dao.model.ErrorC;
 import dao.model.Order;
-import io.vavr.control.Either;
 
 import java.util.List;
 
@@ -14,7 +12,7 @@ public interface OrdersDao {
 
     Integer add(Order order);
 
-    Either<ErrorC, Integer> update(Order order);
+    void update(Order order);
 
-    Either<ErrorC, Integer> delete(int id, boolean delete);
+    Integer delete(int id);
 }

@@ -7,6 +7,7 @@ import dao.model.Customer;
 import dao.model.ErrorC;
 import dao.utils.DaoConstants;
 import dao.utils.SQLQueries;
+import domain.modelo.errores.BaseDatosCaidaException;
 import domain.modelo.errores.NotFoundException;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
@@ -31,33 +32,38 @@ public class CustomerDaoImpl implements CustomerDao {
 
 
     @Override
-    public Either<ErrorC, Customer> get(int id) {
+    public Customer get(int id) {
         try {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
-            List<Customer> customers = jdbcTemplate.query(SQLQueries.GET_CUSTOMER_SPECIFIC_ID, new BeanPropertyRowMapper<>(Customer.class), id);
-            if (customers.isEmpty()) {
-                return Either.left(new ErrorC(DaoConstants.CUSTOMER_NOT_FOUND));
+            Customer customers = jdbcTemplate.queryForObject(SQLQueries.GET_CUSTOMER_SPECIFIC_ID,
+                    new BeanPropertyRowMapper<>(Customer.class),
+                    id);
+
+            if (customers == null) {
+                throw new NotFoundException("No customer found");
             } else {
-                return Either.right(customers.get(0));
+                return customers;
             }
 
         } catch (Exception e) {
             log.error(e.getMessage());
-            return Either.left(new ErrorC("Database error"));
+            throw new BaseDatosCaidaException("Database error");
         }
     }
 
     @Override
-    public Either<ErrorC, Integer> update(Customer customerUpdated) {
+    public void update(Customer customerUpdated) {
         try {
             JdbcTemplate jtm = new JdbcTemplate(dbConnection.getDataSource());
-            return Either.right(jtm.update(SQLQueries.UPDATE_CUSTOMER,
+            int rows = jtm.update(SQLQueries.UPDATE_CUSTOMER,
                     customerUpdated.getName(),
-                    customerUpdated.getId()));
-
+                    customerUpdated.getId());
+            if(rows == 0){
+                throw new NotFoundException("No customer found");
+            }
         } catch (Exception e) {
             log.error(e.getMessage());
-            return Either.left(new ErrorC("Database error"));
+            throw new BaseDatosCaidaException("Database error");
         }
     }
 
@@ -73,21 +79,20 @@ public class CustomerDaoImpl implements CustomerDao {
                 return customers;
             }
         } catch (DataAccessException e) {
-            throw new NotFoundException("No connection to db");
+            throw new BaseDatosCaidaException("Database error");
         }
     }
 
     @Override
-    public Customer saveAutoIncrementalID(Customer customer) {
+    public void save(Customer customer) {
         try {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
-            jdbcTemplate.update("INSERT INTO customers (`name`) VALUES (?);", customer.getName());
+            jdbcTemplate.update(SQLQueries.INSERT_INTO_CUSTOMERS_NAME_VALUES, customer.getName());
 
         } catch (Exception e) {
             log.error(e.getMessage());
-            new ErrorC("Error adding customer");
+            throw new NotFoundException("Error adding customer");
         }
-        return customer;
     }
 
     @Override
@@ -96,13 +101,13 @@ public class CustomerDaoImpl implements CustomerDao {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
             int rows = jdbcTemplate.update(SQLQueries.DELETE_CUSTOMER_WITHOUT_ORDERS, id);
             if(rows == 0){
-                throw new RuntimeException("Error deleting customer");
+                throw new NotFoundException("Error deleting customer");
             }else{
                 return rows;
             }
         } catch (DataIntegrityViolationException e) {
             log.error(e.getMessage());
-            throw new RuntimeException("Error deleting customer");
+            throw new NotFoundException("Error deleting customer");
         }
     }
 

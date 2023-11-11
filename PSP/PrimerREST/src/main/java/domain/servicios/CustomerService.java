@@ -4,7 +4,6 @@ import dao.CustomerDao;
 import dao.model.Customer;
 import jakarta.inject.Inject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerService {
@@ -21,16 +20,20 @@ public class CustomerService {
         return dao.getAll();
     }
 
-    public Customer get(String id) {
-        return dao.get(Integer.parseInt(id)).get();
+    public Customer get(int id) {
+        return dao.get(id);
     }
 
     public Customer add(Customer c) {
-        dao.saveAutoIncrementalID(c);
+        dao.save(c);
         return c;
     }
 
     public void delete(Integer id) {
         dao.delete(id);
+    }
+
+    public void update(Customer customer) {
+        dao.update(customer);
     }
 }

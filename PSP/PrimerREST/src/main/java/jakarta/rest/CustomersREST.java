@@ -18,60 +18,45 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class CustomersREST {
 
-    private CustomerService su;
+    private final CustomerService customerService;
 
 
     @Inject
-    public CustomersREST(CustomerService su) {
-        this.su = su;
+    public CustomersREST(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
 
     @GET
     public List<Customer> getAllCustomers() {
-        return su.getAll();
+        return customerService.getAll();
     }
 
     @GET
     @Path("/{id}")
-    public Customer getCustomer(@PathParam(Constantes.ID) String id) {
-        return su.get(id);
+    public Customer getCustomer(@PathParam(Constantes.ID) int id) {
+        return customerService.get(id);
     }
 
     @POST
     public Response create(Customer customer){
-        su.add(customer);
-        return Response.created(URI.create("/customers/"+ customer.getId())).build();
+        customerService.add(customer);
+        return Response.status(Response.Status.CREATED)
+                .entity(customer).build();
     }
 
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam(Constantes.ID) Integer id){
-        su.delete(id);
-        return Response.noContent().build();
+        customerService.delete(id);
+        return Response.ok().build();
     }
 
-//
-//    @PUT
-//    public Usuario updateUsuario(Usuario usuario, @QueryParam("id") String id) {
-//        Usuario aCambiar = DaoErrores.usuarios.get(0);
-//        aCambiar.setName(usuario.getName());
-//        aCambiar.setId(id);
-//        return aCambiar;
-//    }
-//
-//    @DELETE
-//    @Path("/{id}")
-//    public Response delUsuario(@PathParam("id") String id) {
-//        List<Usuario> users = DaoErrores.usuarios.stream().filter(usuario -> !usuario.getId().equals(id)).collect(Collectors.toList());
-//
-//        if (users.size() == DaoErrores.usuarios.size())
-//            return Response.status(Response.Status.NOT_FOUND).entity(null).build();
-//        else {
-//            DaoErrores.usuarios = users;
-//            return Response.status(Response.Status.NO_CONTENT).build();
-//        }
-//    }
-
-
+    @PUT
+    @Path("/{id}")
+    public Response update(@PathParam(Constantes.ID)int id, Customer customer){
+        customer.setId(id);
+        customerService.update(customer);
+        return Response.ok(customer).build();
+    }
 }

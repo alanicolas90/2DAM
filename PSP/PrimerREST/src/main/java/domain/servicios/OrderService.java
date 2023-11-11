@@ -10,7 +10,7 @@ import java.util.List;
 public class OrderService {
 
 
-    private OrdersDao dao;
+    private final OrdersDao dao;
 
 
     @Inject
@@ -31,4 +31,11 @@ public class OrderService {
         dao.add(order);
     }
 
+    public void delete(Integer id) {
+        dao.delete(id);
+    }
+
+    public void update(Order order) {
+        dao.update(order);
+    }
 }
