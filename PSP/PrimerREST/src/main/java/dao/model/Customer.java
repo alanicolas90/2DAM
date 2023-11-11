@@ -12,8 +12,5 @@ import java.time.LocalDate;
 public class Customer {
     int id;
     String name;
-
-    public Customer(String name) {
-        this.name = name;
-    }
+    LocalDate birthDate;
 }

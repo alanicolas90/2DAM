@@ -34,7 +34,7 @@ public class OrdersREST {
 
     @GET
     @Path("/{id}")
-    public List<Order> getUsuario(@PathParam("id") int id) {
+    public Order getUsuario(@PathParam("id") int id) {
         return orderService.get(id);
     }
 
@@ -59,7 +59,5 @@ public class OrdersREST {
         orderService.update(order);
         return Response.ok(order).build();
     }
-
-
 
 }

@@ -8,7 +8,7 @@ public interface OrdersDao {
 
     List<Order> getAll();
 
-    List<Order> get(int idUserLogged);
+    Order get(int idUserLogged);
 
     Integer add(Order order);
 

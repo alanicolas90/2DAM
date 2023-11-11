@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package config;
 
 import jakarta.inject.Singleton;
@@ -27,21 +22,15 @@ public class Configuration {
     private String password;
     private String driver;
 
-    void cargar(InputStream file) {
-
+    void load(InputStream file) {
         try {
             Yaml yaml = new Yaml();
+            Map<String, String> m = yaml.load(file);
 
-            Iterable<Object> it = null;
-
-            it = yaml
-                    .loadAll(file);
-
-            Map<String, String> m = (Map) it.iterator().next();
-            this.ruta = m.get("ruta");
-            this.password = m.get("password");
-            this.user = m.get("user");
-            this.driver = m.get("driver");
+            this.ruta = m.get(ConstantesConfig.RUTA);
+            this.password = m.get(ConstantesConfig.PASSWORD);
+            this.user = m.get(ConstantesConfig.USER);
+            this.driver = m.get(ConstantesConfig.DRIVER);
 
 
         } catch (Exception ex) {

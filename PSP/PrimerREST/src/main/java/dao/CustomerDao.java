@@ -1,8 +1,6 @@
 package dao;
 
 import dao.model.Customer;
-import dao.model.ErrorC;
-import io.vavr.control.Either;
 
 import java.util.List;
 

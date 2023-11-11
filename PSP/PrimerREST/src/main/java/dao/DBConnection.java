@@ -10,11 +10,7 @@ public interface DBConnection {
 
     DataSource getDataSource();
 
-    void closeConnection(Connection connArg);
-
     void loadPool();
-
-    Connection getConnection() throws Exception;
 
     @PreDestroy
     void closePool();

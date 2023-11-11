@@ -2,6 +2,7 @@ package domain.servicios;
 
 import dao.OrdersDao;
 import dao.model.Order;
+import domain.modelo.errores.NotFoundException;
 import jakarta.inject.Inject;
 
 import java.util.List;
@@ -18,13 +19,24 @@ public class OrderService {
         this.dao = dao;
     }
 
-    public List<Order> getAll()
-    {
-        return dao.getAll();
+    public List<Order> getAll() {
+        List<Order> orders = dao.getAll();
+
+        if (orders.isEmpty()) {
+            throw new NotFoundException("No hay pedidos");
+        } else {
+            return orders;
+        }
     }
 
-    public List<Order> get(int id) {
-        return dao.get(id);
+    public Order get(int id) {
+        Order order = dao.get(id);
+
+        if(order == null) {
+            throw new NotFoundException("No existe pedido con el id: " + id);
+        }else{
+            return order;
+        }
     }
 
     public void add(Order order) {
@@ -36,6 +48,9 @@ public class OrderService {
     }
 
     public void update(Order order) {
-        dao.update(order);
+        int rowsAffected = dao.update(order);
+        if(rowsAffected == 0) {
+            throw new NotFoundException("No se ha podido actualizar el pedido, verifica si el pedido es el correcto");
+        }
     }
 }

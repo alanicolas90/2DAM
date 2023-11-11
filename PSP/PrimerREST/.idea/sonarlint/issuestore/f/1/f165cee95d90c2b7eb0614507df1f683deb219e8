@@ -1,3 +1,4 @@
 
-b	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ñ£Ÿ–8€½É«»1
 X	java:S125	"<This block of commented-out lines of code should be removed.(…Ïìÿ8‚½É«»1
+M
+java:S1128"0Remove this unused import 'java.sql.Connection'.(¥ËôÖ8ýÜ¥ø»1

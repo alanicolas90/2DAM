@@ -11,3 +11,5 @@ e
 5JavaFXSpring/src/main/java/dao/impl/LoginDaoImpl.java,0\d\0de9d93ef54526aac74f4fe57af193159b5db7cf
 u
 EJavaFXSpring/src/main/java/dao/impl/rowmappers/CustomerRowMapper.java,f\e\fea5e3d6a94075b6a7814bcba9f5b22a2b4d8ac7
+e
+5JavaFXSpring/src/main/resources/config/properties.xml,2\0\203d6150680372a253a68a9a5b6eb3739c8b90bf

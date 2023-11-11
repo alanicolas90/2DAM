@@ -5,16 +5,14 @@ import dao.OrdersDao;
 import dao.model.Order;
 import dao.utils.DaoConstants;
 import dao.utils.SQLQueries;
-import domain.modelo.errores.BaseDatosCaidaException;
-import domain.modelo.errores.NotFoundException;
+import dao.model.errores.BaseDatosCaidaException;
 import jakarta.inject.Inject;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
-@Log4j2
+
 public class OrdersDaoImpl implements OrdersDao {
 
     private final DBConnection dbConnection;
@@ -29,12 +27,8 @@ public class OrdersDaoImpl implements OrdersDao {
     public List<Order> getAll() {
         try {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
-            List<Order> orders = jdbcTemplate.query(SQLQueries.GET_ALL_ORDERS, new BeanPropertyRowMapper<>(Order.class));
-            if(orders.isEmpty()){
-                throw new NotFoundException(DaoConstants.NO_ORDERS_FOUND);
-            }else{
-                return orders;
-            }
+            return jdbcTemplate.query(SQLQueries.GET_ALL_ORDERS, new BeanPropertyRowMapper<>(Order.class));
+
         } catch (Exception e) {
             throw new BaseDatosCaidaException(DaoConstants.DATABASE_ERROR);
         }
@@ -43,15 +37,12 @@ public class OrdersDaoImpl implements OrdersDao {
 
 
     @Override
-    public List<Order> get(int idCustomer) {
+    public Order get(int orderId) {
         try {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
-            List<Order> orders = jdbcTemplate.query(SQLQueries.GET_ORDERS_SPECIFIC_CUSTOMER, new BeanPropertyRowMapper<>(Order.class), idCustomer);
-            if(orders.isEmpty()){
-                throw new NotFoundException(DaoConstants.NO_ORDERS_FOUND);
-            }else{
-                return orders;
-            }
+            return  jdbcTemplate.queryForObject(SQLQueries.GET_ORDER,
+                    new BeanPropertyRowMapper<>(Order.class),
+                    orderId);
 
         } catch (Exception e) {
             throw new BaseDatosCaidaException(DaoConstants.DATABASE_ERROR);
@@ -65,14 +56,9 @@ public class OrdersDaoImpl implements OrdersDao {
 
         try {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
-            int rowsAffected = jdbcTemplate.update(SQLQueries.ADD_ORDER, order.getItemName(), order.getQuantity(), order.getCustomerId());
-            if(rowsAffected == 0){
-                throw new NotFoundException(DaoConstants.ERROR_ADDING_ORDER);
-            }else{
-                return rowsAffected;
-            }
+            return jdbcTemplate.update(SQLQueries.ADD_ORDER, order.getItemName(), order.getQuantity(), order.getCustomerId());
+
         } catch (Exception e) {
-            log.error(e.getMessage());
             throw new BaseDatosCaidaException(DaoConstants.DATABASE_ERROR);
         }
     }
@@ -89,7 +75,6 @@ public class OrdersDaoImpl implements OrdersDao {
 
 
         }  catch (Exception e) {
-            log.error(e.getMessage());
             throw new BaseDatosCaidaException(DaoConstants.DATABASE_ERROR);
         }
     }
@@ -98,13 +83,8 @@ public class OrdersDaoImpl implements OrdersDao {
     public Integer delete(int id) {
         try {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
-            int rowsAffected = jdbcTemplate.update(SQLQueries.DELETE_FROM_ORDERS_WHERE_ORDER_ID, id);
+            return jdbcTemplate.update(SQLQueries.DELETE_FROM_ORDERS_WHERE_ORDER_ID, id);
 
-            if (rowsAffected == 0) {
-                throw new NotFoundException(DaoConstants.ERROR_DELETING_ORDER_ORDER_DOES_NOT_EXIST);
-            } else {
-                return rowsAffected;
-            }
         } catch (Exception e) {
             throw new BaseDatosCaidaException(DaoConstants.DATABASE_ERROR);
         }

@@ -26,16 +26,17 @@ public class ListenerConfig implements ServletContextListener {
     // -------------------------------------------------------
     // ServletContextListener implementation
     // -------------------------------------------------------
+    @Override
     public void contextInitialized(ServletContextEvent sce) {
       /* This method is called when the servlet context is
          initialized(when the Web application is deployed).
          You can initialize servlet context related data here.
       */
-
-        config.cargar(sce.getServletContext().getResourceAsStream("/WEB-INF/config/config.yaml"));
+        config.load(sce.getServletContext().getResourceAsStream(ConstantesConfig.RUTA_YAML));
         pool.loadPool();
     }
 
+    @Override
     public void contextDestroyed(ServletContextEvent sce) {
       /* This method is invoked when the Servlet Context
          (the Web application) is undeployed or
