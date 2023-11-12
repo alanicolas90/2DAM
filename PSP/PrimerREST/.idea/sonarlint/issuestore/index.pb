@@ -61,11 +61,7 @@ a
 +src/main/java/jakarta/errores/ApiError.java,1\c\1cc2abdf11332d170c3256ae7b57a8d601f0dd73
 p
 @src/main/java/jakarta/errores/BaseDatosCaidaExceptionMapper.java,1\1\111eb54e948d78ad913f59bf3e1f39c3997bb761
-h
-8src/main/java/jakarta/errores/CustomExceptionMapper.java,5\d\5db715fd1109d2e236096830a1ad4af35f544609
 n
 >src/main/java/jakarta/errores/ModificacionExceptionMapper.java,e\3\e3eff76bb2dcb9583b33bd3b87b2dff51ef58c75
 j
 :src/main/java/jakarta/errores/NotFoundExceptionMapper.java,b\9\b9dfae07575a2013c0435589619c2e1d22edb120
-f
-6src/main/java/jakarta/errores/OtraExceptionMapper.java,7\6\766c5e24db57c5ca5b32b068608dea090164026f
