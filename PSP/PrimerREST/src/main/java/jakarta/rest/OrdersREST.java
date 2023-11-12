@@ -47,16 +47,20 @@ public class OrdersREST {
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam(ConstantesJakarta.ID) Integer id){
-        orderService.delete(id);
-        return Response.ok().build();
+
+        if(orderService.delete(id)) return Response.ok().build();
+        else return Response.status(Response.Status.NOT_FOUND).build();
+
     }
 
     @PUT
     @Path("/{id}")
     public Response update(@PathParam(ConstantesJakarta.ID)int id, Order order){
+
         order.setId(id);
         orderService.update(order);
         return Response.ok(order).build();
+
     }
 
 }

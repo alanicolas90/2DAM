@@ -48,16 +48,14 @@ public class CustomerService {
         }
     }
 
-    public void delete(Integer customerId) {
+    public boolean delete(Integer customerId) {
         List<Order> orders = dao.customerHasOrders(customerId);
         if(!orders.isEmpty()){
             ordersDao.deleteByCustomerId(customerId);
         }
 
         int rowsAffected = dao.delete(customerId);
-        if (rowsAffected == 0) {
-            throw new ModificacionException(ConstantesDomain.NO_SE_HA_PODIDO_ELIMINAR_EL_CLIENTE);
-        }
+        return rowsAffected != 0;
     }
 
 

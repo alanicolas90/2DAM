@@ -27,44 +27,33 @@ public class OrderService {
     public List<Order> getAll() {
         List<Order> orders = dao.getAll();
 
-        if (orders.isEmpty()) {
-            throw new NotFoundException(ConstantesDomain.NO_HAY_PEDIDOS);
-        } else {
-            return orders;
-        }
+        if (orders.isEmpty()) throw new NotFoundException(ConstantesDomain.NO_HAY_PEDIDOS);
+        else return orders;
     }
 
     public Order get(int id) {
         Order order = dao.get(id);
 
-        if(order == null) {
-            throw new NotFoundException(ConstantesDomain.NO_EXISTE_PEDIDO_CON_EL_ID + id);
-        }else{
-            return order;
-        }
+        if(order == null) throw new NotFoundException(ConstantesDomain.NO_EXISTE_PEDIDO_CON_EL_ID + id);
+        else return order;
+
     }
 
     public void add(Order order) {
-        if(customerDao.get(order.getCustomerId()) == null) {
-            throw new NotFoundException(ConstantesDomain.NO_EXISTE_CLIENTE_CON_ID + order.getCustomerId());
-        }
+        if(customerDao.get(order.getCustomerId()) == null) throw new NotFoundException(ConstantesDomain.NO_EXISTE_CLIENTE_CON_ID + order.getCustomerId());
+
         int rowsAffected = dao.add(order);
-        if(rowsAffected == 0) {
-            throw new ModificacionException(ConstantesDomain.NO_SE_HA_PODIDO_ADD_EL_PEDIDO_VERIFICA_SI_EL_ID_DEL_PEDIDO_ES_EL_CORRECTO);
-        }
+        if(rowsAffected == 0) throw new ModificacionException(ConstantesDomain.NO_SE_HA_PODIDO_ADD_EL_PEDIDO_VERIFICA_SI_EL_ID_DEL_PEDIDO_ES_EL_CORRECTO);
     }
 
-    public void delete(Integer id) {
+    public boolean delete(Integer id) {
         int rowsAffected = dao.delete(id);
-        if(rowsAffected == 0) {
-            throw new ModificacionException(ConstantesDomain.NO_SE_HA_PODIDO_ELIMINAR_EL_PEDIDO_VERIFICA_SI_EL_PEDIDO_ES_EL_CORRECTO);
-        }
+        return rowsAffected != 0;
     }
 
     public void update(Order order) {
         int rowsAffected = dao.update(order);
-        if(rowsAffected == 0) {
-            throw new ModificacionException(ConstantesDomain.NO_SE_HA_PODIDO_ACTUALIZAR_EL_PEDIDO_VERIFICA_SI_EL_PEDIDO_ES_EL_CORRECTO);
-        }
+        if(rowsAffected == 0) throw new ModificacionException(ConstantesDomain.NO_SE_HA_PODIDO_ACTUALIZAR_EL_PEDIDO_VERIFICA_SI_EL_PEDIDO_ES_EL_CORRECTO);
+
     }
 }

@@ -47,8 +47,10 @@ public class CustomersREST {
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam(ConstantesJakarta.ID) Integer id){
-        customerService.delete(id);
-        return Response.ok().build();
+
+       if(customerService.delete(id)) return Response.ok().build();
+       else return Response.status(Response.Status.NOT_FOUND).build();
+
     }
 
     @PUT
