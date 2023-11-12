@@ -8,10 +8,6 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.InputStream;
 import java.util.Map;
 
-
-/**
- * @author dam2
- */
 @Getter
 @Log4j2
 @Singleton

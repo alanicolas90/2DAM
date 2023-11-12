@@ -17,6 +17,7 @@ import java.util.List;
 
 class CustomerDaoImpl implements CustomerDao {
 
+
     private final DBConnection dbConnection;
 
     @Inject
@@ -88,7 +89,7 @@ class CustomerDaoImpl implements CustomerDao {
     public List<Order> customerHasOrders(Integer id) {
         try{
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
-            return jdbcTemplate.query("SELECT * FROM orders WHERE customerId = ?",
+            return jdbcTemplate.query(SQLQueries.SELECT_FROM_ORDERS_WHERE_CUSTOMER_ID,
                     new BeanPropertyRowMapper<>(Order.class),
                     id);
         }catch (Exception e){

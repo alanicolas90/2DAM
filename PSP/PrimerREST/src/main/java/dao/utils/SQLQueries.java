@@ -10,6 +10,7 @@ public class SQLQueries {
     public static final String DELETE_FROM_ORDERS_WHERE_ORDER_ID = "DELETE FROM orders WHERE id = ?";
     public static final String INSERT_INTO_CUSTOMERS_NAME_VALUES = "INSERT INTO customers (`name`,`birthDate`) VALUES (?,?);";
     public static final String UPDATE_ORDERS_SET_ITEM_NAME_QUANTITY_CUSTOMER_ID_WHERE_ID = "UPDATE orders SET item_name = ?, quantity = ?, customerId = ? WHERE id = ?";
+    public static final String SELECT_FROM_ORDERS_WHERE_CUSTOMER_ID = "SELECT * FROM orders WHERE customerId = ?";
     public static final String GET_ORDER = "SELECT * FROM orders WHERE id = ?";
 
     private SQLQueries() {
