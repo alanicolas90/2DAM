@@ -1,5 +1,7 @@
 
 ~
-java:S1488$"aImmediately return this expression instead of assigning it to the temporary variable "menuItems".(ÊðöÖ8Ä°®Ð¼1
+java:S1488*"aImmediately return this expression instead of assigning it to the temporary variable "menuItems".(ÊðöÖ8ÏÍµû¼1
 m
-java:S3655"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(å¸ý½8Ï°®Ð¼1
+java:S3655$"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(å¸ý½8ÜÍµû¼1
+Q
+java:S1128"5Remove this unused import 'jakarta.inject.Singleton'.(Úá³{8³½Äû¼1

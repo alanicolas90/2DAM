@@ -80,6 +80,17 @@
                 <artifactId>spring-jdbc</artifactId>
                 <version>5.3.23</version>
             </dependency>
+            <dependency>
+                <groupId>jakarta.xml.bind</groupId>
+                <artifactId>jakarta.xml.bind-api</artifactId>
+                <version>4.0.0</version>
+            </dependency>
+            <!--  https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime  -->
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-runtime</artifactId>
+                <version>4.0.0</version>
+            </dependency>
 
         </dependencies>
 

@@ -3,6 +3,7 @@ package service;
 import dao.MenuItemsDao;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import model.ErrorC;
 import model.MenuItem;
 import ui.screens.order.model.MenuItemTable;
@@ -19,10 +20,15 @@ public class MenuItemsService {
     }
 
 
+
     public Either<ErrorC, List<String>> getAllNames() {
         Either<ErrorC, List<MenuItem>> menuItems = menuItemsDao.getAll();
-        List<String> names = menuItems.get().stream().map(MenuItem::getName).toList();
-        return Either.right(names);
+        if(menuItems.isRight()){
+            List<String> names = menuItems.get().stream().map(MenuItem::getName).toList();
+            return Either.right(names);
+        }else{
+            return Either.left(menuItems.getLeft());
+        }
     }
 
     public int getMenuItemIdByName(String value) {

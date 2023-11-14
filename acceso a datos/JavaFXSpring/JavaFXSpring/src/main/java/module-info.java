@@ -12,6 +12,7 @@ module JavaFXSpring {
     requires jakarta.annotation;
     requires spring.jdbc;
     requires spring.tx;
+    requires jakarta.xml.bind;
 
     exports ui.main to javafx.graphics;
     exports ui.screens.principal;
@@ -27,7 +28,10 @@ module JavaFXSpring {
     exports dao;
     exports ui.screens.customer;
     exports config;
+    exports dao.deprecated.impl;
+    exports service.model;
 
+    opens service.model;
     opens ui.screens.order.common;
     opens ui.screens.principal;
     opens ui.main;

@@ -12,9 +12,10 @@ public interface OrdersDao {
 
     Either<ErrorC, List<Order>> get(int idUserLogged);
 
-    Either<ErrorC, Integer> add(Order order);
+    Either<ErrorC, Integer> save(Order order);
 
     Either<ErrorC, Integer> update(Order order);
 
     Either<ErrorC, Integer> delete(int id, boolean delete);
+
 }

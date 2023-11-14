@@ -62,7 +62,9 @@ public class CustomerRemoveController extends BaseScreenController {
 
     @Override
     public void principalLoaded() {
-        tableCustomers.getItems().addAll(customerService.getAll().get());
+        if(customerService.getAll().isRight()){
+            tableCustomers.getItems().addAll(customerService.getAll().get());
+        }
     }
 
     @FXML
@@ -84,7 +86,9 @@ public class CustomerRemoveController extends BaseScreenController {
         }
 
         tableCustomers.getItems().clear();
-        tableCustomers.getItems().addAll(customerService.getAll().get());
+        if(customerService.getAll().isRight()){
+            tableCustomers.getItems().addAll(customerService.getAll().get());
+        }
         tableOrdersCustomer.getItems().clear();
     }
 

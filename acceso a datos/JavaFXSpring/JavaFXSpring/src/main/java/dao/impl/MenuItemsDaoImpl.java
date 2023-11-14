@@ -33,21 +33,19 @@ public class MenuItemsDaoImpl implements MenuItemsDao {
 
     @Override
     public Either<ErrorC, List<MenuItem>> getAll() {
-        List<MenuItem> menuItems;
-        try(Connection connection = dbConnection.getDataSource().getConnection();
-            Statement statement = connection.createStatement()) {
+        try {
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
+            List<MenuItem> menuItems = jdbcTemplate.query(SQLQueries.SELECT_ALL_FROM_MENU_ITEMS,
+                    new BeanPropertyRowMapper<>(MenuItem.class));
+            if (menuItems.isEmpty()) {
+                return Either.left(new ErrorC(DaoConstants.NO_MENU_ITEMS_FOUND));
+            } else {
+                return Either.right(menuItems);
+            }
 
-            statement.executeQuery(SQLQueries.SELECT_ALL_FROM_MENU_ITEMS);
-            ResultSet resultSet = statement.getResultSet();
-            menuItems = readRS(resultSet);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
             return Either.left(new ErrorC(DaoConstants.SQL_ERROR_GETTING_MENU_ITEMS));
-        }
-        if (menuItems.isEmpty()) {
-            return Either.left(new ErrorC(DaoConstants.NO_MENU_ITEMS_FOUND));
-        } else {
-            return Either.right(menuItems);
         }
     }
 

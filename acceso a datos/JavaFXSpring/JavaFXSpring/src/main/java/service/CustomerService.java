@@ -1,20 +1,38 @@
 package service;
 
+
 import dao.CustomerDao;
+import dao.OrderItemsDao;
+import dao.OrdersDao;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.Marshaller;
 import model.Customer;
 import model.ErrorC;
+import model.Order;
+import service.model.CustomerXml;
+import service.model.OrderXml;
+import service.model.OrdersXml;
 
+import java.io.File;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CustomerService {
 
     private final CustomerDao customerDao;
+    private final OrdersDao ordersDao;
+    private final OrderItemsDao orderItemsDao;
 
     @Inject
-    public CustomerService(CustomerDao customerDao) {
+    public CustomerService(CustomerDao customerDao, OrdersDao ordersDao, OrderItemsDao orderItemsDao) {
         this.customerDao = customerDao;
+        this.ordersDao = ordersDao;
+        this.orderItemsDao = orderItemsDao;
     }
 
     public Either<ErrorC, List<Customer>> getAll() {
@@ -22,11 +40,14 @@ public class CustomerService {
     }
 
     public Either<ErrorC, Integer> saveAutoIncrementalID(Customer customer) {
-        return customerDao.saveAutoIncrementalID(customer);
+        return customerDao.save(customer);
     }
 
-    public Either<ErrorC, Integer> delete(int id, boolean confirm) {
-        return customerDao.delete(id, confirm);
+    public Either<ErrorC, Integer> delete(int customerId, boolean confirm) {
+        if (confirm) {
+            saveOrdersXML(customerId);
+        }
+        return customerDao.delete(customerId, confirm);
     }
 
 
@@ -41,6 +62,32 @@ public class CustomerService {
     public List<Integer> getAllIdsCustomer() {
         List<Customer> customers = customerDao.getAll().get();
         return customers.stream().map(Customer::getId).toList();
+
+    }
+
+
+    private void saveOrdersXML(int customerId) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(CustomerXml.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+
+            List<Order> orders = ordersDao.get(customerId).get();
+
+            List<OrdersXml> ordersXml = orders.stream().map(order ->
+                    new OrdersXml(
+                            order.getOrderItems().stream().map(orderItem ->
+                                    new OrderXml(orderItem.getOrderId(), orderItem.getMenuItemId(), orderItem.getQuantity()
+                            )).toList())).toList();
+
+
+            CustomerXml customerXml = new CustomerXml(customerId, ordersXml);
+
+            marshaller.marshal(customerXml, new File("data/customer" + customerId + ".xml"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }

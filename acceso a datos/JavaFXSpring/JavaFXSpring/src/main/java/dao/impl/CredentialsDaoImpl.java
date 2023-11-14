@@ -33,7 +33,7 @@ public class CredentialsDaoImpl implements CredentialsDao {
 
         } catch (Exception e) {
             log.error(e.getMessage());
-            return Either.left(2);
+            return Either.left(1);
         }
     }
 }

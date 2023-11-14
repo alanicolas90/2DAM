@@ -10,11 +10,12 @@ import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
 import model.ErrorC;
 import model.Order;
+import model.OrderItem;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import service.model.OrderXml;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +59,15 @@ public class OrdersDaoImpl implements OrdersDao {
             if(orders.isEmpty()){
                 return Either.left(new ErrorC(DaoConstants.NO_ORDERS_FOUND));
             }else{
+
+                List<Integer> orderIds = orders.stream().map(Order::getId).toList();
+                List<OrderItem> orderItems = new ArrayList<>();
+                for (Integer orderId : orderIds) {
+                    orderItems = jdbcTemplate.query("SELECT * FROM order_items WHERE order_id = " + orderId, new BeanPropertyRowMapper<>(OrderItem.class));
+                }
+                for (Order order : orders) {
+                    order.setOrderItems(orderItems);
+                }
                 return Either.right(orders);
             }
 
@@ -68,7 +78,7 @@ public class OrdersDaoImpl implements OrdersDao {
     }
 
     @Override
-    public Either<ErrorC, Integer> add(Order order) {
+    public Either<ErrorC, Integer> save(Order order) {
         int rowsAffected;
         Connection connection = null;
         try {

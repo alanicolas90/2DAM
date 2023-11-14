@@ -64,7 +64,9 @@ public class OrderAddController extends BaseScreenController {
         comboBoxCustomer.setDisable(true);
 
         comboBoxTableNumber.getItems().addAll(tablesServices.getAllTableNumbers());
-        comboBoxMenuItem.getItems().addAll(menuItemsService.getAllNames().get());
+        if(menuItemsService.getAllNames().isRight()){
+            comboBoxMenuItem.getItems().addAll(menuItemsService.getAllNames().get());
+        }
         orderItems = new ArrayList<>();
     }
 

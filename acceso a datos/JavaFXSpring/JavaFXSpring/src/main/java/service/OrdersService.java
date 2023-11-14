@@ -41,7 +41,7 @@ public class OrdersService {
     }
 
     public Either<ErrorC, Integer> add(Order order) {
-        return ordersDao.add(order);
+        return ordersDao.save(order);
     }
 
     public Either<ErrorC, Integer> update(Order order) {

@@ -44,7 +44,9 @@ public class CustomerListController extends BaseScreenController {
 
     @Override
     public void principalLoaded() {
-        tableCustomers.getItems().addAll(customerService.getAll().get());
+        if (customerService.getAll().isRight()) {
+            tableCustomers.getItems().addAll(customerService.getAll().get());
+        }
     }
 
     @FXML

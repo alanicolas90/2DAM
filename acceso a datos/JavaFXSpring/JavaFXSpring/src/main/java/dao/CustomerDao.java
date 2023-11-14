@@ -10,7 +10,7 @@ public interface CustomerDao {
 
     Either<ErrorC, List<Customer>> getAll();
 
-    Either<ErrorC, Integer> saveAutoIncrementalID(Customer customer);
+    Either<ErrorC, Integer> save(Customer customer);
 
     Either<ErrorC, Customer> get(int id);
 

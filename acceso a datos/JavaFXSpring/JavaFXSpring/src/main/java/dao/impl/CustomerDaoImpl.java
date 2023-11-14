@@ -88,7 +88,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public Either<ErrorC, Integer> saveAutoIncrementalID(Customer customer) {
+    public Either<ErrorC, Integer> save(Customer customer) {
         try {
             SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(dbConnection.getDataSource())
                     .withTableName("credentials")

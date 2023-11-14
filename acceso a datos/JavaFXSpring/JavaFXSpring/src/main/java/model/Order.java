@@ -60,5 +60,4 @@ public class Order {
     public String toStringTextFile() {
         return id + ";" + date.toString().replace("T", " ") + ";" + customerId + ";" + tableNumber;
     }
-
 }
