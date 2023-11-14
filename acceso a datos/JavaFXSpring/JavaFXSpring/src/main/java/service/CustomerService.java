@@ -52,9 +52,13 @@ public class CustomerService {
         return customerDao.get(id);
     }
 
-    public List<Integer> getAllIdsCustomer() {
-        List<Customer> customers = customerDao.getAll().get();
-        return customers.stream().map(Customer::getId).toList();
+    public Either<ErrorC,List<Integer>> getAllIdsCustomer() {
+        if(customerDao.getAll().isLeft())
+            return Either.left(new ErrorC("No customers found"));
+        else{
+            List<Customer> customers = customerDao.getAll().get();
+            return Either.right(customers.stream().map(Customer::getId).toList());
+        }
 
     }
 

@@ -83,8 +83,9 @@ public class OrderListController extends BaseScreenController {
         columnTotalPrice.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.TOTAL_PRICE));
 
         txtTotalAmount.setText("0.0 €");
-
-        comboBoxCustomer.getItems().addAll(customerService.getAllIdsCustomer());
+        if(customerService.getAllIdsCustomer().isRight()){
+            comboBoxCustomer.getItems().addAll(customerService.getAllIdsCustomer().get());
+        }
         filterComboBox.getItems().addAll(ConstantsController.DATE, ConstantsController.CUSTOMER, ConstantsController.NONE);
         comboBoxCustomer.setDisable(true);
         datePicker.setDisable(true);
