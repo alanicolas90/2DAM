@@ -13,7 +13,6 @@ import model.Order;
 import model.OrderItem;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import service.model.OrderXml;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -63,7 +62,7 @@ public class OrdersDaoImpl implements OrdersDao {
                 List<Integer> orderIds = orders.stream().map(Order::getId).toList();
                 List<OrderItem> orderItems = new ArrayList<>();
                 for (Integer orderId : orderIds) {
-                    orderItems = jdbcTemplate.query("SELECT * FROM order_items WHERE order_id = " + orderId, new BeanPropertyRowMapper<>(OrderItem.class));
+                    orderItems = jdbcTemplate.query(SQLQueries.SELECT_FROM_ORDER_ITEMS_WHERE_ORDER_ID + orderId, new BeanPropertyRowMapper<>(OrderItem.class));
                 }
                 for (Order order : orders) {
                     order.setOrderItems(orderItems);
@@ -95,7 +94,7 @@ public class OrdersDaoImpl implements OrdersDao {
                 orderId = rs.getInt(1);
             }
             if (!order.getOrderItems().isEmpty() && orderId != -1) {
-                PreparedStatement preparedStatementOrderItemsAdd = connection.prepareStatement("INSERT INTO order_items (order_id, menu_item_id, quantity) VALUES (?,?,?)");
+                PreparedStatement preparedStatementOrderItemsAdd = connection.prepareStatement(SQLQueries.INSERT_INTO_ORDER_ITEMS_ORDER_ID_MENU_ITEM_ID_QUANTITY_VALUES);
                 for (int i = 0; i < order.getOrderItems().size(); i++) {
                     preparedStatementOrderItemsAdd.setInt(1, orderId);
                     preparedStatementOrderItemsAdd.setInt(2, order.getOrderItems().get(i).getMenuItemId());
@@ -109,10 +108,10 @@ public class OrdersDaoImpl implements OrdersDao {
         } catch (SQLException e) {
             tryCatchRollbak(connection);
             log.error(e.getMessage());
-            return Either.left(new ErrorC("Error adding order"));
+            return Either.left(new ErrorC(DaoConstants.ERROR_ADDING_ORDER));
         } catch (Exception e) {
             log.error(e.getMessage());
-            return Either.left(new ErrorC("Error adding order 32323"));
+            return Either.left(new ErrorC(DaoConstants.ERROR_ADDING_ORDER_32323));
         }
         return Either.right(rowsAffected);
     }
@@ -127,8 +126,6 @@ public class OrdersDaoImpl implements OrdersDao {
             preparedStatement.setInt(2, order.getTableNumber());
             preparedStatement.setInt(3, order.getId());
             rowsAffected = preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            log.error(e.getMessage());
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -150,7 +147,7 @@ public class OrdersDaoImpl implements OrdersDao {
                 } catch (SQLException e) {
                     tryCatchRollbak(connection);
                     if (e.getErrorCode() == 1451) {
-                        return Either.left(new ErrorC("Order has order items"));
+                        return Either.left(new ErrorC(DaoConstants.ORDER_HAS_ORDER_ITEMS));
                     } else {
                         log.error(e.getMessage());
                     }
@@ -169,7 +166,7 @@ public class OrdersDaoImpl implements OrdersDao {
                 try {
                     connection.setAutoCommit(false);
 
-                    PreparedStatement preparedStatementDeleteOrderItems = connection.prepareStatement("delete from order_items where order_id =" + id);
+                    PreparedStatement preparedStatementDeleteOrderItems = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDER_ITEMS_WHERE_ORDER_ID_EQUALS + id);
 
                     PreparedStatement preparedStatementDeleteOrders = connection.prepareStatement(SQLQueries.DELETE_FROM_ORDERS_WHERE_ORDER_ID);
                     preparedStatementDeleteOrders.setInt(1, id);
@@ -181,7 +178,7 @@ public class OrdersDaoImpl implements OrdersDao {
                 } catch (SQLException e) {
                     tryCatchRollbak(connection);
                     if (e.getErrorCode() == 1451) {
-                        return Either.left(new ErrorC("Order has order items"));
+                        return Either.left(new ErrorC(DaoConstants.ORDER_HAS_ORDER_ITEMS));
                     } else {
                         log.error(e.getMessage());
                     }
@@ -193,7 +190,7 @@ public class OrdersDaoImpl implements OrdersDao {
                 log.error(e.getMessage());
             }
             if (rowsAffected < 1) {
-                return Either.left(new ErrorC("Error deleting order"));
+                return Either.left(new ErrorC(DaoConstants.ERROR_DELETING_ORDER));
             } else {
                 return Either.right(rowsAffected);
             }

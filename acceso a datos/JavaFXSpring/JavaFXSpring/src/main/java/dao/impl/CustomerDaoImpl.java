@@ -48,7 +48,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
         } catch (Exception e) {
             log.error(e.getMessage());
-           return Either.left(new ErrorC("Database error"));
+           return Either.left(new ErrorC(DaoConstants.DATABASE_ERROR));
         }
     }
 
@@ -66,7 +66,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
         } catch (Exception e) {
             log.error(e.getMessage());
-            return Either.left(new ErrorC("Database error"));
+            return Either.left(new ErrorC(DaoConstants.DATABASE_ERROR));
         }
     }
 
@@ -77,13 +77,13 @@ public class CustomerDaoImpl implements CustomerDao {
             List<Customer> customers = jdbcTemplate.query(SQLQueries.GET_ALL_CUSTOMERS, new BeanPropertyRowMapper<>(Customer.class));
 
             if (customers.isEmpty()) {
-                return Either.left(new ErrorC("No customers were found"));
+                return Either.left(new ErrorC(DaoConstants.NO_CUSTOMERS_WERE_FOUND));
             } else {
                 return Either.right(customers);
             }
         } catch (DataAccessException e) {
             Logger.getLogger(CustomerDaoImpl.class.getName()).severe(e.getMessage());
-            return Either.left(new ErrorC("Error in data base"));
+            return Either.left(new ErrorC(DaoConstants.ERROR_IN_DATA_BASE));
         }
     }
 
@@ -113,7 +113,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
         } catch (Exception e) {
             log.error(e.getMessage());
-            return Either.left(new ErrorC("Error adding customer"));
+            return Either.left(new ErrorC(DaoConstants.ERROR_ADDING_CUSTOMER));
         }
     }
 

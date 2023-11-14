@@ -2,7 +2,6 @@ package service;
 
 
 import dao.CustomerDao;
-import dao.OrderItemsDao;
 import dao.OrdersDao;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
@@ -16,23 +15,17 @@ import service.model.OrderXml;
 import service.model.OrdersXml;
 
 import java.io.File;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CustomerService {
 
     private final CustomerDao customerDao;
     private final OrdersDao ordersDao;
-    private final OrderItemsDao orderItemsDao;
 
     @Inject
-    public CustomerService(CustomerDao customerDao, OrdersDao ordersDao, OrderItemsDao orderItemsDao) {
+    public CustomerService(CustomerDao customerDao, OrdersDao ordersDao) {
         this.customerDao = customerDao;
         this.ordersDao = ordersDao;
-        this.orderItemsDao = orderItemsDao;
     }
 
     public Either<ErrorC, List<Customer>> getAll() {

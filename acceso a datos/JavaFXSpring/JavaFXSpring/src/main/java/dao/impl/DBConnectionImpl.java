@@ -45,13 +45,6 @@ public class DBConnectionImpl implements DBConnection {
     }
 
 
-//    @Override
-//    public Connection getConnection() throws SQLException {
-//        Connection conn = hikariDataSource.getConnection();
-//        log.info("Connection to database established");
-//        return conn;
-//    }
-
     @Override
     public DataSource getDataSource() {
         return hikariDataSource;
@@ -65,7 +58,7 @@ public class DBConnectionImpl implements DBConnection {
                 connArg.close();
             }
         } catch (SQLException sqle) {
-            sqle.printStackTrace();
+           log.error("Error closing connection to database", sqle);
         }
     }
 

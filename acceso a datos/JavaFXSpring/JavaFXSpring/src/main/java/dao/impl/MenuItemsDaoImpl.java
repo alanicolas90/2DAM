@@ -7,18 +7,12 @@ import dao.utils.SQLQueries;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
-import model.Customer;
 import model.ErrorC;
 import model.MenuItem;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import ui.screens.order.model.MenuItemTable;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
@@ -54,13 +48,9 @@ public class MenuItemsDaoImpl implements MenuItemsDao {
         try {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
             List<MenuItemTable> menuItems = jdbcTemplate
-                    .query("Select o.order_id, mi.name, mi.price, oi.quantity from menu_items as mi\n" +
-                                    "    join order_items as oi on mi.id = oi.menu_item_id\n" +
-                                    "    join orders as o on oi.order_id = o.order_id\n" +
-                                    "    where oi.order_id = ?",
+                    .query(SQLQueries.QUERRY_GET_MENU_ITEMS_FOR_TABLE,
                     new BeanPropertyRowMapper<>(MenuItemTable.class),
                     idOrder);
-
             menuItems.forEach(menuItemTable -> menuItemTable.setTotal(menuItemTable.getPrice() * menuItemTable.getQuantity()));
 
             return Either.right(menuItems);
@@ -75,7 +65,7 @@ public class MenuItemsDaoImpl implements MenuItemsDao {
         try{
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
             MenuItem menuItem = jdbcTemplate
-                    .queryForObject("Select * from menu_items where name = ?",
+                    .queryForObject(SQLQueries.SELECT_FROM_MENU_ITEMS_WHERE_NAME,
                             new BeanPropertyRowMapper<>(MenuItem.class),
                             nameMenuItem);
 
@@ -89,21 +79,5 @@ public class MenuItemsDaoImpl implements MenuItemsDao {
         }
     }
 
-    private List<MenuItem> readRS(ResultSet resultSet) {
-        List<MenuItem> menuItems = new ArrayList<>();
-        try {
-            while (resultSet.next()) {
-                int id = resultSet.getInt(DaoConstants.ID);
-                String name = resultSet.getString(DaoConstants.NAME);
-                String description = resultSet.getString(DaoConstants.DESCRIPTION);
-                double price = resultSet.getDouble(DaoConstants.PRICE);
-                menuItems.add(new MenuItem(id, name, description, price));
-            }
-        } catch (SQLException e) {
-            log.error(e.getMessage());
-        }
-
-        return menuItems;
-    }
 
 }

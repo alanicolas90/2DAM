@@ -3,7 +3,6 @@ package service;
 import dao.MenuItemsDao;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import jakarta.inject.Singleton;
 import model.ErrorC;
 import model.MenuItem;
 import ui.screens.order.model.MenuItemTable;
@@ -39,8 +38,7 @@ public class MenuItemsService {
     }
 
     public Either<ErrorC, List<MenuItemTable>> getAllMenuItems(int id) {
-        Either<ErrorC,List<MenuItemTable>> menuItems = menuItemsDao.get(id);
-        return menuItems;
+        return menuItemsDao.get(id);
     }
 
     public Double getTotalAmount(int id) {

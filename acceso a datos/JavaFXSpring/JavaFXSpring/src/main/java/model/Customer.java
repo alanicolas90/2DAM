@@ -59,13 +59,6 @@ public class Customer {
         this.phone = phone;
     }
 
-    public String toStringTextFile() {
-        if (phone == 0) {
-            return id + ";" + name + ";" + surname + ";" + email + ";" + ";" + birthDate;
-        } else {
-            return id + ";" + name + ";" + surname + ";" + email + ";" + phone + ";" + birthDate;
-        }
-    }
 
     public Customer(String line) {
         String[] customerData = line.split(";");

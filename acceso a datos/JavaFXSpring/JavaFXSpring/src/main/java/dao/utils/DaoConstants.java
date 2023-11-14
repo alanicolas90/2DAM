@@ -40,6 +40,17 @@ public class DaoConstants {
     public static final String TABLE_NUMBER = "table_number";
     public static final String SEATS = "seats";
     public static final String NO_TABLE_FOUND = "No table found";
+    public static final String DATABASE_ERROR = "Database error";
+    public static final String NO_CUSTOMERS_WERE_FOUND = "No customers were found";
+    public static final String ERROR_IN_DATA_BASE = "Error in data base";
+    public static final String ERROR_ADDING_CUSTOMER = "Error adding customer";
+    public static final String NO_ORDER_ITEMS_FOUND = "No order items found";
+    public static final String ERROR_GETTING_ORDER_ITEMS = "Error getting order items";
+    public static final String ERROR_IN_QUERRY = "Error in querry";
+    public static final String ERROR_ADDING_ORDER = "Error adding order";
+    public static final String ERROR_ADDING_ORDER_32323 = "Error adding order 32323";
+    public static final String ORDER_HAS_ORDER_ITEMS = "Order has order items";
+    public static final String ERROR_DELETING_ORDER = "Error deleting order";
 
 
     private DaoConstants() {

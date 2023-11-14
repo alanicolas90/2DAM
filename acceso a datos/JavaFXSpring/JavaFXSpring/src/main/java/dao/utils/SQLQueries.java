@@ -22,6 +22,14 @@ public class SQLQueries {
     public static final String DELETE_FROM_ORDER_ITEMS_WHERE_ORDER_ID = "DELETE FROM order_items WHERE order_id = ?";
     public static final String DELETE_FROM_ORDER_ITEMS_WHERE_ORDER_ID_IN_SELECT_ORDER_ID_FROM_ORDERS_WHERE_CUSTOMER_ID = "delete from order_items where order_id in(select order_id from orders where customer_id = ?)";
     public static final String QUERY_GET_CREDENTIALS_WHERE_USERNAME_IS = "SELECT * FROM credentials WHERE username = ?";
+    public static final String SELECT_O_ORDER_ID_MI_NAME_MI_PRICE_OI_QUANTITY_FROM_MENU_ITEMS_AS_MI = "Select o.order_id, mi.name, mi.price, oi.quantity from menu_items as mi";
+    public static final String QUERRY_GET_MENU_ITEMS_FOR_TABLE = "Select o.order_id, mi.name, mi.price, oi.quantity from menu_items as mi join order_items as oi on mi.id = oi.menu_item_id join orders as o on oi.order_id = o.order_id where oi.order_id = ?";
+    public static final String SELECT_FROM_MENU_ITEMS_WHERE_NAME = "Select * from menu_items where name = ?";
+    public static final String SQL_QUERRY_GET_BY_NAME = "SELECT * FROM order_items WHERE order_id = ";
+    public static final String SELECT_FROM_ORDER_ITEMS = "SELECT * FROM order_items";
+    public static final String SELECT_FROM_ORDER_ITEMS_WHERE_ORDER_ID = "SELECT * FROM order_items WHERE order_id = ";
+    public static final String INSERT_INTO_ORDER_ITEMS_ORDER_ID_MENU_ITEM_ID_QUANTITY_VALUES = "INSERT INTO order_items (order_id, menu_item_id, quantity) VALUES (?,?,?)";
+    public static final String DELETE_FROM_ORDER_ITEMS_WHERE_ORDER_ID_EQUALS = "delete from order_items where order_id =";
 
     private SQLQueries() {
     }

@@ -19,10 +19,6 @@ public class OrdersXml {
     @XmlElement(name = "order")
     List<OrderXml> orders;
 
-    public void addOrder(OrderXml order) {
-        orders.add(order);
-    }
-
     @Override
     public String toString() {
         return "OrdersXml{" +

@@ -40,7 +40,7 @@ public class LoginDaoImpl implements LoginDao {
             }
         } catch (Exception e) {
             log.error(e.getMessage());
-            return Either.left(new ErrorC("Database error"));
+            return Either.left(new ErrorC(DaoConstants.DATABASE_ERROR));
         }
     }
 }
