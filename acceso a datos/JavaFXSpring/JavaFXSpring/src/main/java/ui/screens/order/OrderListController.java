@@ -5,16 +5,19 @@ import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lombok.Data;
 import model.Customer;
 import model.ErrorC;
 import model.Order;
 import model.OrderItem;
 import service.CustomerService;
+import service.MenuItemsService;
 import service.OrderItemsService;
 import service.OrdersService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantsController;
 import ui.screens.order.common.CommonOrder;
+import ui.screens.order.model.MenuItemTable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,14 +28,18 @@ public class OrderListController extends BaseScreenController {
     private final OrdersService ordersService;
     private final CustomerService customerService;
     private final OrderItemsService orderItemsService;
-
+    private final MenuItemsService menuItemsService;
     @Inject
-    public OrderListController(CommonOrder commonOrder, OrdersService ordersService, CustomerService customerService, OrderItemsService orderItemsService) {
+    public OrderListController(CommonOrder commonOrder, OrdersService ordersService, CustomerService customerService, OrderItemsService orderItemsService,MenuItemsService menuItemsService) {
         this.commonOrder = commonOrder;
         this.ordersService = ordersService;
         this.customerService = customerService;
         this.orderItemsService = orderItemsService;
+        this.menuItemsService = menuItemsService;
     }
+
+
+
 
 
     @FXML
@@ -49,13 +56,19 @@ public class OrderListController extends BaseScreenController {
     private TableColumn<Order, Integer> columnTableNumber;
 
     @FXML
-    private TableView<OrderItem> tableOrderItems;
+    private TableView<MenuItemTable> tableOrderItems;
     @FXML
-    private TableColumn<OrderItem, String> columnItemName;
+    private TableColumn<MenuItemTable, String> columnItemName;
     @FXML
-    private TableColumn<OrderItem, Integer> columnQuantity;
+    private TableColumn<MenuItemTable, Integer> columnQuantity;
+    @FXML
+    private TableColumn<MenuItemTable,Double> columnPrice;
+    @FXML
+    private TableColumn<MenuItemTable,Double> columnTotalPrice;
     @FXML
     private TextField txtCustomerName;
+    @FXML
+    private TextField txtTotalAmount;
 
     @FXML
     private ComboBox<String> filterComboBox;
@@ -64,8 +77,12 @@ public class OrderListController extends BaseScreenController {
 
     public void initialize() {
         commonOrder.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
-        columnItemName.setCellValueFactory(new PropertyValueFactory<>("menuItemId"));
+        columnItemName.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnQuantity.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.QUANTITY));
+        columnPrice.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.PRICE));
+        columnTotalPrice.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.TOTAL_PRICE));
+
+        txtTotalAmount.setText("0.0 €");
 
         comboBoxCustomer.getItems().addAll(customerService.getAllIdsCustomer());
         filterComboBox.getItems().addAll(ConstantsController.DATE, ConstantsController.CUSTOMER, ConstantsController.NONE);
@@ -97,10 +114,13 @@ public class OrderListController extends BaseScreenController {
         if (tableOrders.getSelectionModel().getSelectedItem() != null) {
 
             showNameCustomerFromSelectedOrder();
-
             Order order = tableOrders.getSelectionModel().getSelectedItem();
+
             if(orderItemsService.get(order.getId()).isRight()){
-                tableOrderItems.getItems().addAll(orderItemsService.get(order.getId()).get());
+                tableOrderItems.getItems().addAll(menuItemsService.getAllMenuItems(order.getId()).get());
+                txtTotalAmount.setText((menuItemsService.getTotalAmount(order.getId())+ " €"));
+            }else{
+                txtTotalAmount.setText("0.0 €");
             }
 
         }

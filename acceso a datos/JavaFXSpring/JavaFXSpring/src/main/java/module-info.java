@@ -47,4 +47,6 @@ module JavaFXSpring {
     opens dao;
     exports dao.impl.rowmappers;
     opens dao.impl.rowmappers;
+    exports ui.screens.order.model;
+    opens ui.screens.order.model;
 }

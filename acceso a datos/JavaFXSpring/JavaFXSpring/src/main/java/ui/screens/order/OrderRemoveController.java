@@ -9,11 +9,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.ErrorC;
 import model.Order;
 import model.OrderItem;
+import service.MenuItemsService;
 import service.OrderItemsService;
 import service.OrdersService;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantsController;
 import ui.screens.order.common.CommonOrder;
+import ui.screens.order.model.MenuItemTable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,19 +24,19 @@ public class OrderRemoveController extends BaseScreenController {
 
     private final CommonOrder common;
     private final OrdersService ordersService;
-
     private final OrderItemsService orderItemService;
-
+    private final MenuItemsService menuItemsService;
     @Inject
-    public OrderRemoveController(CommonOrder common, OrdersService ordersService, OrderItemsService orderItemService) {
+    public OrderRemoveController(CommonOrder common, OrdersService ordersService, OrderItemsService orderItemService, MenuItemsService menuItemsService) {
         this.common = common;
         this.ordersService = ordersService;
         this.orderItemService = orderItemService;
+        this.menuItemsService = menuItemsService;
     }
 
 
-    @FXML
-    private TableView<OrderItem> tableOrderItems;
+
+
     @FXML
     private TableView<Order> tableOrders;
     @FXML
@@ -47,15 +49,23 @@ public class OrderRemoveController extends BaseScreenController {
     private TableColumn<Order, Integer> columnTableNumber;
 
     @FXML
-    private TableColumn<OrderItem, String> columnItemName;
+    private TableView<MenuItemTable> tableOrderItems;
     @FXML
-    private TableColumn<OrderItem, Integer> columnQuantity;
+    private TableColumn<MenuItemTable, String> columnItemName;
+    @FXML
+    private TableColumn<MenuItemTable, Integer> columnQuantity;
+    @FXML
+    private TableColumn<MenuItemTable,Double> columnPrice;
+    @FXML
+    private TableColumn<MenuItemTable,Double> columnTotalPrice;
 
 
     public void initialize() {
         common.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
-        columnItemName.setCellValueFactory(new PropertyValueFactory<>("menuItemId"));
+        columnItemName.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.NAME));
         columnQuantity.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.QUANTITY));
+        columnPrice.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.PRICE));
+        columnTotalPrice.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.TOTAL_PRICE));
     }
 
     @Override
@@ -113,7 +123,7 @@ public class OrderRemoveController extends BaseScreenController {
         if (tableOrders.getSelectionModel().getSelectedItem() != null) {
             int idOrder = tableOrders.getSelectionModel().getSelectedItem().getId();
             if (orderItemService.get(idOrder).isRight()) {
-                tableOrderItems.getItems().addAll(orderItemService.get(idOrder).get());
+                tableOrderItems.getItems().addAll(menuItemsService.getAllMenuItems(idOrder).get());
             }
         }
     }

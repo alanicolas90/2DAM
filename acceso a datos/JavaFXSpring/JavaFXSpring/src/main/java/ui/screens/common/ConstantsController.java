@@ -8,7 +8,7 @@ public class ConstantsController {
     public static final String ERROR = "Error";
     public static final String PHONE_NUMBER_CANNOT_CONTAIN_LETTERS = "Phone number cannot contain letters";
     public static final String INFORMATION = "Information";
-    public static final String ID = "id";
+    public static final String ORDER_ID = "order_id";
 
 
     //-----------------SCREEN/COMMON-----------------//
@@ -20,10 +20,10 @@ public class ConstantsController {
     public static final String DATE = "date";
     public static final String CUSTOMER_ID = "customerId";
     public static final String TABLE_NUMBER = "tableNumber";
-    public static final String ITEM_NAME = "menuItem";
+    public static final String ITEM_NAME = "name";
     public static final String QUANTITY = "quantity";
     public static final String PRICE = "price";
-    public static final String TOTAL_PRICE = "totalPrice";
+    public static final String TOTAL_PRICE = "total";
 
 
     //-----------------SCREEN/CUSTOMER_ADD-----------------//
@@ -83,6 +83,7 @@ public class ConstantsController {
     public static final String CUSTOMER_HAS_NO_ORDERS = "Customer has no orders";
     public static final String CUSTOMER = "Customer";
     public static final String NONE = "None";
+    public static final String ID = "id";
 
 
     private ConstantsController() {

@@ -5,6 +5,7 @@ import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.ErrorC;
 import model.MenuItem;
+import ui.screens.order.model.MenuItemTable;
 
 import java.util.List;
 
@@ -20,14 +21,24 @@ public class MenuItemsService {
 
     public Either<ErrorC, List<String>> getAllNames() {
         Either<ErrorC, List<MenuItem>> menuItems = menuItemsDao.getAll();
-        List<String> names = menuItems.get().stream().map(MenuItem::getItemName).toList();
+        List<String> names = menuItems.get().stream().map(MenuItem::getName).toList();
         return Either.right(names);
     }
 
     public int getMenuItemIdByName(String value) {
         Either<ErrorC, List<MenuItem>> menuItems = menuItemsDao.getAll();
-        return menuItems.get().stream().filter(menuItem -> menuItem.getItemName().equals(value)).findFirst().get().getId();
+        return menuItems.get().stream().filter(menuItem -> menuItem.getName().equals(value)).findFirst().get().getId();
 
 
+    }
+
+    public Either<ErrorC, List<MenuItemTable>> getAllMenuItems(int id) {
+        Either<ErrorC,List<MenuItemTable>> menuItems = menuItemsDao.get(id);
+        return menuItems;
+    }
+
+    public Double getTotalAmount(int id) {
+        Either<ErrorC,List<MenuItemTable>> menuItems = menuItemsDao.get(id);
+        return menuItems.get().stream().mapToDouble(MenuItemTable::getPrice).sum();
     }
 }

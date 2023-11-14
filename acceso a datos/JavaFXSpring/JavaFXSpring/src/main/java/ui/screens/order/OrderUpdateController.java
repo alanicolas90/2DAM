@@ -2,16 +2,18 @@ package ui.screens.order;
 
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import model.MenuItem;
 import model.Order;
+import service.MenuItemsService;
 import service.OrdersService;
 import service.TablesServices;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.ConstantsController;
 import ui.screens.order.common.CommonOrder;
+import ui.screens.order.model.MenuItemTable;
 
 import java.time.LocalDateTime;
 
@@ -20,14 +22,30 @@ public class OrderUpdateController extends BaseScreenController {
     private final CommonOrder common;
     private final OrdersService ordersService;
     private final TablesServices tablesServices;
-
+    private final MenuItemsService menuItemsService;
     @Inject
-    public OrderUpdateController(CommonOrder common, OrdersService ordersService, TablesServices tablesServices) {
+    public OrderUpdateController(CommonOrder common, OrdersService ordersService, TablesServices tablesServices,MenuItemsService menuItemsService) {
         this.common = common;
         this.ordersService = ordersService;
         this.tablesServices = tablesServices;
+        this.menuItemsService = menuItemsService;
     }
 
+
+    @FXML
+    private TableColumn<MenuItem,Integer> columnIdOrderItem;
+    @FXML
+    private TableColumn<MenuItem, String> columnNameOrderItem;
+    @FXML
+    private TableColumn<MenuItem,Double> columnPriceOrderItem;
+    @FXML
+    private TableColumn<MenuItem, Integer> columnQuantityOrderItem;
+    @FXML
+    private TextField txtQuantityMenuItem;
+    @FXML
+    private ComboBox<String> comboBoxMenuItem;
+    @FXML
+    private TableView<MenuItemTable> tableOrderItems;
     @FXML
     private TextField txtCustomerId;
     @FXML
@@ -47,22 +65,29 @@ public class OrderUpdateController extends BaseScreenController {
 
     public void initialize() {
         common.initOrderList(columnId, columnDate, columnCustomerId, columnTableNumber);
+        columnIdOrderItem.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.ORDER_ID));
+        columnNameOrderItem.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.ITEM_NAME));
+        columnPriceOrderItem.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.PRICE));
+        columnQuantityOrderItem.setCellValueFactory(new PropertyValueFactory<>(ConstantsController.QUANTITY));
         txtCustomerId.setDisable(true);
     }
 
     @Override
     public void principalLoaded() {
         txtCustomerId.setText(String.valueOf(getPrincipalController().getIdUserLogged()));
+        comboBoxMenuItem.getItems().addAll(menuItemsService.getAllNames().get());
         loadTable();
     }
 
     @FXML
-    private void selectionTable() {
+    private void selectionTableOrders() {
         Order order = tableOrders.getSelectionModel().getSelectedItem();
+        tableOrderItems.getItems().clear();
         if (order != null) {
             dateOfBirthCustomer.setValue(order.getDate().toLocalDate());
             txtCustomerId.setText(String.valueOf(order.getCustomerId()));
             txtTableNumber.setText(String.valueOf(order.getTableNumber()));
+            tableOrderItems.getItems().addAll(menuItemsService.getAllMenuItems(order.getId()).get());
         }
     }
 
@@ -108,4 +133,5 @@ public class OrderUpdateController extends BaseScreenController {
             }
         }
     }
+
 }

@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MenuItem {
     int id;
-    String itemName;
+    String name;
     String description;
     double price;
 
     public MenuItem(String itemName) {
-        this.itemName = itemName;
+        this.name = itemName;
     }
 
 }

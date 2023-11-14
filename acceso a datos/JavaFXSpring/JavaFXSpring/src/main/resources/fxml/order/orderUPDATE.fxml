@@ -4,31 +4,44 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.order.OrderUpdateController">
+<AnchorPane prefHeight="525.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.order.OrderUpdateController">
     <Label layoutX="32.0" layoutY="32.0" prefHeight="62.0" prefWidth="337.0" text="Update Order">
         <font>
-            <Font size="42.0"/>
+            <Font size="42.0" />
         </font>
     </Label>
 
-    <Label layoutX="46.0" layoutY="148.0" text="Date"/>
-    <Label layoutX="46.0" layoutY="215.0" text="CustomerID"/>
-    <TextField fx:id="txtCustomerId" layoutX="46.0" layoutY="232.0"/>
-    <Label layoutX="49.0" layoutY="281.0" text="Table Number"/>
-    <TextField fx:id="txtTableNumber" layoutX="46.0" layoutY="302.0"/>
-    <DatePicker fx:id="dateOfBirthCustomer" layoutX="46.0" layoutY="165.0"/>
+    <Label layoutX="46.0" layoutY="148.0" text="Date" />
+    <Label layoutX="46.0" layoutY="215.0" text="CustomerID" />
+    <TextField fx:id="txtCustomerId" layoutX="46.0" layoutY="232.0" />
+    <Label layoutX="49.0" layoutY="281.0" text="Table Number" />
+    <TextField fx:id="txtTableNumber" layoutX="46.0" layoutY="302.0" />
+    <DatePicker fx:id="dateOfBirthCustomer" layoutX="46.0" layoutY="165.0" />
 
-    <Label layoutX="288.0" layoutY="101.0" text="Select one Order"/>
-    <TableView fx:id="tableOrders" layoutX="288.0" layoutY="129.0" onMouseClicked="#selectionTable" prefHeight="303.0"
-               prefWidth="464.0">
+    <Label layoutX="252.0" layoutY="103.0" text="Select one Order" />
+    <TableView fx:id="tableOrders" layoutX="252.0" layoutY="130.0" onMouseClicked="#selectionTableOrders" prefHeight="303.0" prefWidth="318.0">
         <columns>
-            <TableColumn fx:id="columnId" prefWidth="49.0" text="ID"/>
-            <TableColumn fx:id="columnDate" prefWidth="210.0" text="Date"/>
-            <TableColumn fx:id="columnCustomerId" prefWidth="110.0" text="CustomerID"/>
-            <TableColumn fx:id="columnTableNumber" prefWidth="94.0" text="TableNumber"/>
+            <TableColumn fx:id="columnId" prefWidth="39.0" text="ID" />
+            <TableColumn fx:id="columnDate" prefWidth="112.0" text="Date" />
+            <TableColumn fx:id="columnCustomerId" prefWidth="75.0" text="CustomerID" />
+            <TableColumn fx:id="columnTableNumber" prefWidth="90.0" text="TableNumber" />
         </columns>
     </TableView>
 
-    <Button layoutX="87.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#updateOrder" text="Update"/>
+    <Button layoutX="452.0" layoutY="486.0" mnemonicParsing="false" onMouseClicked="#updateOrder" text="Update" />
+   <TableView fx:id="tableOrderItems" layoutX="584.0" layoutY="130.0" prefHeight="303.0" prefWidth="302.0">
+     <columns>
+       <TableColumn fx:id="columnIdOrderItem" prefWidth="75.0" text="id" />
+       <TableColumn fx:id="columnNameOrderItem" prefWidth="75.0" text="name" />
+         <TableColumn fx:id="columnPriceOrderItem" prefWidth="75.0" text="price" />
+         <TableColumn fx:id="columnQuantityOrderItem" prefWidth="75.0" text="quantity" />
+     </columns>
+   </TableView>
+   <Label layoutX="584.0" layoutY="103.0" text="Order Items" />
+   <ComboBox fx:id="comboBoxMenuItem" layoutX="397.0" layoutY="63.0" prefWidth="150.0" />
+   <Label layoutX="397.0" layoutY="46.0" text="MenuItem" />
+   <TextField fx:id="txtQuantityMenuItem" layoutX="584.0" layoutY="63.0" promptText="Quantity" />
+   <Label layoutX="584.0" layoutY="46.0" text="Quantity" />
+   <Button layoutX="775.0" layoutY="63.0" mnemonicParsing="false" text="Add MenuItem" />
+   <Button layoutX="768.0" layoutY="453.0" mnemonicParsing="false" text="Delete MenuItem" />
 </AnchorPane>

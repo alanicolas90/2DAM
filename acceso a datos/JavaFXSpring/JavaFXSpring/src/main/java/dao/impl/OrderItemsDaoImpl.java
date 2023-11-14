@@ -2,11 +2,13 @@ package dao.impl;
 
 import dao.DBConnection;
 import dao.OrderItemsDao;
+import dao.impl.rowmappers.OrderItemRowMapper;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
 import model.ErrorC;
 import model.OrderItem;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -28,37 +30,38 @@ public class OrderItemsDaoImpl implements OrderItemsDao {
 
     @Override
     public Either<ErrorC, List<OrderItem>> get(int orderId) {
-        List<OrderItem> orderItems;
-        try(Connection connection = dbConnection.getDataSource().getConnection();
-            Statement statement = connection.createStatement()){
+        try {
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
+            List<OrderItem> orderItems = jdbcTemplate
+                    .query("SELECT * FROM order_items WHERE order_id = " + orderId,
+                            new OrderItemRowMapper());
 
-            ResultSet rs = statement.executeQuery("SELECT * FROM order_items WHERE order_id = " + orderId);
-            orderItems = readRS(rs);
+            if (orderItems.isEmpty())
+                return Either.left(new ErrorC("No order items found"));
+            else
+                return Either.right(orderItems);
 
-        }catch (SQLException e){
+        } catch (Exception e) {
             log.error(e.getMessage());
             return Either.left(new ErrorC("Error getting order items"));
         }
-        if(orderItems.isEmpty())
-            return Either.left(new ErrorC("No order items found"));
-        else
-            return Either.right(orderItems);
     }
 
-    private List<OrderItem> readRS(ResultSet rs) {
-        List<OrderItem> orderItems = new ArrayList<>();
+    @Override
+    public Either<ErrorC, List<OrderItem>> getAll() {
         try{
-            while (rs.next()){
-                OrderItem orderItem = new OrderItem();
-                orderItem.setId(rs.getInt("id"));
-                orderItem.setOrderId(rs.getInt("order_id"));
-                orderItem.setMenuItemId(rs.getInt("menu_item_id"));
-                orderItem.setQuantity(rs.getInt("quantity"));
-                orderItems.add(orderItem);
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
+            List<OrderItem>orderItems = jdbcTemplate.query("SELECT * FROM order_items", new OrderItemRowMapper());
+
+            if(orderItems.isEmpty()){
+                return Either.left(new ErrorC("No order items found"));
+            }else{
+                return Either.right(orderItems);
             }
-        }catch (SQLException e){
+        }catch(Exception e){
             log.error(e.getMessage());
+            return Either.left(new ErrorC("Error in querry"));
         }
-        return orderItems;
     }
+
 }
