@@ -41,3 +41,5 @@ bapp/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/detail/adapte
 \app/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/DeletePokemonUseCase.kt,9\0\90a630fc0c7ff2d20ae43cc4929c14e2c840047c
 å
 \app/src/main/java/com/example/ejerciciodatajsonlocal/domain/usecases/UpdatePokemonUseCase.kt,3\1\31aaf3f67f45f6460003e51c3659fb02f6ce67ca
+ê
+`app/src/main/java/com/example/ejerciciodatajsonlocal/ui/pantallas/main/adapter/PokemonAdapter.kt,f\0\f0ce2451762c8377fdfd5c7356111703675e9d4d

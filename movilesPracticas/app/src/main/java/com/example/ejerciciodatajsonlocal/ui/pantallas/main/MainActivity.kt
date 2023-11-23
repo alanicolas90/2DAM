@@ -9,7 +9,7 @@ import com.example.ejerciciodatajsonlocal.databinding.ActivityMainBinding
 import com.example.ejerciciodatajsonlocal.domain.model.Pokemon
 import com.example.ejerciciodatajsonlocal.domain.usecases.GetAllPokemonUseCase
 import com.example.ejerciciodatajsonlocal.ui.pantallas.detail.DetailActivity
-import com.example.ejerciciodatajsonlocal.ui.pantallas.detail.adapter.PokemonAdapter
+import com.example.ejerciciodatajsonlocal.ui.pantallas.main.adapter.PokemonAdapter
 
 class MainActivity : AppCompatActivity() {
 

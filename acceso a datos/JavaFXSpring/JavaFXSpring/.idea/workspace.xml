@@ -5,7 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab0d3c51-1c8e-4405-8fe4-bc20db64da89" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/3/c320e222e183f44a0ecbda724e9c0ce8390eb7da" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/3/c320e222e183f44a0ecbda724e9c0ce8390eb7da" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/sonarlint/issuestore/0/6/0660552336255cda33521c5ce048369d28cfa73c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/sonarlint/issuestore/0/c/0c73afef3722ed030141806e1a2724ba052160d1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/sonarlint/issuestore/8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/sonarlint/issuestore/b/b/bb7d7b18fbfd04b809036927ee431504f00a2dc0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/sonarlint/issuestore/e/1/e130d7fdb5b880f883088ee13d036be29113337d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/sonarlint/securityhotspotstore/0/6/0660552336255cda33521c5ce048369d28cfa73c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/sonarlint/securityhotspotstore/0/c/0c73afef3722ed030141806e1a2724ba052160d1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/sonarlint/securityhotspotstore/8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/sonarlint/securityhotspotstore/b/b/bb7d7b18fbfd04b809036927ee431504f00a2dc0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/sonarlint/securityhotspotstore/e/1/e130d7fdb5b880f883088ee13d036be29113337d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/app/src/main/java/com/example/retrofitrecyclerview/HiltApp.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/app/src/main/java/com/example/retrofitrecyclerview/MainViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/app/src/main/java/com/example/retrofitrecyclerview/domain/Customer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/app/src/main/java/com/example/retrofitrecyclerview/domain/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/app/src/main/java/com/example/retrofitrecyclerview/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/app/src/main/java/com/example/retrofitrecyclerview/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../MovilesAsignatura/RetroFitRecyclerview/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../gestion empresarial/python ejercicios/.ipynb_checkpoints/Ejercicios_Matplotlib-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../gestion empresarial/python ejercicios/.ipynb_checkpoints/Ejercicios_Matplotlib-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../gestion empresarial/python ejercicios/Ejercicios_Matplotlib.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../gestion empresarial/python ejercicios/Ejercicios_Matplotlib.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +63,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Usuario/Desktop/componente interfaces/DemoComponenteFecha",
+    "last_opened_file_path": "C:/Users/Usuario/Desktop/2DAM/PSP/PrimerREST",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -122,6 +146,8 @@
       <workItem from="1699992573505" duration="6286000" />
       <workItem from="1699998876899" duration="1734000" />
       <workItem from="1700157932523" duration="669000" />
+      <workItem from="1700312092996" duration="34000" />
+      <workItem from="1700315549086" duration="46000" />
     </task>
     <servers />
   </component>
