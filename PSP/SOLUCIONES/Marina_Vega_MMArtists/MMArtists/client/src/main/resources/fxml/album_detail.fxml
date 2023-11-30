@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="client.ui.screens.album_detail.AlbumDetailController">
+    <Label fx:id="tvTitle" layoutX="64.0" layoutY="33.0" text="Album: ">
+        <font>
+            <Font size="21.0"/>
+        </font>
+    </Label>
+    <MFXTableView fx:id="mfxTableSongs" footerVisible="false" layoutX="21.0" layoutY="84.0" prefHeight="290.0"
+                  prefWidth="290.0">
+        <tableColumns>
+            <MFXTableColumn fx:id="colSongID" minWidth="64.0" prefHeight="42.0" prefWidth="64.0" text="ID"
+                            columnResizable="true"/>
+            <MFXTableColumn fx:id="colSongName" prefHeight="40.0" prefWidth="245.0" text="Name" columnResizable="true"/>
+            <MFXTableColumn fx:id="colNumberOfAlbums" minWidth="85.0" prefHeight="42.0" prefWidth="85.0"
+                            text="No. Albums" columnResizable="true"/>
+        </tableColumns>
+    </MFXTableView>
+    <MFXButton layoutX="386.0" layoutY="285.0" onAction="#deleteAlbum" text="DELETE THE ALBUM"/>
+    <MFXButton layoutX="370.0" layoutY="187.0" onAction="#deleteSelectedSongs" text="DELETE SELECTED SONGS"/>
+</AnchorPane>

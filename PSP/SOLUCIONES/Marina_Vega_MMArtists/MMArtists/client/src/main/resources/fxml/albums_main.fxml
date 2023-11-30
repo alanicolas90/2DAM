@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXTableColumn?>
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="client.ui.screens.albums_main.AlbumsMainController">
+    <Label layoutX="198.0" text="ALL ALBUMS">
+        <font>
+            <Font size="36.0"/>
+        </font>
+    </Label>
+    <MFXTableView fx:id="mfxTableAlbums" footerVisible="false" layoutX="134.0" layoutY="89.0" prefHeight="290.0"
+                  prefWidth="332.0">
+        <tableColumns>
+            <MFXTableColumn fx:id="colAlbumID" minWidth="66.0" prefHeight="42.0" prefWidth="66.0" text="ID"
+                            columnResizable="true"/>
+            <MFXTableColumn fx:id="colAlbumName" prefHeight="42.0" prefWidth="263.0" text="Name"
+                            columnResizable="true"/>
+        </tableColumns>
+    </MFXTableView>
+</AnchorPane>

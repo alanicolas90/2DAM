@@ -1,0 +1,906 @@
+{
+	"info": {
+		"_postman_id": "b09d85f1-6c76-47b1-acb9-451da45cc95f",
+		"name": "Artists&Songs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30195108"
+	},
+	"item": [
+		{
+			"name": "Artists",
+			"item": [
+				{
+					"name": "GetAllArtists",
+					"item": [
+						{
+							"name": "GetAllArtists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/artists",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GetArtistById",
+					"item": [
+						{
+							"name": "GetArtistById OK",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/artists/{{idArtistValid}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists",
+										"{{idArtistValid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetArtistById Error Number Not Found",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/artists/{{idArtistNotValidNumber}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists",
+										"{{idArtistNotValidNumber}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetArtistById Error NaN",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/artists/{{idArtistNotValidNaN}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists",
+										"{{idArtistNotValidNaN}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "AddArtist",
+					"item": [
+						{
+							"name": "AddArtist OK",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\": \"USA\",\r\n    \"debutYear\": 2001,\r\n    \"id\": 0,\r\n    \"name\": \"Fall Out Boy\"\r\n}   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/artists",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddArtist Error Empty Name",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\": \"USA\",\r\n    \"debutYear\": 2001,\r\n    \"id\": 0,\r\n    \"name\": \"\"\r\n}   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/artists",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddArtist Error Empty Country",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\": \"\",\r\n    \"debutYear\": 2001,\r\n    \"id\": 0,\r\n    \"name\": \"Fall Out Boy\"\r\n}   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/artists",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddArtist Error Negative Debut Year",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\": \"USA\",\r\n    \"debutYear\": -10,\r\n    \"id\": 0,\r\n    \"name\": \"Fall Out Boy\"\r\n}   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/artists",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddArtist Error Future Debut Year",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\": \"USA\",\r\n    \"debutYear\": 3000,\r\n    \"id\": 0,\r\n    \"name\": \"Fall Out Boy\"\r\n}   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/artists",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UpdateArtist",
+					"item": [
+						{
+							"name": "UpdateArtist OK",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\": \"USA, Florida\",\r\n    \"debutYear\": 2008,\r\n    \"id\": 5,\r\n    \"name\": \"Set It Off\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/artists",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateArtist Error Empty Name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\": \"USA, Florida\",\r\n    \"debutYear\": 2008,\r\n    \"id\": 5,\r\n    \"name\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/artists",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateArtist Error Empty Country",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\": \"\",\r\n    \"debutYear\": 2008,\r\n    \"id\": 5,\r\n    \"name\": \"Set It Off\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/artists",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateArtist Error Negative Debut Year",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\": \"USA\",\r\n    \"debutYear\": -2008,\r\n    \"id\": 5,\r\n    \"name\": \"Set It Off\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/artists",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateArtist Error Future Debut Year",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\": \"USA\",\r\n    \"debutYear\": 3008,\r\n    \"id\": 5,\r\n    \"name\": \"Set It Off\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/artists",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateArtist Error Not Found",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\": \"USA\",\r\n    \"debutYear\": 2008,\r\n    \"id\": 125,\r\n    \"name\": \"Set It Off\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/artists",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DeleteArtist",
+					"item": [
+						{
+							"name": "DeleteArtist OK",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/artists/{{idArtistValid}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists",
+										"{{idArtistValid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteArtist Error Number Not Found",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/artists/{{idArtistNotValidNumber}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists",
+										"{{idArtistNotValidNumber}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteArtist Error NaN",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/artists/{{idArtistNotValidNaN}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"artists",
+										"{{idArtistNotValidNaN}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Songs",
+			"item": [
+				{
+					"name": "GetAllSongs",
+					"item": [
+						{
+							"name": "GetAllSongs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/songs",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GetSongById",
+					"item": [
+						{
+							"name": "GetSongById OK",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/songs/{{idSongValid}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs",
+										"{{idSongValid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetSongById Error Number",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/songs/{{idSongNotValidNumber}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs",
+										"{{idSongNotValidNumber}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetSongById Error NaN",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/songs/{{idSongNotValidNaN}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs",
+										"{{idSongNotValidNaN}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "AddSong",
+					"item": [
+						{
+							"name": "AddSong OK",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"artist\": {\r\n        \"country\": \"USA\",\r\n        \"debutYear\": 2005,\r\n        \"id\": 3,\r\n        \"name\": \"Motionless in White\"\r\n    },\r\n    \"id\": 0,\r\n    \"length\": 220,\r\n    \"name\": \"Sign Of Life\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/songs",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddSong Error Empty Name",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"artist\": {\r\n        \"country\": \"USA\",\r\n        \"debutYear\": 2005,\r\n        \"id\": 3,\r\n        \"name\": \"Motionless in White\"\r\n    },\r\n    \"id\": 0,\r\n    \"length\": 220,\r\n    \"name\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/songs",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddSong Error Negative Length",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"artist\": {\r\n        \"country\": \"USA\",\r\n        \"debutYear\": 2005,\r\n        \"id\": 3,\r\n        \"name\": \"Motionless in White\"\r\n    },\r\n    \"id\": 0,\r\n    \"length\": -1,\r\n    \"name\": \"Sign Of Life\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/songs",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddSong Error Artist Not Found",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"artist\": {\r\n        \"country\": \"USA\",\r\n        \"debutYear\": 2005,\r\n        \"id\": 66,\r\n        \"name\": \"Motionless in White\"\r\n    },\r\n    \"id\": 0,\r\n    \"length\": 220,\r\n    \"name\": \"Sign Of Life\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/songs",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UpdateSong",
+					"item": [
+						{
+							"name": "UpdateSong OK",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"artist\": {\r\n        \"country\": \"USA\",\r\n        \"debutYear\": 2005,\r\n        \"id\": 3,\r\n        \"name\": \"Motionless in White\"\r\n    },\r\n    \"id\": 3,\r\n    \"length\": 210,\r\n    \"name\": \"America\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/songs",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateSong Error Empty Name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"artist\": {\r\n        \"country\": \"USA\",\r\n        \"debutYear\": 2005,\r\n        \"id\": 3,\r\n        \"name\": \"Motionless in White\"\r\n    },\r\n    \"id\": 3,\r\n    \"length\": 210,\r\n    \"name\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/songs",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateSong Error Negative Length",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"artist\": {\r\n        \"country\": \"USA\",\r\n        \"debutYear\": 2005,\r\n        \"id\": 3,\r\n        \"name\": \"Motionless in White\"\r\n    },\r\n    \"id\": 3,\r\n    \"length\": -210,\r\n    \"name\": \"America\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/songs",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateSong Error Artist Not Found",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"artist\": {\r\n        \"country\": \"USA\",\r\n        \"debutYear\": 2005,\r\n        \"id\": 570,\r\n        \"name\": \"Motionless in White\"\r\n    },\r\n    \"id\": 3,\r\n    \"length\": 210,\r\n    \"name\": \"America\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/songs",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateSong Error Not Found",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"artist\": {\r\n        \"country\": \"USA\",\r\n        \"debutYear\": 2005,\r\n        \"id\": 3,\r\n        \"name\": \"Motionless in White\"\r\n    },\r\n    \"id\": 570,\r\n    \"length\": 210,\r\n    \"name\": \"America\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/songs",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DeleteSong",
+					"item": [
+						{
+							"name": "DeleteSong OK",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/songs/{{idSongValid}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs",
+										"{{idSongValid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteSong Error Number Not Found",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/songs/{{idArtistNotValidNumber}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs",
+										"{{idArtistNotValidNumber}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteSong Error NaN",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/songs/{{idSongNotValidNaN}}",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"songs",
+										"{{idSongNotValidNaN}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

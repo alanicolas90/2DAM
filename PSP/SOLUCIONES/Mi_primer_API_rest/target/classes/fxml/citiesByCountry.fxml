@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane fx:id="screenCities" prefHeight="537.0" prefWidth="783.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.cities_by_country.CitiesByCountryController">
+    <MFXTableView fx:id="countriesTable" footerVisible="false" layoutX="53.0" layoutY="94.0" prefHeight="374.0" prefWidth="261.0">
+        <tableColumns>
+            <MFXTableColumn fx:id="colCountryID" minWidth="73.0" prefHeight="40.0" prefWidth="73.0" text="ID" />
+            <MFXTableColumn fx:id="colCountryName" prefHeight="40.0" prefWidth="166.0" text="Name" />
+        </tableColumns>
+    </MFXTableView>
+    <MFXTableView fx:id="citiesTable" footerVisible="false" layoutX="412.0" layoutY="88.0" prefHeight="374.0" prefWidth="329.0">
+        <tableColumns>
+            <MFXTableColumn fx:id="colCityID" prefWidth="75.0" text="ID" />
+            <MFXTableColumn fx:id="colCityName" prefHeight="40.0" prefWidth="245.0" text="Name" />
+        </tableColumns>
+    </MFXTableView>
+    <Label layoutX="287.0" layoutY="42.0" text="CITIES BY COUNTRY">
+        <font>
+            <Font name="System Bold" size="22.0" />
+        </font>
+    </Label>
+</AnchorPane>

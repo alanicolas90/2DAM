@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane fx:id="screenStates" prefHeight="590.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.states_by_country.StatesByCountryController">
+    <MFXTableView fx:id="countriesTable" footerVisible="false" layoutX="69.0" layoutY="94.0" prefHeight="374.0"
+                  prefWidth="269.0">
+        <tableColumns>
+            <MFXTableColumn fx:id="colCountryID" minWidth="73.0" prefHeight="40.0" prefWidth="73.0" text="ID"/>
+            <MFXTableColumn fx:id="colCountryName" prefHeight="40.0" prefWidth="207.0" text="Name"/>
+        </tableColumns>
+    </MFXTableView>
+    <MFXTableView fx:id="statesTable" footerVisible="false" layoutX="432.0" layoutY="94.0" prefHeight="374.0"
+                  prefWidth="280.0">
+        <tableColumns>
+            <MFXTableColumn fx:id="colStateID" minWidth="87.0" prefHeight="40.0" prefWidth="87.0" text="ID"/>
+            <MFXTableColumn fx:id="colStateName" prefHeight="40.0" prefWidth="192.0" text="Name"/>
+        </tableColumns>
+    </MFXTableView>
+    <Label layoutX="282.0" layoutY="42.0" text="STATES BY COUNTRY">
+        <font>
+            <Font name="System Bold" size="22.0"/>
+        </font>
+    </Label>
+</AnchorPane>

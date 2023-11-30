@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Adivina el numero</title>
+</head>
+<body>
+<h1>Intenta adivinar un numero dentro del rango del 0 al <span th:text="${rangoSuperior}"></span></h1>
+<form method="get" action="adivina">
+    <label for="guess">Introduce un numero:</label>
+    <input type="text" id="guess" name="guess" />
+    <button type="submit" th:disabled="${intentos <= 0 }">Adivinar</button>
+</form>
+
+<p>Intentos restantes: <span th:text="${intentos}"></span></p>
+<p th:if="${mensaje}">Resultado: <span th:text="${mensaje}"></span></p>
+<form method="get" action="adivina">
+    <input type="hidden" name="reset" value="reiniciar">
+    <input type="submit" value="Reiniciar juego">
+</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXTableColumn?>
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane fx:id="screenCountries" prefHeight="590.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.list_countries.ListCountriesController">
+    <MFXTableView fx:id="countriesTable" footerVisible="false" layoutX="29.0" layoutY="108.0" prefHeight="374.0"
+                  prefWidth="381.0">
+        <tableColumns>
+            <MFXTableColumn fx:id="colID" minWidth="80.0" prefHeight="40.0" prefWidth="80.0" text="ID"/>
+            <MFXTableColumn fx:id="colName" prefHeight="40.0" prefWidth="205.0" text="Name"/>
+            <MFXTableColumn fx:id="colISO" minWidth="96.0" prefHeight="40.0" prefWidth="96.0" text="ISO"/>
+        </tableColumns>
+    </MFXTableView>
+    <Label layoutX="290.0" layoutY="41.0" text="LIST OF COUNTRIES">
+        <font>
+            <Font name="System Bold" size="22.0"/>
+        </font>
+    </Label>
+    <Label fx:id="nameLabel" layoutX="496.0" layoutY="181.0" text="Name: "/>
+    <Label fx:id="phoneCodeLabel" layoutX="496.0" layoutY="211.0" text="Phone Code: "/>
+    <Label fx:id="capitalLabel" layoutX="496.0" layoutY="241.0" text="Capital: "/>
+    <Label fx:id="currencyNameLabel" layoutX="496.0" layoutY="271.0" text="Currency Name: "/>
+    <Label fx:id="tldLabel" layoutX="496.0" layoutY="301.0" text="Top Level Domain: "/>
+    <Label fx:id="nativeNameLabel" layoutX="496.0" layoutY="331.0" text="Native Name: "/>
+    <Label fx:id="subregionLabel" layoutX="496.0" layoutY="361.0" text="Subregion: "/>
+</AnchorPane>
