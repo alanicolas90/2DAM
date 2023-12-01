@@ -13,3 +13,15 @@ u
 EJavaFXSpring/src/main/java/dao/impl/rowmappers/CustomerRowMapper.java,f\e\fea5e3d6a94075b6a7814bcba9f5b22a2b4d8ac7
 e
 5JavaFXSpring/src/main/resources/config/properties.xml,2\0\203d6150680372a253a68a9a5b6eb3739c8b90bf
+D
+JavaFXSpring/pom.xml,2\4\246ef174ce46d18a73d1e75ce3679cf94c500e5f
+d
+4JavaFXSpring/src/main/java/config/Configuration.java,2\d\2df9ae89bf1ad177887fb69742af3705b3cc5fd2
+b
+2JavaFXSpring/src/main/resources/META-INF/beans.xml,f\5\f54b256255ccc16eb2cfe287fcb92c2cbc43c081
+i
+9JavaFXSpring/src/main/java/service/model/CustomerXml.java,3\d\3d524ada933b35c14a3cc8be1990f4db4e5c442a
+`
+0JavaFXSpring/src/main/java/dao/DBConnection.java,5\9\59137d827126517270757201c214e69746afaa97
+i
+9JavaFXSpring/src/main/java/dao/impl/DBConnectionImpl.java,1\c\1c712c4969484b2e249e21ae68194136a17ef7f6

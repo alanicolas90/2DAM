@@ -1,0 +1,7 @@
+
+
+java:S1186
+"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(νΨμ’8”¤ΠΒ1
+F
+java:S1172")Remove this unused method parameter "sc".(ίπ›ι8ιΒ1
+L	java:S106"+Replace this use of System.out by a logger.(®θώÿÿÿÿ8Μ―ΡΒ1
