@@ -7,14 +7,10 @@ W
 'src/main/java/config/Configuration.java,7\f\7f9a1455549e9958f1cfe6993a695569484b133b
 O
 src/main/java/ui/main/Main.java,e\a\ea96b99dd8d725725ad637073873194d3860069f
-Q
-!src/main/java/dao/ExampleDao.java,0\c\0c671eed0d5807906eb77668b6360839274dea7c
 V
 &src/main/java/dao/ExamplesJDBCDao.java,c\2\c20f72b7efccf511395f0c98254d6832394c3d13
 J
 src/main/java/model/X.java,a\b\abd840f49838fa913ed7a9d57fc7f719054df009
-Z
-*src/main/java/ui/main/ConstantsMainç.java,b\5\b500d0d4570acd5fb3e4e65bd5afc76e4a0166e7
 X
 (src/main/java/ui/main/ConstantsMain.java,1\7\1782f18cf02096c5f8b04b927c9fff8fcac79534
 ^
@@ -39,10 +35,6 @@ _
 /src/main/java/ui/main/exercises/Exercise10.java,1\e\1e408d9d19ad0b6a883b7ab7d16795ce35a80b0d
 _
 /src/main/java/ui/main/exercises/Exercise11.java,2\f\2f845b3cb20251d378df9823a87d8bb0fbad7837
-M
-src/main/java/model/XXml.java,8\e\8ea7f41557dcf0446f8b8dc75b86efbe803e9de4
-Q
-!src/main/java/dao/ExampleXml.java,a\2\a24db9fcb9051a730848173315f4ea36872cd3cc
 T
 $src/main/java/dao/ExampleXmlDao.java,4\4\449bc0a3e1d473d9a316b1bce3d585f9a431f6ab
 W
